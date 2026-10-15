@@ -8,11 +8,17 @@
   "exports": "./dist/main.js",
   "scripts": {
     "build": "rollup -c",
-    "serve": "rollup -c --watch"
+    "serve": "rollup -c --watch",
+    "test": "node --test"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "rollup": "^4.64.3",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-serve": "^3.0.0"
+  },
+  "dependencies": {
+    "d3-dag": "^1.2.2",
+    "p5": "^2.3.4"
   }
 }

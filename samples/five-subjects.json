@@ -1,0 +1,148 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "name": "Five-subject network",
+  "subjects": [
+    {
+      "id": "S00001",
+      "phrase": "bearing Cove-00001",
+      "category": "structures.connections",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00002",
+      "phrase": "workboat Petrel-00002",
+      "category": "vehicles.water",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00008",
+      "phrase": "depot Altair-00008",
+      "category": "facilities",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00012",
+      "phrase": "drawing River-00012",
+      "category": "records",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00015",
+      "phrase": "shipment Iris-00015",
+      "category": "operations",
+      "cluster": 1,
+      "reserved_isolate": false
+    }
+  ],
+  "facts": [
+    {
+      "id": "TN0000027",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [],
+      "statement": "workboat Petrel-00002 has reference item = bearing Cove-00001;"
+    },
+    {
+      "id": "TN0000028",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "supporting item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "workboat Petrel-00002 has supporting item = bearing Cove-00001 (trial);"
+    },
+    {
+      "id": "TN0000007",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [],
+      "statement": "drawing River-00012 has peer = bearing Cove-00001;"
+    },
+    {
+      "id": "TN0000008",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "shipment Iris-00015"
+      },
+      "tags": [
+        "batch A",
+        "batch B"
+      ],
+      "statement": "bearing Cove-00001 has downstream item = shipment Iris-00015 (batch A, batch B);"
+    },
+    {
+      "id": "TN0000023",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "depot Altair-00008 has downstream item = bearing Cove-00001 (baseline);"
+    },
+    {
+      "id": "TN0000010",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00008",
+        "subject": "depot Altair-00008"
+      },
+      "tags": [
+        "batch A",
+        "zone west"
+      ],
+      "statement": "workboat Petrel-00002 has reference item = depot Altair-00008 (batch A, zone west);"
+    },
+    {
+      "id": "TN0000009",
+      "subject_id": "S00015",
+      "subject": "shipment Iris-00015",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "workboat Petrel-00002"
+      },
+      "tags": [
+        "batch B",
+        "survey"
+      ],
+      "statement": "shipment Iris-00015 has related item = workboat Petrel-00002 (batch B, survey);"
+    }
+  ]
+}

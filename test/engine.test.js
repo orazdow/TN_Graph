@@ -1,0 +1,100 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync, readdirSync} from 'node:fs';
+import {Engine, selectFacts, validateDataset} from '../src/engine.js';
+
+const fixture = () => ({format: 'synthetic-truenumbers', format_version: 1,
+  subjects: [{id: 's1', phrase: 'ship Aurora', category: 'ship', cluster: 2}, {id: 's2', phrase: 'company Meridian'}],
+  facts: [
+    {id: 'f1', subject_id: 's1', subject: 'ship Aurora', property: 'owner', value: {type: 'reference', subject_id: 's2', subject: 'company Meridian'}, tags: ['verified']},
+    {id: 'f2', subject_id: 's1', subject: 'ship Aurora', property: 'mass', value: {type: 'numeric', magnitude: 1200, unit: 'tonnes', quantity: 'mass'}, tags: []},
+    {id: 'f3', subject_id: 's2', subject: 'company Meridian', property: 'status', value: {type: 'string', text: 'active'}, tags: ['verified']},
+  ]});
+
+test('imports namespace facts, merge exact phrases, preserve conflicts and provenance', () => {
+  const engine = new Engine();
+  const first = engine.add(fixture(), {name: 'A'});
+  const conflicting = fixture();
+  conflicting.facts[1].value.magnitude = 1300;
+  const second = engine.add(conflicting, {name: 'B'});
+  const snapshot = engine.snapshot();
+  assert.equal(snapshot.subjects.length, 2);
+  assert.equal(snapshot.facts.length, 6);
+  assert.equal(new Set(snapshot.facts.map(f => f.id)).size, 6);
+  assert.deepEqual(snapshot.facts.filter(f => f.property === 'mass').map(f => f.value.magnitude), [1200, 1300]);
+  assert.equal(snapshot.facts[0].targetId, snapshot.subjects[1].id);
+  assert.equal(snapshot.facts[0].sourceId, first);
+  assert.equal(snapshot.facts[3].sourceId, second);
+  assert.equal(snapshot.facts[0].originalId, 'f1');
+  assert.equal(snapshot.subjects[0].contributions[0].metadata.cluster, 2);
+});
+
+test('source removal retains shared subjects and stable remaining identities', () => {
+  const engine = new Engine();
+  const first = engine.add(fixture());
+  const second = engine.add(fixture());
+  const before = engine.snapshot();
+  engine.remove(first);
+  const after = engine.snapshot();
+  assert.deepEqual(after.subjects.map(s => s.id), before.subjects.map(s => s.id));
+  assert.deepEqual(after.facts.map(f => f.id), before.facts.filter(f => f.sourceId === second).map(f => f.id));
+  engine.remove(second);
+  assert.deepEqual(engine.snapshot(), {subjects: [], facts: [], sources: []});
+});
+
+test('invalid imports are atomic and reject unsupported types, collisions, and dangling references', () => {
+  const engine = new Engine();
+  engine.add(fixture());
+  const before = engine.snapshot();
+  for (const mutate of [
+    data => { data.format_version = 2; },
+    data => { data.subjects.push(data.subjects[0]); },
+    data => { data.facts.push(data.facts[0]); },
+    data => { data.facts[0].value.subject_id = 'missing'; },
+    data => { data.facts[0].subject = 'wrong phrase'; },
+    data => { data.facts[1].value.magnitude = Infinity; },
+    data => { data.facts[1].value.type = 'date'; },
+    data => { data.facts[0].tags = [null]; },
+  ]) {
+    const bad = fixture(); mutate(bad);
+    assert.throws(() => engine.add(bad));
+    assert.deepEqual(engine.snapshot(), before);
+  }
+  assert.throws(() => engine.add(fixture(), {name: ''}));
+  assert.deepEqual(engine.snapshot(), before);
+});
+
+test('input and snapshot mutations do not change stored facts or metadata', () => {
+  const engine = new Engine();
+  const input = fixture(); engine.add(input);
+  input.facts[0].tags.push('external');
+  input.subjects[0].category = 'changed';
+  const snapshot = engine.snapshot();
+  snapshot.facts[0].tags.push('snapshot change');
+  snapshot.subjects[0].contributions[0].metadata.cluster = 999;
+  assert.deepEqual(engine.snapshot().facts[0].tags, ['verified']);
+  assert.equal(engine.snapshot().subjects[0].contributions[0].metadata.category, 'ship');
+  assert.equal(engine.snapshot().subjects[0].contributions[0].metadata.cluster, 2);
+});
+
+test('query, exact property, and exact tag filters combine without changing collection', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const snapshot = engine.snapshot();
+  assert.equal(selectFacts(snapshot, {query: 'MERIDIAN', property: 'owner', tag: 'verified'}).length, 1);
+  assert.equal(selectFacts(snapshot, {query: '1200 tonnes'})[0].property, 'mass');
+  assert.equal(selectFacts(snapshot, {property: 'own'}).length, 0);
+  assert.equal(selectFacts(snapshot, {tag: 'ver'}).length, 0);
+  assert.equal(selectFacts(snapshot, {query: 'missing'}).length, 0);
+  assert.equal(engine.snapshot().facts.length, 3);
+});
+
+test('all bundled generator samples validate and import', () => {
+  const directory = new URL('../tn_generator/samples/', import.meta.url);
+  for (const filename of readdirSync(directory).filter(name => name.endsWith('.json') && name !== 'sample_summary.json')) {
+    const data = JSON.parse(readFileSync(new URL(filename, directory), 'utf8'));
+    validateDataset(data);
+    const engine = new Engine(); engine.add(data);
+    assert.equal(engine.snapshot().facts.length, data.facts.length);
+    assert.equal(engine.snapshot().subjects.length, data.subjects.length);
+  }
+});

@@ -1,0 +1,1244 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "notes": [],
+  "seed": 20261009,
+  "settings": {
+    "facts": 64,
+    "subjects": 16,
+    "connectivity": 0.45,
+    "sharing": 0.6,
+    "structure": 0,
+    "property_overlap": 0.65,
+    "tag_overlap": 0.6,
+    "literal_reuse": 0.25
+  },
+  "preset": {
+    "id": 0,
+    "name": "mixed"
+  },
+  "generation": {
+    "scaffold_reference_facts": 15,
+    "requested_reserved_isolates": 0,
+    "relationship_pool": [
+      "related item",
+      "peer",
+      "downstream item",
+      "supporting item",
+      "reference item"
+    ],
+    "literal_property_pool": [
+      "age",
+      "material",
+      "acceleration",
+      "seating capacity",
+      "status",
+      "mass flow rate",
+      "area",
+      "mass",
+      "duration",
+      "condition",
+      "resistance",
+      "width",
+      "tank capacity",
+      "frequency"
+    ],
+    "semantic_tag_pool": [
+      "audit",
+      "import batch A",
+      "batch B",
+      "supplier report",
+      "laboratory test",
+      "estimated",
+      "batch A",
+      "baseline",
+      "zone west",
+      "trial",
+      "zone east",
+      "superseded",
+      "survey",
+      "verified"
+    ]
+  },
+  "statistics": {
+    "subject_count": 16,
+    "fact_count": 64,
+    "reference_fact_count": 29,
+    "literal_fact_count": 35,
+    "reference_fraction": 0.453125,
+    "distinct_directed_subject_pairs": 23,
+    "weak_component_sizes": [
+      11,
+      5
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_tags": 14,
+    "distinct_semantic_tags": 14,
+    "subjects_per_property": {
+      "acceleration": 3,
+      "age": 2,
+      "area": 4,
+      "condition": 1,
+      "downstream item": 4,
+      "duration": 2,
+      "frequency": 3,
+      "mass": 2,
+      "mass flow rate": 1,
+      "material": 1,
+      "peer": 6,
+      "reference item": 7,
+      "related item": 5,
+      "resistance": 2,
+      "seating capacity": 4,
+      "status": 3,
+      "supporting item": 3,
+      "tank capacity": 4,
+      "width": 2
+    },
+    "subjects_per_tag": {
+      "audit": 5,
+      "baseline": 3,
+      "batch A": 8,
+      "batch B": 4,
+      "estimated": 5,
+      "import batch A": 5,
+      "laboratory test": 4,
+      "superseded": 2,
+      "supplier report": 6,
+      "survey": 5,
+      "trial": 5,
+      "verified": 2,
+      "zone east": 2,
+      "zone west": 4
+    },
+    "repeated_literal_fraction": 0.1428571428571429,
+    "top_reference_targets": [
+      {
+        "subject_id": "S00005",
+        "incoming_facts": 6,
+        "distinct_source_subjects": 5
+      },
+      {
+        "subject_id": "S00006",
+        "incoming_facts": 5,
+        "distinct_source_subjects": 4
+      },
+      {
+        "subject_id": "S00014",
+        "incoming_facts": 5,
+        "distinct_source_subjects": 3
+      },
+      {
+        "subject_id": "S00001",
+        "incoming_facts": 4,
+        "distinct_source_subjects": 3
+      },
+      {
+        "subject_id": "S00010",
+        "incoming_facts": 2,
+        "distinct_source_subjects": 2
+      }
+    ],
+    "deliberate_literal_reuse_events": 5,
+    "duplicate_observation_tags": 0
+  },
+  "subjects": [
+    {
+      "id": "S00001",
+      "phrase": "bearing Cove-00001",
+      "category": "structures.connections",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00002",
+      "phrase": "workboat Petrel-00002",
+      "category": "vehicles.water",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00003",
+      "phrase": "busbar Horizon-00003",
+      "category": "electrical_systems",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00004",
+      "phrase": "filter Rigel-00004",
+      "category": "fluid_systems",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00005",
+      "phrase": "generator Vega-00005",
+      "category": "electrical_systems",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00006",
+      "phrase": "coupling Ridge-00006",
+      "category": "structures.connections",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00007",
+      "phrase": "connector Fairhaven-00007",
+      "category": "electrical_systems",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00008",
+      "phrase": "depot Altair-00008",
+      "category": "facilities",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00009",
+      "phrase": "pressure sensor Basalt-00009",
+      "category": "instrumentation",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00010",
+      "phrase": "test Elm-00010",
+      "category": "operations",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00011",
+      "phrase": "column Heron-00011",
+      "category": "structures.members",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00012",
+      "phrase": "drawing River-00012",
+      "category": "records",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00013",
+      "phrase": "port Helios-00013",
+      "category": "facilities",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00014",
+      "phrase": "frame Valley-00014",
+      "category": "structures.members",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00015",
+      "phrase": "shipment Iris-00015",
+      "category": "operations",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00016",
+      "phrase": "test Raven-00016",
+      "category": "operations",
+      "cluster": 0,
+      "reserved_isolate": false
+    }
+  ],
+  "facts": [
+    {
+      "id": "TN0000002",
+      "subject_id": "S00010",
+      "subject": "test Elm-00010",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "generator Vega-00005"
+      },
+      "tags": [
+        "estimated",
+        "supplier report"
+      ],
+      "statement": "test Elm-00010 has reference item = generator Vega-00005 (estimated, supplier report);"
+    },
+    {
+      "id": "TN0000031",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 12.131,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "import batch A",
+        "supplier report"
+      ],
+      "statement": "port Helios-00013 has mass = 12.131 kg (import batch A, supplier report);"
+    },
+    {
+      "id": "TN0000030",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 100.99,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "drawing River-00012 has tank capacity = 100.99 m^3 (batch A);"
+    },
+    {
+      "id": "TN0000025",
+      "subject_id": "S00005",
+      "subject": "generator Vega-00005",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "coupling Ridge-00006"
+      },
+      "tags": [
+        "supplier report",
+        "trial"
+      ],
+      "statement": "generator Vega-00005 has peer = coupling Ridge-00006 (supplier report, trial);"
+    },
+    {
+      "id": "TN0000029",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "coupling Ridge-00006"
+      },
+      "tags": [
+        "survey"
+      ],
+      "statement": "port Helios-00013 has related item = coupling Ridge-00006 (survey);"
+    },
+    {
+      "id": "TN0000027",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [],
+      "statement": "workboat Petrel-00002 has reference item = bearing Cove-00001;"
+    },
+    {
+      "id": "TN0000037",
+      "subject_id": "S00015",
+      "subject": "shipment Iris-00015",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 5.8847,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "audit",
+        "supplier report"
+      ],
+      "statement": "shipment Iris-00015 has width = 5.8847 m (audit, supplier report);"
+    },
+    {
+      "id": "TN0000012",
+      "subject_id": "S00011",
+      "subject": "column Heron-00011",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00009",
+        "subject": "pressure sensor Basalt-00009"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "column Heron-00011 has related item = pressure sensor Basalt-00009 (baseline);"
+    },
+    {
+      "id": "TN0000011",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00011",
+        "subject": "column Heron-00011"
+      },
+      "tags": [
+        "supplier report"
+      ],
+      "statement": "port Helios-00013 has downstream item = column Heron-00011 (supplier report);"
+    },
+    {
+      "id": "TN0000028",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "supporting item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "workboat Petrel-00002 has supporting item = bearing Cove-00001 (trial);"
+    },
+    {
+      "id": "TN0000020",
+      "subject_id": "S00014",
+      "subject": "frame Valley-00014",
+      "property": "supporting item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "coupling Ridge-00006"
+      },
+      "tags": [
+        "supplier report"
+      ],
+      "statement": "frame Valley-00014 has supporting item = coupling Ridge-00006 (supplier report);"
+    },
+    {
+      "id": "TN0000049",
+      "subject_id": "S00004",
+      "subject": "filter Rigel-00004",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.9459,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "filter Rigel-00004 has tank capacity = 1.9459 m^3;"
+    },
+    {
+      "id": "TN0000042",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "age",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.919,
+        "unit": "s",
+        "quantity": "duration"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "port Helios-00013 has age = 1.919 s (import batch A);"
+    },
+    {
+      "id": "TN0000043",
+      "subject_id": "S00010",
+      "subject": "test Elm-00010",
+      "property": "condition",
+      "value": {
+        "type": "string",
+        "text": "fair"
+      },
+      "tags": [
+        "batch A",
+        "verified"
+      ],
+      "statement": "test Elm-00010 has condition = \"fair\" (batch A, verified);"
+    },
+    {
+      "id": "TN0000016",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "frame Valley-00014"
+      },
+      "tags": [
+        "laboratory test",
+        "zone west"
+      ],
+      "statement": "pressure sensor Basalt-00009 has downstream item = frame Valley-00014 (laboratory test, zone west);"
+    },
+    {
+      "id": "TN0000055",
+      "subject_id": "S00004",
+      "subject": "filter Rigel-00004",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 50.474,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "filter Rigel-00004 has tank capacity = 50.474 m^3 (batch A);"
+    },
+    {
+      "id": "TN0000015",
+      "subject_id": "S00014",
+      "subject": "frame Valley-00014",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00013",
+        "subject": "port Helios-00013"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "frame Valley-00014 has peer = port Helios-00013 (import batch A);"
+    },
+    {
+      "id": "TN0000026",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00011",
+        "subject": "column Heron-00011"
+      },
+      "tags": [
+        "audit",
+        "baseline"
+      ],
+      "statement": "port Helios-00013 has reference item = column Heron-00011 (audit, baseline);"
+    },
+    {
+      "id": "TN0000040",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "active"
+      },
+      "tags": [
+        "batch B",
+        "import batch A"
+      ],
+      "statement": "depot Altair-00008 has status = \"active\" (batch B, import batch A);"
+    },
+    {
+      "id": "TN0000017",
+      "subject_id": "S00003",
+      "subject": "busbar Horizon-00003",
+      "property": "supporting item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "generator Vega-00005"
+      },
+      "tags": [
+        "zone west"
+      ],
+      "statement": "busbar Horizon-00003 has supporting item = generator Vega-00005 (zone west);"
+    },
+    {
+      "id": "TN0000041",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0027184,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "audit",
+        "trial"
+      ],
+      "statement": "port Helios-00013 has tank capacity = 0.0027184 m^3 (audit, trial);"
+    },
+    {
+      "id": "TN0000053",
+      "subject_id": "S00011",
+      "subject": "column Heron-00011",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 35810000.0,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [],
+      "statement": "column Heron-00011 has frequency = 35810000 Hz;"
+    },
+    {
+      "id": "TN0000036",
+      "subject_id": "S00005",
+      "subject": "generator Vega-00005",
+      "property": "duration",
+      "value": {
+        "type": "numeric",
+        "magnitude": 680.97,
+        "unit": "s",
+        "quantity": "duration"
+      },
+      "tags": [
+        "import batch A",
+        "verified"
+      ],
+      "statement": "generator Vega-00005 has duration = 680.97 s (import batch A, verified);"
+    },
+    {
+      "id": "TN0000045",
+      "subject_id": "S00016",
+      "subject": "test Raven-00016",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 424,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "import batch A",
+        "superseded"
+      ],
+      "statement": "test Raven-00016 has seating capacity = 424 (import batch A, superseded);"
+    },
+    {
+      "id": "TN0000006",
+      "subject_id": "S00007",
+      "subject": "connector Fairhaven-00007",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "generator Vega-00005"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "connector Fairhaven-00007 has reference item = generator Vega-00005 (audit);"
+    },
+    {
+      "id": "TN0000038",
+      "subject_id": "S00016",
+      "subject": "test Raven-00016",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "standby"
+      },
+      "tags": [],
+      "statement": "test Raven-00016 has status = \"standby\";"
+    },
+    {
+      "id": "TN0000032",
+      "subject_id": "S00010",
+      "subject": "test Elm-00010",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 439,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "test Elm-00010 has seating capacity = 439 (trial);"
+    },
+    {
+      "id": "TN0000048",
+      "subject_id": "S00005",
+      "subject": "generator Vega-00005",
+      "property": "resistance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 686.06,
+        "unit": "ohm",
+        "quantity": "electric_resistance"
+      },
+      "tags": [
+        "laboratory test",
+        "trial"
+      ],
+      "statement": "generator Vega-00005 has resistance = 686.06 ohm (laboratory test, trial);"
+    },
+    {
+      "id": "TN0000007",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [],
+      "statement": "drawing River-00012 has peer = bearing Cove-00001;"
+    },
+    {
+      "id": "TN0000024",
+      "subject_id": "S00003",
+      "subject": "busbar Horizon-00003",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00010",
+        "subject": "test Elm-00010"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "busbar Horizon-00003 has reference item = test Elm-00010 (batch A);"
+    },
+    {
+      "id": "TN0000033",
+      "subject_id": "S00005",
+      "subject": "generator Vega-00005",
+      "property": "age",
+      "value": {
+        "type": "numeric",
+        "magnitude": 9.2554,
+        "unit": "s",
+        "quantity": "duration"
+      },
+      "tags": [
+        "zone east"
+      ],
+      "statement": "generator Vega-00005 has age = 9.2554 s (zone east);"
+    },
+    {
+      "id": "TN0000057",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "acceleration",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.018171,
+        "unit": "m/s^2",
+        "quantity": "acceleration"
+      },
+      "tags": [],
+      "statement": "bearing Cove-00001 has acceleration = 0.018171 m/s^2;"
+    },
+    {
+      "id": "TN0000005",
+      "subject_id": "S00003",
+      "subject": "busbar Horizon-00003",
+      "property": "supporting item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "generator Vega-00005"
+      },
+      "tags": [
+        "estimated",
+        "survey"
+      ],
+      "statement": "busbar Horizon-00003 has supporting item = generator Vega-00005 (estimated, survey);"
+    },
+    {
+      "id": "TN0000051",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.757,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [
+        "batch B",
+        "supplier report"
+      ],
+      "statement": "pressure sensor Basalt-00009 has area = 55.757 m^2 (batch B, supplier report);"
+    },
+    {
+      "id": "TN0000008",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "shipment Iris-00015"
+      },
+      "tags": [
+        "batch A",
+        "batch B"
+      ],
+      "statement": "bearing Cove-00001 has downstream item = shipment Iris-00015 (batch A, batch B);"
+    },
+    {
+      "id": "TN0000064",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 9839800000.0,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "batch A",
+        "estimated"
+      ],
+      "statement": "workboat Petrel-00002 has frequency = 9839800000 Hz (batch A, estimated);"
+    },
+    {
+      "id": "TN0000063",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "concrete"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "bearing Cove-00001 has material = \"concrete\" (audit);"
+    },
+    {
+      "id": "TN0000060",
+      "subject_id": "S00011",
+      "subject": "column Heron-00011",
+      "property": "duration",
+      "value": {
+        "type": "numeric",
+        "magnitude": 680.97,
+        "unit": "s",
+        "quantity": "duration"
+      },
+      "tags": [
+        "batch A",
+        "superseded"
+      ],
+      "statement": "column Heron-00011 has duration = 680.97 s (batch A, superseded);"
+    },
+    {
+      "id": "TN0000023",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "depot Altair-00008 has downstream item = bearing Cove-00001 (baseline);"
+    },
+    {
+      "id": "TN0000019",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "frame Valley-00014"
+      },
+      "tags": [
+        "batch B",
+        "supplier report"
+      ],
+      "statement": "pressure sensor Basalt-00009 has peer = frame Valley-00014 (batch B, supplier report);"
+    },
+    {
+      "id": "TN0000050",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "active"
+      },
+      "tags": [
+        "laboratory test",
+        "zone west"
+      ],
+      "statement": "workboat Petrel-00002 has status = \"active\" (laboratory test, zone west);"
+    },
+    {
+      "id": "TN0000062",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "resistance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.012434,
+        "unit": "ohm",
+        "quantity": "electric_resistance"
+      },
+      "tags": [],
+      "statement": "drawing River-00012 has resistance = 0.012434 ohm;"
+    },
+    {
+      "id": "TN0000022",
+      "subject_id": "S00006",
+      "subject": "coupling Ridge-00006",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "frame Valley-00014"
+      },
+      "tags": [
+        "estimated"
+      ],
+      "statement": "coupling Ridge-00006 has related item = frame Valley-00014 (estimated);"
+    },
+    {
+      "id": "TN0000056",
+      "subject_id": "S00003",
+      "subject": "busbar Horizon-00003",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2597.9,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [],
+      "statement": "busbar Horizon-00003 has area = 2597.9 m^2;"
+    },
+    {
+      "id": "TN0000059",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 108.63,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "drawing River-00012 has width = 108.63 m (batch A);"
+    },
+    {
+      "id": "TN0000054",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 804,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "baseline",
+        "zone east"
+      ],
+      "statement": "depot Altair-00008 has seating capacity = 804 (baseline, zone east);"
+    },
+    {
+      "id": "TN0000001",
+      "subject_id": "S00005",
+      "subject": "generator Vega-00005",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00010",
+        "subject": "test Elm-00010"
+      },
+      "tags": [
+        "survey",
+        "trial"
+      ],
+      "statement": "generator Vega-00005 has related item = test Elm-00010 (survey, trial);"
+    },
+    {
+      "id": "TN0000010",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00008",
+        "subject": "depot Altair-00008"
+      },
+      "tags": [
+        "batch A",
+        "zone west"
+      ],
+      "statement": "workboat Petrel-00002 has reference item = depot Altair-00008 (batch A, zone west);"
+    },
+    {
+      "id": "TN0000046",
+      "subject_id": "S00011",
+      "subject": "column Heron-00011",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0025022,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [
+        "audit",
+        "laboratory test"
+      ],
+      "statement": "column Heron-00011 has area = 0.0025022 m^2 (audit, laboratory test);"
+    },
+    {
+      "id": "TN0000004",
+      "subject_id": "S00004",
+      "subject": "filter Rigel-00004",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "generator Vega-00005"
+      },
+      "tags": [
+        "zone west"
+      ],
+      "statement": "filter Rigel-00004 has peer = generator Vega-00005 (zone west);"
+    },
+    {
+      "id": "TN0000058",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "acceleration",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.168,
+        "unit": "m/s^2",
+        "quantity": "acceleration"
+      },
+      "tags": [
+        "batch A",
+        "supplier report"
+      ],
+      "statement": "pressure sensor Basalt-00009 has acceleration = 1.168 m/s^2 (batch A, supplier report);"
+    },
+    {
+      "id": "TN0000009",
+      "subject_id": "S00015",
+      "subject": "shipment Iris-00015",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "workboat Petrel-00002"
+      },
+      "tags": [
+        "batch B",
+        "survey"
+      ],
+      "statement": "shipment Iris-00015 has related item = workboat Petrel-00002 (batch B, survey);"
+    },
+    {
+      "id": "TN0000014",
+      "subject_id": "S00006",
+      "subject": "coupling Ridge-00006",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "frame Valley-00014"
+      },
+      "tags": [],
+      "statement": "coupling Ridge-00006 has related item = frame Valley-00014;"
+    },
+    {
+      "id": "TN0000018",
+      "subject_id": "S00014",
+      "subject": "frame Valley-00014",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "coupling Ridge-00006"
+      },
+      "tags": [],
+      "statement": "frame Valley-00014 has peer = coupling Ridge-00006;"
+    },
+    {
+      "id": "TN0000052",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 15821000.0,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "survey"
+      ],
+      "statement": "pressure sensor Basalt-00009 has frequency = 15821000 Hz (survey);"
+    },
+    {
+      "id": "TN0000021",
+      "subject_id": "S00013",
+      "subject": "port Helios-00013",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "frame Valley-00014"
+      },
+      "tags": [],
+      "statement": "port Helios-00013 has peer = frame Valley-00014;"
+    },
+    {
+      "id": "TN0000034",
+      "subject_id": "S00015",
+      "subject": "shipment Iris-00015",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.057681,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [
+        "batch B",
+        "trial"
+      ],
+      "statement": "shipment Iris-00015 has mass flow rate = 0.057681 kg/s (batch B, trial);"
+    },
+    {
+      "id": "TN0000047",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 804,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "estimated"
+      ],
+      "statement": "pressure sensor Basalt-00009 has seating capacity = 804 (estimated);"
+    },
+    {
+      "id": "TN0000044",
+      "subject_id": "S00005",
+      "subject": "generator Vega-00005",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 510.17,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "laboratory test"
+      ],
+      "statement": "generator Vega-00005 has tank capacity = 510.17 m^3 (laboratory test);"
+    },
+    {
+      "id": "TN0000061",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 12381.0,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [],
+      "statement": "bearing Cove-00001 has mass = 12381 kg;"
+    },
+    {
+      "id": "TN0000039",
+      "subject_id": "S00014",
+      "subject": "frame Valley-00014",
+      "property": "acceleration",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.018171,
+        "unit": "m/s^2",
+        "quantity": "acceleration"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "frame Valley-00014 has acceleration = 0.018171 m/s^2 (import batch A);"
+    },
+    {
+      "id": "TN0000035",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.757,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [],
+      "statement": "depot Altair-00008 has area = 55.757 m^2;"
+    },
+    {
+      "id": "TN0000003",
+      "subject_id": "S00016",
+      "subject": "test Raven-00016",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "generator Vega-00005"
+      },
+      "tags": [],
+      "statement": "test Raven-00016 has reference item = generator Vega-00005;"
+    },
+    {
+      "id": "TN0000013",
+      "subject_id": "S00009",
+      "subject": "pressure sensor Basalt-00009",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "coupling Ridge-00006"
+      },
+      "tags": [],
+      "statement": "pressure sensor Basalt-00009 has reference item = coupling Ridge-00006;"
+    }
+  ]
+}
