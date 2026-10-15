@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {NetworkRenderer} from '../src/network.js';
+import {NetworkRenderer} from '../src/graph-render.js';
 
 test('p5 2 primary-button drag pans; clicks select and secondary buttons do not pan', () => {
   const originalDocument = globalThis.document;

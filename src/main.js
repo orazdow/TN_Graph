@@ -1,14 +1,11 @@
 import {Engine, selectFacts} from './engine.js';
-import {createGraph} from './graph.js';
-import {DEFAULT_LAYOUT, normalizeLayout} from './layout-options.js';
-import {LayoutClient} from './layout-client.js';
-import {NetworkRenderer} from './network.js';
+import {createGraph, NetworkRenderer} from './graph-render.js';
+import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderOptions, renderTable} from './ui.js';
 
 const DEFAULT_SAMPLE = './samples/five-subjects.json';
 
 const engine = new Engine();
-const layoutClient = new LayoutClient();
 let layoutRevision = 0;
 let layoutOptions = {...DEFAULT_LAYOUT};
 let appearance = {edgeStyle: 'curved', labelSize: 11};
@@ -73,7 +70,7 @@ async function render() {
   try {
     const options = layoutOptions;
     network.setAppearance(appearance);
-    const geometry = await layoutClient.compute(graph, options);
+    const geometry = await requestLayout(graph, options);
     if (!geometry || revision !== layoutRevision) return;
     network.setGraph(graph, geometry);
     network.setSelection(selection);

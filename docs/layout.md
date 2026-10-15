@@ -1,6 +1,6 @@
 # Layout and appearance
 
-The network uses d3-dag 1.2.2 for node placement and routed connection points. p5 draws the resulting geometry. Facts and subject identities remain in Engine; changing a layout does not change the assertions.
+The network uses d3-dag 1.2.2 for node placement and routed connection points. Graph preparation, connection paths, labels, p5 drawing, and interaction live together in src/graph-render.js. Facts and subject identities remain in Engine; changing a layout does not change the assertions.
 
 Choose **Layout** at the top of the sidebar, change settings, and the view updates automatically. Numeric edits use a brief delay while typing. The Inspector tab is currently a placeholder. **Reset layout** restores the defaults without clearing data, filters, selection, or the literal-node checkbox.
 
@@ -42,7 +42,7 @@ Cycles, parallel facts, disconnected subjects, and self-links remain present. So
 
 Layout runs in a module worker. A newer request cancels the older one. Library checks for expensive optimal algorithms remain enabled; calculations that exceed 15 seconds are stopped with a visible error. The table and source facts remain available after layout failure.
 
-The Rollup build emits both main.js and layout-worker.js into dist. Use the existing local server on port 5000.
+Layout defaults, algorithms, worker handling, and request/cancellation functions live in src/layout.js. The Rollup build emits main.js and layout.js into dist; layout.js also serves as the module worker entry. Use the existing local server on port 5000.
 
 The default sample is selected by DEFAULT_SAMPLE in src/main.js.
 

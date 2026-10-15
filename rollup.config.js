@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 const development = process.env.ROLLUP_WATCH === 'true';
 
 export default {
-  input: {main: 'src/main.js', 'layout-worker': 'src/layout-worker.js'},
+  input: {main: 'src/main.js', layout: 'src/layout.js'},
   output: {
     dir: 'dist',
     format: 'es',

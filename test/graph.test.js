@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {Engine, selectFacts} from '../src/engine.js';
-import {createGraph} from '../src/graph.js';
-import {circularLayout, layeredLayout, distanceToRoute} from '../src/layout.js';
+import {createGraph, distanceToRoute} from '../src/graph-render.js';
+import {circularLayout, layeredLayout} from '../src/layout.js';
 
 function fixture() {
   return {format: 'synthetic-truenumbers', format_version: 1,

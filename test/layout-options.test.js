@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {Engine} from '../src/engine.js';
-import {createGraph} from '../src/graph.js';
+import {createGraph} from '../src/graph-render.js';
 import {computeLayout, normalizeLayout} from '../src/layout.js';
-import {makePath, buildEdgePaths, placeEdgeLabels, distanceToRoute, midpoint} from '../src/edge-paths.js';
+import {makePath, buildEdgePaths, placeEdgeLabels, distanceToRoute, midpoint} from '../src/graph-render.js';
 
 function sampleGraph() {
   const engine = new Engine();

@@ -6,8 +6,28 @@ import {
   laneGreedy, laneOpt,
 } from 'd3-dag';
 
-import {normalizeLayout} from './layout-options.js';
-export {DEFAULT_LAYOUT, normalizeLayout} from './layout-options.js';
+export const DEFAULT_LAYOUT = Object.freeze({
+  algorithm: 'sugiyama', direction: 'TB', layering: 'simplex',
+  decross: 'two-layer', coord: 'simplex', passes: 24,
+  nodeGap: 45, rankGap: 70, longestTopDown: true,
+  lane: 'greedy', compressed: true, bidirectional: false, laneTopDown: true,
+});
+
+export function normalizeLayout(options = {}) {
+  const settings = {...DEFAULT_LAYOUT, ...options};
+  for (const [key, values] of Object.entries({
+    algorithm: ['sugiyama', 'zherebko', 'grid'], direction: ['TB', 'BT', 'LR', 'RL'],
+    layering: ['simplex', 'longest-path', 'topological'], decross: ['two-layer', 'dfs', 'optimal'],
+    coord: ['simplex', 'greedy', 'quadratic', 'topological'], lane: ['greedy', 'optimal'],
+  })) if (!values.includes(settings[key])) throw new Error('Unknown layout ' + key + ': ' + settings[key]);
+  for (const key of ['nodeGap', 'rankGap']) {
+    if (!Number.isFinite(settings[key]) || settings[key] < 0 || settings[key] > 300) throw new Error(key + ' must be between 0 and 300');
+  }
+  if (!Number.isInteger(settings.passes) || settings.passes < 1 || settings.passes > 48) throw new Error('Crossing passes must be between 1 and 48');
+  if (settings.layering === 'topological') settings.coord = 'topological';
+  else if (settings.coord === 'topological') settings.coord = 'simplex';
+  return settings;
+}
 
 /** d3-dag owns layout; our adapter preserves every source fact and direction. */
 export function computeLayout(graph, options = {}) {
@@ -124,4 +144,41 @@ export function circularLayout(graph) {
   return {positions, routes};
 }
 
-export {distanceToRoute} from './edge-paths.js';
+
+// The same module is the worker entry and the main-thread request interface.
+if (typeof WorkerGlobalScope !== 'undefined' && globalThis instanceof WorkerGlobalScope) {
+  globalThis.onmessage = ({data}) => {
+    try { globalThis.postMessage({result: computeLayout(data.graph, data.options)}); }
+    catch (error) { globalThis.postMessage({error: error.message}); }
+  };
+}
+
+let pendingLayout = null;
+
+export function cancelLayout() {
+  if (!pendingLayout) return;
+  clearTimeout(pendingLayout.timer);
+  pendingLayout.worker.terminate();
+  pendingLayout.resolve(null);
+  pendingLayout = null;
+}
+
+/** Run the latest layout in a worker and discard any earlier request. */
+export function requestLayout(graph, options) {
+  cancelLayout();
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(new URL('./layout.js', import.meta.url), {type: 'module'});
+    const finish = (result, error) => {
+      if (pendingLayout?.worker !== worker) return;
+      clearTimeout(pendingLayout.timer);
+      worker.terminate();
+      pendingLayout = null;
+      if (error) reject(new Error(error)); else resolve(result);
+    };
+    const timer = setTimeout(() => finish(null, 'Layout took too long. Try two-layer crossing reduction or greedy coordinates.'), 15000);
+    pendingLayout = {worker, timer, resolve};
+    worker.onmessage = ({data}) => finish(data.result, data.error);
+    worker.onerror = event => finish(null, event.message || 'Could not start the layout worker');
+    worker.postMessage({graph, options});
+  });
+}
