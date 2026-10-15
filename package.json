@@ -1,0 +1,18 @@
+{
+  "name": "truenumbers-lib",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Truenumbers visualization library",
+  "module": "dist/main.js",
+  "exports": "./dist/main.js",
+  "scripts": {
+    "build": "rollup -c",
+    "serve": "rollup -c --watch"
+  },
+  "devDependencies": {
+    "rollup": "^4.64.3",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^3.0.0"
+  }
+}

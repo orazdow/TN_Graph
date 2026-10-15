@@ -1,0 +1,4182 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "notes": [
+    "Repeated statements received observation tags; these are counted separately from semantic tags."
+  ],
+  "seed": 20261009,
+  "settings": {
+    "facts": 240,
+    "subjects": 48,
+    "connectivity": 0.45,
+    "sharing": 0.6,
+    "structure": 4,
+    "property_overlap": 0.65,
+    "tag_overlap": 0.6,
+    "literal_reuse": 0.25
+  },
+  "preset": {
+    "id": 4,
+    "name": "cycles"
+  },
+  "generation": {
+    "scaffold_reference_facts": 48,
+    "requested_reserved_isolates": 0,
+    "relationship_pool": [
+      "upstream item",
+      "reference item",
+      "downstream item",
+      "related item",
+      "connected item"
+    ],
+    "literal_property_pool": [
+      "voltage",
+      "quantity",
+      "height",
+      "volumetric flow rate",
+      "capacitance",
+      "seating capacity",
+      "frequency",
+      "width",
+      "force",
+      "status",
+      "tank capacity",
+      "area",
+      "mass flow rate",
+      "mass"
+    ],
+    "semantic_tag_pool": [
+      "sensor reading",
+      "audit",
+      "provisional",
+      "engineering estimate",
+      "unverified",
+      "batch B",
+      "import batch A",
+      "superseded",
+      "zone south",
+      "batch A",
+      "zone west",
+      "phase alpha",
+      "baseline",
+      "inspection"
+    ]
+  },
+  "statistics": {
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "reference_fraction": 0.45,
+    "distinct_directed_subject_pairs": 53,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_tags": 15,
+    "distinct_semantic_tags": 14,
+    "subjects_per_property": {
+      "area": 6,
+      "capacitance": 7,
+      "connected item": 25,
+      "downstream item": 18,
+      "force": 10,
+      "frequency": 9,
+      "height": 13,
+      "mass": 3,
+      "mass flow rate": 9,
+      "quantity": 8,
+      "reference item": 18,
+      "related item": 14,
+      "seating capacity": 7,
+      "status": 8,
+      "tank capacity": 16,
+      "upstream item": 14,
+      "voltage": 6,
+      "volumetric flow rate": 6,
+      "width": 10
+    },
+    "subjects_per_tag": {
+      "audit": 22,
+      "baseline": 12,
+      "batch A": 19,
+      "batch B": 16,
+      "engineering estimate": 20,
+      "import batch A": 18,
+      "inspection": 13,
+      "observation 0000098": 1,
+      "phase alpha": 20,
+      "provisional": 12,
+      "sensor reading": 19,
+      "superseded": 19,
+      "unverified": 12,
+      "zone south": 16,
+      "zone west": 15
+    },
+    "repeated_literal_fraction": 0.25,
+    "top_reference_targets": [
+      {
+        "subject_id": "S00039",
+        "incoming_facts": 5,
+        "distinct_source_subjects": 1
+      },
+      {
+        "subject_id": "S00043",
+        "incoming_facts": 5,
+        "distinct_source_subjects": 1
+      },
+      {
+        "subject_id": "S00002",
+        "incoming_facts": 4,
+        "distinct_source_subjects": 2
+      },
+      {
+        "subject_id": "S00038",
+        "incoming_facts": 4,
+        "distinct_source_subjects": 1
+      },
+      {
+        "subject_id": "S00042",
+        "incoming_facts": 4,
+        "distinct_source_subjects": 1
+      }
+    ],
+    "deliberate_literal_reuse_events": 30,
+    "duplicate_observation_tags": 1
+  },
+  "subjects": [
+    {
+      "id": "S00001",
+      "phrase": "contactor Granite-00001",
+      "category": "electrical_systems",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00002",
+      "phrase": "pile Kestrel-00002",
+      "category": "structures.members",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00003",
+      "phrase": "survey Jade-00003",
+      "category": "operations",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00004",
+      "phrase": "truss Southpoint-00004",
+      "category": "structures.members",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00005",
+      "phrase": "lidar Quartz-00005",
+      "category": "instrumentation",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00006",
+      "phrase": "warehouse Granite-00006",
+      "category": "facilities",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00007",
+      "phrase": "filter Equinox-00007",
+      "category": "fluid_systems",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00008",
+      "phrase": "clamp Putnam-00008",
+      "category": "structures.connections",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00009",
+      "phrase": "fastener Aurora-00009",
+      "category": "structures.connections",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00010",
+      "phrase": "clamp Aurora-00010",
+      "category": "structures.connections",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00011",
+      "phrase": "forklift Jade-00011",
+      "category": "vehicles.land",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00012",
+      "phrase": "shipment Eastbank-00012",
+      "category": "operations",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00013",
+      "phrase": "excavator Nova-00013",
+      "category": "vehicles.land",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00014",
+      "phrase": "repair Sirius-00014",
+      "category": "operations",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00015",
+      "phrase": "drone Harbor-00015",
+      "category": "vehicles.air",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00016",
+      "phrase": "support Apex-00016",
+      "category": "structures.members",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00017",
+      "phrase": "fiber link Compass-00017",
+      "category": "communications",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00018",
+      "phrase": "depot Reef-00018",
+      "category": "facilities",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00019",
+      "phrase": "helicopter Estuary-00019",
+      "category": "vehicles.air",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00020",
+      "phrase": "seaplane Aster-00020",
+      "category": "vehicles.air",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00021",
+      "phrase": "platform Westhaven-00021",
+      "category": "structures.members",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00022",
+      "phrase": "brace Vega-00022",
+      "category": "structures.members",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00023",
+      "phrase": "vent Southpoint-00023",
+      "category": "fluid_systems",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00024",
+      "phrase": "motor Nova-00024",
+      "category": "electrical_systems",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00025",
+      "phrase": "survey aircraft Opal-00025",
+      "category": "vehicles.air",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00026",
+      "phrase": "helicopter Bluebell-00026",
+      "category": "vehicles.air",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00027",
+      "phrase": "bolt Rigel-00027",
+      "category": "structures.connections",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00028",
+      "phrase": "bolt Millbrook-00028",
+      "category": "structures.connections",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00029",
+      "phrase": "rover Iris-00029",
+      "category": "vehicles.land",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00030",
+      "phrase": "research vessel Juniper-00030",
+      "category": "vehicles.water",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00031",
+      "phrase": "circuit breaker Beacon-00031",
+      "category": "electrical_systems",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00032",
+      "phrase": "pump Opal-00032",
+      "category": "fluid_systems",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00033",
+      "phrase": "station Willow-00033",
+      "category": "facilities",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00034",
+      "phrase": "communication link Bluebell-00034",
+      "category": "communications",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00035",
+      "phrase": "helicopter Helios-00035",
+      "category": "vehicles.air",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00036",
+      "phrase": "inventory Raven-00036",
+      "category": "records",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00037",
+      "phrase": "distribution panel Pine-00037",
+      "category": "electrical_systems",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00038",
+      "phrase": "fuse Quartz-00038",
+      "category": "electrical_systems",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00039",
+      "phrase": "nozzle Orion-00039",
+      "category": "fluid_systems",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00040",
+      "phrase": "substation Southpoint-00040",
+      "category": "facilities",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00041",
+      "phrase": "survey aircraft Solstice-00041",
+      "category": "vehicles.air",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00042",
+      "phrase": "fiber link Kestrel-00042",
+      "category": "communications",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00043",
+      "phrase": "port Helios-00043",
+      "category": "facilities",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00044",
+      "phrase": "pumping station Millbrook-00044",
+      "category": "facilities",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00045",
+      "phrase": "laboratory Sirius-00045",
+      "category": "organizations",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00046",
+      "phrase": "company Borealis-00046",
+      "category": "organizations",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00047",
+      "phrase": "nozzle Foxglove-00047",
+      "category": "fluid_systems",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00048",
+      "phrase": "container ship Ridge-00048",
+      "category": "vehicles.water",
+      "cluster": 1,
+      "reserved_isolate": false
+    }
+  ],
+  "facts": [
+    {
+      "id": "TN0000055",
+      "subject_id": "S00020",
+      "subject": "seaplane Aster-00020",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00040",
+        "subject": "substation Southpoint-00040"
+      },
+      "tags": [],
+      "statement": "seaplane Aster-00020 has downstream item = substation Southpoint-00040;"
+    },
+    {
+      "id": "TN0000172",
+      "subject_id": "S00023",
+      "subject": "vent Southpoint-00023",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.55871,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "engineering estimate",
+        "zone west"
+      ],
+      "statement": "vent Southpoint-00023 has height = 0.55871 m (engineering estimate, zone west);"
+    },
+    {
+      "id": "TN0000142",
+      "subject_id": "S00022",
+      "subject": "brace Vega-00022",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 843,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "audit",
+        "provisional"
+      ],
+      "statement": "brace Vega-00022 has seating capacity = 843 (audit, provisional);"
+    },
+    {
+      "id": "TN0000203",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 661.85,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "batch A",
+        "inspection"
+      ],
+      "statement": "survey aircraft Opal-00025 has force = 661.85 N (batch A, inspection);"
+    },
+    {
+      "id": "TN0000111",
+      "subject_id": "S00040",
+      "subject": "substation Southpoint-00040",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.7831e-12,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [
+        "provisional"
+      ],
+      "statement": "substation Southpoint-00040 has capacitance = 3.7831e-12 F (provisional);"
+    },
+    {
+      "id": "TN0000001",
+      "subject_id": "S00037",
+      "subject": "distribution panel Pine-00037",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "lidar Quartz-00005"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "distribution panel Pine-00037 has connected item = lidar Quartz-00005 (superseded);"
+    },
+    {
+      "id": "TN0000159",
+      "subject_id": "S00040",
+      "subject": "substation Southpoint-00040",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 91.13,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "batch A",
+        "superseded"
+      ],
+      "statement": "substation Southpoint-00040 has force = 91.13 N (batch A, superseded);"
+    },
+    {
+      "id": "TN0000208",
+      "subject_id": "S00034",
+      "subject": "communication link Bluebell-00034",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3396800.0,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "inspection",
+        "unverified"
+      ],
+      "statement": "communication link Bluebell-00034 has frequency = 3396800 Hz (inspection, unverified);"
+    },
+    {
+      "id": "TN0000062",
+      "subject_id": "S00019",
+      "subject": "helicopter Estuary-00019",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00044",
+        "subject": "pumping station Millbrook-00044"
+      },
+      "tags": [],
+      "statement": "helicopter Estuary-00019 has reference item = pumping station Millbrook-00044;"
+    },
+    {
+      "id": "TN0000002",
+      "subject_id": "S00005",
+      "subject": "lidar Quartz-00005",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00003",
+        "subject": "survey Jade-00003"
+      },
+      "tags": [],
+      "statement": "lidar Quartz-00005 has connected item = survey Jade-00003;"
+    },
+    {
+      "id": "TN0000109",
+      "subject_id": "S00019",
+      "subject": "helicopter Estuary-00019",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 10.84,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "inspection",
+        "zone south"
+      ],
+      "statement": "helicopter Estuary-00019 has tank capacity = 10.84 m^3 (inspection, zone south);"
+    },
+    {
+      "id": "TN0000035",
+      "subject_id": "S00036",
+      "subject": "inventory Raven-00036",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "fiber link Compass-00017"
+      },
+      "tags": [
+        "import batch A",
+        "provisional"
+      ],
+      "statement": "inventory Raven-00036 has upstream item = fiber link Compass-00017 (import batch A, provisional);"
+    },
+    {
+      "id": "TN0000237",
+      "subject_id": "S00012",
+      "subject": "shipment Eastbank-00012",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10745,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [
+        "engineering estimate",
+        "import batch A"
+      ],
+      "statement": "shipment Eastbank-00012 has area = 0.10745 m^2 (engineering estimate, import batch A);"
+    },
+    {
+      "id": "TN0000170",
+      "subject_id": "S00027",
+      "subject": "bolt Rigel-00027",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0013072,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "bolt Rigel-00027 has width = 0.0013072 m;"
+    },
+    {
+      "id": "TN0000137",
+      "subject_id": "S00004",
+      "subject": "truss Southpoint-00004",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 176,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "truss Southpoint-00004 has quantity = 176 (phase alpha);"
+    },
+    {
+      "id": "TN0000061",
+      "subject_id": "S00034",
+      "subject": "communication link Bluebell-00034",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "station Willow-00033"
+      },
+      "tags": [
+        "provisional"
+      ],
+      "statement": "communication link Bluebell-00034 has related item = station Willow-00033 (provisional);"
+    },
+    {
+      "id": "TN0000189",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 548.62,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "batch B",
+        "inspection"
+      ],
+      "statement": "filter Equinox-00007 has frequency = 548.62 Hz (batch B, inspection);"
+    },
+    {
+      "id": "TN0000013",
+      "subject_id": "S00008",
+      "subject": "clamp Putnam-00008",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00018",
+        "subject": "depot Reef-00018"
+      },
+      "tags": [],
+      "statement": "clamp Putnam-00008 has downstream item = depot Reef-00018;"
+    },
+    {
+      "id": "TN0000053",
+      "subject_id": "S00022",
+      "subject": "brace Vega-00022",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00009",
+        "subject": "fastener Aurora-00009"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "brace Vega-00022 has related item = fastener Aurora-00009 (phase alpha);"
+    },
+    {
+      "id": "TN0000080",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "drone Harbor-00015"
+      },
+      "tags": [
+        "inspection",
+        "phase alpha"
+      ],
+      "statement": "filter Equinox-00007 has upstream item = drone Harbor-00015 (inspection, phase alpha);"
+    },
+    {
+      "id": "TN0000090",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "pile Kestrel-00002"
+      },
+      "tags": [
+        "unverified"
+      ],
+      "statement": "survey aircraft Solstice-00041 has reference item = pile Kestrel-00002 (unverified);"
+    },
+    {
+      "id": "TN0000042",
+      "subject_id": "S00047",
+      "subject": "nozzle Foxglove-00047",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "warehouse Granite-00006"
+      },
+      "tags": [
+        "engineering estimate",
+        "phase alpha"
+      ],
+      "statement": "nozzle Foxglove-00047 has connected item = warehouse Granite-00006 (engineering estimate, phase alpha);"
+    },
+    {
+      "id": "TN0000031",
+      "subject_id": "S00042",
+      "subject": "fiber link Kestrel-00042",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "survey aircraft Opal-00025"
+      },
+      "tags": [
+        "import batch A",
+        "inspection"
+      ],
+      "statement": "fiber link Kestrel-00042 has connected item = survey aircraft Opal-00025 (import batch A, inspection);"
+    },
+    {
+      "id": "TN0000077",
+      "subject_id": "S00020",
+      "subject": "seaplane Aster-00020",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00044",
+        "subject": "pumping station Millbrook-00044"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "seaplane Aster-00020 has upstream item = pumping station Millbrook-00044 (audit);"
+    },
+    {
+      "id": "TN0000006",
+      "subject_id": "S00001",
+      "subject": "contactor Granite-00001",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00034",
+        "subject": "communication link Bluebell-00034"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "contactor Granite-00001 has downstream item = communication link Bluebell-00034 (import batch A);"
+    },
+    {
+      "id": "TN0000150",
+      "subject_id": "S00006",
+      "subject": "warehouse Granite-00006",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.093475,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "warehouse Granite-00006 has mass flow rate = 0.093475 kg/s;"
+    },
+    {
+      "id": "TN0000101",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00004",
+        "subject": "truss Southpoint-00004"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "motor Nova-00024 has related item = truss Southpoint-00004 (baseline);"
+    },
+    {
+      "id": "TN0000073",
+      "subject_id": "S00033",
+      "subject": "station Willow-00033",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00024",
+        "subject": "motor Nova-00024"
+      },
+      "tags": [
+        "superseded",
+        "zone south"
+      ],
+      "statement": "station Willow-00033 has downstream item = motor Nova-00024 (superseded, zone south);"
+    },
+    {
+      "id": "TN0000179",
+      "subject_id": "S00003",
+      "subject": "survey Jade-00003",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "inactive"
+      },
+      "tags": [],
+      "statement": "survey Jade-00003 has status = \"inactive\";"
+    },
+    {
+      "id": "TN0000186",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0010633,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "engineering estimate",
+        "provisional"
+      ],
+      "statement": "fuse Quartz-00038 has tank capacity = 0.0010633 m^3 (engineering estimate, provisional);"
+    },
+    {
+      "id": "TN0000106",
+      "subject_id": "S00037",
+      "subject": "distribution panel Pine-00037",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "lidar Quartz-00005"
+      },
+      "tags": [
+        "audit",
+        "zone south"
+      ],
+      "statement": "distribution panel Pine-00037 has upstream item = lidar Quartz-00005 (audit, zone south);"
+    },
+    {
+      "id": "TN0000050",
+      "subject_id": "S00002",
+      "subject": "pile Kestrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00021",
+        "subject": "platform Westhaven-00021"
+      },
+      "tags": [
+        "provisional"
+      ],
+      "statement": "pile Kestrel-00002 has reference item = platform Westhaven-00021 (provisional);"
+    },
+    {
+      "id": "TN0000092",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00042",
+        "subject": "fiber link Kestrel-00042"
+      },
+      "tags": [],
+      "statement": "support Apex-00016 has upstream item = fiber link Kestrel-00042;"
+    },
+    {
+      "id": "TN0000126",
+      "subject_id": "S00033",
+      "subject": "station Willow-00033",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 10.84,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "engineering estimate",
+        "sensor reading"
+      ],
+      "statement": "station Willow-00033 has tank capacity = 10.84 m^3 (engineering estimate, sensor reading);"
+    },
+    {
+      "id": "TN0000188",
+      "subject_id": "S00004",
+      "subject": "truss Southpoint-00004",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 8.1058,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "truss Southpoint-00004 has height = 8.1058 m (audit);"
+    },
+    {
+      "id": "TN0000103",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00042",
+        "subject": "fiber link Kestrel-00042"
+      },
+      "tags": [
+        "import batch A",
+        "provisional"
+      ],
+      "statement": "support Apex-00016 has connected item = fiber link Kestrel-00042 (import batch A, provisional);"
+    },
+    {
+      "id": "TN0000093",
+      "subject_id": "S00003",
+      "subject": "survey Jade-00003",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00010",
+        "subject": "clamp Aurora-00010"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "survey Jade-00003 has downstream item = clamp Aurora-00010 (sensor reading);"
+    },
+    {
+      "id": "TN0000127",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0032864,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch A",
+        "provisional"
+      ],
+      "statement": "nozzle Orion-00039 has height = 0.0032864 m (batch A, provisional);"
+    },
+    {
+      "id": "TN0000149",
+      "subject_id": "S00026",
+      "subject": "helicopter Bluebell-00026",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 764,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "engineering estimate",
+        "superseded"
+      ],
+      "statement": "helicopter Bluebell-00026 has seating capacity = 764 (engineering estimate, superseded);"
+    },
+    {
+      "id": "TN0000019",
+      "subject_id": "S00019",
+      "subject": "helicopter Estuary-00019",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00023",
+        "subject": "vent Southpoint-00023"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "helicopter Estuary-00019 has connected item = vent Southpoint-00023 (batch A);"
+    },
+    {
+      "id": "TN0000238",
+      "subject_id": "S00005",
+      "subject": "lidar Quartz-00005",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 5.077,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "batch A",
+        "import batch A"
+      ],
+      "statement": "lidar Quartz-00005 has frequency = 5.077 Hz (batch A, import batch A);"
+    },
+    {
+      "id": "TN0000113",
+      "subject_id": "S00029",
+      "subject": "rover Iris-00029",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10194,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "baseline",
+        "superseded"
+      ],
+      "statement": "rover Iris-00029 has tank capacity = 0.10194 m^3 (baseline, superseded);"
+    },
+    {
+      "id": "TN0000191",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 7218.6,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "survey aircraft Solstice-00041 has mass = 7218.6 kg (engineering estimate);"
+    },
+    {
+      "id": "TN0000007",
+      "subject_id": "S00034",
+      "subject": "communication link Bluebell-00034",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "station Willow-00033"
+      },
+      "tags": [
+        "sensor reading",
+        "zone south"
+      ],
+      "statement": "communication link Bluebell-00034 has reference item = station Willow-00033 (sensor reading, zone south);"
+    },
+    {
+      "id": "TN0000049",
+      "subject_id": "S00021",
+      "subject": "platform Westhaven-00021",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "contactor Granite-00001"
+      },
+      "tags": [
+        "zone west"
+      ],
+      "statement": "platform Westhaven-00021 has downstream item = contactor Granite-00001 (zone west);"
+    },
+    {
+      "id": "TN0000074",
+      "subject_id": "S00013",
+      "subject": "excavator Nova-00013",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00043",
+        "subject": "port Helios-00043"
+      },
+      "tags": [
+        "audit",
+        "phase alpha"
+      ],
+      "statement": "excavator Nova-00013 has connected item = port Helios-00043 (audit, phase alpha);"
+    },
+    {
+      "id": "TN0000008",
+      "subject_id": "S00033",
+      "subject": "station Willow-00033",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00024",
+        "subject": "motor Nova-00024"
+      },
+      "tags": [
+        "sensor reading",
+        "zone west"
+      ],
+      "statement": "station Willow-00033 has upstream item = motor Nova-00024 (sensor reading, zone west);"
+    },
+    {
+      "id": "TN0000028",
+      "subject_id": "S00021",
+      "subject": "platform Westhaven-00021",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00027",
+        "subject": "bolt Rigel-00027"
+      },
+      "tags": [
+        "batch A",
+        "sensor reading"
+      ],
+      "statement": "platform Westhaven-00021 has upstream item = bolt Rigel-00027 (batch A, sensor reading);"
+    },
+    {
+      "id": "TN0000067",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00041",
+        "subject": "survey aircraft Solstice-00041"
+      },
+      "tags": [
+        "batch B",
+        "zone south"
+      ],
+      "statement": "nozzle Orion-00039 has reference item = survey aircraft Solstice-00041 (batch B, zone south);"
+    },
+    {
+      "id": "TN0000162",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.032341,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [],
+      "statement": "support Apex-00016 has voltage = 0.032341 V;"
+    },
+    {
+      "id": "TN0000163",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10745,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "fuse Quartz-00038 has area = 0.10745 m^2 (superseded);"
+    },
+    {
+      "id": "TN0000015",
+      "subject_id": "S00028",
+      "subject": "bolt Millbrook-00028",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00011",
+        "subject": "forklift Jade-00011"
+      },
+      "tags": [
+        "audit",
+        "engineering estimate"
+      ],
+      "statement": "bolt Millbrook-00028 has related item = forklift Jade-00011 (audit, engineering estimate);"
+    },
+    {
+      "id": "TN0000194",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 92,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "batch B"
+      ],
+      "statement": "survey aircraft Opal-00025 has quantity = 92 (batch B);"
+    },
+    {
+      "id": "TN0000110",
+      "subject_id": "S00013",
+      "subject": "excavator Nova-00013",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 876,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [],
+      "statement": "excavator Nova-00013 has quantity = 876;"
+    },
+    {
+      "id": "TN0000132",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.066382,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "zone south"
+      ],
+      "statement": "filter Equinox-00007 has volumetric flow rate = 0.066382 m^3/s (zone south);"
+    },
+    {
+      "id": "TN0000065",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "pile Kestrel-00002"
+      },
+      "tags": [
+        "baseline",
+        "unverified"
+      ],
+      "statement": "survey aircraft Solstice-00041 has upstream item = pile Kestrel-00002 (baseline, unverified);"
+    },
+    {
+      "id": "TN0000135",
+      "subject_id": "S00021",
+      "subject": "platform Westhaven-00021",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 6.8949,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "platform Westhaven-00021 has force = 6.8949 N (baseline);"
+    },
+    {
+      "id": "TN0000196",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "standby"
+      },
+      "tags": [],
+      "statement": "fuse Quartz-00038 has status = \"standby\";"
+    },
+    {
+      "id": "TN0000047",
+      "subject_id": "S00013",
+      "subject": "excavator Nova-00013",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00043",
+        "subject": "port Helios-00043"
+      },
+      "tags": [
+        "unverified",
+        "zone south"
+      ],
+      "statement": "excavator Nova-00013 has reference item = port Helios-00043 (unverified, zone south);"
+    },
+    {
+      "id": "TN0000204",
+      "subject_id": "S00029",
+      "subject": "rover Iris-00029",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3099.5,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "rover Iris-00029 has force = 3099.5 N;"
+    },
+    {
+      "id": "TN0000059",
+      "subject_id": "S00005",
+      "subject": "lidar Quartz-00005",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00003",
+        "subject": "survey Jade-00003"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "lidar Quartz-00005 has connected item = survey Jade-00003 (engineering estimate);"
+    },
+    {
+      "id": "TN0000211",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 493,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "audit",
+        "batch A"
+      ],
+      "statement": "pump Opal-00032 has quantity = 493 (audit, batch A);"
+    },
+    {
+      "id": "TN0000094",
+      "subject_id": "S00006",
+      "subject": "warehouse Granite-00006",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00022",
+        "subject": "brace Vega-00022"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "warehouse Granite-00006 has upstream item = brace Vega-00022 (batch A);"
+    },
+    {
+      "id": "TN0000083",
+      "subject_id": "S00027",
+      "subject": "bolt Rigel-00027",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00016",
+        "subject": "support Apex-00016"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "bolt Rigel-00027 has upstream item = support Apex-00016 (engineering estimate);"
+    },
+    {
+      "id": "TN0000180",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10194,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "nozzle Orion-00039 has tank capacity = 0.10194 m^3;"
+    },
+    {
+      "id": "TN0000174",
+      "subject_id": "S00001",
+      "subject": "contactor Granite-00001",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 6.4694,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "contactor Granite-00001 has width = 6.4694 m (baseline);"
+    },
+    {
+      "id": "TN0000096",
+      "subject_id": "S00046",
+      "subject": "company Borealis-00046",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00035",
+        "subject": "helicopter Helios-00035"
+      },
+      "tags": [],
+      "statement": "company Borealis-00046 has reference item = helicopter Helios-00035;"
+    },
+    {
+      "id": "TN0000011",
+      "subject_id": "S00012",
+      "subject": "shipment Eastbank-00012",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00048",
+        "subject": "container ship Ridge-00048"
+      },
+      "tags": [
+        "baseline",
+        "batch B"
+      ],
+      "statement": "shipment Eastbank-00012 has connected item = container ship Ridge-00048 (baseline, batch B);"
+    },
+    {
+      "id": "TN0000121",
+      "subject_id": "S00008",
+      "subject": "clamp Putnam-00008",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.066382,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "batch B",
+        "superseded"
+      ],
+      "statement": "clamp Putnam-00008 has volumetric flow rate = 0.066382 m^3/s (batch B, superseded);"
+    },
+    {
+      "id": "TN0000197",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.032341,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [
+        "phase alpha",
+        "sensor reading"
+      ],
+      "statement": "fiber link Compass-00017 has voltage = 0.032341 V (phase alpha, sensor reading);"
+    },
+    {
+      "id": "TN0000012",
+      "subject_id": "S00048",
+      "subject": "container ship Ridge-00048",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00008",
+        "subject": "clamp Putnam-00008"
+      },
+      "tags": [
+        "baseline",
+        "sensor reading"
+      ],
+      "statement": "container ship Ridge-00048 has downstream item = clamp Putnam-00008 (baseline, sensor reading);"
+    },
+    {
+      "id": "TN0000231",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.069791,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "survey aircraft Solstice-00041 has width = 0.069791 m;"
+    },
+    {
+      "id": "TN0000146",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.032341,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [
+        "inspection",
+        "sensor reading"
+      ],
+      "statement": "motor Nova-00024 has voltage = 0.032341 V (inspection, sensor reading);"
+    },
+    {
+      "id": "TN0000207",
+      "subject_id": "S00042",
+      "subject": "fiber link Kestrel-00042",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 45.052,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [],
+      "statement": "fiber link Kestrel-00042 has voltage = 45.052 V;"
+    },
+    {
+      "id": "TN0000057",
+      "subject_id": "S00013",
+      "subject": "excavator Nova-00013",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00043",
+        "subject": "port Helios-00043"
+      },
+      "tags": [
+        "audit",
+        "superseded"
+      ],
+      "statement": "excavator Nova-00013 has downstream item = port Helios-00043 (audit, superseded);"
+    },
+    {
+      "id": "TN0000181",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "active"
+      },
+      "tags": [],
+      "statement": "motor Nova-00024 has status = \"active\";"
+    },
+    {
+      "id": "TN0000173",
+      "subject_id": "S00048",
+      "subject": "container ship Ridge-00048",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.4941,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "container ship Ridge-00048 has height = 2.4941 m (phase alpha);"
+    },
+    {
+      "id": "TN0000152",
+      "subject_id": "S00011",
+      "subject": "forklift Jade-00011",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0010633,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "forklift Jade-00011 has tank capacity = 0.0010633 m^3 (engineering estimate);"
+    },
+    {
+      "id": "TN0000128",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4.6026e-08,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [
+        "batch A",
+        "unverified"
+      ],
+      "statement": "support Apex-00016 has capacitance = 4.6026e-08 F (batch A, unverified);"
+    },
+    {
+      "id": "TN0000183",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0010633,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "batch A",
+        "sensor reading"
+      ],
+      "statement": "filter Equinox-00007 has tank capacity = 0.0010633 m^3 (batch A, sensor reading);"
+    },
+    {
+      "id": "TN0000239",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.082217,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "unverified"
+      ],
+      "statement": "fiber link Compass-00017 has mass = 0.082217 kg (unverified);"
+    },
+    {
+      "id": "TN0000178",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.19118,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "fastener Aurora-00009 has mass flow rate = 0.19118 kg/s;"
+    },
+    {
+      "id": "TN0000005",
+      "subject_id": "S00029",
+      "subject": "rover Iris-00029",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "contactor Granite-00001"
+      },
+      "tags": [
+        "baseline",
+        "import batch A"
+      ],
+      "statement": "rover Iris-00029 has related item = contactor Granite-00001 (baseline, import batch A);"
+    },
+    {
+      "id": "TN0000039",
+      "subject_id": "S00015",
+      "subject": "drone Harbor-00015",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00046",
+        "subject": "company Borealis-00046"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "drone Harbor-00015 has downstream item = company Borealis-00046 (engineering estimate);"
+    },
+    {
+      "id": "TN0000016",
+      "subject_id": "S00011",
+      "subject": "forklift Jade-00011",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00045",
+        "subject": "laboratory Sirius-00045"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "forklift Jade-00011 has reference item = laboratory Sirius-00045 (engineering estimate);"
+    },
+    {
+      "id": "TN0000063",
+      "subject_id": "S00001",
+      "subject": "contactor Granite-00001",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00034",
+        "subject": "communication link Bluebell-00034"
+      },
+      "tags": [],
+      "statement": "contactor Granite-00001 has downstream item = communication link Bluebell-00034;"
+    },
+    {
+      "id": "TN0000098",
+      "subject_id": "S00047",
+      "subject": "nozzle Foxglove-00047",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "warehouse Granite-00006"
+      },
+      "tags": [
+        "observation 0000098"
+      ],
+      "statement": "nozzle Foxglove-00047 has connected item = warehouse Granite-00006 (observation 0000098);"
+    },
+    {
+      "id": "TN0000133",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 493,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [],
+      "statement": "nozzle Orion-00039 has quantity = 493;"
+    },
+    {
+      "id": "TN0000161",
+      "subject_id": "S00040",
+      "subject": "substation Southpoint-00040",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.4032e-12,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [],
+      "statement": "substation Southpoint-00040 has capacitance = 1.4032e-12 F;"
+    },
+    {
+      "id": "TN0000166",
+      "subject_id": "S00008",
+      "subject": "clamp Putnam-00008",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1571.9,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "clamp Putnam-00008 has force = 1571.9 N (engineering estimate);"
+    },
+    {
+      "id": "TN0000009",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00004",
+        "subject": "truss Southpoint-00004"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "motor Nova-00024 has connected item = truss Southpoint-00004 (phase alpha);"
+    },
+    {
+      "id": "TN0000234",
+      "subject_id": "S00012",
+      "subject": "shipment Eastbank-00012",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 7.6969,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "batch A",
+        "sensor reading"
+      ],
+      "statement": "shipment Eastbank-00012 has force = 7.6969 N (batch A, sensor reading);"
+    },
+    {
+      "id": "TN0000027",
+      "subject_id": "S00002",
+      "subject": "pile Kestrel-00002",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00021",
+        "subject": "platform Westhaven-00021"
+      },
+      "tags": [
+        "provisional",
+        "superseded"
+      ],
+      "statement": "pile Kestrel-00002 has related item = platform Westhaven-00021 (provisional, superseded);"
+    },
+    {
+      "id": "TN0000099",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00038",
+        "subject": "fuse Quartz-00038"
+      },
+      "tags": [
+        "phase alpha",
+        "superseded"
+      ],
+      "statement": "pump Opal-00032 has reference item = fuse Quartz-00038 (phase alpha, superseded);"
+    },
+    {
+      "id": "TN0000201",
+      "subject_id": "S00044",
+      "subject": "pumping station Millbrook-00044",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 10.84,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "batch A",
+        "zone south"
+      ],
+      "statement": "pumping station Millbrook-00044 has tank capacity = 10.84 m^3 (batch A, zone south);"
+    },
+    {
+      "id": "TN0000117",
+      "subject_id": "S00033",
+      "subject": "station Willow-00033",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0028628,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [],
+      "statement": "station Willow-00033 has area = 0.0028628 m^2;"
+    },
+    {
+      "id": "TN0000143",
+      "subject_id": "S00033",
+      "subject": "station Willow-00033",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "standby"
+      },
+      "tags": [],
+      "statement": "station Willow-00033 has status = \"standby\";"
+    },
+    {
+      "id": "TN0000091",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00042",
+        "subject": "fiber link Kestrel-00042"
+      },
+      "tags": [
+        "inspection"
+      ],
+      "statement": "support Apex-00016 has connected item = fiber link Kestrel-00042 (inspection);"
+    },
+    {
+      "id": "TN0000085",
+      "subject_id": "S00044",
+      "subject": "pumping station Millbrook-00044",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00036",
+        "subject": "inventory Raven-00036"
+      },
+      "tags": [
+        "unverified"
+      ],
+      "statement": "pumping station Millbrook-00044 has reference item = inventory Raven-00036 (unverified);"
+    },
+    {
+      "id": "TN0000043",
+      "subject_id": "S00006",
+      "subject": "warehouse Granite-00006",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00022",
+        "subject": "brace Vega-00022"
+      },
+      "tags": [
+        "audit",
+        "batch B"
+      ],
+      "statement": "warehouse Granite-00006 has connected item = brace Vega-00022 (audit, batch B);"
+    },
+    {
+      "id": "TN0000144",
+      "subject_id": "S00006",
+      "subject": "warehouse Granite-00006",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 53.034,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch B",
+        "import batch A"
+      ],
+      "statement": "warehouse Granite-00006 has height = 53.034 m (batch B, import batch A);"
+    },
+    {
+      "id": "TN0000130",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 355,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "fiber link Compass-00017 has quantity = 355 (superseded);"
+    },
+    {
+      "id": "TN0000145",
+      "subject_id": "S00036",
+      "subject": "inventory Raven-00036",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.003805,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "audit",
+        "batch B"
+      ],
+      "statement": "inventory Raven-00036 has volumetric flow rate = 0.003805 m^3/s (audit, batch B);"
+    },
+    {
+      "id": "TN0000058",
+      "subject_id": "S00048",
+      "subject": "container ship Ridge-00048",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00008",
+        "subject": "clamp Putnam-00008"
+      },
+      "tags": [],
+      "statement": "container ship Ridge-00048 has downstream item = clamp Putnam-00008;"
+    },
+    {
+      "id": "TN0000070",
+      "subject_id": "S00014",
+      "subject": "repair Sirius-00014",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00032",
+        "subject": "pump Opal-00032"
+      },
+      "tags": [
+        "unverified"
+      ],
+      "statement": "repair Sirius-00014 has upstream item = pump Opal-00032 (unverified);"
+    },
+    {
+      "id": "TN0000206",
+      "subject_id": "S00005",
+      "subject": "lidar Quartz-00005",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 7.0298e-08,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "lidar Quartz-00005 has capacitance = 7.0298e-08 F (superseded);"
+    },
+    {
+      "id": "TN0000022",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00038",
+        "subject": "fuse Quartz-00038"
+      },
+      "tags": [
+        "engineering estimate",
+        "sensor reading"
+      ],
+      "statement": "pump Opal-00032 has reference item = fuse Quartz-00038 (engineering estimate, sensor reading);"
+    },
+    {
+      "id": "TN0000136",
+      "subject_id": "S00001",
+      "subject": "contactor Granite-00001",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.16911,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "baseline",
+        "zone south"
+      ],
+      "statement": "contactor Granite-00001 has volumetric flow rate = 0.16911 m^3/s (baseline, zone south);"
+    },
+    {
+      "id": "TN0000010",
+      "subject_id": "S00004",
+      "subject": "truss Southpoint-00004",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00012",
+        "subject": "shipment Eastbank-00012"
+      },
+      "tags": [],
+      "statement": "truss Southpoint-00004 has connected item = shipment Eastbank-00012;"
+    },
+    {
+      "id": "TN0000198",
+      "subject_id": "S00002",
+      "subject": "pile Kestrel-00002",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 71.507,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch A",
+        "import batch A"
+      ],
+      "statement": "pile Kestrel-00002 has height = 71.507 m (batch A, import batch A);"
+    },
+    {
+      "id": "TN0000171",
+      "subject_id": "S00046",
+      "subject": "company Borealis-00046",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 96,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "company Borealis-00046 has quantity = 96 (sensor reading);"
+    },
+    {
+      "id": "TN0000084",
+      "subject_id": "S00046",
+      "subject": "company Borealis-00046",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00035",
+        "subject": "helicopter Helios-00035"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "company Borealis-00046 has reference item = helicopter Helios-00035 (sensor reading);"
+    },
+    {
+      "id": "TN0000116",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 5.2192,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [],
+      "statement": "circuit breaker Beacon-00031 has frequency = 5.2192 Hz;"
+    },
+    {
+      "id": "TN0000056",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "nozzle Orion-00039"
+      },
+      "tags": [
+        "zone south"
+      ],
+      "statement": "circuit breaker Beacon-00031 has related item = nozzle Orion-00039 (zone south);"
+    },
+    {
+      "id": "TN0000082",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "drone Harbor-00015"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "filter Equinox-00007 has connected item = drone Harbor-00015 (engineering estimate);"
+    },
+    {
+      "id": "TN0000209",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.6688,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "audit",
+        "provisional"
+      ],
+      "statement": "filter Equinox-00007 has volumetric flow rate = 3.6688 m^3/s (audit, provisional);"
+    },
+    {
+      "id": "TN0000124",
+      "subject_id": "S00002",
+      "subject": "pile Kestrel-00002",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 322460.0,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "batch B",
+        "zone south"
+      ],
+      "statement": "pile Kestrel-00002 has frequency = 322460 Hz (batch B, zone south);"
+    },
+    {
+      "id": "TN0000222",
+      "subject_id": "S00019",
+      "subject": "helicopter Estuary-00019",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.00013497,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "helicopter Estuary-00019 has tank capacity = 0.00013497 m^3 (engineering estimate);"
+    },
+    {
+      "id": "TN0000034",
+      "subject_id": "S00044",
+      "subject": "pumping station Millbrook-00044",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00036",
+        "subject": "inventory Raven-00036"
+      },
+      "tags": [],
+      "statement": "pumping station Millbrook-00044 has connected item = inventory Raven-00036;"
+    },
+    {
+      "id": "TN0000040",
+      "subject_id": "S00046",
+      "subject": "company Borealis-00046",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00035",
+        "subject": "helicopter Helios-00035"
+      },
+      "tags": [
+        "batch A",
+        "zone west"
+      ],
+      "statement": "company Borealis-00046 has related item = helicopter Helios-00035 (batch A, zone west);"
+    },
+    {
+      "id": "TN0000228",
+      "subject_id": "S00003",
+      "subject": "survey Jade-00003",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.7593e-05,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [],
+      "statement": "survey Jade-00003 has capacitance = 2.7593e-05 F;"
+    },
+    {
+      "id": "TN0000003",
+      "subject_id": "S00003",
+      "subject": "survey Jade-00003",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00010",
+        "subject": "clamp Aurora-00010"
+      },
+      "tags": [
+        "unverified"
+      ],
+      "statement": "survey Jade-00003 has connected item = clamp Aurora-00010 (unverified);"
+    },
+    {
+      "id": "TN0000045",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00030",
+        "subject": "research vessel Juniper-00030"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "fastener Aurora-00009 has downstream item = research vessel Juniper-00030 (baseline);"
+    },
+    {
+      "id": "TN0000024",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "nozzle Orion-00039"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "circuit breaker Beacon-00031 has downstream item = nozzle Orion-00039 (audit);"
+    },
+    {
+      "id": "TN0000131",
+      "subject_id": "S00045",
+      "subject": "laboratory Sirius-00045",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.066382,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "import batch A",
+        "superseded"
+      ],
+      "statement": "laboratory Sirius-00045 has volumetric flow rate = 0.066382 m^3/s (import batch A, superseded);"
+    },
+    {
+      "id": "TN0000114",
+      "subject_id": "S00008",
+      "subject": "clamp Putnam-00008",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 302,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "clamp Putnam-00008 has seating capacity = 302 (phase alpha);"
+    },
+    {
+      "id": "TN0000075",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00020",
+        "subject": "seaplane Aster-00020"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "survey aircraft Opal-00025 has downstream item = seaplane Aster-00020 (import batch A);"
+    },
+    {
+      "id": "TN0000115",
+      "subject_id": "S00037",
+      "subject": "distribution panel Pine-00037",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4.9463e-05,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [
+        "batch B"
+      ],
+      "statement": "distribution panel Pine-00037 has capacitance = 4.9463e-05 F (batch B);"
+    },
+    {
+      "id": "TN0000123",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.4781e-09,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [
+        "provisional",
+        "zone south"
+      ],
+      "statement": "fastener Aurora-00009 has capacitance = 3.4781e-09 F (provisional, zone south);"
+    },
+    {
+      "id": "TN0000216",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "active"
+      },
+      "tags": [
+        "batch A",
+        "zone west"
+      ],
+      "statement": "pump Opal-00032 has status = \"active\" (batch A, zone west);"
+    },
+    {
+      "id": "TN0000076",
+      "subject_id": "S00013",
+      "subject": "excavator Nova-00013",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00043",
+        "subject": "port Helios-00043"
+      },
+      "tags": [
+        "phase alpha",
+        "zone west"
+      ],
+      "statement": "excavator Nova-00013 has connected item = port Helios-00043 (phase alpha, zone west);"
+    },
+    {
+      "id": "TN0000068",
+      "subject_id": "S00013",
+      "subject": "excavator Nova-00013",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00043",
+        "subject": "port Helios-00043"
+      },
+      "tags": [
+        "sensor reading",
+        "zone west"
+      ],
+      "statement": "excavator Nova-00013 has upstream item = port Helios-00043 (sensor reading, zone west);"
+    },
+    {
+      "id": "TN0000140",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.9677,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "pump Opal-00032 has mass flow rate = 2.9677 kg/s;"
+    },
+    {
+      "id": "TN0000217",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 822,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "audit",
+        "superseded"
+      ],
+      "statement": "motor Nova-00024 has seating capacity = 822 (audit, superseded);"
+    },
+    {
+      "id": "TN0000182",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 376.37,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "motor Nova-00024 has voltage = 376.37 V (batch A);"
+    },
+    {
+      "id": "TN0000225",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0010606,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "engineering estimate",
+        "sensor reading"
+      ],
+      "statement": "survey aircraft Solstice-00041 has height = 0.0010606 m (engineering estimate, sensor reading);"
+    },
+    {
+      "id": "TN0000081",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "nozzle Orion-00039"
+      },
+      "tags": [],
+      "statement": "circuit breaker Beacon-00031 has connected item = nozzle Orion-00039;"
+    },
+    {
+      "id": "TN0000030",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00042",
+        "subject": "fiber link Kestrel-00042"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "support Apex-00016 has upstream item = fiber link Kestrel-00042 (audit);"
+    },
+    {
+      "id": "TN0000236",
+      "subject_id": "S00001",
+      "subject": "contactor Granite-00001",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 90293.0,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "phase alpha",
+        "sensor reading"
+      ],
+      "statement": "contactor Granite-00001 has force = 90293 N (phase alpha, sensor reading);"
+    },
+    {
+      "id": "TN0000014",
+      "subject_id": "S00018",
+      "subject": "depot Reef-00018",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00028",
+        "subject": "bolt Millbrook-00028"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "depot Reef-00018 has connected item = bolt Millbrook-00028 (import batch A);"
+    },
+    {
+      "id": "TN0000087",
+      "subject_id": "S00023",
+      "subject": "vent Southpoint-00023",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "repair Sirius-00014"
+      },
+      "tags": [
+        "batch B",
+        "sensor reading"
+      ],
+      "statement": "vent Southpoint-00023 has related item = repair Sirius-00014 (batch B, sensor reading);"
+    },
+    {
+      "id": "TN0000147",
+      "subject_id": "S00037",
+      "subject": "distribution panel Pine-00037",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.7652,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "distribution panel Pine-00037 has mass flow rate = 1.7652 kg/s;"
+    },
+    {
+      "id": "TN0000212",
+      "subject_id": "S00022",
+      "subject": "brace Vega-00022",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0039025,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "brace Vega-00022 has mass flow rate = 0.0039025 kg/s;"
+    },
+    {
+      "id": "TN0000184",
+      "subject_id": "S00034",
+      "subject": "communication link Bluebell-00034",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.012752,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "communication link Bluebell-00034 has mass flow rate = 0.012752 kg/s (sensor reading);"
+    },
+    {
+      "id": "TN0000107",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "nozzle Orion-00039"
+      },
+      "tags": [],
+      "statement": "circuit breaker Beacon-00031 has downstream item = nozzle Orion-00039;"
+    },
+    {
+      "id": "TN0000052",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00041",
+        "subject": "survey aircraft Solstice-00041"
+      },
+      "tags": [
+        "audit",
+        "zone west"
+      ],
+      "statement": "nozzle Orion-00039 has reference item = survey aircraft Solstice-00041 (audit, zone west);"
+    },
+    {
+      "id": "TN0000125",
+      "subject_id": "S00047",
+      "subject": "nozzle Foxglove-00047",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0013072,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "nozzle Foxglove-00047 has width = 0.0013072 m (baseline);"
+    },
+    {
+      "id": "TN0000164",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3813.8,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "zone west"
+      ],
+      "statement": "fuse Quartz-00038 has frequency = 3813.8 Hz (zone west);"
+    },
+    {
+      "id": "TN0000095",
+      "subject_id": "S00042",
+      "subject": "fiber link Kestrel-00042",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "survey aircraft Opal-00025"
+      },
+      "tags": [],
+      "statement": "fiber link Kestrel-00042 has upstream item = survey aircraft Opal-00025;"
+    },
+    {
+      "id": "TN0000021",
+      "subject_id": "S00014",
+      "subject": "repair Sirius-00014",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00032",
+        "subject": "pump Opal-00032"
+      },
+      "tags": [
+        "audit",
+        "inspection"
+      ],
+      "statement": "repair Sirius-00014 has connected item = pump Opal-00032 (audit, inspection);"
+    },
+    {
+      "id": "TN0000108",
+      "subject_id": "S00035",
+      "subject": "helicopter Helios-00035",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00047",
+        "subject": "nozzle Foxglove-00047"
+      },
+      "tags": [
+        "unverified"
+      ],
+      "statement": "helicopter Helios-00035 has connected item = nozzle Foxglove-00047 (unverified);"
+    },
+    {
+      "id": "TN0000155",
+      "subject_id": "S00030",
+      "subject": "research vessel Juniper-00030",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0013072,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "research vessel Juniper-00030 has width = 0.0013072 m (superseded);"
+    },
+    {
+      "id": "TN0000026",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "pile Kestrel-00002"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "survey aircraft Solstice-00041 has connected item = pile Kestrel-00002 (audit);"
+    },
+    {
+      "id": "TN0000141",
+      "subject_id": "S00041",
+      "subject": "survey aircraft Solstice-00041",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3947.1,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "sensor reading",
+        "zone west"
+      ],
+      "statement": "survey aircraft Solstice-00041 has frequency = 3947.1 Hz (sensor reading, zone west);"
+    },
+    {
+      "id": "TN0000157",
+      "subject_id": "S00027",
+      "subject": "bolt Rigel-00027",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.037059,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "audit",
+        "inspection"
+      ],
+      "statement": "bolt Rigel-00027 has height = 0.037059 m (audit, inspection);"
+    },
+    {
+      "id": "TN0000041",
+      "subject_id": "S00035",
+      "subject": "helicopter Helios-00035",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00047",
+        "subject": "nozzle Foxglove-00047"
+      },
+      "tags": [
+        "engineering estimate",
+        "provisional"
+      ],
+      "statement": "helicopter Helios-00035 has downstream item = nozzle Foxglove-00047 (engineering estimate, provisional);"
+    },
+    {
+      "id": "TN0000214",
+      "subject_id": "S00020",
+      "subject": "seaplane Aster-00020",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 286,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "import batch A",
+        "sensor reading"
+      ],
+      "statement": "seaplane Aster-00020 has seating capacity = 286 (import batch A, sensor reading);"
+    },
+    {
+      "id": "TN0000119",
+      "subject_id": "S00043",
+      "subject": "port Helios-00043",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0081672,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "port Helios-00043 has mass flow rate = 0.0081672 kg/s;"
+    },
+    {
+      "id": "TN0000079",
+      "subject_id": "S00047",
+      "subject": "nozzle Foxglove-00047",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "warehouse Granite-00006"
+      },
+      "tags": [],
+      "statement": "nozzle Foxglove-00047 has connected item = warehouse Granite-00006;"
+    },
+    {
+      "id": "TN0000134",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 10.84,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "batch A",
+        "engineering estimate"
+      ],
+      "statement": "pump Opal-00032 has tank capacity = 10.84 m^3 (batch A, engineering estimate);"
+    },
+    {
+      "id": "TN0000193",
+      "subject_id": "S00026",
+      "subject": "helicopter Bluebell-00026",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 763.15,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "helicopter Bluebell-00026 has tank capacity = 763.15 m^3;"
+    },
+    {
+      "id": "TN0000151",
+      "subject_id": "S00004",
+      "subject": "truss Southpoint-00004",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "inactive"
+      },
+      "tags": [
+        "import batch A",
+        "phase alpha"
+      ],
+      "statement": "truss Southpoint-00004 has status = \"inactive\" (import batch A, phase alpha);"
+    },
+    {
+      "id": "TN0000060",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00038",
+        "subject": "fuse Quartz-00038"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "pump Opal-00032 has reference item = fuse Quartz-00038 (sensor reading);"
+    },
+    {
+      "id": "TN0000088",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00030",
+        "subject": "research vessel Juniper-00030"
+      },
+      "tags": [
+        "baseline",
+        "phase alpha"
+      ],
+      "statement": "fastener Aurora-00009 has connected item = research vessel Juniper-00030 (baseline, phase alpha);"
+    },
+    {
+      "id": "TN0000066",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "nozzle Orion-00039"
+      },
+      "tags": [
+        "inspection"
+      ],
+      "statement": "circuit breaker Beacon-00031 has reference item = nozzle Orion-00039 (inspection);"
+    },
+    {
+      "id": "TN0000226",
+      "subject_id": "S00005",
+      "subject": "lidar Quartz-00005",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4.9758e-06,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [
+        "engineering estimate",
+        "import batch A"
+      ],
+      "statement": "lidar Quartz-00005 has capacitance = 4.9758e-06 F (engineering estimate, import batch A);"
+    },
+    {
+      "id": "TN0000215",
+      "subject_id": "S00048",
+      "subject": "container ship Ridge-00048",
+      "property": "capacitance",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.00011085,
+        "unit": "F",
+        "quantity": "capacitance"
+      },
+      "tags": [],
+      "statement": "container ship Ridge-00048 has capacitance = 0.00011085 F;"
+    },
+    {
+      "id": "TN0000213",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.18506,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "inspection"
+      ],
+      "statement": "motor Nova-00024 has tank capacity = 0.18506 m^3 (inspection);"
+    },
+    {
+      "id": "TN0000218",
+      "subject_id": "S00036",
+      "subject": "inventory Raven-00036",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.013647,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "inventory Raven-00036 has tank capacity = 0.013647 m^3 (batch A);"
+    },
+    {
+      "id": "TN0000200",
+      "subject_id": "S00046",
+      "subject": "company Borealis-00046",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 284,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "audit",
+        "inspection"
+      ],
+      "statement": "company Borealis-00046 has quantity = 284 (audit, inspection);"
+    },
+    {
+      "id": "TN0000185",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1074.3,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "fiber link Compass-00017 has tank capacity = 1074.3 m^3 (baseline);"
+    },
+    {
+      "id": "TN0000177",
+      "subject_id": "S00001",
+      "subject": "contactor Granite-00001",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2100900.0,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [],
+      "statement": "contactor Granite-00001 has frequency = 2100900 Hz;"
+    },
+    {
+      "id": "TN0000033",
+      "subject_id": "S00020",
+      "subject": "seaplane Aster-00020",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00044",
+        "subject": "pumping station Millbrook-00044"
+      },
+      "tags": [],
+      "statement": "seaplane Aster-00020 has connected item = pumping station Millbrook-00044;"
+    },
+    {
+      "id": "TN0000072",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00020",
+        "subject": "seaplane Aster-00020"
+      },
+      "tags": [
+        "phase alpha",
+        "zone south"
+      ],
+      "statement": "survey aircraft Opal-00025 has connected item = seaplane Aster-00020 (phase alpha, zone south);"
+    },
+    {
+      "id": "TN0000071",
+      "subject_id": "S00036",
+      "subject": "inventory Raven-00036",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "fiber link Compass-00017"
+      },
+      "tags": [
+        "audit",
+        "import batch A"
+      ],
+      "statement": "inventory Raven-00036 has upstream item = fiber link Compass-00017 (audit, import batch A);"
+    },
+    {
+      "id": "TN0000199",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 6.8949,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "support Apex-00016 has force = 6.8949 N;"
+    },
+    {
+      "id": "TN0000205",
+      "subject_id": "S00016",
+      "subject": "support Apex-00016",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0013255,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "phase alpha",
+        "zone west"
+      ],
+      "statement": "support Apex-00016 has tank capacity = 0.0013255 m^3 (phase alpha, zone west);"
+    },
+    {
+      "id": "TN0000220",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.025986,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [
+        "baseline",
+        "superseded"
+      ],
+      "statement": "circuit breaker Beacon-00031 has mass flow rate = 0.025986 kg/s (baseline, superseded);"
+    },
+    {
+      "id": "TN0000230",
+      "subject_id": "S00021",
+      "subject": "platform Westhaven-00021",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "standby"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "platform Westhaven-00021 has status = \"standby\" (baseline);"
+    },
+    {
+      "id": "TN0000219",
+      "subject_id": "S00027",
+      "subject": "bolt Rigel-00027",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.3778,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "batch B",
+        "phase alpha"
+      ],
+      "statement": "bolt Rigel-00027 has mass = 1.3778 kg (batch B, phase alpha);"
+    },
+    {
+      "id": "TN0000051",
+      "subject_id": "S00002",
+      "subject": "pile Kestrel-00002",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00021",
+        "subject": "platform Westhaven-00021"
+      },
+      "tags": [],
+      "statement": "pile Kestrel-00002 has related item = platform Westhaven-00021;"
+    },
+    {
+      "id": "TN0000038",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "drone Harbor-00015"
+      },
+      "tags": [],
+      "statement": "filter Equinox-00007 has downstream item = drone Harbor-00015;"
+    },
+    {
+      "id": "TN0000069",
+      "subject_id": "S00028",
+      "subject": "bolt Millbrook-00028",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "pile Kestrel-00002"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "bolt Millbrook-00028 has reference item = pile Kestrel-00002 (sensor reading);"
+    },
+    {
+      "id": "TN0000004",
+      "subject_id": "S00010",
+      "subject": "clamp Aurora-00010",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00029",
+        "subject": "rover Iris-00029"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "clamp Aurora-00010 has connected item = rover Iris-00029 (import batch A);"
+    },
+    {
+      "id": "TN0000187",
+      "subject_id": "S00044",
+      "subject": "pumping station Millbrook-00044",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10745,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "pumping station Millbrook-00044 has area = 0.10745 m^2 (phase alpha);"
+    },
+    {
+      "id": "TN0000037",
+      "subject_id": "S00040",
+      "subject": "substation Southpoint-00040",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00007",
+        "subject": "filter Equinox-00007"
+      },
+      "tags": [],
+      "statement": "substation Southpoint-00040 has reference item = filter Equinox-00007;"
+    },
+    {
+      "id": "TN0000120",
+      "subject_id": "S00006",
+      "subject": "warehouse Granite-00006",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3947.1,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "batch B",
+        "zone west"
+      ],
+      "statement": "warehouse Granite-00006 has frequency = 3947.1 Hz (batch B, zone west);"
+    },
+    {
+      "id": "TN0000153",
+      "subject_id": "S00023",
+      "subject": "vent Southpoint-00023",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 6.4135,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "phase alpha",
+        "unverified"
+      ],
+      "statement": "vent Southpoint-00023 has tank capacity = 6.4135 m^3 (phase alpha, unverified);"
+    },
+    {
+      "id": "TN0000097",
+      "subject_id": "S00029",
+      "subject": "rover Iris-00029",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "contactor Granite-00001"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "rover Iris-00029 has downstream item = contactor Granite-00001 (engineering estimate);"
+    },
+    {
+      "id": "TN0000210",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.8621,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [
+        "import batch A",
+        "zone west"
+      ],
+      "statement": "circuit breaker Beacon-00031 has mass flow rate = 2.8621 kg/s (import batch A, zone west);"
+    },
+    {
+      "id": "TN0000044",
+      "subject_id": "S00022",
+      "subject": "brace Vega-00022",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00009",
+        "subject": "fastener Aurora-00009"
+      },
+      "tags": [
+        "engineering estimate",
+        "provisional"
+      ],
+      "statement": "brace Vega-00022 has reference item = fastener Aurora-00009 (engineering estimate, provisional);"
+    },
+    {
+      "id": "TN0000235",
+      "subject_id": "S00034",
+      "subject": "communication link Bluebell-00034",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 21.262,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch B"
+      ],
+      "statement": "communication link Bluebell-00034 has height = 21.262 m (batch B);"
+    },
+    {
+      "id": "TN0000176",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "standby"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "fastener Aurora-00009 has status = \"standby\" (phase alpha);"
+    },
+    {
+      "id": "TN0000233",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 770,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "engineering estimate",
+        "phase alpha"
+      ],
+      "statement": "circuit breaker Beacon-00031 has quantity = 770 (engineering estimate, phase alpha);"
+    },
+    {
+      "id": "TN0000232",
+      "subject_id": "S00007",
+      "subject": "filter Equinox-00007",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.00067277,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "filter Equinox-00007 has tank capacity = 0.00067277 m^3;"
+    },
+    {
+      "id": "TN0000100",
+      "subject_id": "S00015",
+      "subject": "drone Harbor-00015",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00046",
+        "subject": "company Borealis-00046"
+      },
+      "tags": [
+        "batch B",
+        "superseded"
+      ],
+      "statement": "drone Harbor-00015 has related item = company Borealis-00046 (batch B, superseded);"
+    },
+    {
+      "id": "TN0000018",
+      "subject_id": "S00026",
+      "subject": "helicopter Bluebell-00026",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "helicopter Estuary-00019"
+      },
+      "tags": [
+        "engineering estimate",
+        "unverified"
+      ],
+      "statement": "helicopter Bluebell-00026 has downstream item = helicopter Estuary-00019 (engineering estimate, unverified);"
+    },
+    {
+      "id": "TN0000064",
+      "subject_id": "S00024",
+      "subject": "motor Nova-00024",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00004",
+        "subject": "truss Southpoint-00004"
+      },
+      "tags": [],
+      "statement": "motor Nova-00024 has related item = truss Southpoint-00004;"
+    },
+    {
+      "id": "TN0000086",
+      "subject_id": "S00020",
+      "subject": "seaplane Aster-00020",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00044",
+        "subject": "pumping station Millbrook-00044"
+      },
+      "tags": [
+        "sensor reading",
+        "zone south"
+      ],
+      "statement": "seaplane Aster-00020 has reference item = pumping station Millbrook-00044 (sensor reading, zone south);"
+    },
+    {
+      "id": "TN0000029",
+      "subject_id": "S00027",
+      "subject": "bolt Rigel-00027",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00016",
+        "subject": "support Apex-00016"
+      },
+      "tags": [
+        "batch A"
+      ],
+      "statement": "bolt Rigel-00027 has upstream item = support Apex-00016 (batch A);"
+    },
+    {
+      "id": "TN0000023",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00031",
+        "subject": "circuit breaker Beacon-00031"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "fuse Quartz-00038 has downstream item = circuit breaker Beacon-00031 (audit);"
+    },
+    {
+      "id": "TN0000223",
+      "subject_id": "S00010",
+      "subject": "clamp Aurora-00010",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 52.003,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [],
+      "statement": "clamp Aurora-00010 has area = 52.003 m^2;"
+    },
+    {
+      "id": "TN0000221",
+      "subject_id": "S00026",
+      "subject": "helicopter Bluebell-00026",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10702,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [
+        "batch A",
+        "zone west"
+      ],
+      "statement": "helicopter Bluebell-00026 has volumetric flow rate = 0.10702 m^3/s (batch A, zone west);"
+    },
+    {
+      "id": "TN0000129",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "quantity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 876,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [],
+      "statement": "survey aircraft Opal-00025 has quantity = 876;"
+    },
+    {
+      "id": "TN0000229",
+      "subject_id": "S00018",
+      "subject": "depot Reef-00018",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 319,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "depot Reef-00018 has seating capacity = 319 (sensor reading);"
+    },
+    {
+      "id": "TN0000017",
+      "subject_id": "S00045",
+      "subject": "laboratory Sirius-00045",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00026",
+        "subject": "helicopter Bluebell-00026"
+      },
+      "tags": [
+        "provisional"
+      ],
+      "statement": "laboratory Sirius-00045 has connected item = helicopter Bluebell-00026 (provisional);"
+    },
+    {
+      "id": "TN0000102",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00040",
+        "subject": "substation Southpoint-00040"
+      },
+      "tags": [
+        "inspection"
+      ],
+      "statement": "fiber link Compass-00017 has related item = substation Southpoint-00040 (inspection);"
+    },
+    {
+      "id": "TN0000036",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00040",
+        "subject": "substation Southpoint-00040"
+      },
+      "tags": [
+        "batch A",
+        "phase alpha"
+      ],
+      "statement": "fiber link Compass-00017 has reference item = substation Southpoint-00040 (batch A, phase alpha);"
+    },
+    {
+      "id": "TN0000025",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00041",
+        "subject": "survey aircraft Solstice-00041"
+      },
+      "tags": [],
+      "statement": "nozzle Orion-00039 has downstream item = survey aircraft Solstice-00041;"
+    },
+    {
+      "id": "TN0000224",
+      "subject_id": "S00029",
+      "subject": "rover Iris-00029",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0028628,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [],
+      "statement": "rover Iris-00029 has area = 0.0028628 m^2;"
+    },
+    {
+      "id": "TN0000168",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 36.082,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "inspection",
+        "zone south"
+      ],
+      "statement": "fastener Aurora-00009 has width = 36.082 m (inspection, zone south);"
+    },
+    {
+      "id": "TN0000154",
+      "subject_id": "S00006",
+      "subject": "warehouse Granite-00006",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.093475,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [
+        "phase alpha"
+      ],
+      "statement": "warehouse Granite-00006 has mass flow rate = 0.093475 kg/s (phase alpha);"
+    },
+    {
+      "id": "TN0000167",
+      "subject_id": "S00014",
+      "subject": "repair Sirius-00014",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 31685.0,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "repair Sirius-00014 has force = 31685 N (superseded);"
+    },
+    {
+      "id": "TN0000165",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "frequency",
+      "value": {
+        "type": "numeric",
+        "magnitude": 463.98,
+        "unit": "Hz",
+        "quantity": "frequency"
+      },
+      "tags": [
+        "zone south"
+      ],
+      "statement": "fuse Quartz-00038 has frequency = 463.98 Hz (zone south);"
+    },
+    {
+      "id": "TN0000020",
+      "subject_id": "S00023",
+      "subject": "vent Southpoint-00023",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00014",
+        "subject": "repair Sirius-00014"
+      },
+      "tags": [
+        "batch B",
+        "zone south"
+      ],
+      "statement": "vent Southpoint-00023 has related item = repair Sirius-00014 (batch B, zone south);"
+    },
+    {
+      "id": "TN0000078",
+      "subject_id": "S00010",
+      "subject": "clamp Aurora-00010",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00029",
+        "subject": "rover Iris-00029"
+      },
+      "tags": [],
+      "statement": "clamp Aurora-00010 has reference item = rover Iris-00029;"
+    },
+    {
+      "id": "TN0000138",
+      "subject_id": "S00020",
+      "subject": "seaplane Aster-00020",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0015393,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "sensor reading",
+        "zone west"
+      ],
+      "statement": "seaplane Aster-00020 has width = 0.0015393 m (sensor reading, zone west);"
+    },
+    {
+      "id": "TN0000240",
+      "subject_id": "S00021",
+      "subject": "platform Westhaven-00021",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4.4795,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "platform Westhaven-00021 has height = 4.4795 m;"
+    },
+    {
+      "id": "TN0000089",
+      "subject_id": "S00039",
+      "subject": "nozzle Orion-00039",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "lidar Quartz-00005"
+      },
+      "tags": [
+        "import batch A"
+      ],
+      "statement": "nozzle Orion-00039 has downstream item = lidar Quartz-00005 (import batch A);"
+    },
+    {
+      "id": "TN0000195",
+      "subject_id": "S00004",
+      "subject": "truss Southpoint-00004",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0023163,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "truss Southpoint-00004 has width = 0.0023163 m;"
+    },
+    {
+      "id": "TN0000169",
+      "subject_id": "S00035",
+      "subject": "helicopter Helios-00035",
+      "property": "force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 91.13,
+        "unit": "N",
+        "quantity": "force"
+      },
+      "tags": [
+        "batch B"
+      ],
+      "statement": "helicopter Helios-00035 has force = 91.13 N (batch B);"
+    },
+    {
+      "id": "TN0000032",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00020",
+        "subject": "seaplane Aster-00020"
+      },
+      "tags": [],
+      "statement": "survey aircraft Opal-00025 has related item = seaplane Aster-00020;"
+    },
+    {
+      "id": "TN0000192",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0010633,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "superseded"
+      ],
+      "statement": "fastener Aurora-00009 has tank capacity = 0.0010633 m^3 (superseded);"
+    },
+    {
+      "id": "TN0000104",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "connected item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00038",
+        "subject": "fuse Quartz-00038"
+      },
+      "tags": [
+        "engineering estimate"
+      ],
+      "statement": "pump Opal-00032 has connected item = fuse Quartz-00038 (engineering estimate);"
+    },
+    {
+      "id": "TN0000048",
+      "subject_id": "S00043",
+      "subject": "port Helios-00043",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00037",
+        "subject": "distribution panel Pine-00037"
+      },
+      "tags": [],
+      "statement": "port Helios-00043 has related item = distribution panel Pine-00037;"
+    },
+    {
+      "id": "TN0000202",
+      "subject_id": "S00025",
+      "subject": "survey aircraft Opal-00025",
+      "property": "mass flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.8621,
+        "unit": "kg/s",
+        "quantity": "mass_flow_rate"
+      },
+      "tags": [],
+      "statement": "survey aircraft Opal-00025 has mass flow rate = 2.8621 kg/s;"
+    },
+    {
+      "id": "TN0000139",
+      "subject_id": "S00017",
+      "subject": "fiber link Compass-00017",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.75102,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "sensor reading"
+      ],
+      "statement": "fiber link Compass-00017 has height = 0.75102 m (sensor reading);"
+    },
+    {
+      "id": "TN0000112",
+      "subject_id": "S00011",
+      "subject": "forklift Jade-00011",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0032864,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch B",
+        "unverified"
+      ],
+      "statement": "forklift Jade-00011 has height = 0.0032864 m (batch B, unverified);"
+    },
+    {
+      "id": "TN0000160",
+      "subject_id": "S00045",
+      "subject": "laboratory Sirius-00045",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.032341,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [
+        "audit"
+      ],
+      "statement": "laboratory Sirius-00045 has voltage = 0.032341 V (audit);"
+    },
+    {
+      "id": "TN0000122",
+      "subject_id": "S00032",
+      "subject": "pump Opal-00032",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 452.69,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "phase alpha",
+        "sensor reading"
+      ],
+      "statement": "pump Opal-00032 has height = 452.69 m (phase alpha, sensor reading);"
+    },
+    {
+      "id": "TN0000190",
+      "subject_id": "S00042",
+      "subject": "fiber link Kestrel-00042",
+      "property": "seating capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 822,
+        "unit": "",
+        "quantity": "count"
+      },
+      "tags": [
+        "audit",
+        "phase alpha"
+      ],
+      "statement": "fiber link Kestrel-00042 has seating capacity = 822 (audit, phase alpha);"
+    },
+    {
+      "id": "TN0000156",
+      "subject_id": "S00009",
+      "subject": "fastener Aurora-00009",
+      "property": "tank capacity",
+      "value": {
+        "type": "numeric",
+        "magnitude": 763.15,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "audit",
+        "phase alpha"
+      ],
+      "statement": "fastener Aurora-00009 has tank capacity = 763.15 m^3 (audit, phase alpha);"
+    },
+    {
+      "id": "TN0000046",
+      "subject_id": "S00030",
+      "subject": "research vessel Juniper-00030",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00013",
+        "subject": "excavator Nova-00013"
+      },
+      "tags": [],
+      "statement": "research vessel Juniper-00030 has related item = excavator Nova-00013;"
+    },
+    {
+      "id": "TN0000118",
+      "subject_id": "S00038",
+      "subject": "fuse Quartz-00038",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 406.76,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "batch B",
+        "import batch A"
+      ],
+      "statement": "fuse Quartz-00038 has width = 406.76 m (batch B, import batch A);"
+    },
+    {
+      "id": "TN0000158",
+      "subject_id": "S00031",
+      "subject": "circuit breaker Beacon-00031",
+      "property": "width",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.076143,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "baseline",
+        "sensor reading"
+      ],
+      "statement": "circuit breaker Beacon-00031 has width = 0.076143 m (baseline, sensor reading);"
+    },
+    {
+      "id": "TN0000105",
+      "subject_id": "S00048",
+      "subject": "container ship Ridge-00048",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00008",
+        "subject": "clamp Putnam-00008"
+      },
+      "tags": [
+        "zone west"
+      ],
+      "statement": "container ship Ridge-00048 has reference item = clamp Putnam-00008 (zone west);"
+    },
+    {
+      "id": "TN0000175",
+      "subject_id": "S00036",
+      "subject": "inventory Raven-00036",
+      "property": "volumetric flow rate",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.8083,
+        "unit": "m^3/s",
+        "quantity": "volumetric_flow_rate"
+      },
+      "tags": [],
+      "statement": "inventory Raven-00036 has volumetric flow rate = 1.8083 m^3/s;"
+    },
+    {
+      "id": "TN0000148",
+      "subject_id": "S00036",
+      "subject": "inventory Raven-00036",
+      "property": "voltage",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.032341,
+        "unit": "V",
+        "quantity": "voltage"
+      },
+      "tags": [],
+      "statement": "inventory Raven-00036 has voltage = 0.032341 V;"
+    },
+    {
+      "id": "TN0000054",
+      "subject_id": "S00008",
+      "subject": "clamp Putnam-00008",
+      "property": "upstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00018",
+        "subject": "depot Reef-00018"
+      },
+      "tags": [],
+      "statement": "clamp Putnam-00008 has upstream item = depot Reef-00018;"
+    },
+    {
+      "id": "TN0000227",
+      "subject_id": "S00004",
+      "subject": "truss Southpoint-00004",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.0056311,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "audit",
+        "baseline"
+      ],
+      "statement": "truss Southpoint-00004 has height = 0.0056311 m (audit, baseline);"
+    }
+  ]
+}

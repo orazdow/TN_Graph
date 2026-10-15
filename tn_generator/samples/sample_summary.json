@@ -1,0 +1,140 @@
+[
+  {
+    "name": "mixed",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_semantic_tags": 14
+  },
+  {
+    "name": "clusters",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_semantic_tags": 14
+  },
+  {
+    "name": "hubs",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_semantic_tags": 14
+  },
+  {
+    "name": "chains",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": false,
+    "distinct_properties": 19,
+    "distinct_semantic_tags": 14
+  },
+  {
+    "name": "cycles",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_semantic_tags": 14
+  },
+  {
+    "name": "islands",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "weak_component_sizes": [
+      9,
+      8,
+      8,
+      8,
+      8,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "reference_isolated_subjects": 7,
+    "has_directed_cycle": true,
+    "distinct_properties": 19,
+    "distinct_semantic_tags": 14
+  },
+  {
+    "name": "projection_stress",
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 12,
+    "weak_component_sizes": [
+      10,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "reference_isolated_subjects": 35,
+    "has_directed_cycle": true,
+    "distinct_properties": 5,
+    "distinct_semantic_tags": 3
+  }
+]
