@@ -34,6 +34,47 @@ export function computeLayout(graph, options = {}) {
   const settings = normalizeLayout(options);
   const started = performance.now();
   if (!graph.nodes.length) return {positions: new Map(), routes: new Map(), width: 0, height: 0, cyclic: false, elapsed: 0, settings};
+  // Fact graphs keep each subject's assertions together, independent of references.
+  if (graph.projection === 'facts') {
+    const groups = new Map();
+    for (const node of graph.nodes) {
+      if (!groups.has(node.groupId)) groups.set(node.groupId, {nodes: [], edges: []});
+      groups.get(node.groupId).nodes.push(node);
+    }
+    for (const edge of graph.edges) {
+      if (edge.kind !== 'reference') groups.get(edge.source).edges.push(edge);
+    }
+    const layouts = [...groups.values()].map(group => ({group, geometry: computeLayout(group, settings)}));
+    const columns = Math.ceil(Math.sqrt(layouts.length));
+    const gap = 100;
+    const widths = Array(columns).fill(0);
+    const heights = Array(Math.ceil(layouts.length / columns)).fill(0);
+    layouts.forEach(({geometry}, index) => {
+      widths[index % columns] = Math.max(widths[index % columns], geometry.width);
+      heights[Math.floor(index / columns)] = Math.max(heights[Math.floor(index / columns)], geometry.height);
+    });
+    const width = widths.reduce((sum, value) => sum + value, 0) + gap * (widths.length - 1);
+    const height = heights.reduce((sum, value) => sum + value, 0) + gap * (heights.length - 1);
+    const positions = new Map(), routes = new Map();
+    layouts.forEach(({geometry}, index) => {
+      const col = index % columns, row = Math.floor(index / columns);
+      const dx = widths.slice(0, col).reduce((sum, value) => sum + value + gap, 0) + widths[col] / 2 - width / 2;
+      const dy = heights.slice(0, row).reduce((sum, value) => sum + value + gap, 0) + heights[row] / 2 - height / 2;
+      const translate = point => ({x: point.x + dx, y: point.y + dy});
+      for (const [id, point] of geometry.positions) positions.set(id, translate(point));
+      for (const [id, points] of geometry.routes) routes.set(id, points.map(translate));
+    });
+    // Reference overlays do not influence the arrangement of subject fact groups.
+    for (const edge of graph.edges) {
+      if (edge.kind !== 'reference') continue;
+      const a = positions.get(edge.source), b = positions.get(edge.target);
+      const dx = b.x - a.x, dy = b.y - a.y, length = Math.hypot(dx, dy) || 1;
+      const offset = 60;
+      routes.set(edge.id, [a, {x: (a.x + b.x) / 2 - dy / length * offset,
+        y: (a.y + b.y) / 2 + dx / length * offset}, b]);
+    }
+    return {positions, routes, width, height, cyclic: false, elapsed: performance.now() - started, settings};
+  }
   const temporary = createD3Graph();
   const nodes = new Map(graph.nodes.map(node => [node.id, temporary.node(node)]));
   const loops = [];

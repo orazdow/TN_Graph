@@ -1,0 +1,425 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "name": "Navy Fleet",
+  "corpus": {
+    "name": "Navy engineering",
+    "version": 1
+  },
+  "seed": 20261015,
+  "notes": [
+    "Simple synthetic propulsion examples: one numeric measurement per subject, with vessel to engine to shaft to propeller references."
+  ],
+  "subjects": [
+    {
+      "id": "Kestrel:vessel",
+      "phrase": "patrol vessel Kestrel",
+      "category": "vessel"
+    },
+    {
+      "id": "Kestrel:engine",
+      "phrase": "diesel engine Kestrel port",
+      "category": "engine"
+    },
+    {
+      "id": "Kestrel:shaft",
+      "phrase": "propeller shaft Kestrel port",
+      "category": "shaft"
+    },
+    {
+      "id": "Kestrel:propeller",
+      "phrase": "propeller Kestrel port",
+      "category": "propeller"
+    },
+    {
+      "id": "Osprey:vessel",
+      "phrase": "patrol vessel Osprey",
+      "category": "vessel"
+    },
+    {
+      "id": "Osprey:engine",
+      "phrase": "diesel engine Osprey port",
+      "category": "engine"
+    },
+    {
+      "id": "Osprey:shaft",
+      "phrase": "propeller shaft Osprey port",
+      "category": "shaft"
+    },
+    {
+      "id": "Osprey:propeller",
+      "phrase": "propeller Osprey port",
+      "category": "propeller"
+    },
+    {
+      "id": "Heron:vessel",
+      "phrase": "patrol vessel Heron",
+      "category": "vessel"
+    },
+    {
+      "id": "Heron:engine",
+      "phrase": "diesel engine Heron port",
+      "category": "engine"
+    },
+    {
+      "id": "Heron:shaft",
+      "phrase": "propeller shaft Heron port",
+      "category": "shaft"
+    },
+    {
+      "id": "Heron:propeller",
+      "phrase": "propeller Heron port",
+      "category": "propeller"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-1",
+      "subject_id": "Kestrel:vessel",
+      "subject": "patrol vessel Kestrel",
+      "property": "length",
+      "value": {
+        "type": "numeric",
+        "magnitude": 83.3,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "patrol vessel Kestrel has length = 83.3 m (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-2",
+      "subject_id": "Kestrel:engine",
+      "subject": "diesel engine Kestrel port",
+      "property": "rated power",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1958.8,
+        "unit": "kW",
+        "quantity": "power"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "diesel engine Kestrel port has rated power = 1958.8 kW (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-3",
+      "subject_id": "Kestrel:shaft",
+      "subject": "propeller shaft Kestrel port",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 208.9,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "propeller shaft Kestrel port has diameter = 208.9 mm (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-4",
+      "subject_id": "Kestrel:propeller",
+      "subject": "propeller Kestrel port",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.7,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "propeller Kestrel port has diameter = 2.7 m (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-5",
+      "subject_id": "Kestrel:vessel",
+      "subject": "patrol vessel Kestrel",
+      "property": "main engine",
+      "value": {
+        "type": "reference",
+        "subject_id": "Kestrel:engine",
+        "subject": "diesel engine Kestrel port"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "patrol vessel Kestrel has main engine = diesel engine Kestrel port (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-6",
+      "subject_id": "Kestrel:engine",
+      "subject": "diesel engine Kestrel port",
+      "property": "drive shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "Kestrel:shaft",
+        "subject": "propeller shaft Kestrel port"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "diesel engine Kestrel port has drive shaft = propeller shaft Kestrel port (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-7",
+      "subject_id": "Kestrel:shaft",
+      "subject": "propeller shaft Kestrel port",
+      "property": "propeller",
+      "value": {
+        "type": "reference",
+        "subject_id": "Kestrel:propeller",
+        "subject": "propeller Kestrel port"
+      },
+      "tags": [
+        "Kestrel",
+        "design revision B"
+      ],
+      "statement": "propeller shaft Kestrel port has propeller = propeller Kestrel port (Kestrel, design revision B);"
+    },
+    {
+      "id": "fact-8",
+      "subject_id": "Osprey:vessel",
+      "subject": "patrol vessel Osprey",
+      "property": "length",
+      "value": {
+        "type": "numeric",
+        "magnitude": 65.8,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "patrol vessel Osprey has length = 65.8 m (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-9",
+      "subject_id": "Osprey:engine",
+      "subject": "diesel engine Osprey port",
+      "property": "rated power",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2288.0,
+        "unit": "kW",
+        "quantity": "power"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "diesel engine Osprey port has rated power = 2288.0 kW (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-10",
+      "subject_id": "Osprey:shaft",
+      "subject": "propeller shaft Osprey port",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 211.5,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "propeller shaft Osprey port has diameter = 211.5 mm (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-11",
+      "subject_id": "Osprey:propeller",
+      "subject": "propeller Osprey port",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.5,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "propeller Osprey port has diameter = 2.5 m (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-12",
+      "subject_id": "Osprey:vessel",
+      "subject": "patrol vessel Osprey",
+      "property": "main engine",
+      "value": {
+        "type": "reference",
+        "subject_id": "Osprey:engine",
+        "subject": "diesel engine Osprey port"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "patrol vessel Osprey has main engine = diesel engine Osprey port (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-13",
+      "subject_id": "Osprey:engine",
+      "subject": "diesel engine Osprey port",
+      "property": "drive shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "Osprey:shaft",
+        "subject": "propeller shaft Osprey port"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "diesel engine Osprey port has drive shaft = propeller shaft Osprey port (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-14",
+      "subject_id": "Osprey:shaft",
+      "subject": "propeller shaft Osprey port",
+      "property": "propeller",
+      "value": {
+        "type": "reference",
+        "subject_id": "Osprey:propeller",
+        "subject": "propeller Osprey port"
+      },
+      "tags": [
+        "Osprey",
+        "design revision B"
+      ],
+      "statement": "propeller shaft Osprey port has propeller = propeller Osprey port (Osprey, design revision B);"
+    },
+    {
+      "id": "fact-15",
+      "subject_id": "Heron:vessel",
+      "subject": "patrol vessel Heron",
+      "property": "length",
+      "value": {
+        "type": "numeric",
+        "magnitude": 72.9,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "patrol vessel Heron has length = 72.9 m (Heron, design revision B);"
+    },
+    {
+      "id": "fact-16",
+      "subject_id": "Heron:engine",
+      "subject": "diesel engine Heron port",
+      "property": "rated power",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2322.1,
+        "unit": "kW",
+        "quantity": "power"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "diesel engine Heron port has rated power = 2322.1 kW (Heron, design revision B);"
+    },
+    {
+      "id": "fact-17",
+      "subject_id": "Heron:shaft",
+      "subject": "propeller shaft Heron port",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 238.8,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "propeller shaft Heron port has diameter = 238.8 mm (Heron, design revision B);"
+    },
+    {
+      "id": "fact-18",
+      "subject_id": "Heron:propeller",
+      "subject": "propeller Heron port",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.6,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "propeller Heron port has diameter = 2.6 m (Heron, design revision B);"
+    },
+    {
+      "id": "fact-19",
+      "subject_id": "Heron:vessel",
+      "subject": "patrol vessel Heron",
+      "property": "main engine",
+      "value": {
+        "type": "reference",
+        "subject_id": "Heron:engine",
+        "subject": "diesel engine Heron port"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "patrol vessel Heron has main engine = diesel engine Heron port (Heron, design revision B);"
+    },
+    {
+      "id": "fact-20",
+      "subject_id": "Heron:engine",
+      "subject": "diesel engine Heron port",
+      "property": "drive shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "Heron:shaft",
+        "subject": "propeller shaft Heron port"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "diesel engine Heron port has drive shaft = propeller shaft Heron port (Heron, design revision B);"
+    },
+    {
+      "id": "fact-21",
+      "subject_id": "Heron:shaft",
+      "subject": "propeller shaft Heron port",
+      "property": "propeller",
+      "value": {
+        "type": "reference",
+        "subject_id": "Heron:propeller",
+        "subject": "propeller Heron port"
+      },
+      "tags": [
+        "Heron",
+        "design revision B"
+      ],
+      "statement": "propeller shaft Heron port has propeller = propeller Heron port (Heron, design revision B);"
+    }
+  ]
+}

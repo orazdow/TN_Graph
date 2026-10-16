@@ -1,9 +1,9 @@
-import {Engine, selectFacts} from './engine.js';
+import {Engine, selectFacts, groupFacts} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderStatements} from './ui.js';
 
-const DEFAULT_SAMPLE = './samples/v2/engineering-smallest-2.json';
+const DEFAULT_SAMPLE = './samples/construction/engineering-smallest-2.json';
 
 const engine = new Engine();
 let layoutRevision = 0;
@@ -60,17 +60,18 @@ function readLayout() {
 
 async function render() {
   snapshot = engine.snapshot();
+  snapshot.facts = groupFacts(snapshot.facts);
   renderOptions(ui.property, snapshot.facts.map(fact => fact.property), 'All properties');
   renderOptions(ui.tag, snapshot.facts.flatMap(fact => fact.tags), 'All tags');
   const filters = {query: ui.query.value, property: ui.property.value, tag: ui.tag.value};
   facts = selectFacts(snapshot, filters);
   renderStatements(ui.statements, facts);
-  ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' statements · current filters';
+  ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' unique statements · current filters';
   page = Math.min(page, Math.max(0, Math.ceil(facts.length / 100) - 1));
   if (selection?.factId && !snapshot.facts.some(fact => fact.id === selection.factId)) selection = null;
   if (selection?.subjectId && !snapshot.subjects.some(subject => subject.id === selection.subjectId)) selection = null;
   renderSources(ui.datasets, snapshot.sources, sourceId => { engine.remove(sourceId); render(); });
-  const graph = createGraph(snapshot, facts, {includeLiterals: ui['network-view'].value === 'all', filtered: Object.values(filters).some(Boolean)});
+  const graph = createGraph(snapshot, facts, {view: ui['network-view'].value, includeLiterals: ui['network-view'].value === 'all', filtered: Object.values(filters).some(Boolean)});
   renderSelection();
   ui.counts.textContent = snapshot.subjects.length + ' subjects · ' + facts.length + ' / ' + snapshot.facts.length + ' facts · ' + graph.edges.length + ' edges';
   const revision = ++layoutRevision;

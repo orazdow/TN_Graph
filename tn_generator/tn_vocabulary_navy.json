@@ -1,0 +1,83 @@
+{
+  "format_version": 1,
+  "name": "Navy engineering",
+  "seed": 20261015,
+  "vessels": [
+    "Kestrel",
+    "Osprey",
+    "Heron"
+  ],
+  "equipment": {
+    "vessel": {
+      "phrase": "patrol vessel {name}",
+      "measurements": {
+        "length": {
+          "quantity": "length",
+          "unit": "m",
+          "min": 65,
+          "max": 85,
+          "decimals": 1
+        }
+      }
+    },
+    "engine": {
+      "phrase": "diesel engine {name} port",
+      "measurements": {
+        "rated power": {
+          "quantity": "power",
+          "unit": "kW",
+          "min": 1800,
+          "max": 2600,
+          "decimals": 1
+        }
+      }
+    },
+    "shaft": {
+      "phrase": "propeller shaft {name} port",
+      "measurements": {
+        "diameter": {
+          "quantity": "length",
+          "unit": "mm",
+          "min": 180,
+          "max": 240,
+          "decimals": 1
+        }
+      }
+    },
+    "propeller": {
+      "phrase": "propeller {name} port",
+      "measurements": {
+        "diameter": {
+          "quantity": "length",
+          "unit": "m",
+          "min": 2.2,
+          "max": 2.8,
+          "decimals": 1
+        }
+      }
+    }
+  },
+  "relationships": [
+    [
+      "vessel",
+      "main engine",
+      "engine"
+    ],
+    [
+      "engine",
+      "drive shaft",
+      "shaft"
+    ],
+    [
+      "shaft",
+      "propeller",
+      "propeller"
+    ]
+  ],
+  "tags": [
+    "design revision B"
+  ],
+  "notes": [
+    "Simple synthetic propulsion examples: one numeric measurement per subject, with vessel to engine to shaft to propeller references."
+  ]
+}

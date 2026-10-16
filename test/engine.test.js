@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {Engine, selectFacts, validateDataset} from '../src/engine.js';
+import {Engine, selectFacts, validateDataset, groupFacts} from '../src/engine.js';
 
 const fixture = () => ({format: 'synthetic-truenumbers', format_version: 1,
   subjects: [{id: 's1', phrase: 'ship Aurora', category: 'ship', cluster: 2}, {id: 's2', phrase: 'company Meridian'}],
@@ -97,4 +97,39 @@ test('all bundled generator samples validate and import', () => {
     assert.equal(engine.snapshot().facts.length, data.facts.length);
     assert.equal(engine.snapshot().subjects.length, data.subjects.length);
   }
+});
+
+test('display grouping counts repeated imports across local IDs and preserves source removal', () => {
+  const engine = new Engine();
+  const first = engine.add(fixture(), {name: 'First'});
+  const second = engine.add(fixture(), {name: 'Second'});
+  const raw = engine.snapshot(), before = structuredClone(raw);
+  const grouped = groupFacts(raw.facts);
+  assert.equal(grouped.length, 3);
+  assert.ok(grouped.every(fact => fact.occurrenceCount === 2));
+  assert.ok(grouped.every(fact => fact.occurrences.length === 2));
+  assert.deepEqual(grouped[0].occurrences.map(fact => fact.sourceId), [first, second]);
+  assert.deepEqual(raw, before, 'grouping must not mutate imported assertions');
+  engine.remove(first);
+  const remaining = groupFacts(engine.snapshot().facts);
+  assert.equal(remaining.length, 3);
+  assert.ok(remaining.every(fact => fact.occurrenceCount === 1 && fact.sourceId === second));
+  engine.remove(second);
+  assert.deepEqual(groupFacts(engine.snapshot().facts), []);
+});
+
+test('display grouping compares typed values and tag sets without merging different facts', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const fact = engine.snapshot().facts[1];
+  const same = {...structuredClone(fact), id: 'different-id', subject_id: 'another-local-id'};
+  assert.equal(groupFacts([fact, same])[0].occurrenceCount, 2);
+  const tagged = {...fact, tags: ['B', 'A']};
+  assert.equal(groupFacts([tagged, {...tagged, tags: ['A', 'B']}]).length, 1);
+  for (const different of [
+    {...fact, subject: 'another subject'}, {...fact, property: 'weight'},
+    {...fact, tags: ['new tag']},
+    {...fact, value: {...fact.value, magnitude: 1300}},
+    {...fact, value: {...fact.value, unit: 'kg'}},
+    {...fact, value: {type: 'string', text: '1200 tonnes'}},
+  ]) assert.equal(groupFacts([fact, different]).length, 2);
 });

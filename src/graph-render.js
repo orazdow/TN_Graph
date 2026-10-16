@@ -1,21 +1,28 @@
 import {formatValue} from './engine.js';
 
 /** A derived view: fact IDs survive; source assertions are never modified. */
-export function createGraph(snapshot, facts, {includeLiterals = false, filtered = false} = {}) {
+export function createGraph(snapshot, facts, {includeLiterals = false, filtered = false, view = 'network'} = {}) {
+  const referenceLinks = view === 'facts-references';
+  const factView = view === 'facts' || referenceLinks;
   const used = new Set();
   const edges = [];
   const literals = [];
   for (const fact of facts) {
     used.add(fact.subjectId);
-    if (fact.targetId) used.add(fact.targetId);
-    if (!fact.targetId && !includeLiterals) continue;
-    const target = fact.targetId ?? JSON.stringify(['literal', fact.id]);
-    if (!fact.targetId) literals.push({id: target, label: formatValue(fact.value), kind: 'literal', factId: fact.id});
+    if (fact.targetId && (!factView || referenceLinks)) used.add(fact.targetId);
+    if (!factView && !fact.targetId && !includeLiterals) continue;
+    const target = factView ? JSON.stringify(['value', fact.id]) : fact.targetId ?? JSON.stringify(['literal', fact.id]);
+    if (factView || !fact.targetId) literals.push({id: target, label: formatValue(fact.value),
+      kind: 'literal', factId: fact.id, ...(factView ? {groupId: fact.subjectId} : {})});
     edges.push({id: fact.id, factId: fact.id, source: fact.subjectId, target, label: fact.property});
+    if (referenceLinks && fact.targetId) edges.push({
+      id: JSON.stringify(['reference', fact.id]), factId: fact.id,
+      source: target, target: fact.targetId, label: '', kind: 'reference',
+    });
   }
   const nodes = snapshot.subjects.filter(subject => !filtered || used.has(subject.id))
-    .map(subject => ({id: subject.id, label: subject.phrase, kind: 'subject'}));
-  return {nodes: [...nodes, ...literals], edges};
+    .map(subject => ({id: subject.id, label: subject.phrase, kind: 'subject', ...(factView ? {groupId: subject.id} : {})}));
+  return {nodes: [...nodes, ...literals], edges, ...(factView ? {projection: 'facts'} : {})};
 }
 
 // Connection geometry, picking, and label placement.
@@ -300,7 +307,7 @@ export class NetworkRenderer {
       const route = path.points;
       if (route.length < 2) continue;
       const active = activeEdge(edge);
-      const color = active ? '#bd581d' : '#91a3af';
+      const color = active ? '#bd581d' : edge.kind === 'reference' ? '#50869d' : '#91a3af';
       p.stroke(color); p.strokeWeight((active ? 2.4 : 1) / Math.max(.5, zoom)); p.noFill();
       strokePath(p.drawingContext, path.commands);
       const end = route.at(-1), previous = route.at(-2);
@@ -325,7 +332,7 @@ export class NetworkRenderer {
       }
     }
     p.textSize(fontSize);
-    const labelItems = [...edges].reverse().map(edge => ({
+    const labelItems = [...edges].reverse().filter(edge => edge.label).map(edge => ({
       edge, points: this.paths.get(edge.id).points, width: p.textWidth(edge.label),
     }));
     p.textAlign(p.CENTER, p.CENTER);

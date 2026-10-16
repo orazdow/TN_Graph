@@ -109,3 +109,20 @@ export function selectFacts(snapshot, {query = '', property = '', tag = ''} = {}
     (!search || [fact.subject, fact.property, formatValue(fact.value), ...fact.tags].join(' ').toLocaleLowerCase().includes(search))
   );
 }
+
+/** Group equivalent assertions for display while retaining every imported occurrence. */
+export function groupFacts(facts) {
+  const groups = new Map();
+  for (const fact of facts) {
+    const value = fact.value;
+    const typedValue = value.type === 'reference' ? [value.type, value.subject]
+      : value.type === 'numeric' ? [value.type, value.magnitude, value.unit, value.quantity ?? null]
+      : [value.type, value.text];
+    const key = identity(fact.subject, fact.property, typedValue, [...new Set(fact.tags)].sort());
+    if (!groups.has(key)) groups.set(key, {...fact, occurrenceCount: 0, occurrences: []});
+    const group = groups.get(key);
+    group.occurrenceCount++;
+    group.occurrences.push(fact);
+  }
+  return [...groups.values()];
+}

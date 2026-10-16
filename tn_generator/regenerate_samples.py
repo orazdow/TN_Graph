@@ -1,4 +1,4 @@
-"""Regenerate v2 samples in ../samples/v2 using the default engineering corpus."""
+"""Regenerate construction samples in ../samples/construction using the default engineering corpus."""
 from dataclasses import asdict
 import json
 from pathlib import Path
@@ -6,7 +6,7 @@ from generate_tns import Config, PRESETS, generate, write_dataset
 
 
 def main():
-    destination = Path(__file__).resolve().parent.parent / 'samples' / 'v2'
+    destination = Path(__file__).resolve().parent.parent / 'samples' / 'construction'
     configurations = {
         'small': Config(facts=24, subjects=6, connectivity=.375, property_overlap=.35),
         'medium': Config(facts=64, subjects=16),

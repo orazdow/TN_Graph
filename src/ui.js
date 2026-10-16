@@ -50,12 +50,12 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
             <select id="sidebar-view" aria-label="Side panel view">
               <option value="inspector">Inspector</option>
               <option value="layout" selected>Layout</option>
-              <option value="statements">TN statements</option>
+              <option value="statements">Statements</option>
             </select>
           </div>
           <div class="sidebar-content">
-            <section id="statements-panel" aria-label="TN statements" hidden>
-              <h2>TN statements</h2>
+            <section id="statements-panel" aria-label="Statements" hidden>
+              <h2>Statements</h2>
               <p id="statements-count">0 statements</p>
               <div id="statements"></div>
             </section>
@@ -70,12 +70,14 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
               <label>Network view<select id="network-view">
                 <option value="references">Reference connectivity</option>
                 <option value="all" selected>All values</option>
+                <option value="facts">Fact graph</option>
+                <option value="facts-references">Fact graph + references</option>
               </select></label>
             </div>
             <form id="layout-form">
               <div class="layout-grid">
                 <label>Layout<select id="layout"><option value="sugiyama">Sugiyama — layered</option><option value="zherebko">Zherebko — linear</option></select></label>
-                <label>Direction<select id="direction"><option value="TB">Top to bottom</option><option value="BT">Bottom to top</option><option value="LR">Left to right</option><option value="RL">Right to left</option></select></label>
+                <label>Direction<select id="direction"><option value="TB">Top to bottom</option><option value="LR">Left to right</option></select></label>
                 <label>Node separation<input id="node-gap" type="number" required min="0" max="300" value="45" step="5"></label>
                 <label>Rank separation<input id="rank-gap" type="number" required min="0" max="300" value="70" step="5"></label>
               </div>
@@ -267,7 +269,8 @@ export function renderInspector(host, fact) {
   for (const [label, value] of [
     ['Subject', fact.subject], ['Property', fact.property], ['Value', formatValue(fact.value)],
     ['Value type', fact.value.type], ['Tags', fact.tags.join(', ') || 'None'],
-    ['Source', fact.sourceName], ['Source ID', fact.sourceId],
+    ['Occurrences', fact.occurrenceCount ?? 1],
+    ['Source', fact.occurrences ? [...new Set(fact.occurrences.map(item => item.sourceName))].join(', ') : fact.sourceName], ['Source ID', fact.sourceId],
     ['Original fact ID', fact.originalId], ['Original subject ID', fact.subject_id],
     ['Original statement', fact.statement ?? 'Not supplied'],
   ]) {
@@ -339,10 +342,18 @@ export function renderStatements(host, facts) {
   }
   const table = document.createElement('table');
   table.className = 'statement-list';
-  table.setAttribute('aria-label', 'Raw TN statements');
+  table.setAttribute('aria-label', 'Raw Statements');
   const body = table.createTBody();
   for (const fact of facts) {
-    body.insertRow().insertCell().textContent = fact.statement ?? 'Original statement not supplied.';
+    const cell = body.insertRow().insertCell();
+    cell.append(document.createTextNode(fact.statement ?? 'Original statement not supplied.'));
+    if (fact.occurrenceCount > 1) {
+      const count = document.createElement('span');
+      count.className = 'occurrence-count';
+      count.textContent = ' (' + fact.occurrenceCount + ')';
+      count.title = fact.occurrenceCount + ' imported occurrences';
+      cell.append(count);
+    }
   }
   host.append(table);
 }

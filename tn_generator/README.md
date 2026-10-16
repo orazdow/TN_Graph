@@ -57,7 +57,7 @@ A small reference budget can leave motifs partial. Islands need literal facts to
 python regenerate_samples.py
 ```
 
-This writes JSON and TN files into **../samples/v2/** using seed 20261015:
+This writes JSON and TN files into **../samples/construction/** using seed 20261015:
 
 - small: 6 subjects, 24 facts; the workbench's default sample.
 - medium: 16 subjects, 64 facts.

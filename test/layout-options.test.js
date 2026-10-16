@@ -8,7 +8,7 @@ import {makePath, buildEdgePaths, placeEdgeLabels, distanceToRoute, midpoint} fr
 
 function sampleGraph() {
   const engine = new Engine();
-  engine.add(JSON.parse(readFileSync(new URL('../samples/five-subjects.json', import.meta.url))));
+  engine.add(JSON.parse(readFileSync(new URL('../samplesv1/five-subjects.json', import.meta.url))));
   const snapshot = engine.snapshot();
   return createGraph(snapshot, snapshot.facts);
 }
