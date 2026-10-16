@@ -1,0 +1,296 @@
+[
+  {
+    "name": "small",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 6,
+    "fact_count": 24,
+    "reference_fact_count": 9,
+    "literal_fact_count": 15,
+    "weak_component_sizes": [
+      3,
+      3
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 24,
+      "subjects": 6,
+      "connectivity": 0.375,
+      "sharing": 0.6,
+      "structure": 0,
+      "property_overlap": 0.35,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "medium",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 16,
+    "fact_count": 64,
+    "reference_fact_count": 29,
+    "literal_fact_count": 35,
+    "weak_component_sizes": [
+      6,
+      5,
+      5
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 64,
+      "subjects": 16,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 0,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "mixed",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "weak_component_sizes": [
+      38,
+      10
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 0,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "clusters",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 1,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "hubs",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 2,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "chains",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": false,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 3,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "cycles",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 4,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "islands",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "weak_component_sizes": [
+      9,
+      8,
+      8,
+      8,
+      8,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "reference_isolated_subjects": 7,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.45,
+      "sharing": 0.6,
+      "structure": 5,
+      "property_overlap": 0.65,
+      "tag_overlap": 0.6,
+      "literal_reuse": 0.25
+    },
+    "seed": 20261015
+  },
+  {
+    "name": "projection_stress",
+    "corpus": {
+      "name": "Structural engineering",
+      "version": 2
+    },
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 12,
+    "literal_fact_count": 228,
+    "weak_component_sizes": [
+      10,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "reference_isolated_subjects": 35,
+    "has_directed_cycle": true,
+    "settings": {
+      "facts": 240,
+      "subjects": 48,
+      "connectivity": 0.05,
+      "sharing": 0.6,
+      "structure": 0,
+      "property_overlap": 0.95,
+      "tag_overlap": 0.95,
+      "literal_reuse": 0.7
+    },
+    "seed": 20261015
+  }
+]

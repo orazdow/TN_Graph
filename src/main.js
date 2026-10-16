@@ -1,14 +1,14 @@
 import {Engine, selectFacts} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
-import {createUI, renderSources, renderOptions, renderTable} from './ui.js';
+import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderStatements} from './ui.js';
 
-const DEFAULT_SAMPLE = './samples/five-subjects.json';
+const DEFAULT_SAMPLE = './samples/v2/engineering-smallest-2.json';
 
 const engine = new Engine();
 let layoutRevision = 0;
 let layoutOptions = {...DEFAULT_LAYOUT};
-let appearance = {edgeStyle: 'curved', labelSize: 11};
+let appearance = {edgeStyle: 'curved', subjectLabelSize: 12, valueLabelSize: 12, propertyLabelSize: 12, scaleLabelsWithZoom: false};
 let network;
 const ui = createUI(document.querySelector('#app'), {onViewChange() { network?.resize(); }});
 let selection = null;
@@ -24,6 +24,7 @@ function showError(message = '') {
 
 function select(next) {
   selection = next;
+  if (next) ui.setSidebar('inspector');
   if (next?.factId) {
     const index = facts.findIndex(fact => fact.id === next.factId);
     if (index >= 0) page = Math.floor(index / 100);
@@ -37,6 +38,13 @@ function renderSelection() {
     onSelect(id) { select({factId: id}); },
     onPage(next) { page = next; renderSelection(); ui.table.scrollTop = 0; },
   });
+  const selectedFact = snapshot.facts.find(fact => fact.id === selection?.factId);
+  const selectedSubject = snapshot.subjects.find(subject => subject.id === selection?.subjectId);
+  if (selectedSubject) renderSubjectInspector(ui.inspector, selectedSubject, snapshot, select);
+  else renderInspector(ui.inspector, selectedFact);
+  ui['inspection-hint'].hidden = Boolean(selectedFact || selectedSubject);
+  const hiddenSelection = selection && !facts.some(fact => fact.id === selection.factId || [fact.subjectId, fact.targetId].includes(selection.subjectId));
+  ui.notice.textContent = hiddenSelection ? 'The selection is outside the current filters.' : '';
   network.setSelection(selection);
 }
 
@@ -56,6 +64,8 @@ async function render() {
   renderOptions(ui.tag, snapshot.facts.flatMap(fact => fact.tags), 'All tags');
   const filters = {query: ui.query.value, property: ui.property.value, tag: ui.tag.value};
   facts = selectFacts(snapshot, filters);
+  renderStatements(ui.statements, facts);
+  ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' statements · current filters';
   page = Math.min(page, Math.max(0, Math.ceil(facts.length / 100) - 1));
   if (selection?.factId && !snapshot.facts.some(fact => fact.id === selection.factId)) selection = null;
   if (selection?.subjectId && !snapshot.subjects.some(subject => subject.id === selection.subjectId)) selection = null;
@@ -63,8 +73,6 @@ async function render() {
   const graph = createGraph(snapshot, facts, {includeLiterals: ui.literals.checked, filtered: Object.values(filters).some(Boolean)});
   renderSelection();
   ui.counts.textContent = snapshot.subjects.length + ' subjects · ' + facts.length + ' / ' + snapshot.facts.length + ' facts · ' + graph.edges.length + ' edges';
-  const hiddenSelection = selection && !facts.some(fact => fact.id === selection.factId || [fact.subjectId, fact.targetId].includes(selection.subjectId));
-  ui.notice.textContent = hiddenSelection ? 'The selection is outside the current filters.' : '';
   const revision = ++layoutRevision;
   ui['layout-status'].textContent = 'Calculating layout…';
   try {
@@ -122,19 +130,28 @@ ui.property.addEventListener('change', filter);
 ui.tag.addEventListener('change', filter);
 ui.reset.addEventListener('click', filter);
 let layoutTimer;
-function applyLayout() {
+function applyLayout({appearanceOnly = false} = {}) {
   clearTimeout(layoutTimer);
   ui.updateLayoutFields();
   if (!ui['layout-form'].checkValidity()) return;
   layoutOptions = readLayout();
-  appearance = {edgeStyle: ui['edge-style'].value, labelSize: Number(ui['label-size'].value)};
+  appearance = {
+    edgeStyle: ui['edge-style'].value,
+    subjectLabelSize: Number(ui['subject-label-size'].value),
+    valueLabelSize: Number(ui['value-label-size'].value),
+    propertyLabelSize: Number(ui['property-label-size'].value),
+    scaleLabelsWithZoom: ui['scale-labels-with-zoom'].checked,
+  };
   showError();
-  render();
+  if (appearanceOnly) network.setAppearance(appearance);
+  else render();
 }
 ui['layout-form'].addEventListener('input', event => {
   clearTimeout(layoutTimer);
-  if (event.target.type === 'number') layoutTimer = setTimeout(applyLayout, 180);
-  else applyLayout();
+  const appearanceOnly = ['edge-style', 'subject-label-size', 'value-label-size',
+    'property-label-size', 'scale-labels-with-zoom'].includes(event.target.id);
+  if (event.target.type === 'number') layoutTimer = setTimeout(() => applyLayout({appearanceOnly}), 180);
+  else applyLayout({appearanceOnly});
 });
 ui['layout-form'].addEventListener('submit', event => {
   event.preventDefault();

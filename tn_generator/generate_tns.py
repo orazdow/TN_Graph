@@ -60,7 +60,7 @@ def validate(config: Config) -> int:
 
 
 def load_vocabulary(path: str | Path | None = None) -> dict:
-    path = Path(path) if path else Path(__file__).with_name('tn_vocabulary.json')
+    path = Path(path) if path else Path(__file__).with_name('tn_vocabulary_v2.json')
     return json.loads(path.read_text(encoding='utf-8'))
 
 
@@ -193,6 +193,10 @@ BASE_RANGES = {
 
 
 def make_literal(prop, vocabulary, rng):
+    spec = vocabulary.get('numeric_properties', {}).get(prop)
+    if spec:
+        magnitude = round(rng.uniform(spec['min'], spec['max']), spec.get('decimals', 3))
+        return {'type': 'numeric', 'magnitude': magnitude, 'unit': spec['unit'], 'quantity': spec['quantity']}
     quantities = vocabulary['property_quantity_map']
     if prop in quantities:
         quantity = quantities[prop]
@@ -304,17 +308,29 @@ def generate(config: Config, *, seed: int | None = None, vocabulary: dict | None
     edges, isolated, groups, scaffold_count = build_topology(n, reference_count, literal_count, config, rng)
     terms = [(category, term) for category, words in vocabulary['subject_terms'].items()
              if category != 'materials' for term in words]
-    names = vocabulary['reference_names']['names']
+    names = list(dict.fromkeys(vocabulary['reference_names']['names']))
+    candidates = list(dict.fromkeys((category, term, name) for category, term in terms for name in names))
+    if n > len(candidates):
+        raise ValueError(f'corpus supports {len(candidates)} unique subject phrases; expand its subject terms or names')
+    chosen = rng.sample(candidates, n)
     subjects = []
-    for i in range(n):
-        category, term = rng.choice(terms)
-        subjects.append({'id': f'S{i + 1:05d}', 'phrase': f'{term} {rng.choice(names)}-{i + 1:05d}',
+    for i, (category, term, name) in enumerate(chosen):
+        subjects.append({'id': f'S{i + 1:05d}', 'phrase': f'{term} {name}',
                          'category': category, 'cluster': groups.get(i),
                          'reserved_isolate': i in isolated})
-    relationship_pool = selected_pool(RELATIONSHIPS, config.property_overlap, rng)
-    # Exclude ambiguous numeric properties until a quantity has been chosen explicitly.
-    literal_pool = selected_pool(list(vocabulary['property_quantity_map']) +
-                                 ['status', 'condition', 'priority', 'color', 'material'],
+    reference_groups = vocabulary.get('reference_properties_by_category', {})
+    if reference_groups:
+        relationship_pools = {category: selected_pool(properties, config.property_overlap, rng)
+                              for category, properties in reference_groups.items()}
+        relationship_pool = list(dict.fromkeys(prop for pool in relationship_pools.values() for prop in pool))
+    else:
+        relationship_pools = {}
+        relationship_pool = selected_pool(vocabulary.get('relationship_properties', RELATIONSHIPS), config.property_overlap, rng)
+    # The new corpus supplies both numeric and string properties. Older corpora remain usable.
+    string_properties = list(vocabulary.get('string_value_terms', {}))
+    if 'materials' in vocabulary['subject_terms'] and 'material' not in string_properties:
+        string_properties.append('material')
+    literal_pool = selected_pool(list(vocabulary['property_quantity_map']) + string_properties,
                                  config.property_overlap, rng)
     tag_candidates = [tag for words in vocabulary['tag_terms'].values() for tag in words]
     tag_pool = selected_pool(tag_candidates, config.tag_overlap, rng)
@@ -343,7 +359,8 @@ def generate(config: Config, *, seed: int | None = None, vocabulary: dict | None
         used_subjects.add(source)
 
     for source, target in edges:
-        append(source, rng.choice(relationship_pool), {'type': 'reference',
+        pool = relationship_pools.get(subjects[target]['category'], relationship_pool)
+        append(source, rng.choice(pool), {'type': 'reference',
                'subject_id': subjects[target]['id'], 'subject': subjects[target]['phrase']})
     missing = [i for i in range(n) if i not in used_subjects]
     if len(missing) > literal_count:
@@ -378,10 +395,13 @@ def generate(config: Config, *, seed: int | None = None, vocabulary: dict | None
         notes.append('Repeated statements received observation tags; these are counted separately from semantic tags.')
     return {'format': 'synthetic-truenumbers', 'format_version': 1, 'notes': notes,
             'seed': seed, 'settings': settings,
+            'corpus': {'name': vocabulary.get('name', 'Legacy vocabulary'), 'version': vocabulary.get('format_version', 1)},
             'preset': {'id': config.structure, 'name': PRESETS[config.structure][0]},
             'generation': {'scaffold_reference_facts': scaffold_count,
                            'requested_reserved_isolates': len(isolated),
-                           'relationship_pool': relationship_pool, 'literal_property_pool': literal_pool,
+                           'relationship_pool': relationship_pool,
+                           'relationship_pools_by_category': relationship_pools,
+                           'literal_property_pool': literal_pool,
                            'semantic_tag_pool': tag_pool},
             'statistics': stats, 'subjects': subjects, 'facts': facts}
 

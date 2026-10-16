@@ -8,7 +8,7 @@ import {
 
 export const DEFAULT_LAYOUT = Object.freeze({
   algorithm: 'sugiyama', direction: 'TB', layering: 'simplex',
-  decross: 'two-layer', coord: 'simplex', passes: 24,
+  decross: 'two-layer', coord: 'greedy', passes: 24,
   nodeGap: 45, rankGap: 70, longestTopDown: true,
   lane: 'greedy', compressed: true, bidirectional: false, laneTopDown: true,
 });
@@ -25,7 +25,7 @@ export function normalizeLayout(options = {}) {
   }
   if (!Number.isInteger(settings.passes) || settings.passes < 1 || settings.passes > 48) throw new Error('Crossing passes must be between 1 and 48');
   if (settings.layering === 'topological') settings.coord = 'topological';
-  else if (settings.coord === 'topological') settings.coord = 'simplex';
+  else if (settings.coord === 'topological') settings.coord = DEFAULT_LAYOUT.coord;
   return settings;
 }
 

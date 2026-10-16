@@ -1,0 +1,4213 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "notes": [
+    "Repeated statements received observation tags; these are counted separately from semantic tags."
+  ],
+  "seed": 20261015,
+  "settings": {
+    "facts": 240,
+    "subjects": 48,
+    "connectivity": 0.45,
+    "sharing": 0.6,
+    "structure": 2,
+    "property_overlap": 0.65,
+    "tag_overlap": 0.6,
+    "literal_reuse": 0.25
+  },
+  "corpus": {
+    "name": "Structural engineering",
+    "version": 2
+  },
+  "preset": {
+    "id": 2,
+    "name": "hubs"
+  },
+  "generation": {
+    "scaffold_reference_facts": 48,
+    "requested_reserved_isolates": 0,
+    "relationship_pool": [
+      "cross beam",
+      "end support",
+      "mounting bracket",
+      "base plate",
+      "fastener",
+      "coupled shaft",
+      "support bearing",
+      "support frame"
+    ],
+    "relationship_pools_by_category": {
+      "beams": [
+        "cross beam"
+      ],
+      "supports": [
+        "end support"
+      ],
+      "brackets": [
+        "mounting bracket"
+      ],
+      "plates": [
+        "base plate"
+      ],
+      "bolts": [
+        "fastener"
+      ],
+      "shafts": [
+        "coupled shaft"
+      ],
+      "bearings": [
+        "support bearing"
+      ],
+      "frames": [
+        "support frame"
+      ]
+    },
+    "literal_property_pool": [
+      "axial force",
+      "torque",
+      "mass",
+      "bending moment",
+      "temperature",
+      "span",
+      "safety factor",
+      "height",
+      "Youngs modulus"
+    ],
+    "semantic_tag_pool": [
+      "north bay",
+      "design revision B",
+      "routine inspection",
+      "load test"
+    ]
+  },
+  "statistics": {
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 108,
+    "literal_fact_count": 132,
+    "reference_fraction": 0.45,
+    "distinct_directed_subject_pairs": 93,
+    "weak_component_sizes": [
+      48
+    ],
+    "reference_isolated_subjects": 0,
+    "has_directed_cycle": true,
+    "distinct_properties": 16,
+    "distinct_tags": 8,
+    "distinct_semantic_tags": 4,
+    "subjects_per_property": {
+      "Youngs modulus": 9,
+      "axial force": 14,
+      "base plate": 8,
+      "bending moment": 14,
+      "coupled shaft": 16,
+      "end support": 2,
+      "fastener": 2,
+      "height": 15,
+      "mass": 8,
+      "mounting bracket": 1,
+      "safety factor": 11,
+      "span": 11,
+      "support bearing": 48,
+      "support frame": 3,
+      "temperature": 16,
+      "torque": 13
+    },
+    "subjects_per_tag": {
+      "design revision B": 40,
+      "load test": 41,
+      "north bay": 38,
+      "observation 0000053": 1,
+      "observation 0000063": 1,
+      "observation 0000085": 1,
+      "observation 0000137": 1,
+      "routine inspection": 36
+    },
+    "repeated_literal_fraction": 0.23484848484848486,
+    "top_reference_targets": [
+      {
+        "subject_id": "S00033",
+        "incoming_facts": 58,
+        "distinct_source_subjects": 47
+      },
+      {
+        "subject_id": "S00005",
+        "incoming_facts": 11,
+        "distinct_source_subjects": 8
+      },
+      {
+        "subject_id": "S00019",
+        "incoming_facts": 9,
+        "distinct_source_subjects": 8
+      },
+      {
+        "subject_id": "S00017",
+        "incoming_facts": 8,
+        "distinct_source_subjects": 8
+      },
+      {
+        "subject_id": "S00025",
+        "incoming_facts": 7,
+        "distinct_source_subjects": 7
+      }
+    ],
+    "deliberate_literal_reuse_events": 31,
+    "duplicate_observation_tags": 4
+  },
+  "subjects": [
+    {
+      "id": "S00001",
+      "phrase": "bolt inner service corridor",
+      "category": "bolts",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00002",
+      "phrase": "bearing front plant room",
+      "category": "bearings",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00003",
+      "phrase": "support rear loading platform",
+      "category": "supports",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00004",
+      "phrase": "bolt inner upper deck",
+      "category": "bolts",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00005",
+      "phrase": "bearing outer loading bay",
+      "category": "bearings",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00006",
+      "phrase": "shaft front lower deck",
+      "category": "shafts",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00007",
+      "phrase": "frame front upper deck",
+      "category": "frames",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00008",
+      "phrase": "bracket inner service bay",
+      "category": "brackets",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00009",
+      "phrase": "shaft inner west bay",
+      "category": "shafts",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00010",
+      "phrase": "support inner loading platform",
+      "category": "supports",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00011",
+      "phrase": "bracket outer service corridor",
+      "category": "brackets",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00012",
+      "phrase": "bearing outer lower deck",
+      "category": "bearings",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00013",
+      "phrase": "plate outer east bay",
+      "category": "plates",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00014",
+      "phrase": "bracket front east bay",
+      "category": "brackets",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00015",
+      "phrase": "support rear service bay",
+      "category": "supports",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00016",
+      "phrase": "shaft inner loading bay",
+      "category": "shafts",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00017",
+      "phrase": "plate inner plant room",
+      "category": "plates",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00018",
+      "phrase": "support inner west bay",
+      "category": "supports",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00019",
+      "phrase": "shaft front access platform",
+      "category": "shafts",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00020",
+      "phrase": "plate outer west bay",
+      "category": "plates",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00021",
+      "phrase": "frame inner roof span",
+      "category": "frames",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00022",
+      "phrase": "bracket outer main deck",
+      "category": "brackets",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00023",
+      "phrase": "bolt outer main deck",
+      "category": "bolts",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00024",
+      "phrase": "bracket front service corridor",
+      "category": "brackets",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00025",
+      "phrase": "shaft inner pump room",
+      "category": "shafts",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00026",
+      "phrase": "shaft front north bay",
+      "category": "shafts",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00027",
+      "phrase": "beam outer east bay",
+      "category": "beams",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00028",
+      "phrase": "beam inner service corridor",
+      "category": "beams",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00029",
+      "phrase": "bracket inner pump room",
+      "category": "brackets",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00030",
+      "phrase": "bearing rear service corridor",
+      "category": "bearings",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00031",
+      "phrase": "beam front main deck",
+      "category": "beams",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00032",
+      "phrase": "shaft inner access platform",
+      "category": "shafts",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00033",
+      "phrase": "bearing front service bay",
+      "category": "bearings",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00034",
+      "phrase": "bearing rear south bay",
+      "category": "bearings",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00035",
+      "phrase": "plate rear north bay",
+      "category": "plates",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00036",
+      "phrase": "bearing front upper deck",
+      "category": "bearings",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00037",
+      "phrase": "bracket inner lower deck",
+      "category": "brackets",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00038",
+      "phrase": "support rear west bay",
+      "category": "supports",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00039",
+      "phrase": "frame front south bay",
+      "category": "frames",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00040",
+      "phrase": "frame rear main deck",
+      "category": "frames",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00041",
+      "phrase": "frame rear workshop",
+      "category": "frames",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00042",
+      "phrase": "support outer north bay",
+      "category": "supports",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00043",
+      "phrase": "plate outer lower deck",
+      "category": "plates",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00044",
+      "phrase": "bearing rear workshop",
+      "category": "bearings",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00045",
+      "phrase": "plate rear lower deck",
+      "category": "plates",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00046",
+      "phrase": "bolt outer loading bay",
+      "category": "bolts",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00047",
+      "phrase": "support outer west bay",
+      "category": "supports",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00048",
+      "phrase": "plate rear upper deck",
+      "category": "plates",
+      "cluster": 3,
+      "reserved_isolate": false
+    }
+  ],
+  "facts": [
+    {
+      "id": "TN0000122",
+      "subject_id": "S00018",
+      "subject": "support inner west bay",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1677.34,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "support inner west bay has mass = 1677.34 kg (design revision B);"
+    },
+    {
+      "id": "TN0000208",
+      "subject_id": "S00006",
+      "subject": "shaft front lower deck",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 336.6,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "shaft front lower deck has temperature = 336.6 K (routine inspection);"
+    },
+    {
+      "id": "TN0000148",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.274,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "bearing outer lower deck has span = 2.274 m;"
+    },
+    {
+      "id": "TN0000042",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bearing front plant room has support bearing = bearing front service bay (routine inspection);"
+    },
+    {
+      "id": "TN0000037",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "shaft front north bay has support bearing = bearing front service bay (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000239",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1454.9,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "bearing rear service corridor has height = 1454.9 mm;"
+    },
+    {
+      "id": "TN0000211",
+      "subject_id": "S00027",
+      "subject": "beam outer east bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 302.4,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "beam outer east bay has temperature = 302.4 K (north bay);"
+    },
+    {
+      "id": "TN0000183",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 301.12,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "support inner loading platform has temperature = 301.12 K (design revision B);"
+    },
+    {
+      "id": "TN0000076",
+      "subject_id": "S00041",
+      "subject": "frame rear workshop",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00034",
+        "subject": "bearing rear south bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "frame rear workshop has support bearing = bearing rear south bay (load test);"
+    },
+    {
+      "id": "TN0000214",
+      "subject_id": "S00016",
+      "subject": "shaft inner loading bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 290.83,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "shaft inner loading bay has temperature = 290.83 K (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000240",
+      "subject_id": "S00015",
+      "subject": "support rear service bay",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 225.24,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "support rear service bay has mass = 225.24 kg (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000202",
+      "subject_id": "S00027",
+      "subject": "beam outer east bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 107.46,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "beam outer east bay has bending moment = 107.46 kN*m;"
+    },
+    {
+      "id": "TN0000035",
+      "subject_id": "S00015",
+      "subject": "support rear service bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "support rear service bay has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000088",
+      "subject_id": "S00038",
+      "subject": "support rear west bay",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support rear west bay has base plate = plate inner plant room (routine inspection);"
+    },
+    {
+      "id": "TN0000105",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [],
+      "statement": "support inner loading platform has base plate = plate inner plant room;"
+    },
+    {
+      "id": "TN0000100",
+      "subject_id": "S00024",
+      "subject": "bracket front service corridor",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bracket front service corridor has coupled shaft = shaft front access platform (design revision B, load test);"
+    },
+    {
+      "id": "TN0000052",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bearing outer lower deck has support bearing = bearing outer loading bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000048",
+      "subject_id": "S00014",
+      "subject": "bracket front east bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bracket front east bay has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000216",
+      "subject_id": "S00001",
+      "subject": "bolt inner service corridor",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 133.0,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bolt inner service corridor has axial force = 133 kN (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000041",
+      "subject_id": "S00040",
+      "subject": "frame rear main deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "frame rear main deck has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000073",
+      "subject_id": "S00021",
+      "subject": "frame inner roof span",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "frame inner roof span has coupled shaft = shaft inner pump room (load test, north bay);"
+    },
+    {
+      "id": "TN0000096",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "bearing front plant room has support bearing = bearing front service bay (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000159",
+      "subject_id": "S00045",
+      "subject": "plate rear lower deck",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 149.96,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "plate rear lower deck has bending moment = 149.96 kN*m (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000215",
+      "subject_id": "S00025",
+      "subject": "shaft inner pump room",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1881.5,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "shaft inner pump room has height = 1881.5 mm (load test);"
+    },
+    {
+      "id": "TN0000158",
+      "subject_id": "S00041",
+      "subject": "frame rear workshop",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1162.5,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "frame rear workshop has height = 1162.5 mm;"
+    },
+    {
+      "id": "TN0000026",
+      "subject_id": "S00043",
+      "subject": "plate outer lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "plate outer lower deck has support bearing = bearing front service bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000194",
+      "subject_id": "S00019",
+      "subject": "shaft front access platform",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 123.0,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "shaft front access platform has bending moment = 123 kN*m (routine inspection);"
+    },
+    {
+      "id": "TN0000043",
+      "subject_id": "S00003",
+      "subject": "support rear loading platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "support rear loading platform has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000093",
+      "subject_id": "S00046",
+      "subject": "bolt outer loading bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bolt outer loading bay has support bearing = bearing front service bay (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000066",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bracket inner lower deck has support bearing = bearing outer loading bay (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000127",
+      "subject_id": "S00005",
+      "subject": "bearing outer loading bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 248.49,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing outer loading bay has axial force = 248.49 kN (design revision B);"
+    },
+    {
+      "id": "TN0000219",
+      "subject_id": "S00047",
+      "subject": "support outer west bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 5752.3,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "support outer west bay has torque = 5752.3 N*m (north bay);"
+    },
+    {
+      "id": "TN0000045",
+      "subject_id": "S00031",
+      "subject": "beam front main deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "beam front main deck has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000145",
+      "subject_id": "S00034",
+      "subject": "bearing rear south bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 5743.8,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bearing rear south bay has torque = 5743.8 N*m (routine inspection);"
+    },
+    {
+      "id": "TN0000198",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 176.17,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "bracket inner lower deck has bending moment = 176.17 kN*m (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000013",
+      "subject_id": "S00007",
+      "subject": "frame front upper deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "frame front upper deck has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000173",
+      "subject_id": "S00009",
+      "subject": "shaft inner west bay",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 5.359,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "shaft inner west bay has span = 5.359 m (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000108",
+      "subject_id": "S00031",
+      "subject": "beam front main deck",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [],
+      "statement": "beam front main deck has coupled shaft = shaft inner pump room;"
+    },
+    {
+      "id": "TN0000022",
+      "subject_id": "S00027",
+      "subject": "beam outer east bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "beam outer east bay has support bearing = bearing front service bay (design revision B);"
+    },
+    {
+      "id": "TN0000051",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "bearing front upper deck has support bearing = bearing outer loading bay (load test, north bay);"
+    },
+    {
+      "id": "TN0000114",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.07,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bearing outer lower deck has safety factor = 2.07 (design revision B, load test);"
+    },
+    {
+      "id": "TN0000109",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 327.68,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing front plant room has temperature = 327.68 K (design revision B);"
+    },
+    {
+      "id": "TN0000224",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 641.2,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "bracket inner lower deck has torque = 641.2 N*m;"
+    },
+    {
+      "id": "TN0000053",
+      "subject_id": "S00011",
+      "subject": "bracket outer service corridor",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection",
+        "observation 0000053"
+      ],
+      "statement": "bracket outer service corridor has support bearing = bearing front service bay (design revision B, routine inspection, observation 0000053);"
+    },
+    {
+      "id": "TN0000179",
+      "subject_id": "S00035",
+      "subject": "plate rear north bay",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.465,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "plate rear north bay has span = 2.465 m (north bay);"
+    },
+    {
+      "id": "TN0000225",
+      "subject_id": "S00020",
+      "subject": "plate outer west bay",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 69.6,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "plate outer west bay has height = 69.6 mm (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000138",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 196.4,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bracket inner lower deck has Youngs modulus = 196.4 GPa (north bay);"
+    },
+    {
+      "id": "TN0000068",
+      "subject_id": "S00008",
+      "subject": "bracket inner service bay",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bracket inner service bay has coupled shaft = shaft inner pump room (routine inspection);"
+    },
+    {
+      "id": "TN0000231",
+      "subject_id": "S00040",
+      "subject": "frame rear main deck",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.78,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "frame rear main deck has safety factor = 1.78 (north bay);"
+    },
+    {
+      "id": "TN0000184",
+      "subject_id": "S00033",
+      "subject": "bearing front service bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.75,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing front service bay has bending moment = 55.75 kN*m (design revision B);"
+    },
+    {
+      "id": "TN0000030",
+      "subject_id": "S00006",
+      "subject": "shaft front lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "shaft front lower deck has support bearing = bearing front service bay (routine inspection);"
+    },
+    {
+      "id": "TN0000131",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 115.5,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing front plant room has Youngs modulus = 115.5 GPa (design revision B);"
+    },
+    {
+      "id": "TN0000021",
+      "subject_id": "S00020",
+      "subject": "plate outer west bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "plate outer west bay has support bearing = bearing front service bay (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000036",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bracket inner lower deck has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000142",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 75.83,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "support outer north bay has axial force = 75.83 kN (load test);"
+    },
+    {
+      "id": "TN0000054",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "bearing outer lower deck has coupled shaft = shaft inner pump room (load test, north bay);"
+    },
+    {
+      "id": "TN0000101",
+      "subject_id": "S00003",
+      "subject": "support rear loading platform",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "support rear loading platform has coupled shaft = shaft front access platform (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000126",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1912.3,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "shaft front north bay has torque = 1912.3 N*m;"
+    },
+    {
+      "id": "TN0000031",
+      "subject_id": "S00018",
+      "subject": "support inner west bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "support inner west bay has support bearing = bearing front service bay (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000180",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 641.2,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "shaft front north bay has torque = 641.2 N*m (north bay);"
+    },
+    {
+      "id": "TN0000190",
+      "subject_id": "S00005",
+      "subject": "bearing outer loading bay",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.274,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bearing outer loading bay has span = 2.274 m (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000156",
+      "subject_id": "S00033",
+      "subject": "bearing front service bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 367.83,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bearing front service bay has axial force = 367.83 kN (routine inspection);"
+    },
+    {
+      "id": "TN0000062",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "shaft front north bay has base plate = plate inner plant room (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000074",
+      "subject_id": "S00003",
+      "subject": "support rear loading platform",
+      "property": "support frame",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "frame front south bay"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "support rear loading platform has support frame = frame front south bay (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000075",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00013",
+        "subject": "plate outer east bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "shaft front north bay has base plate = plate outer east bay (north bay);"
+    },
+    {
+      "id": "TN0000090",
+      "subject_id": "S00020",
+      "subject": "plate outer west bay",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "plate outer west bay has coupled shaft = shaft front access platform (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000133",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 313.79,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bearing front plant room has temperature = 313.79 K (load test);"
+    },
+    {
+      "id": "TN0000144",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 292.79,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [],
+      "statement": "support outer north bay has temperature = 292.79 K;"
+    },
+    {
+      "id": "TN0000129",
+      "subject_id": "S00035",
+      "subject": "plate rear north bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 411.12,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "plate rear north bay has axial force = 411.12 kN (load test);"
+    },
+    {
+      "id": "TN0000106",
+      "subject_id": "S00023",
+      "subject": "bolt outer main deck",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bolt outer main deck has base plate = plate inner plant room (load test);"
+    },
+    {
+      "id": "TN0000061",
+      "subject_id": "S00014",
+      "subject": "bracket front east bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bracket front east bay has support bearing = bearing front service bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000155",
+      "subject_id": "S00048",
+      "subject": "plate rear upper deck",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1367.4,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "plate rear upper deck has torque = 1367.4 N*m (north bay);"
+    },
+    {
+      "id": "TN0000189",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.87,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "support outer north bay has safety factor = 1.87 (design revision B);"
+    },
+    {
+      "id": "TN0000140",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 115.5,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [],
+      "statement": "bearing front plant room has Youngs modulus = 115.5 GPa;"
+    },
+    {
+      "id": "TN0000204",
+      "subject_id": "S00003",
+      "subject": "support rear loading platform",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 47.28,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "support rear loading platform has bending moment = 47.28 kN*m;"
+    },
+    {
+      "id": "TN0000072",
+      "subject_id": "S00041",
+      "subject": "frame rear workshop",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "frame rear workshop has support bearing = bearing front service bay (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000063",
+      "subject_id": "S00003",
+      "subject": "support rear loading platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "observation 0000063"
+      ],
+      "statement": "support rear loading platform has support bearing = bearing front service bay (observation 0000063);"
+    },
+    {
+      "id": "TN0000137",
+      "subject_id": "S00007",
+      "subject": "frame front upper deck",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.75,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "load test",
+        "observation 0000137"
+      ],
+      "statement": "frame front upper deck has bending moment = 55.75 kN*m (load test, observation 0000137);"
+    },
+    {
+      "id": "TN0000019",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bearing rear service corridor has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000234",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 122.0,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bearing front plant room has Youngs modulus = 122 GPa (north bay);"
+    },
+    {
+      "id": "TN0000220",
+      "subject_id": "S00006",
+      "subject": "shaft front lower deck",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4980.4,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "shaft front lower deck has torque = 4980.4 N*m (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000009",
+      "subject_id": "S00048",
+      "subject": "plate rear upper deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "plate rear upper deck has support bearing = bearing front service bay (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000107",
+      "subject_id": "S00018",
+      "subject": "support inner west bay",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "support inner west bay has coupled shaft = shaft front access platform (load test, north bay);"
+    },
+    {
+      "id": "TN0000094",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bearing outer lower deck has support bearing = bearing front service bay (north bay);"
+    },
+    {
+      "id": "TN0000149",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.274,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support inner loading platform has span = 2.274 m (routine inspection);"
+    },
+    {
+      "id": "TN0000102",
+      "subject_id": "S00045",
+      "subject": "plate rear lower deck",
+      "property": "support frame",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00041",
+        "subject": "frame rear workshop"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "plate rear lower deck has support frame = frame rear workshop (north bay);"
+    },
+    {
+      "id": "TN0000157",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 881.75,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "support outer north bay has mass = 881.75 kg (north bay);"
+    },
+    {
+      "id": "TN0000057",
+      "subject_id": "S00023",
+      "subject": "bolt outer main deck",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [],
+      "statement": "bolt outer main deck has coupled shaft = shaft front access platform;"
+    },
+    {
+      "id": "TN0000024",
+      "subject_id": "S00038",
+      "subject": "support rear west bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "support rear west bay has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000028",
+      "subject_id": "S00022",
+      "subject": "bracket outer main deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "bracket outer main deck has support bearing = bearing front service bay (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000151",
+      "subject_id": "S00011",
+      "subject": "bracket outer service corridor",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2403.14,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [],
+      "statement": "bracket outer service corridor has mass = 2403.14 kg;"
+    },
+    {
+      "id": "TN0000119",
+      "subject_id": "S00007",
+      "subject": "frame front upper deck",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.75,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "frame front upper deck has bending moment = 55.75 kN*m (load test);"
+    },
+    {
+      "id": "TN0000086",
+      "subject_id": "S00017",
+      "subject": "plate inner plant room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00036",
+        "subject": "bearing front upper deck"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "plate inner plant room has support bearing = bearing front upper deck (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000132",
+      "subject_id": "S00028",
+      "subject": "beam inner service corridor",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2509.3,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "beam inner service corridor has torque = 2509.3 N*m;"
+    },
+    {
+      "id": "TN0000217",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 67.6,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bearing front plant room has Youngs modulus = 67.6 GPa (routine inspection);"
+    },
+    {
+      "id": "TN0000201",
+      "subject_id": "S00031",
+      "subject": "beam front main deck",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 180.93,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "beam front main deck has bending moment = 180.93 kN*m (load test);"
+    },
+    {
+      "id": "TN0000071",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bearing front upper deck has support bearing = bearing outer loading bay (load test);"
+    },
+    {
+      "id": "TN0000235",
+      "subject_id": "S00034",
+      "subject": "bearing rear south bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 163.81,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bearing rear south bay has axial force = 163.81 kN (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000160",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 323.52,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bracket inner pump room has temperature = 323.52 K (design revision B, load test);"
+    },
+    {
+      "id": "TN0000092",
+      "subject_id": "S00019",
+      "subject": "shaft front access platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "shaft front access platform has support bearing = bearing front service bay (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000233",
+      "subject_id": "S00034",
+      "subject": "bearing rear south bay",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 129.9,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [],
+      "statement": "bearing rear south bay has Youngs modulus = 129.9 GPa;"
+    },
+    {
+      "id": "TN0000178",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 327.68,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bearing front upper deck has temperature = 327.68 K (north bay);"
+    },
+    {
+      "id": "TN0000020",
+      "subject_id": "S00041",
+      "subject": "frame rear workshop",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "frame rear workshop has support bearing = bearing front service bay (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000085",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "observation 0000085"
+      ],
+      "statement": "bracket inner pump room has support bearing = bearing front service bay (observation 0000085);"
+    },
+    {
+      "id": "TN0000222",
+      "subject_id": "S00002",
+      "subject": "bearing front plant room",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1937.6,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "bearing front plant room has height = 1937.6 mm;"
+    },
+    {
+      "id": "TN0000193",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 585.5,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "bracket inner pump room has height = 585.5 mm (load test, north bay);"
+    },
+    {
+      "id": "TN0000134",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.24,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "support inner loading platform has safety factor = 3.24 (design revision B);"
+    },
+    {
+      "id": "TN0000010",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "support inner loading platform has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000139",
+      "subject_id": "S00018",
+      "subject": "support inner west bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 11.5,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "support inner west bay has axial force = 11.5 kN;"
+    },
+    {
+      "id": "TN0000175",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1918.8,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bearing rear service corridor has mass = 1918.8 kg (routine inspection);"
+    },
+    {
+      "id": "TN0000016",
+      "subject_id": "S00045",
+      "subject": "plate rear lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "plate rear lower deck has support bearing = bearing front service bay (routine inspection);"
+    },
+    {
+      "id": "TN0000172",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 310.18,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "bearing front upper deck has axial force = 310.18 kN (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000230",
+      "subject_id": "S00011",
+      "subject": "bracket outer service corridor",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.189,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bracket outer service corridor has span = 1.189 m (routine inspection);"
+    },
+    {
+      "id": "TN0000081",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "support inner loading platform has support bearing = bearing outer loading bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000143",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 641.2,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bearing rear service corridor has torque = 641.2 N*m (design revision B, load test);"
+    },
+    {
+      "id": "TN0000078",
+      "subject_id": "S00017",
+      "subject": "plate inner plant room",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [],
+      "statement": "plate inner plant room has coupled shaft = shaft inner pump room;"
+    },
+    {
+      "id": "TN0000027",
+      "subject_id": "S00009",
+      "subject": "shaft inner west bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "shaft inner west bay has support bearing = bearing front service bay (north bay);"
+    },
+    {
+      "id": "TN0000121",
+      "subject_id": "S00004",
+      "subject": "bolt inner upper deck",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2509.3,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bolt inner upper deck has torque = 2509.3 N*m (north bay);"
+    },
+    {
+      "id": "TN0000135",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 75.83,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "bracket inner lower deck has axial force = 75.83 kN;"
+    },
+    {
+      "id": "TN0000110",
+      "subject_id": "S00021",
+      "subject": "frame inner roof span",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 152.8,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "frame inner roof span has height = 152.8 mm;"
+    },
+    {
+      "id": "TN0000150",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 13.078,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "shaft front north bay has span = 13.078 m;"
+    },
+    {
+      "id": "TN0000004",
+      "subject_id": "S00017",
+      "subject": "plate inner plant room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "plate inner plant room has support bearing = bearing front service bay (routine inspection);"
+    },
+    {
+      "id": "TN0000218",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 6876.5,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "support inner loading platform has torque = 6876.5 N*m;"
+    },
+    {
+      "id": "TN0000169",
+      "subject_id": "S00016",
+      "subject": "shaft inner loading bay",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 110.3,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "shaft inner loading bay has height = 110.3 mm;"
+    },
+    {
+      "id": "TN0000120",
+      "subject_id": "S00045",
+      "subject": "plate rear lower deck",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 298.58,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "plate rear lower deck has temperature = 298.58 K (design revision B, load test);"
+    },
+    {
+      "id": "TN0000083",
+      "subject_id": "S00032",
+      "subject": "shaft inner access platform",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [],
+      "statement": "shaft inner access platform has coupled shaft = shaft inner pump room;"
+    },
+    {
+      "id": "TN0000227",
+      "subject_id": "S00031",
+      "subject": "beam front main deck",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 209.8,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "beam front main deck has Youngs modulus = 209.8 GPa (design revision B);"
+    },
+    {
+      "id": "TN0000213",
+      "subject_id": "S00009",
+      "subject": "shaft inner west bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2509.3,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "shaft inner west bay has torque = 2509.3 N*m (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000103",
+      "subject_id": "S00033",
+      "subject": "bearing front service bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "bearing front service bay has support bearing = bearing outer loading bay (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000238",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 651.4,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bracket inner lower deck has height = 651.4 mm (routine inspection);"
+    },
+    {
+      "id": "TN0000209",
+      "subject_id": "S00011",
+      "subject": "bracket outer service corridor",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 51.63,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bracket outer service corridor has mass = 51.63 kg (load test);"
+    },
+    {
+      "id": "TN0000039",
+      "subject_id": "S00034",
+      "subject": "bearing rear south bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "bearing rear south bay has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000130",
+      "subject_id": "S00046",
+      "subject": "bolt outer loading bay",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 115.5,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [],
+      "statement": "bolt outer loading bay has Youngs modulus = 115.5 GPa;"
+    },
+    {
+      "id": "TN0000003",
+      "subject_id": "S00025",
+      "subject": "shaft inner pump room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "shaft inner pump room has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000029",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "support outer north bay has support bearing = bearing front service bay (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000177",
+      "subject_id": "S00015",
+      "subject": "support rear service bay",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 192.3,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "support rear service bay has Youngs modulus = 192.3 GPa (load test, north bay);"
+    },
+    {
+      "id": "TN0000084",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "mounting bracket",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00022",
+        "subject": "bracket outer main deck"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support inner loading platform has mounting bracket = bracket outer main deck (routine inspection);"
+    },
+    {
+      "id": "TN0000008",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "frame front south bay has support bearing = bearing front service bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000186",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 108.52,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "frame front south bay has axial force = 108.52 kN (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000001",
+      "subject_id": "S00033",
+      "subject": "bearing front service bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bearing front service bay has support bearing = bearing outer loading bay (north bay);"
+    },
+    {
+      "id": "TN0000011",
+      "subject_id": "S00016",
+      "subject": "shaft inner loading bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "shaft inner loading bay has support bearing = bearing front service bay (north bay);"
+    },
+    {
+      "id": "TN0000091",
+      "subject_id": "S00025",
+      "subject": "shaft inner pump room",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "shaft inner pump room has coupled shaft = shaft front access platform (load test);"
+    },
+    {
+      "id": "TN0000147",
+      "subject_id": "S00038",
+      "subject": "support rear west bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 298.58,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support rear west bay has temperature = 298.58 K (routine inspection);"
+    },
+    {
+      "id": "TN0000118",
+      "subject_id": "S00016",
+      "subject": "shaft inner loading bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.64,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "shaft inner loading bay has safety factor = 1.64 (north bay);"
+    },
+    {
+      "id": "TN0000033",
+      "subject_id": "S00004",
+      "subject": "bolt inner upper deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bolt inner upper deck has support bearing = bearing front service bay (load test);"
+    },
+    {
+      "id": "TN0000047",
+      "subject_id": "S00013",
+      "subject": "plate outer east bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "plate outer east bay has support bearing = bearing front service bay (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000077",
+      "subject_id": "S00020",
+      "subject": "plate outer west bay",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [],
+      "statement": "plate outer west bay has base plate = plate inner plant room;"
+    },
+    {
+      "id": "TN0000152",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.75,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "frame front south bay has bending moment = 55.75 kN*m;"
+    },
+    {
+      "id": "TN0000210",
+      "subject_id": "S00047",
+      "subject": "support outer west bay",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 9.081,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support outer west bay has span = 9.081 m (routine inspection);"
+    },
+    {
+      "id": "TN0000060",
+      "subject_id": "S00043",
+      "subject": "plate outer lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "plate outer lower deck has support bearing = bearing outer loading bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000128",
+      "subject_id": "S00004",
+      "subject": "bolt inner upper deck",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 55.75,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "bolt inner upper deck has bending moment = 55.75 kN*m (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000182",
+      "subject_id": "S00040",
+      "subject": "frame rear main deck",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 108.52,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "frame rear main deck has axial force = 108.52 kN (design revision B);"
+    },
+    {
+      "id": "TN0000058",
+      "subject_id": "S00041",
+      "subject": "frame rear workshop",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "frame rear workshop has base plate = plate inner plant room (load test);"
+    },
+    {
+      "id": "TN0000124",
+      "subject_id": "S00035",
+      "subject": "plate rear north bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 63.18,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "plate rear north bay has axial force = 63.18 kN (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000050",
+      "subject_id": "S00018",
+      "subject": "support inner west bay",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "support inner west bay has coupled shaft = shaft front access platform (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000176",
+      "subject_id": "S00038",
+      "subject": "support rear west bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 149.36,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "support rear west bay has axial force = 149.36 kN (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000191",
+      "subject_id": "S00008",
+      "subject": "bracket inner service bay",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1620.21,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bracket inner service bay has mass = 1620.21 kg (design revision B, load test);"
+    },
+    {
+      "id": "TN0000237",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 289.92,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "frame front south bay has temperature = 289.92 K (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000080",
+      "subject_id": "S00045",
+      "subject": "plate rear lower deck",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "plate rear lower deck has coupled shaft = shaft front access platform (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000232",
+      "subject_id": "S00017",
+      "subject": "plate inner plant room",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 399.1,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "plate inner plant room has height = 399.1 mm (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000049",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [],
+      "statement": "support outer north bay has support bearing = bearing outer loading bay;"
+    },
+    {
+      "id": "TN0000196",
+      "subject_id": "S00005",
+      "subject": "bearing outer loading bay",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 613.1,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bearing outer loading bay has height = 613.1 mm (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000146",
+      "subject_id": "S00033",
+      "subject": "bearing front service bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.22,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing front service bay has safety factor = 3.22 (design revision B);"
+    },
+    {
+      "id": "TN0000104",
+      "subject_id": "S00041",
+      "subject": "frame rear workshop",
+      "property": "end support",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "support rear service bay"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "frame rear workshop has end support = support rear service bay (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000164",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1596.79,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "bearing front upper deck has mass = 1596.79 kg (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000079",
+      "subject_id": "S00027",
+      "subject": "beam outer east bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00030",
+        "subject": "bearing rear service corridor"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "beam outer east bay has support bearing = bearing rear service corridor (north bay);"
+    },
+    {
+      "id": "TN0000185",
+      "subject_id": "S00033",
+      "subject": "bearing front service bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.79,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bearing front service bay has safety factor = 1.79 (load test);"
+    },
+    {
+      "id": "TN0000112",
+      "subject_id": "S00020",
+      "subject": "plate outer west bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 327.68,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "plate outer west bay has temperature = 327.68 K (load test);"
+    },
+    {
+      "id": "TN0000115",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 152.8,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing rear service corridor has height = 152.8 mm (design revision B);"
+    },
+    {
+      "id": "TN0000095",
+      "subject_id": "S00025",
+      "subject": "shaft inner pump room",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "shaft inner pump room has base plate = plate inner plant room (design revision B, load test);"
+    },
+    {
+      "id": "TN0000070",
+      "subject_id": "S00014",
+      "subject": "bracket front east bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "bracket front east bay has support bearing = bearing outer loading bay (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000162",
+      "subject_id": "S00038",
+      "subject": "support rear west bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 62.85,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "support rear west bay has bending moment = 62.85 kN*m;"
+    },
+    {
+      "id": "TN0000226",
+      "subject_id": "S00024",
+      "subject": "bracket front service corridor",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 48.76,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "bracket front service corridor has axial force = 48.76 kN;"
+    },
+    {
+      "id": "TN0000023",
+      "subject_id": "S00008",
+      "subject": "bracket inner service bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bracket inner service bay has support bearing = bearing front service bay (design revision B);"
+    },
+    {
+      "id": "TN0000113",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 295.2,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [],
+      "statement": "bearing rear service corridor has temperature = 295.2 K;"
+    },
+    {
+      "id": "TN0000229",
+      "subject_id": "S00043",
+      "subject": "plate outer lower deck",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 881.75,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "plate outer lower deck has mass = 881.75 kg (routine inspection);"
+    },
+    {
+      "id": "TN0000136",
+      "subject_id": "S00032",
+      "subject": "shaft inner access platform",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 9.192,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "shaft inner access platform has span = 9.192 m (north bay);"
+    },
+    {
+      "id": "TN0000014",
+      "subject_id": "S00023",
+      "subject": "bolt outer main deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "bolt outer main deck has support bearing = bearing front service bay (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000192",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 51.2,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support outer north bay has bending moment = 51.2 kN*m (routine inspection);"
+    },
+    {
+      "id": "TN0000223",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 216.73,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "frame front south bay has axial force = 216.73 kN;"
+    },
+    {
+      "id": "TN0000040",
+      "subject_id": "S00047",
+      "subject": "support outer west bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "support outer west bay has support bearing = bearing front service bay (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000141",
+      "subject_id": "S00013",
+      "subject": "plate outer east bay",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 248.49,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "plate outer east bay has axial force = 248.49 kN (load test);"
+    },
+    {
+      "id": "TN0000188",
+      "subject_id": "S00008",
+      "subject": "bracket inner service bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.36,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bracket inner service bay has safety factor = 3.36 (design revision B);"
+    },
+    {
+      "id": "TN0000207",
+      "subject_id": "S00035",
+      "subject": "plate rear north bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.72,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "plate rear north bay has safety factor = 3.72 (routine inspection);"
+    },
+    {
+      "id": "TN0000167",
+      "subject_id": "S00038",
+      "subject": "support rear west bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4.0,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [],
+      "statement": "support rear west bay has safety factor = 4;"
+    },
+    {
+      "id": "TN0000116",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 312.62,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bracket inner pump room has temperature = 312.62 K (design revision B);"
+    },
+    {
+      "id": "TN0000212",
+      "subject_id": "S00005",
+      "subject": "bearing outer loading bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 314.45,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bearing outer loading bay has temperature = 314.45 K (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000067",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00025",
+        "subject": "shaft inner pump room"
+      },
+      "tags": [],
+      "statement": "frame front south bay has coupled shaft = shaft inner pump room;"
+    },
+    {
+      "id": "TN0000221",
+      "subject_id": "S00008",
+      "subject": "bracket inner service bay",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 81.9,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bracket inner service bay has Youngs modulus = 81.9 GPa (load test);"
+    },
+    {
+      "id": "TN0000154",
+      "subject_id": "S00017",
+      "subject": "plate inner plant room",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 47.28,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "plate inner plant room has bending moment = 47.28 kN*m (routine inspection);"
+    },
+    {
+      "id": "TN0000166",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2040.63,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing front upper deck has mass = 2040.63 kg (design revision B);"
+    },
+    {
+      "id": "TN0000032",
+      "subject_id": "S00035",
+      "subject": "plate rear north bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "plate rear north bay has support bearing = bearing front service bay (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000065",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "end support",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00018",
+        "subject": "support inner west bay"
+      },
+      "tags": [],
+      "statement": "frame front south bay has end support = support inner west bay;"
+    },
+    {
+      "id": "TN0000199",
+      "subject_id": "S00007",
+      "subject": "frame front upper deck",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 152.8,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "frame front upper deck has height = 152.8 mm (design revision B);"
+    },
+    {
+      "id": "TN0000161",
+      "subject_id": "S00008",
+      "subject": "bracket inner service bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 284.58,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "bracket inner service bay has temperature = 284.58 K (design revision B, load test);"
+    },
+    {
+      "id": "TN0000018",
+      "subject_id": "S00044",
+      "subject": "bearing rear workshop",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing rear workshop has support bearing = bearing front service bay (design revision B);"
+    },
+    {
+      "id": "TN0000015",
+      "subject_id": "S00024",
+      "subject": "bracket front service corridor",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "bracket front service corridor has support bearing = bearing front service bay (load test, north bay);"
+    },
+    {
+      "id": "TN0000069",
+      "subject_id": "S00021",
+      "subject": "frame inner roof span",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "frame inner roof span has support bearing = bearing front service bay (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000002",
+      "subject_id": "S00005",
+      "subject": "bearing outer loading bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bearing outer loading bay has support bearing = bearing front service bay (north bay);"
+    },
+    {
+      "id": "TN0000006",
+      "subject_id": "S00021",
+      "subject": "frame inner roof span",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "frame inner roof span has support bearing = bearing front service bay (design revision B, load test);"
+    },
+    {
+      "id": "TN0000064",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00034",
+        "subject": "bearing rear south bay"
+      },
+      "tags": [],
+      "statement": "bracket inner pump room has support bearing = bearing rear south bay;"
+    },
+    {
+      "id": "TN0000228",
+      "subject_id": "S00014",
+      "subject": "bracket front east bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 301.12,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bracket front east bay has temperature = 301.12 K (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000205",
+      "subject_id": "S00034",
+      "subject": "bearing rear south bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.78,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [
+        "design revision B",
+        "north bay"
+      ],
+      "statement": "bearing rear south bay has safety factor = 2.78 (design revision B, north bay);"
+    },
+    {
+      "id": "TN0000034",
+      "subject_id": "S00032",
+      "subject": "shaft inner access platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "shaft inner access platform has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000165",
+      "subject_id": "S00019",
+      "subject": "shaft front access platform",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 75.8,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [
+        "design revision B",
+        "load test"
+      ],
+      "statement": "shaft front access platform has Youngs modulus = 75.8 GPa (design revision B, load test);"
+    },
+    {
+      "id": "TN0000153",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 280.1,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [],
+      "statement": "frame front south bay has temperature = 280.1 K;"
+    },
+    {
+      "id": "TN0000044",
+      "subject_id": "S00001",
+      "subject": "bolt inner service corridor",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bolt inner service corridor has support bearing = bearing front service bay (north bay);"
+    },
+    {
+      "id": "TN0000007",
+      "subject_id": "S00011",
+      "subject": "bracket outer service corridor",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "bracket outer service corridor has support bearing = bearing front service bay (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000168",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "Youngs modulus",
+      "value": {
+        "type": "numeric",
+        "magnitude": 200.6,
+        "unit": "GPa",
+        "quantity": "elastic_modulus"
+      },
+      "tags": [],
+      "statement": "bracket inner pump room has Youngs modulus = 200.6 GPa;"
+    },
+    {
+      "id": "TN0000123",
+      "subject_id": "S00024",
+      "subject": "bracket front service corridor",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 63.18,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [],
+      "statement": "bracket front service corridor has axial force = 63.18 kN;"
+    },
+    {
+      "id": "TN0000089",
+      "subject_id": "S00005",
+      "subject": "bearing outer loading bay",
+      "property": "fastener",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bolt inner service corridor"
+      },
+      "tags": [],
+      "statement": "bearing outer loading bay has fastener = bolt inner service corridor;"
+    },
+    {
+      "id": "TN0000038",
+      "subject_id": "S00028",
+      "subject": "beam inner service corridor",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "beam inner service corridor has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000171",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 327.68,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "bearing rear service corridor has temperature = 327.68 K (load test);"
+    },
+    {
+      "id": "TN0000056",
+      "subject_id": "S00006",
+      "subject": "shaft front lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00030",
+        "subject": "bearing rear service corridor"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "shaft front lower deck has support bearing = bearing rear service corridor (load test, north bay);"
+    },
+    {
+      "id": "TN0000187",
+      "subject_id": "S00027",
+      "subject": "beam outer east bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 104.91,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "beam outer east bay has bending moment = 104.91 kN*m (load test);"
+    },
+    {
+      "id": "TN0000206",
+      "subject_id": "S00019",
+      "subject": "shaft front access platform",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1954.4,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "shaft front access platform has height = 1954.4 mm (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000236",
+      "subject_id": "S00018",
+      "subject": "support inner west bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 4642.6,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "support inner west bay has torque = 4642.6 N*m (routine inspection);"
+    },
+    {
+      "id": "TN0000005",
+      "subject_id": "S00019",
+      "subject": "shaft front access platform",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "shaft front access platform has support bearing = bearing front service bay (load test, north bay);"
+    },
+    {
+      "id": "TN0000200",
+      "subject_id": "S00042",
+      "subject": "support outer north bay",
+      "property": "torque",
+      "value": {
+        "type": "numeric",
+        "magnitude": 7192.2,
+        "unit": "N*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "support outer north bay has torque = 7192.2 N*m (load test, north bay);"
+    },
+    {
+      "id": "TN0000197",
+      "subject_id": "S00039",
+      "subject": "frame front south bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 151.04,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [],
+      "statement": "frame front south bay has bending moment = 151.04 kN*m;"
+    },
+    {
+      "id": "TN0000181",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "axial force",
+      "value": {
+        "type": "numeric",
+        "magnitude": 216.73,
+        "unit": "kN",
+        "quantity": "force"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "bearing front upper deck has axial force = 216.73 kN (load test, north bay);"
+    },
+    {
+      "id": "TN0000087",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00006",
+        "subject": "shaft front lower deck"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "bearing front upper deck has coupled shaft = shaft front lower deck (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000059",
+      "subject_id": "S00040",
+      "subject": "frame rear main deck",
+      "property": "fastener",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00004",
+        "subject": "bolt inner upper deck"
+      },
+      "tags": [
+        "load test"
+      ],
+      "statement": "frame rear main deck has fastener = bolt inner upper deck (load test);"
+    },
+    {
+      "id": "TN0000046",
+      "subject_id": "S00029",
+      "subject": "bracket inner pump room",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "bracket inner pump room has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000012",
+      "subject_id": "S00036",
+      "subject": "bearing front upper deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "north bay"
+      ],
+      "statement": "bearing front upper deck has support bearing = bearing front service bay (north bay);"
+    },
+    {
+      "id": "TN0000097",
+      "subject_id": "S00028",
+      "subject": "beam inner service corridor",
+      "property": "support frame",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00039",
+        "subject": "frame front south bay"
+      },
+      "tags": [
+        "load test",
+        "routine inspection"
+      ],
+      "statement": "beam inner service corridor has support frame = frame front south bay (load test, routine inspection);"
+    },
+    {
+      "id": "TN0000099",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "coupled shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00019",
+        "subject": "shaft front access platform"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "support inner loading platform has coupled shaft = shaft front access platform (design revision B);"
+    },
+    {
+      "id": "TN0000025",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [],
+      "statement": "bearing outer lower deck has support bearing = bearing front service bay;"
+    },
+    {
+      "id": "TN0000055",
+      "subject_id": "S00045",
+      "subject": "plate rear lower deck",
+      "property": "base plate",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00017",
+        "subject": "plate inner plant room"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "plate rear lower deck has base plate = plate inner plant room (load test, north bay);"
+    },
+    {
+      "id": "TN0000098",
+      "subject_id": "S00046",
+      "subject": "bolt outer loading bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bolt outer loading bay has support bearing = bearing front service bay (routine inspection);"
+    },
+    {
+      "id": "TN0000174",
+      "subject_id": "S00014",
+      "subject": "bracket front east bay",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 585.5,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "bracket front east bay has height = 585.5 mm (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000170",
+      "subject_id": "S00026",
+      "subject": "shaft front north bay",
+      "property": "safety factor",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.75,
+        "unit": "",
+        "quantity": "dimensionless"
+      },
+      "tags": [],
+      "statement": "shaft front north bay has safety factor = 2.75;"
+    },
+    {
+      "id": "TN0000017",
+      "subject_id": "S00046",
+      "subject": "bolt outer loading bay",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "bearing front service bay"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bolt outer loading bay has support bearing = bearing front service bay (design revision B);"
+    },
+    {
+      "id": "TN0000111",
+      "subject_id": "S00016",
+      "subject": "shaft inner loading bay",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 16.429,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "shaft inner loading bay has span = 16.429 m (routine inspection);"
+    },
+    {
+      "id": "TN0000125",
+      "subject_id": "S00047",
+      "subject": "support outer west bay",
+      "property": "bending moment",
+      "value": {
+        "type": "numeric",
+        "magnitude": 151.04,
+        "unit": "kN*m",
+        "quantity": "moment"
+      },
+      "tags": [
+        "design revision B",
+        "routine inspection"
+      ],
+      "statement": "support outer west bay has bending moment = 151.04 kN*m (design revision B, routine inspection);"
+    },
+    {
+      "id": "TN0000195",
+      "subject_id": "S00010",
+      "subject": "support inner loading platform",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2.465,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "support inner loading platform has span = 2.465 m;"
+    },
+    {
+      "id": "TN0000163",
+      "subject_id": "S00037",
+      "subject": "bracket inner lower deck",
+      "property": "span",
+      "value": {
+        "type": "numeric",
+        "magnitude": 3.07,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "routine inspection"
+      ],
+      "statement": "bracket inner lower deck has span = 3.07 m (routine inspection);"
+    },
+    {
+      "id": "TN0000082",
+      "subject_id": "S00012",
+      "subject": "bearing outer lower deck",
+      "property": "support bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00005",
+        "subject": "bearing outer loading bay"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "bearing outer lower deck has support bearing = bearing outer loading bay (design revision B);"
+    },
+    {
+      "id": "TN0000203",
+      "subject_id": "S00043",
+      "subject": "plate outer lower deck",
+      "property": "height",
+      "value": {
+        "type": "numeric",
+        "magnitude": 613.1,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [
+        "north bay",
+        "routine inspection"
+      ],
+      "statement": "plate outer lower deck has height = 613.1 mm (north bay, routine inspection);"
+    },
+    {
+      "id": "TN0000117",
+      "subject_id": "S00030",
+      "subject": "bearing rear service corridor",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 2040.63,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "load test",
+        "north bay"
+      ],
+      "statement": "bearing rear service corridor has mass = 2040.63 kg (load test, north bay);"
+    }
+  ],
+  "name": "Engineering hubs"
+}

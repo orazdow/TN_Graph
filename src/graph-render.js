@@ -169,7 +169,10 @@ export class NetworkRenderer {
     this.selection = null;
     this.labels = false;
     this.edgeStyle = 'curved';
-    this.labelSize = 11;
+    this.subjectLabelSize = 12;
+    this.valueLabelSize = 12;
+    this.propertyLabelSize = 12;
+    this.scaleLabelsWithZoom = false;
     this.paths = new Map();
     this.camera = {x: 0, y: 0, zoom: 1};
     this.needsFit = true;
@@ -250,9 +253,14 @@ export class NetworkRenderer {
     this.fit();
   }
 
-  setAppearance({edgeStyle = this.edgeStyle, labelSize = this.labelSize}) {
+  setAppearance({edgeStyle = this.edgeStyle, subjectLabelSize = this.subjectLabelSize,
+    valueLabelSize = this.valueLabelSize, propertyLabelSize = this.propertyLabelSize,
+    scaleLabelsWithZoom = this.scaleLabelsWithZoom}) {
     this.edgeStyle = edgeStyle;
-    this.labelSize = labelSize;
+    this.subjectLabelSize = subjectLabelSize;
+    this.valueLabelSize = valueLabelSize;
+    this.propertyLabelSize = propertyLabelSize;
+    this.scaleLabelsWithZoom = scaleLabelsWithZoom;
     this.paths = buildEdgePaths(this.graph, this.geometry, edgeStyle);
     this.redraw();
   }
@@ -303,20 +311,23 @@ export class NetworkRenderer {
       p.noStroke(); p.fill(color); p.triangle(0, 0, -9, -4, -9, 4); p.pop();
 
     }
-    const fontSize = this.labelSize / Math.max(1, zoom);
+    // Fonts are in world coordinates; divide by camera zoom for fixed screen sizes.
+    const labelScale = this.scaleLabelsWithZoom ? 1 : 1 / zoom;
+    const fontSize = this.propertyLabelSize * labelScale;
+    const nodeFontSize = node => (node.kind === 'subject' ? this.subjectLabelSize : this.valueLabelSize) * labelScale;
     p.textSize(fontSize);
     const obstacles = [];
     for (const node of this.graph.nodes) {
       const position = this.geometry.positions.get(node.id);
       obstacles.push({x: position.x - 13, y: position.y - 13, width: 26, height: 26});
-      if (node.kind === 'subject' || zoom > .65 || Boolean(node.factId && node.factId === this.selection?.factId)) {
-        p.textSize(10 / Math.max(.45, zoom));
+      {
+        p.textSize(nodeFontSize(node));
         const label = node.label.length > 34 ? node.label.slice(0, 32) + '…' : node.label;
-        obstacles.push({x: position.x + 11, y: position.y - 8 / Math.max(.45, zoom), width: p.textWidth(label) + 5, height: 16 / Math.max(.45, zoom)});
+        obstacles.push({x: position.x + 11, y: position.y - nodeFontSize(node) * .8, width: p.textWidth(label) + 5, height: nodeFontSize(node) * 1.6});
       }
     }
     p.textSize(fontSize);
-    const labelItems = [...edges].reverse().filter(edge => (this.labels && zoom > .25) || activeEdge(edge)).map(edge => ({
+    const labelItems = [...edges].reverse().filter(edge => this.labels || activeEdge(edge)).map(edge => ({
       edge, points: this.paths.get(edge.id).points, width: p.textWidth(edge.label),
     }));
     p.textAlign(p.CENTER, p.CENTER);
@@ -334,9 +345,9 @@ export class NetworkRenderer {
       p.fill(node.kind === 'literal' ? '#b8c4ce' : '#287b83');
       if (node.kind === 'literal') p.rect(position.x - 5, position.y - 5, 10, 10, 2);
       else p.circle(position.x, position.y, 18);
-      if (node.kind === 'subject' || zoom > .65 || active) {
+      {
         const label = node.label.length > 34 ? node.label.slice(0, 32) + '…' : node.label;
-        p.textSize(10 / Math.max(.45, zoom)); p.textAlign(p.LEFT, p.CENTER);
+        p.textSize(nodeFontSize(node)); p.textAlign(p.LEFT, p.CENTER);
         p.noStroke(); p.fill('#233b49');
         p.text(label, position.x + 13, position.y);
       }

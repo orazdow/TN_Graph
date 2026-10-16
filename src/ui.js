@@ -46,23 +46,32 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
           <footer><span id="counts">0 subjects · 0 facts</span><span>Drag to pan · Scroll to zoom · Click to inspect</span></footer>
         </div>
         <aside class="sidebar" aria-label="Workbench options">
-          <div class="sidebar-tabs" role="tablist" aria-label="Sidebar">
-            <button id="inspector-mode" role="tab" aria-selected="false" aria-controls="inspector-panel" tabindex="-1" type="button">Inspector</button>
-            <button id="layout-mode" class="active" role="tab" aria-selected="true" aria-controls="layout-panel" type="button">Layout</button>
+          <div class="sidebar-selector">
+            <select id="sidebar-view" aria-label="Side panel view">
+              <option value="inspector">Inspector</option>
+              <option value="layout" selected>Layout</option>
+              <option value="statements">TN statements</option>
+            </select>
           </div>
           <div class="sidebar-content">
-            <section id="inspector-panel" role="tabpanel" aria-labelledby="inspector-mode" hidden>
-              <h2>Inspector</h2>
-              <p>Inspector is not implemented yet.</p>
+            <section id="statements-panel" aria-label="TN statements" hidden>
+              <h2>TN statements</h2>
+              <p id="statements-count">0 statements</p>
+              <div id="statements"></div>
             </section>
-          <section id="layout-panel" class="layout-panel" role="tabpanel" aria-labelledby="layout-mode">
+            <section id="inspector-panel" aria-label="Inspector" hidden>
+              <h2>Inspector</h2>
+              <p id="inspection-hint">Select a subject, connection, literal value, or table row.</p>
+              <div id="inspector"></div>
+            </section>
+          <section id="layout-panel" class="layout-panel" aria-label="Layout">
             <h2>Layout &amp; appearance</h2><p id="layout-summary">Sugiyama · top to bottom</p>
             <div class="drawing-toggles">            <label title="Show numeric and string values as small square nodes"><input id="literals" type="checkbox" checked> Literal nodes</label>
             <label title="Labels avoid nodes and other labels. Select a connection to inspect its property."><input id="labels" type="checkbox"> Edge labels</label>
 </div>
             <form id="layout-form">
               <div class="layout-grid">
-                <label>Layout<select id="layout"><option value="sugiyama">Sugiyama — layered</option><option value="zherebko">Zherebko — linear</option><option value="grid">Grid — lanes</option></select></label>
+                <label>Layout<select id="layout"><option value="sugiyama">Sugiyama — layered</option><option value="zherebko">Zherebko — linear</option></select></label>
                 <label>Direction<select id="direction"><option value="TB">Top to bottom</option><option value="BT">Bottom to top</option><option value="LR">Left to right</option><option value="RL">Right to left</option></select></label>
                 <label>Node separation<input id="node-gap" type="number" required min="0" max="300" value="45" step="5"></label>
                 <label>Rank separation<input id="rank-gap" type="number" required min="0" max="300" value="70" step="5"></label>
@@ -71,7 +80,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
                 <div class="layout-grid">
                   <label>Layering<select id="layering"><option value="simplex">Simplex — shorter edges</option><option value="longest-path">Longest path — fewer ranks</option><option value="topological">Topological — one node per rank</option></select></label>
                   <label>Crossing reduction<select id="decross"><option value="two-layer">Two-layer heuristic</option><option value="dfs">Depth-first — fast</option><option value="optimal">Optimal — small graphs</option></select></label>
-                  <label>Coordinates<select id="coord"><option value="simplex">Simplex — straighter edges</option><option value="greedy">Greedy — fast</option><option value="quadratic">Quadratic</option><option value="topological" disabled>Topological</option></select></label>
+                  <label>Coordinates<select id="coord"><option value="simplex">Simplex — straighter edges</option><option value="greedy" selected>Greedy — fast</option><option value="quadratic">Quadratic</option><option value="topological" disabled>Topological</option></select></label>
                   <label>Crossing passes<input id="passes" type="number" required min="1" max="48" value="24"></label>
                 </div>
                 <label class="check-option" id="longest-option"><input id="longest-top-down" type="checkbox" checked> Place longest-path ranks from the top</label>
@@ -87,8 +96,10 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
               </fieldset>
               <fieldset><legend>Drawing</legend><div class="layout-grid">
                 <label>Edges<select id="edge-style"><option value="curved">Curved routes</option><option value="routed">Routed segments</option><option value="straight">Direct connections</option></select></label>
-                <label>Edge label size<input id="label-size" type="number" required min="7" max="16" value="11"></label>
-              </div><p class="option-help">Direct connections bypass routing bends. Separate facts remain separate connections. Labels avoid nodes and other labels.</p></fieldset>
+                <label>Subject label size<input id="subject-label-size" type="number" required min="7" max="32" value="12"></label>
+                <label>Value label size<input id="value-label-size" type="number" required min="7" max="32" value="12"></label>
+                <label>Property label size<input id="property-label-size" type="number" required min="7" max="32" value="12"></label>
+              </div><label class="check-option"><input id="scale-labels-with-zoom" type="checkbox"> Scale labels with zoom</label><p class="option-help">Unchecked: all label sizes stay fixed on screen. Checked: all labels grow and shrink with the graph.</p><p class="option-help">Direct connections bypass routing bends. Separate facts remain separate connections. Labels avoid nodes and other labels.</p></fieldset>
               <div class="layout-actions"><button id="layout-reset" type="button">Reset layout</button></div>
             </form>
           </section>
@@ -105,11 +116,12 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
   const controls = Object.fromEntries([
     'sample', 'add-json', 'files', 'datasets', 'query', 'property', 'tag',
     'reset', 'layout', 'literals', 'labels', 'fit', 'network', 'table',
-    'counts', 'notice', 'error',
+    'counts', 'notice', 'error', 'inspector', 'inspection-hint',
+    'sidebar-view', 'statements', 'statements-count',
     'layout-panel', 'layout-form', 'layout-summary', 'layout-status', 'layout-reset',
     'direction', 'layering', 'decross', 'coord', 'passes', 'node-gap', 'rank-gap',
     'sugiyama-options', 'grid-options', 'longest-option', 'longest-top-down',
-    'lane', 'compressed', 'bidirectional', 'lane-top-down', 'edge-style', 'label-size',
+    'lane', 'compressed', 'bidirectional', 'lane-top-down', 'edge-style', 'subject-label-size', 'value-label-size', 'property-label-size', 'scale-labels-with-zoom',
   ].map(id => [id, get(id)]));
 
   function setView(view) {
@@ -139,26 +151,12 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     });
   }
   function setSidebar(view) {
-    for (const name of ['inspector', 'layout']) {
-      const active = name === view;
-      const tab = get(name + '-mode');
-      tab.classList.toggle('active', active);
-      tab.setAttribute('aria-selected', String(active));
-      tab.tabIndex = active ? 0 : -1;
-      get(name + '-panel').hidden = !active;
+    controls['sidebar-view'].value = view;
+    for (const name of ['inspector', 'layout', 'statements']) {
+      get(name + '-panel').hidden = name !== view;
     }
   }
-  for (const name of ['inspector', 'layout']) {
-    const tab = get(name + '-mode');
-    tab.addEventListener('click', () => setSidebar(name));
-    tab.addEventListener('keydown', event => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      const next = event.key === 'Home' ? 'inspector' : event.key === 'End' ? 'layout' : name === 'inspector' ? 'layout' : 'inspector';
-      setSidebar(next);
-      get(next + '-mode').focus();
-    });
-  }
+  controls['sidebar-view'].addEventListener('change', () => setSidebar(controls['sidebar-view'].value));
 
   controls['add-json'].addEventListener('click', () => controls.files.click());
   controls.reset.addEventListener('click', () => {
@@ -177,7 +175,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     const topological = controls.layering.value === 'topological';
     controls.coord.querySelector('[value="topological"]').disabled = !topological;
     if (topological) controls.coord.value = 'topological';
-    else if (controls.coord.value === 'topological') controls.coord.value = 'simplex';
+    else if (controls.coord.value === 'topological') controls.coord.value = 'greedy';
     controls.coord.disabled = topological;
     controls.passes.disabled = controls.decross.value !== 'two-layer';
     controls['longest-option'].hidden = controls.layering.value !== 'longest-path';
@@ -187,7 +185,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
   }
   for (const name of ['layout', 'layering', 'decross', 'lane']) controls[name].addEventListener('change', updateLayoutFields);
   updateLayoutFields();
-  return {...controls, setView, updateLayoutFields};
+  return {...controls, setView, setSidebar, updateLayoutFields};
 }
 
 export function renderSources(host, sources, onRemove) {
@@ -259,23 +257,25 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
 export function renderInspector(host, fact) {
   host.replaceChildren();
   if (!fact) return;
-  const heading = document.createElement('h3');
-  heading.textContent = fact.subject;
-  const details = document.createElement('dl');
+  const table = document.createElement('table');
+  table.className = 'inspection-details';
+  table.setAttribute('aria-label', 'Selected fact details');
+  const body = table.createTBody();
   for (const [label, value] of [
-    ['Property', fact.property], ['Value', formatValue(fact.value)],
+    ['Subject', fact.subject], ['Property', fact.property], ['Value', formatValue(fact.value)],
     ['Value type', fact.value.type], ['Tags', fact.tags.join(', ') || 'None'],
     ['Source', fact.sourceName], ['Source ID', fact.sourceId],
     ['Original fact ID', fact.originalId], ['Original subject ID', fact.subject_id],
     ['Original statement', fact.statement ?? 'Not supplied'],
   ]) {
-    const term = document.createElement('dt');
-    const description = document.createElement('dd');
-    term.textContent = label;
-    description.textContent = value;
-    details.append(term, description);
+    const row = body.insertRow();
+    const title = document.createElement('th');
+    title.scope = 'row';
+    title.textContent = label;
+    row.append(title);
+    row.insertCell().textContent = value;
   }
-  host.append(heading, details);
+  host.append(table);
 }
 
 export function renderSubjectInspector(host, subject, snapshot, onSelect) {
@@ -286,13 +286,60 @@ export function renderSubjectInspector(host, subject, snapshot, onSelect) {
   const summary = document.createElement('p');
   const sources = new Set(subject.contributions.map(item => item.sourceId)).size;
   summary.textContent = incident.length + ' incident facts · ' + sources + ' sources';
-  host.append(heading, summary);
-  for (const fact of incident) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'fact-card';
-    button.textContent = fact.subject + ' has ' + fact.property + ' = ' + formatValue(fact.value) + ' [' + fact.sourceName + ']';
-    button.addEventListener('click', () => onSelect({factId: fact.id}));
-    host.append(button);
+  const table = document.createElement('table');
+  table.className = 'inspection-facts';
+  table.setAttribute('aria-label', 'Facts involving ' + subject.phrase);
+  const head = table.createTHead().insertRow();
+  for (const label of ['Direction', 'Property', 'Value']) {
+    const cell = document.createElement('th');
+    cell.scope = 'col';
+    cell.textContent = label;
+    head.append(cell);
   }
+  const body = table.createTBody();
+  for (const fact of incident) {
+    const row = body.insertRow();
+    row.tabIndex = 0;
+    row.title = 'Inspect fact from ' + fact.sourceName;
+    const outgoing = fact.subjectId === subject.id;
+    row.insertCell().textContent = outgoing ? 'Outgoing' : 'Incoming';
+    const property = row.insertCell();
+    property.append(document.createTextNode(fact.property));
+    if (!outgoing) {
+      const from = document.createElement('small');
+      from.textContent = 'from ' + fact.subject;
+      property.append(from);
+    }
+    const value = row.insertCell();
+    value.append(document.createTextNode(formatValue(fact.value)));
+    const source = document.createElement('small');
+    source.textContent = fact.sourceName;
+    value.append(source);
+    row.addEventListener('click', () => onSelect({factId: fact.id}));
+    row.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        onSelect({factId: fact.id});
+      }
+    });
+  }
+  host.append(heading, summary, table);
+}
+
+export function renderStatements(host, facts) {
+  host.replaceChildren();
+  if (!facts.length) {
+    const empty = document.createElement('p');
+    empty.textContent = 'No statements to display.';
+    host.append(empty);
+    return;
+  }
+  const table = document.createElement('table');
+  table.className = 'statement-list';
+  table.setAttribute('aria-label', 'Raw TN statements');
+  const body = table.createTBody();
+  for (const fact of facts) {
+    body.insertRow().insertCell().textContent = fact.statement ?? 'Original statement not supplied.';
+  }
+  host.append(table);
 }

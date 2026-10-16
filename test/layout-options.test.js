@@ -82,7 +82,7 @@ test('spacing changes geometry; invalid options fail explicitly; topological mod
   assert.ok(loose.width > tight.width);
   assert.ok(loose.height > tight.height);
   assert.equal(normalizeLayout({layering: 'topological', coord: 'greedy'}).coord, 'topological');
-  assert.equal(normalizeLayout({coord: 'topological'}).coord, 'simplex');
+  assert.equal(normalizeLayout({coord: 'topological'}).coord, 'greedy');
   assert.throws(() => computeLayout(graph, {algorithm: 'unknown'}));
   assert.throws(() => computeLayout(graph, {nodeGap: -1}));
   assert.throws(() => computeLayout(graph, {passes: 0}));

@@ -1,0 +1,297 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "name": "Six-subject network with values",
+  "subjects": [
+    {
+      "id": "S00001",
+      "phrase": "bearing Cove-00001",
+      "category": "structures.connections",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00002",
+      "phrase": "workboat Petrel-00002",
+      "category": "vehicles.water",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00008",
+      "phrase": "depot Altair-00008",
+      "category": "facilities",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00012",
+      "phrase": "drawing River-00012",
+      "category": "records",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00015",
+      "phrase": "shipment Iris-00015",
+      "category": "operations",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00016",
+      "phrase": "sensor Kestrel-00016",
+      "category": "sensors"
+    }
+  ],
+  "facts": [
+    {
+      "id": "TN0000027",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [],
+      "statement": "workboat Petrel-00002 has reference item = bearing Cove-00001;"
+    },
+    {
+      "id": "TN0000028",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "supporting item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "workboat Petrel-00002 has supporting item = bearing Cove-00001 (trial);"
+    },
+    {
+      "id": "TN0000007",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "peer",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [],
+      "statement": "drawing River-00012 has peer = bearing Cove-00001;"
+    },
+    {
+      "id": "TN0000008",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00015",
+        "subject": "shipment Iris-00015"
+      },
+      "tags": [
+        "batch A",
+        "batch B"
+      ],
+      "statement": "bearing Cove-00001 has downstream item = shipment Iris-00015 (batch A, batch B);"
+    },
+    {
+      "id": "TN0000023",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "downstream item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "depot Altair-00008 has downstream item = bearing Cove-00001 (baseline);"
+    },
+    {
+      "id": "TN0000010",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "reference item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00008",
+        "subject": "depot Altair-00008"
+      },
+      "tags": [
+        "batch A",
+        "zone west"
+      ],
+      "statement": "workboat Petrel-00002 has reference item = depot Altair-00008 (batch A, zone west);"
+    },
+    {
+      "id": "TN0000009",
+      "subject_id": "S00015",
+      "subject": "shipment Iris-00015",
+      "property": "related item",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00002",
+        "subject": "workboat Petrel-00002"
+      },
+      "tags": [
+        "batch B",
+        "survey"
+      ],
+      "statement": "shipment Iris-00015 has related item = workboat Petrel-00002 (batch B, survey);"
+    },
+    {
+      "id": "TN0000101",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "sensor",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00016",
+        "subject": "sensor Kestrel-00016"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "workboat Petrel-00002 has sensor = sensor Kestrel-00016 (trial);"
+    },
+    {
+      "id": "TN0000102",
+      "subject_id": "S00016",
+      "subject": "sensor Kestrel-00016",
+      "property": "monitored component",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00001",
+        "subject": "bearing Cove-00001"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "sensor Kestrel-00016 has monitored component = bearing Cove-00001 (trial);"
+    },
+    {
+      "id": "TN0000103",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "length",
+      "value": {
+        "type": "numeric",
+        "magnitude": 18,
+        "unit": "m",
+        "quantity": "length"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "workboat Petrel-00002 has length = 18 m (baseline);"
+    },
+    {
+      "id": "TN0000104",
+      "subject_id": "S00002",
+      "subject": "workboat Petrel-00002",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "ready"
+      },
+      "tags": [],
+      "statement": "workboat Petrel-00002 has status = \"ready\";"
+    },
+    {
+      "id": "TN0000105",
+      "subject_id": "S00001",
+      "subject": "bearing Cove-00001",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 12.4,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "baseline"
+      ],
+      "statement": "bearing Cove-00001 has mass = 12.4 kg (baseline);"
+    },
+    {
+      "id": "TN0000106",
+      "subject_id": "S00008",
+      "subject": "depot Altair-00008",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "ready"
+      },
+      "tags": [],
+      "statement": "depot Altair-00008 has status = \"ready\";"
+    },
+    {
+      "id": "TN0000107",
+      "subject_id": "S00012",
+      "subject": "drawing River-00012",
+      "property": "revision",
+      "value": {
+        "type": "string",
+        "text": "C"
+      },
+      "tags": [
+        "approved"
+      ],
+      "statement": "drawing River-00012 has revision = \"C\" (approved);"
+    },
+    {
+      "id": "TN0000108",
+      "subject_id": "S00015",
+      "subject": "shipment Iris-00015",
+      "property": "mass",
+      "value": {
+        "type": "numeric",
+        "magnitude": 240,
+        "unit": "kg",
+        "quantity": "mass"
+      },
+      "tags": [
+        "batch B"
+      ],
+      "statement": "shipment Iris-00015 has mass = 240 kg (batch B);"
+    },
+    {
+      "id": "TN0000109",
+      "subject_id": "S00016",
+      "subject": "sensor Kestrel-00016",
+      "property": "temperature",
+      "value": {
+        "type": "numeric",
+        "magnitude": 294,
+        "unit": "K",
+        "quantity": "absolute_temperature"
+      },
+      "tags": [
+        "trial"
+      ],
+      "statement": "sensor Kestrel-00016 has temperature = 294 K (trial);"
+    },
+    {
+      "id": "TN0000110",
+      "subject_id": "S00016",
+      "subject": "sensor Kestrel-00016",
+      "property": "status",
+      "value": {
+        "type": "string",
+        "text": "online"
+      },
+      "tags": [],
+      "statement": "sensor Kestrel-00016 has status = \"online\";"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 """Run with: python -m unittest -v"""
 import unittest
+from pathlib import Path
+import re
 from generate_tns import Config, generate, load_vocabulary
 
 class GeneratorTests(unittest.TestCase):
@@ -67,10 +69,47 @@ class GeneratorTests(unittest.TestCase):
         low = self.check_dataset(Config(facts=1000, property_overlap=0, tag_overlap=0))
         high = self.check_dataset(Config(facts=1000, property_overlap=1, tag_overlap=1))
         self.assertGreater(low['statistics']['distinct_properties'], high['statistics']['distinct_properties'])
-        self.assertEqual(len(high['generation']['relationship_pool']), 1)
+        self.assertTrue(all(len(pool) == 1 for pool in high['generation']['relationship_pools_by_category'].values()))
         self.assertEqual(len(high['generation']['literal_property_pool']), 1)
         self.assertEqual(len(high['generation']['semantic_tag_pool']), 1)
         self.assertGreater(low['statistics']['distinct_tags'], len(high['generation']['semantic_tag_pool']))
+
+    def test_engineering_corpus_units_ranges_and_reference_meanings(self):
+        data = self.check_dataset(Config(facts=1000, property_overlap=0, tag_overlap=0))
+        definitions = self.vocabulary['numeric_properties']
+        self.assertEqual(len(definitions), 20)
+        self.assertEqual(data['corpus']['version'], 2)
+        categories = {subject['id']: subject['category'] for subject in data['subjects']}
+        observed = set()
+        for fact in data['facts']:
+            value = fact['value']
+            if value['type'] == 'numeric':
+                spec = definitions[fact['property']]
+                self.assertEqual(value['quantity'], spec['quantity'])
+                self.assertEqual(value['unit'], spec['unit'])
+                self.assertGreaterEqual(value['magnitude'], spec['min'])
+                self.assertLessEqual(value['magnitude'], spec['max'])
+                observed.add(fact['property'])
+            elif value['type'] == 'reference':
+                allowed = self.vocabulary['reference_properties_by_category'][categories[value['subject_id']]]
+                self.assertIn(fact['property'], allowed)
+        self.assertEqual(observed, set(definitions))
+        for subject in data['subjects']:
+            self.assertIsNone(re.search(r'-[0-9]+$', subject['phrase']))
+            self.assertFalse(any(character.isdigit() for character in subject['phrase']))
+
+    def test_legacy_corpus_can_still_be_selected(self):
+        legacy = load_vocabulary(Path(__file__).with_name('tn_vocabulary.json'))
+        data = generate(Config(facts=80, subjects=20), seed=123, vocabulary=legacy)
+        self.assertEqual(len(data['facts']), 80)
+        self.assertEqual(len({subject['phrase'] for subject in data['subjects']}), 20)
+
+    def test_subject_name_capacity_is_explicit(self):
+        tiny = dict(self.vocabulary)
+        tiny['subject_terms'] = {'beams': ['beam']}
+        tiny['reference_names'] = {'names': ['north bay']}
+        with self.assertRaisesRegex(ValueError, 'unique subject phrases'):
+            generate(Config(facts=8, subjects=2), seed=123, vocabulary=tiny)
 
     def test_invalid_inputs(self):
         cases = [Config(facts=0), Config(facts=-2), Config(facts=True),

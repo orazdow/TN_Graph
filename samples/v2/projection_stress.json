@@ -1,0 +1,4026 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "notes": [
+    "The reference budget is smaller than the subject count; topology motifs may be partial.",
+    "Repeated statements received observation tags; these are counted separately from semantic tags."
+  ],
+  "seed": 20261015,
+  "settings": {
+    "facts": 240,
+    "subjects": 48,
+    "connectivity": 0.05,
+    "sharing": 0.6,
+    "structure": 0,
+    "property_overlap": 0.95,
+    "tag_overlap": 0.95,
+    "literal_reuse": 0.7
+  },
+  "corpus": {
+    "name": "Structural engineering",
+    "version": 2
+  },
+  "preset": {
+    "id": 0,
+    "name": "mixed"
+  },
+  "generation": {
+    "scaffold_reference_facts": 12,
+    "requested_reserved_isolates": 0,
+    "relationship_pool": [
+      "support beam",
+      "base support",
+      "support bracket",
+      "mounting plate",
+      "anchor bolt",
+      "drive shaft",
+      "shaft bearing",
+      "support frame"
+    ],
+    "relationship_pools_by_category": {
+      "beams": [
+        "support beam"
+      ],
+      "supports": [
+        "base support"
+      ],
+      "brackets": [
+        "support bracket"
+      ],
+      "plates": [
+        "mounting plate"
+      ],
+      "bolts": [
+        "anchor bolt"
+      ],
+      "shafts": [
+        "drive shaft"
+      ],
+      "bearings": [
+        "shaft bearing"
+      ],
+      "frames": [
+        "support frame"
+      ]
+    },
+    "literal_property_pool": [
+      "material",
+      "volume"
+    ],
+    "semantic_tag_pool": [
+      "south bay"
+    ]
+  },
+  "statistics": {
+    "subject_count": 48,
+    "fact_count": 240,
+    "reference_fact_count": 12,
+    "literal_fact_count": 228,
+    "reference_fraction": 0.05,
+    "distinct_directed_subject_pairs": 12,
+    "weak_component_sizes": [
+      10,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "reference_isolated_subjects": 35,
+    "has_directed_cycle": true,
+    "distinct_properties": 6,
+    "distinct_tags": 28,
+    "distinct_semantic_tags": 1,
+    "subjects_per_property": {
+      "anchor bolt": 1,
+      "base support": 1,
+      "material": 45,
+      "shaft bearing": 1,
+      "support beam": 9,
+      "volume": 44
+    },
+    "subjects_per_tag": {
+      "observation 0000039": 1,
+      "observation 0000053": 1,
+      "observation 0000064": 1,
+      "observation 0000094": 1,
+      "observation 0000101": 1,
+      "observation 0000103": 1,
+      "observation 0000106": 1,
+      "observation 0000117": 1,
+      "observation 0000119": 1,
+      "observation 0000126": 1,
+      "observation 0000134": 1,
+      "observation 0000136": 1,
+      "observation 0000141": 1,
+      "observation 0000154": 1,
+      "observation 0000169": 1,
+      "observation 0000180": 1,
+      "observation 0000194": 1,
+      "observation 0000199": 1,
+      "observation 0000204": 1,
+      "observation 0000212": 1,
+      "observation 0000214": 1,
+      "observation 0000218": 1,
+      "observation 0000221": 1,
+      "observation 0000224": 1,
+      "observation 0000227": 1,
+      "observation 0000231": 1,
+      "observation 0000233": 1,
+      "south bay": 46
+    },
+    "repeated_literal_fraction": 0.8421052631578947,
+    "top_reference_targets": [
+      {
+        "subject_id": "S00033",
+        "incoming_facts": 9,
+        "distinct_source_subjects": 9
+      },
+      {
+        "subject_id": "S00011",
+        "incoming_facts": 1,
+        "distinct_source_subjects": 1
+      },
+      {
+        "subject_id": "S00021",
+        "incoming_facts": 1,
+        "distinct_source_subjects": 1
+      },
+      {
+        "subject_id": "S00036",
+        "incoming_facts": 1,
+        "distinct_source_subjects": 1
+      }
+    ],
+    "deliberate_literal_reuse_events": 165,
+    "duplicate_observation_tags": 27
+  },
+  "subjects": [
+    {
+      "id": "S00001",
+      "phrase": "frame front west bay",
+      "category": "frames",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00002",
+      "phrase": "plate rear north bay",
+      "category": "plates",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00003",
+      "phrase": "frame inner loading bay",
+      "category": "frames",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00004",
+      "phrase": "beam rear east bay",
+      "category": "beams",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00005",
+      "phrase": "frame rear access platform",
+      "category": "frames",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00006",
+      "phrase": "bracket outer service corridor",
+      "category": "brackets",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00007",
+      "phrase": "bolt rear upper deck",
+      "category": "bolts",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00008",
+      "phrase": "plate outer service corridor",
+      "category": "plates",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00009",
+      "phrase": "bearing front loading bay",
+      "category": "bearings",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00010",
+      "phrase": "bracket front main deck",
+      "category": "brackets",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00011",
+      "phrase": "support inner loading bay",
+      "category": "supports",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00012",
+      "phrase": "bolt outer main deck",
+      "category": "bolts",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00013",
+      "phrase": "beam inner south bay",
+      "category": "beams",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00014",
+      "phrase": "bearing front plant room",
+      "category": "bearings",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00015",
+      "phrase": "shaft inner main deck",
+      "category": "shafts",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00016",
+      "phrase": "plate outer service bay",
+      "category": "plates",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00017",
+      "phrase": "bearing inner lower deck",
+      "category": "bearings",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00018",
+      "phrase": "frame rear south bay",
+      "category": "frames",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00019",
+      "phrase": "frame rear service corridor",
+      "category": "frames",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00020",
+      "phrase": "beam front workshop",
+      "category": "beams",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00021",
+      "phrase": "bolt inner loading platform",
+      "category": "bolts",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00022",
+      "phrase": "plate rear west bay",
+      "category": "plates",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00023",
+      "phrase": "beam inner main deck",
+      "category": "beams",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00024",
+      "phrase": "bolt outer loading bay",
+      "category": "bolts",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00025",
+      "phrase": "bracket front pump room",
+      "category": "brackets",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00026",
+      "phrase": "plate outer plant room",
+      "category": "plates",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00027",
+      "phrase": "frame inner service bay",
+      "category": "frames",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00028",
+      "phrase": "frame front service bay",
+      "category": "frames",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00029",
+      "phrase": "bearing rear west bay",
+      "category": "bearings",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00030",
+      "phrase": "bolt rear south bay",
+      "category": "bolts",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00031",
+      "phrase": "bracket outer loading platform",
+      "category": "brackets",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00032",
+      "phrase": "bearing inner roof span",
+      "category": "bearings",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00033",
+      "phrase": "beam front service corridor",
+      "category": "beams",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00034",
+      "phrase": "bearing outer north bay",
+      "category": "bearings",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00035",
+      "phrase": "support outer access platform",
+      "category": "supports",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00036",
+      "phrase": "bearing rear loading bay",
+      "category": "bearings",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00037",
+      "phrase": "frame inner upper deck",
+      "category": "frames",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00038",
+      "phrase": "support outer south bay",
+      "category": "supports",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00039",
+      "phrase": "plate front loading bay",
+      "category": "plates",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00040",
+      "phrase": "support outer west bay",
+      "category": "supports",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00041",
+      "phrase": "bearing rear workshop",
+      "category": "bearings",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00042",
+      "phrase": "shaft inner pump room",
+      "category": "shafts",
+      "cluster": 3,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00043",
+      "phrase": "shaft inner south bay",
+      "category": "shafts",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00044",
+      "phrase": "beam outer north bay",
+      "category": "beams",
+      "cluster": 2,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00045",
+      "phrase": "beam inner west bay",
+      "category": "beams",
+      "cluster": 0,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00046",
+      "phrase": "support rear main deck",
+      "category": "supports",
+      "cluster": 1,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00047",
+      "phrase": "support rear access platform",
+      "category": "supports",
+      "cluster": 4,
+      "reserved_isolate": false
+    },
+    {
+      "id": "S00048",
+      "phrase": "beam rear service bay",
+      "category": "beams",
+      "cluster": 3,
+      "reserved_isolate": false
+    }
+  ],
+  "facts": [
+    {
+      "id": "TN0000165",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer service corridor has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000152",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "bracket outer service corridor has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000216",
+      "subject_id": "S00014",
+      "subject": "bearing front plant room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.67655,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bearing front plant room has volume = 1.67655 m^3;"
+    },
+    {
+      "id": "TN0000229",
+      "subject_id": "S00014",
+      "subject": "bearing front plant room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.28691,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bearing front plant room has volume = 1.28691 m^3;"
+    },
+    {
+      "id": "TN0000105",
+      "subject_id": "S00033",
+      "subject": "beam front service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front service corridor has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000026",
+      "subject_id": "S00007",
+      "subject": "bolt rear upper deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "bolt rear upper deck has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000126",
+      "subject_id": "S00020",
+      "subject": "beam front workshop",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000126"
+      ],
+      "statement": "beam front workshop has volume = 1.03296 m^3 (south bay, observation 0000126);"
+    },
+    {
+      "id": "TN0000208",
+      "subject_id": "S00036",
+      "subject": "bearing rear loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.25928,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bearing rear loading bay has volume = 1.25928 m^3;"
+    },
+    {
+      "id": "TN0000074",
+      "subject_id": "S00036",
+      "subject": "bearing rear loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing rear loading bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000239",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer main deck has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000176",
+      "subject_id": "S00015",
+      "subject": "shaft inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner main deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000092",
+      "subject_id": "S00011",
+      "subject": "support inner loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support inner loading bay has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000111",
+      "subject_id": "S00010",
+      "subject": "bracket front main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.63436,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bracket front main deck has volume = 1.63436 m^3;"
+    },
+    {
+      "id": "TN0000194",
+      "subject_id": "S00019",
+      "subject": "frame rear service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000194"
+      ],
+      "statement": "frame rear service corridor has material = \"stainless steel\" (south bay, observation 0000194);"
+    },
+    {
+      "id": "TN0000186",
+      "subject_id": "S00004",
+      "subject": "beam rear east bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.3635,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam rear east bay has volume = 1.3635 m^3;"
+    },
+    {
+      "id": "TN0000108",
+      "subject_id": "S00028",
+      "subject": "frame front service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.27328,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "frame front service bay has volume = 0.27328 m^3;"
+    },
+    {
+      "id": "TN0000232",
+      "subject_id": "S00042",
+      "subject": "shaft inner pump room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.52014,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner pump room has volume = 0.52014 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000035",
+      "subject_id": "S00015",
+      "subject": "shaft inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner main deck has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000171",
+      "subject_id": "S00023",
+      "subject": "beam inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "beam inner main deck has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000157",
+      "subject_id": "S00025",
+      "subject": "bracket front pump room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.02747,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket front pump room has volume = 1.02747 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000155",
+      "subject_id": "S00043",
+      "subject": "shaft inner south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner south bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000223",
+      "subject_id": "S00009",
+      "subject": "bearing front loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.25928,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing front loading bay has volume = 1.25928 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000076",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "bolt outer main deck has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000075",
+      "subject_id": "S00035",
+      "subject": "support outer access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer access platform has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000004",
+      "subject_id": "S00045",
+      "subject": "beam inner west bay",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner west bay has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000235",
+      "subject_id": "S00004",
+      "subject": "beam rear east bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.48341,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam rear east bay has volume = 1.48341 m^3;"
+    },
+    {
+      "id": "TN0000013",
+      "subject_id": "S00005",
+      "subject": "frame rear access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear access platform has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000069",
+      "subject_id": "S00015",
+      "subject": "shaft inner main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "shaft inner main deck has volume = 1.03296 m^3;"
+    },
+    {
+      "id": "TN0000215",
+      "subject_id": "S00030",
+      "subject": "bolt rear south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt rear south bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000051",
+      "subject_id": "S00017",
+      "subject": "bearing inner lower deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing inner lower deck has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000201",
+      "subject_id": "S00039",
+      "subject": "plate front loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate front loading bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000099",
+      "subject_id": "S00023",
+      "subject": "beam inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner main deck has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000110",
+      "subject_id": "S00032",
+      "subject": "bearing inner roof span",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing inner roof span has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000022",
+      "subject_id": "S00024",
+      "subject": "bolt outer loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer loading bay has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000041",
+      "subject_id": "S00044",
+      "subject": "beam outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.52329,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam outer north bay has volume = 1.52329 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000195",
+      "subject_id": "S00041",
+      "subject": "bearing rear workshop",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing rear workshop has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000198",
+      "subject_id": "S00001",
+      "subject": "frame front west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame front west bay has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000090",
+      "subject_id": "S00042",
+      "subject": "shaft inner pump room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.88611,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner pump room has volume = 0.88611 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000085",
+      "subject_id": "S00023",
+      "subject": "beam inner main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.18812,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner main deck has volume = 0.18812 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000081",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "frame inner loading bay has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000052",
+      "subject_id": "S00007",
+      "subject": "bolt rear upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt rear upper deck has volume = 0.50871 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000087",
+      "subject_id": "S00019",
+      "subject": "frame rear service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear service corridor has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000212",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000212"
+      ],
+      "statement": "support outer south bay has material = \"aluminium alloy\" (south bay, observation 0000212);"
+    },
+    {
+      "id": "TN0000006",
+      "subject_id": "S00043",
+      "subject": "shaft inner south bay",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner south bay has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000046",
+      "subject_id": "S00026",
+      "subject": "plate outer plant room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer plant room has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000159",
+      "subject_id": "S00044",
+      "subject": "beam outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.56405,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam outer north bay has volume = 0.56405 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000021",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "support outer south bay has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000031",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.71974,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner loading bay has volume = 0.71974 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000204",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000204"
+      ],
+      "statement": "bracket outer service corridor has material = \"structural steel\" (south bay, observation 0000204);"
+    },
+    {
+      "id": "TN0000148",
+      "subject_id": "S00002",
+      "subject": "plate rear north bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate rear north bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000093",
+      "subject_id": "S00032",
+      "subject": "bearing inner roof span",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing inner roof span has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000143",
+      "subject_id": "S00025",
+      "subject": "bracket front pump room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket front pump room has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000236",
+      "subject_id": "S00001",
+      "subject": "frame front west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.76802,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "frame front west bay has volume = 1.76802 m^3;"
+    },
+    {
+      "id": "TN0000153",
+      "subject_id": "S00023",
+      "subject": "beam inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner main deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000100",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000071",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000066",
+      "subject_id": "S00035",
+      "subject": "support outer access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer access platform has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000199",
+      "subject_id": "S00032",
+      "subject": "bearing inner roof span",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000199"
+      ],
+      "statement": "bearing inner roof span has material = \"stainless steel\" (south bay, observation 0000199);"
+    },
+    {
+      "id": "TN0000030",
+      "subject_id": "S00011",
+      "subject": "support inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support inner loading bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000135",
+      "subject_id": "S00044",
+      "subject": "beam outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.17377,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam outer north bay has volume = 0.17377 m^3;"
+    },
+    {
+      "id": "TN0000172",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.12872,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has volume = 1.12872 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000002",
+      "subject_id": "S00021",
+      "subject": "bolt inner loading platform",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt inner loading platform has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000237",
+      "subject_id": "S00020",
+      "subject": "beam front workshop",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.12872,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front workshop has volume = 1.12872 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000083",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000037",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer main deck has volume = 0.50871 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000197",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer south bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000007",
+      "subject_id": "S00018",
+      "subject": "frame rear south bay",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear south bay has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000134",
+      "subject_id": "S00026",
+      "subject": "plate outer plant room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000134"
+      ],
+      "statement": "plate outer plant room has material = \"structural steel\" (south bay, observation 0000134);"
+    },
+    {
+      "id": "TN0000053",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "observation 0000053"
+      ],
+      "statement": "support outer south bay has material = \"stainless steel\" (observation 0000053);"
+    },
+    {
+      "id": "TN0000012",
+      "subject_id": "S00011",
+      "subject": "support inner loading bay",
+      "property": "shaft bearing",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00036",
+        "subject": "bearing rear loading bay"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support inner loading bay has shaft bearing = bearing rear loading bay (south bay);"
+    },
+    {
+      "id": "TN0000064",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000064"
+      ],
+      "statement": "bolt outer main deck has material = \"stainless steel\" (south bay, observation 0000064);"
+    },
+    {
+      "id": "TN0000109",
+      "subject_id": "S00046",
+      "subject": "support rear main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "support rear main deck has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000149",
+      "subject_id": "S00036",
+      "subject": "bearing rear loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "bearing rear loading bay has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000025",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bracket outer loading platform has volume = 0.50871 m^3;"
+    },
+    {
+      "id": "TN0000068",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "plate outer service bay has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000122",
+      "subject_id": "S00027",
+      "subject": "frame inner service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner service bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000043",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78238,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam rear service bay has volume = 0.78238 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000106",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.52329,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000106"
+      ],
+      "statement": "beam inner south bay has volume = 1.52329 m^3 (south bay, observation 0000106);"
+    },
+    {
+      "id": "TN0000168",
+      "subject_id": "S00010",
+      "subject": "bracket front main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "bracket front main deck has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000137",
+      "subject_id": "S00036",
+      "subject": "bearing rear loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "bearing rear loading bay has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000024",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78238,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has volume = 0.78238 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000177",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.54312,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer main deck has volume = 1.54312 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000179",
+      "subject_id": "S00047",
+      "subject": "support rear access platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.27328,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support rear access platform has volume = 0.27328 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000218",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "observation 0000218"
+      ],
+      "statement": "frame inner loading bay has material = \"structural steel\" (observation 0000218);"
+    },
+    {
+      "id": "TN0000125",
+      "subject_id": "S00005",
+      "subject": "frame rear access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear access platform has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000096",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam rear service bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000045",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer south bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000088",
+      "subject_id": "S00014",
+      "subject": "bearing front plant room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing front plant room has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000225",
+      "subject_id": "S00024",
+      "subject": "bolt outer loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer loading bay has volume = 0.50871 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000147",
+      "subject_id": "S00008",
+      "subject": "plate outer service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.70593,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service corridor has volume = 0.70593 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000042",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000214",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.84443,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000214"
+      ],
+      "statement": "bracket outer loading platform has volume = 0.84443 m^3 (south bay, observation 0000214);"
+    },
+    {
+      "id": "TN0000228",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.20286,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has volume = 0.20286 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000180",
+      "subject_id": "S00035",
+      "subject": "support outer access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000180"
+      ],
+      "statement": "support outer access platform has material = \"aluminium alloy\" (south bay, observation 0000180);"
+    },
+    {
+      "id": "TN0000129",
+      "subject_id": "S00040",
+      "subject": "support outer west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer west bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000062",
+      "subject_id": "S00025",
+      "subject": "bracket front pump room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.18812,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket front pump room has volume = 0.18812 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000156",
+      "subject_id": "S00005",
+      "subject": "frame rear access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "frame rear access platform has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000117",
+      "subject_id": "S00014",
+      "subject": "bearing front plant room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000117"
+      ],
+      "statement": "bearing front plant room has material = \"stainless steel\" (south bay, observation 0000117);"
+    },
+    {
+      "id": "TN0000210",
+      "subject_id": "S00010",
+      "subject": "bracket front main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket front main deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000132",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.52014,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has volume = 0.52014 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000131",
+      "subject_id": "S00015",
+      "subject": "shaft inner main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.20286,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "shaft inner main deck has volume = 0.20286 m^3;"
+    },
+    {
+      "id": "TN0000187",
+      "subject_id": "S00021",
+      "subject": "bolt inner loading platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt inner loading platform has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000145",
+      "subject_id": "S00029",
+      "subject": "bearing rear west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.71974,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing rear west bay has volume = 0.71974 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000121",
+      "subject_id": "S00043",
+      "subject": "shaft inner south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner south bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000094",
+      "subject_id": "S00011",
+      "subject": "support inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000094"
+      ],
+      "statement": "support inner loading bay has material = \"stainless steel\" (south bay, observation 0000094);"
+    },
+    {
+      "id": "TN0000089",
+      "subject_id": "S00014",
+      "subject": "bearing front plant room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.84443,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bearing front plant room has volume = 0.84443 m^3;"
+    },
+    {
+      "id": "TN0000151",
+      "subject_id": "S00044",
+      "subject": "beam outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.84443,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam outer north bay has volume = 0.84443 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000073",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "beam rear service bay has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000065",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.88611,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer south bay has volume = 0.88611 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000061",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78238,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer loading platform has volume = 0.78238 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000192",
+      "subject_id": "S00045",
+      "subject": "beam inner west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.95293,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam inner west bay has volume = 1.95293 m^3;"
+    },
+    {
+      "id": "TN0000205",
+      "subject_id": "S00039",
+      "subject": "plate front loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50405,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "plate front loading bay has volume = 0.50405 m^3;"
+    },
+    {
+      "id": "TN0000203",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.02747,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer service corridor has volume = 1.02747 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000191",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "beam rear service bay has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000163",
+      "subject_id": "S00018",
+      "subject": "frame rear south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "frame rear south bay has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000101",
+      "subject_id": "S00019",
+      "subject": "frame rear service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000101"
+      ],
+      "statement": "frame rear service corridor has material = \"stainless steel\" (south bay, observation 0000101);"
+    },
+    {
+      "id": "TN0000072",
+      "subject_id": "S00035",
+      "subject": "support outer access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer access platform has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000063",
+      "subject_id": "S00034",
+      "subject": "bearing outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.63436,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bearing outer north bay has volume = 1.63436 m^3;"
+    },
+    {
+      "id": "TN0000161",
+      "subject_id": "S00028",
+      "subject": "frame front service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.52329,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame front service bay has volume = 1.52329 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000086",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000102",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.52014,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service bay has volume = 0.52014 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000019",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000107",
+      "subject_id": "S00026",
+      "subject": "plate outer plant room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.88611,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer plant room has volume = 0.88611 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000127",
+      "subject_id": "S00004",
+      "subject": "beam rear east bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.10201,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam rear east bay has volume = 0.10201 m^3;"
+    },
+    {
+      "id": "TN0000016",
+      "subject_id": "S00045",
+      "subject": "beam inner west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner west bay has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000015",
+      "subject_id": "S00001",
+      "subject": "frame front west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame front west bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000114",
+      "subject_id": "S00047",
+      "subject": "support rear access platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support rear access platform has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000017",
+      "subject_id": "S00045",
+      "subject": "beam inner west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "beam inner west bay has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000144",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.25928,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has volume = 1.25928 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000078",
+      "subject_id": "S00019",
+      "subject": "frame rear service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear service corridor has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000009",
+      "subject_id": "S00040",
+      "subject": "support outer west bay",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer west bay has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000028",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000220",
+      "subject_id": "S00004",
+      "subject": "beam rear east bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "beam rear east bay has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000048",
+      "subject_id": "S00047",
+      "subject": "support rear access platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.71974,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support rear access platform has volume = 0.71974 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000056",
+      "subject_id": "S00007",
+      "subject": "bolt rear upper deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt rear upper deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000190",
+      "subject_id": "S00025",
+      "subject": "bracket front pump room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "bracket front pump room has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000178",
+      "subject_id": "S00040",
+      "subject": "support outer west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.18812,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer west bay has volume = 0.18812 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000098",
+      "subject_id": "S00017",
+      "subject": "bearing inner lower deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing inner lower deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000188",
+      "subject_id": "S00035",
+      "subject": "support outer access platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78238,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer access platform has volume = 0.78238 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000034",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.52329,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has volume = 1.52329 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000027",
+      "subject_id": "S00020",
+      "subject": "beam front workshop",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front workshop has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000226",
+      "subject_id": "S00033",
+      "subject": "beam front service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.28691,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front service corridor has volume = 1.28691 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000182",
+      "subject_id": "S00011",
+      "subject": "support inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support inner loading bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000005",
+      "subject_id": "S00020",
+      "subject": "beam front workshop",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [],
+      "statement": "beam front workshop has support beam = beam front service corridor;"
+    },
+    {
+      "id": "TN0000020",
+      "subject_id": "S00004",
+      "subject": "beam rear east bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam rear east bay has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000224",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000224"
+      ],
+      "statement": "plate outer service bay has material = \"structural steel\" (south bay, observation 0000224);"
+    },
+    {
+      "id": "TN0000036",
+      "subject_id": "S00009",
+      "subject": "bearing front loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing front loading bay has volume = 0.50871 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000054",
+      "subject_id": "S00002",
+      "subject": "plate rear north bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate rear north bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000119",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000119"
+      ],
+      "statement": "frame inner loading bay has material = \"stainless steel\" (south bay, observation 0000119);"
+    },
+    {
+      "id": "TN0000057",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner loading bay has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000120",
+      "subject_id": "S00033",
+      "subject": "beam front service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.27328,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam front service corridor has volume = 0.27328 m^3;"
+    },
+    {
+      "id": "TN0000173",
+      "subject_id": "S00008",
+      "subject": "plate outer service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service corridor has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000010",
+      "subject_id": "S00029",
+      "subject": "bearing rear west bay",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [],
+      "statement": "bearing rear west bay has support beam = beam front service corridor;"
+    },
+    {
+      "id": "TN0000213",
+      "subject_id": "S00007",
+      "subject": "bolt rear upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.3635,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt rear upper deck has volume = 1.3635 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000103",
+      "subject_id": "S00027",
+      "subject": "frame inner service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000103"
+      ],
+      "statement": "frame inner service bay has volume = 0.50871 m^3 (south bay, observation 0000103);"
+    },
+    {
+      "id": "TN0000133",
+      "subject_id": "S00044",
+      "subject": "beam outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.71974,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam outer north bay has volume = 0.71974 m^3;"
+    },
+    {
+      "id": "TN0000082",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.88611,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer loading platform has volume = 0.88611 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000150",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer loading platform has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000209",
+      "subject_id": "S00029",
+      "subject": "bearing rear west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.20286,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing rear west bay has volume = 0.20286 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000158",
+      "subject_id": "S00034",
+      "subject": "bearing outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing outer north bay has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000039",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000039"
+      ],
+      "statement": "frame inner upper deck has material = \"structural steel\" (south bay, observation 0000039);"
+    },
+    {
+      "id": "TN0000138",
+      "subject_id": "S00014",
+      "subject": "bearing front plant room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "bearing front plant room has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000140",
+      "subject_id": "S00002",
+      "subject": "plate rear north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.63436,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "plate rear north bay has volume = 1.63436 m^3;"
+    },
+    {
+      "id": "TN0000130",
+      "subject_id": "S00010",
+      "subject": "bracket front main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.95379,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket front main deck has volume = 0.95379 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000139",
+      "subject_id": "S00029",
+      "subject": "bearing rear west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing rear west bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000003",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service bay has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000184",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer south bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000029",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer main deck has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000142",
+      "subject_id": "S00043",
+      "subject": "shaft inner south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.71974,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "shaft inner south bay has volume = 0.71974 m^3;"
+    },
+    {
+      "id": "TN0000160",
+      "subject_id": "S00008",
+      "subject": "plate outer service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "plate outer service corridor has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000222",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78376,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer main deck has volume = 0.78376 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000084",
+      "subject_id": "S00009",
+      "subject": "bearing front loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.27328,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing front loading bay has volume = 0.27328 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000008",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "support beam",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00033",
+        "subject": "beam front service corridor"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has support beam = beam front service corridor (south bay);"
+    },
+    {
+      "id": "TN0000231",
+      "subject_id": "S00030",
+      "subject": "bolt rear south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000231"
+      ],
+      "statement": "bolt rear south bay has material = \"aluminium alloy\" (south bay, observation 0000231);"
+    },
+    {
+      "id": "TN0000001",
+      "subject_id": "S00033",
+      "subject": "beam front service corridor",
+      "property": "anchor bolt",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00021",
+        "subject": "bolt inner loading platform"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front service corridor has anchor bolt = bolt inner loading platform (south bay);"
+    },
+    {
+      "id": "TN0000011",
+      "subject_id": "S00005",
+      "subject": "frame rear access platform",
+      "property": "base support",
+      "value": {
+        "type": "reference",
+        "subject_id": "S00011",
+        "subject": "support inner loading bay"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear access platform has base support = support inner loading bay (south bay);"
+    },
+    {
+      "id": "TN0000091",
+      "subject_id": "S00028",
+      "subject": "frame front service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "frame front service bay has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000183",
+      "subject_id": "S00026",
+      "subject": "plate outer plant room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer plant room has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000118",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.20912,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam rear service bay has volume = 1.20912 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000033",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.71974,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam rear service bay has volume = 0.71974 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000047",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has volume = 0.50871 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000206",
+      "subject_id": "S00019",
+      "subject": "frame rear service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear service corridor has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000077",
+      "subject_id": "S00021",
+      "subject": "bolt inner loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.27328,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt inner loading platform has volume = 0.27328 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000189",
+      "subject_id": "S00037",
+      "subject": "frame inner upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.67655,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner upper deck has volume = 1.67655 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000169",
+      "subject_id": "S00010",
+      "subject": "bracket front main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "observation 0000169"
+      ],
+      "statement": "bracket front main deck has material = \"stainless steel\" (observation 0000169);"
+    },
+    {
+      "id": "TN0000123",
+      "subject_id": "S00035",
+      "subject": "support outer access platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.67655,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer access platform has volume = 1.67655 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000060",
+      "subject_id": "S00040",
+      "subject": "support outer west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "support outer west bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000128",
+      "subject_id": "S00042",
+      "subject": "shaft inner pump room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "shaft inner pump room has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000233",
+      "subject_id": "S00032",
+      "subject": "bearing inner roof span",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000233"
+      ],
+      "statement": "bearing inner roof span has material = \"aluminium alloy\" (south bay, observation 0000233);"
+    },
+    {
+      "id": "TN0000058",
+      "subject_id": "S00029",
+      "subject": "bearing rear west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing rear west bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000124",
+      "subject_id": "S00034",
+      "subject": "bearing outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.67655,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing outer north bay has volume = 1.67655 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000050",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer service corridor has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000175",
+      "subject_id": "S00027",
+      "subject": "frame inner service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner service bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000221",
+      "subject_id": "S00038",
+      "subject": "support outer south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "observation 0000221"
+      ],
+      "statement": "support outer south bay has material = \"stainless steel\" (observation 0000221);"
+    },
+    {
+      "id": "TN0000207",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.76802,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer service corridor has volume = 1.76802 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000170",
+      "subject_id": "S00032",
+      "subject": "bearing inner roof span",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "bearing inner roof span has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000202",
+      "subject_id": "S00030",
+      "subject": "bolt rear south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.12872,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt rear south bay has volume = 1.12872 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000080",
+      "subject_id": "S00042",
+      "subject": "shaft inner pump room",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "shaft inner pump room has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000211",
+      "subject_id": "S00001",
+      "subject": "frame front west bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.63436,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame front west bay has volume = 1.63436 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000049",
+      "subject_id": "S00034",
+      "subject": "bearing outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.07841,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bearing outer north bay has volume = 0.07841 m^3;"
+    },
+    {
+      "id": "TN0000018",
+      "subject_id": "S00020",
+      "subject": "beam front workshop",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front workshop has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000146",
+      "subject_id": "S00008",
+      "subject": "plate outer service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.63436,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "plate outer service corridor has volume = 1.63436 m^3;"
+    },
+    {
+      "id": "TN0000219",
+      "subject_id": "S00007",
+      "subject": "bolt rear upper deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt rear upper deck has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000104",
+      "subject_id": "S00016",
+      "subject": "plate outer service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000185",
+      "subject_id": "S00044",
+      "subject": "beam outer north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.25928,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam outer north bay has volume = 1.25928 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000164",
+      "subject_id": "S00006",
+      "subject": "bracket outer service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer service corridor has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000079",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam rear service bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000230",
+      "subject_id": "S00012",
+      "subject": "bolt outer main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt outer main deck has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000112",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner loading bay has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000115",
+      "subject_id": "S00002",
+      "subject": "plate rear north bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78238,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "plate rear north bay has volume = 0.78238 m^3;"
+    },
+    {
+      "id": "TN0000095",
+      "subject_id": "S00008",
+      "subject": "plate outer service corridor",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.78238,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "plate outer service corridor has volume = 0.78238 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000200",
+      "subject_id": "S00019",
+      "subject": "frame rear service corridor",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "frame rear service corridor has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000070",
+      "subject_id": "S00021",
+      "subject": "bolt inner loading platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bolt inner loading platform has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000162",
+      "subject_id": "S00004",
+      "subject": "beam rear east bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam rear east bay has volume = 0.50871 m^3;"
+    },
+    {
+      "id": "TN0000174",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000097",
+      "subject_id": "S00028",
+      "subject": "frame front service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.20912,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame front service bay has volume = 1.20912 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000023",
+      "subject_id": "S00027",
+      "subject": "frame inner service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.50871,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame inner service bay has volume = 0.50871 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000217",
+      "subject_id": "S00039",
+      "subject": "plate front loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [],
+      "statement": "plate front loading bay has material = \"aluminium alloy\";"
+    },
+    {
+      "id": "TN0000193",
+      "subject_id": "S00023",
+      "subject": "beam inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner main deck has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000113",
+      "subject_id": "S00009",
+      "subject": "bearing front loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing front loading bay has volume = 1.03296 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000055",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.03296,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "bracket outer loading platform has volume = 1.03296 m^3;"
+    },
+    {
+      "id": "TN0000136",
+      "subject_id": "S00003",
+      "subject": "frame inner loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "observation 0000136"
+      ],
+      "statement": "frame inner loading bay has material = \"structural steel\" (observation 0000136);"
+    },
+    {
+      "id": "TN0000014",
+      "subject_id": "S00013",
+      "subject": "beam inner south bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam inner south bay has volume = 1.01549 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000240",
+      "subject_id": "S00020",
+      "subject": "beam front workshop",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "beam front workshop has material = \"stainless steel\" (south bay);"
+    },
+    {
+      "id": "TN0000059",
+      "subject_id": "S00034",
+      "subject": "bearing outer north bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "aluminium alloy"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing outer north bay has material = \"aluminium alloy\" (south bay);"
+    },
+    {
+      "id": "TN0000040",
+      "subject_id": "S00025",
+      "subject": "bracket front pump room",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.07841,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket front pump room has volume = 0.07841 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000141",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000141"
+      ],
+      "statement": "beam rear service bay has material = \"structural steel\" (south bay, observation 0000141);"
+    },
+    {
+      "id": "TN0000234",
+      "subject_id": "S00005",
+      "subject": "frame rear access platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.28691,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame rear access platform has volume = 1.28691 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000044",
+      "subject_id": "S00024",
+      "subject": "bolt outer loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "bolt outer loading bay has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000167",
+      "subject_id": "S00028",
+      "subject": "frame front service bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "frame front service bay has material = \"structural steel\" (south bay);"
+    },
+    {
+      "id": "TN0000116",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.84443,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer loading platform has volume = 0.84443 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000038",
+      "subject_id": "S00024",
+      "subject": "bolt outer loading bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "structural steel"
+      },
+      "tags": [],
+      "statement": "bolt outer loading bay has material = \"structural steel\";"
+    },
+    {
+      "id": "TN0000238",
+      "subject_id": "S00009",
+      "subject": "bearing front loading bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.67655,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing front loading bay has volume = 1.67655 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000067",
+      "subject_id": "S00048",
+      "subject": "beam rear service bay",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.01549,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [],
+      "statement": "beam rear service bay has volume = 1.01549 m^3;"
+    },
+    {
+      "id": "TN0000181",
+      "subject_id": "S00022",
+      "subject": "plate rear west bay",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [],
+      "statement": "plate rear west bay has material = \"stainless steel\";"
+    },
+    {
+      "id": "TN0000154",
+      "subject_id": "S00017",
+      "subject": "bearing inner lower deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000154"
+      ],
+      "statement": "bearing inner lower deck has material = \"stainless steel\" (south bay, observation 0000154);"
+    },
+    {
+      "id": "TN0000196",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 1.20912,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer loading platform has volume = 1.20912 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000227",
+      "subject_id": "S00023",
+      "subject": "beam inner main deck",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay",
+        "observation 0000227"
+      ],
+      "statement": "beam inner main deck has material = \"stainless steel\" (south bay, observation 0000227);"
+    },
+    {
+      "id": "TN0000166",
+      "subject_id": "S00017",
+      "subject": "bearing inner lower deck",
+      "property": "volume",
+      "value": {
+        "type": "numeric",
+        "magnitude": 0.22463,
+        "unit": "m^3",
+        "quantity": "volume"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bearing inner lower deck has volume = 0.22463 m^3 (south bay);"
+    },
+    {
+      "id": "TN0000032",
+      "subject_id": "S00031",
+      "subject": "bracket outer loading platform",
+      "property": "material",
+      "value": {
+        "type": "string",
+        "text": "stainless steel"
+      },
+      "tags": [
+        "south bay"
+      ],
+      "statement": "bracket outer loading platform has material = \"stainless steel\" (south bay);"
+    }
+  ],
+  "name": "Engineering projection stress"
+}

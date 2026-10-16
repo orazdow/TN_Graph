@@ -2,7 +2,7 @@
 
 The network uses d3-dag 1.2.2 for node placement and routed connection points. Graph preparation, connection paths, labels, p5 drawing, and interaction live together in src/graph-render.js. Facts and subject identities remain in Engine; changing a layout does not change the assertions.
 
-Choose **Layout** at the top of the sidebar, change settings, and the view updates automatically. Numeric edits use a brief delay while typing. The Inspector tab is currently a placeholder. **Reset layout** restores the defaults without clearing data, filters, selection, or the literal-node checkbox.
+Choose **Layout** at the top of the sidebar, change settings, and the view updates automatically. Numeric edits use a brief delay while typing. The Inspector tab displays selected facts in a field/value table, or incoming and outgoing facts for a selected subject. Selecting a connection, literal node, subject, or fact row opens Inspector; returning to Layout preserves the current layout controls. **Reset layout** restores the defaults without clearing data, filters, selection, or the literal-node checkbox.
 
 ## Layouts
 
@@ -20,9 +20,9 @@ All three support top-to-bottom, bottom-to-top, left-to-right, and right-to-left
 - Crossing passes apply to the two-layer heuristic.
 - Longest-path layering can assign ranks from either end.
 
-Topological layering automatically uses matching topological coordinates. The default is simplex layering, two-layer crossing reduction with 24 passes, and simplex coordinates.
+Topological layering automatically uses matching topological coordinates. The default is simplex layering, two-layer crossing reduction with 24 passes, and greedy coordinates.
 
-## Grid options
+## Grid options (currently hidden in the UI)
 
 Choose greedy or optimal lane assignment. Compression is available for both; assignment from the top and expansion in both directions apply to the greedy method.
 
