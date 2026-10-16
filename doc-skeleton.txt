@@ -1,0 +1,37 @@
+TN graph connectivity tool
+
+running:
+[build / serve commands]
+
+function:
+
+This graph library shows multiple views into a selected set of true numbers.
+This can include reference connectivity, and interactive filters.
+Other ways to slice and reduce the data into visualizations can be added readily, including planar projection 
+different sorting topologies. These are not currently added.
+
+implementation:
+
+This library uses thee layers.
+--graph construction [some sentences about how it uses d3-dag and what this does 
+--acquisition [few sentences on how it incorporates new data and processes or filters it]
+(set operations in data inclusion can be added later)
+--rendering [some sentences on how the rendering works and how it uses d3 js]
+
+
+concept:
+[brief paragraph on the TN data concept and why its useful to have an advanced graph tool]
+
+For example
+
+plate outer west bay has temperature = 347.33 K (design revision B, north bay);
+
+bolt rear service bay has coupled shaft = shaft inner lower deck (design revision A, design revision B);
+
+shaft inner lower deck has diameter = 41.3 mm;
+
+plate outer west bay has fastener = bolt rear service bay (design revision B, workshop);
+
+
+integration:
+[brief explanation on how this can be incorporated into a python or ipynb webview and live updated]
