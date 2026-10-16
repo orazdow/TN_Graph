@@ -151,8 +151,7 @@ select:disabled { cursor: default; opacity: .5; }
 .sidebar-selector select { width: 100%; max-width: none; }
 .sidebar-content { flex: 1; min-height: 0; overflow-y: auto; }
 #inspector-panel { padding: 16px; }
-.drawing-toggles { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 16px; font-size: 12px; }
-.drawing-toggles label { display: flex; align-items: center; gap: 5px; }
+ .network-view-control { margin-bottom: 16px; }
 .check-options { flex-direction: column; gap: 8px; }
 .layout-actions { position: sticky; bottom: -16px; padding: 12px 0; background: #fbfcfd; border-top: 1px solid #e2e8ed; }
 @media (max-width: 700px) { .sidebar { height: 540px; } }

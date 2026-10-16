@@ -70,7 +70,7 @@ async function render() {
   if (selection?.factId && !snapshot.facts.some(fact => fact.id === selection.factId)) selection = null;
   if (selection?.subjectId && !snapshot.subjects.some(subject => subject.id === selection.subjectId)) selection = null;
   renderSources(ui.datasets, snapshot.sources, sourceId => { engine.remove(sourceId); render(); });
-  const graph = createGraph(snapshot, facts, {includeLiterals: ui.literals.checked, filtered: Object.values(filters).some(Boolean)});
+  const graph = createGraph(snapshot, facts, {includeLiterals: ui['network-view'].value === 'all', filtered: Object.values(filters).some(Boolean)});
   renderSelection();
   ui.counts.textContent = snapshot.subjects.length + ' subjects · ' + facts.length + ' / ' + snapshot.facts.length + ' facts · ' + graph.edges.length + ' edges';
   const revision = ++layoutRevision;
@@ -161,7 +161,6 @@ ui['layout-reset'].addEventListener('click', () => {
   ui['layout-form'].reset();
   applyLayout();
 });
-ui.literals.addEventListener('change', render);
-ui.labels.addEventListener('change', () => network.setLabels(ui.labels.checked));
+ui['network-view'].addEventListener('change', render);
 ui.fit.addEventListener('click', () => network.fit());
 render();

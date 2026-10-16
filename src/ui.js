@@ -66,9 +66,12 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
             </section>
           <section id="layout-panel" class="layout-panel" aria-label="Layout">
             <h2>Layout &amp; appearance</h2><p id="layout-summary">Sugiyama · top to bottom</p>
-            <div class="drawing-toggles">            <label title="Show numeric and string values as small square nodes"><input id="literals" type="checkbox" checked> Literal nodes</label>
-            <label title="Labels avoid nodes and other labels. Select a connection to inspect its property."><input id="labels" type="checkbox"> Edge labels</label>
-</div>
+            <div class="layout-grid network-view-control">
+              <label>Network view<select id="network-view">
+                <option value="references">Reference connectivity</option>
+                <option value="all" selected>All values</option>
+              </select></label>
+            </div>
             <form id="layout-form">
               <div class="layout-grid">
                 <label>Layout<select id="layout"><option value="sugiyama">Sugiyama — layered</option><option value="zherebko">Zherebko — linear</option></select></label>
@@ -115,7 +118,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
   const get = id => host.querySelector('#' + id);
   const controls = Object.fromEntries([
     'sample', 'add-json', 'files', 'datasets', 'query', 'property', 'tag',
-    'reset', 'layout', 'literals', 'labels', 'fit', 'network', 'table',
+    'reset', 'layout', 'network-view', 'fit', 'network', 'table',
     'counts', 'notice', 'error', 'inspector', 'inspection-hint',
     'sidebar-view', 'statements', 'statements-count',
     'layout-panel', 'layout-form', 'layout-summary', 'layout-status', 'layout-reset',

@@ -167,7 +167,6 @@ export class NetworkRenderer {
     this.graph = {nodes: [], edges: []};
     this.geometry = {positions: new Map(), routes: new Map()};
     this.selection = null;
-    this.labels = false;
     this.edgeStyle = 'curved';
     this.subjectLabelSize = 12;
     this.valueLabelSize = 12;
@@ -266,7 +265,6 @@ export class NetworkRenderer {
   }
 
   setSelection(selection) { this.selection = selection; this.redraw(); }
-  setLabels(show) { this.labels = show; this.redraw(); }
   redraw() { if (this.ready) this.p.redraw(); }
 
   resize() {
@@ -327,7 +325,7 @@ export class NetworkRenderer {
       }
     }
     p.textSize(fontSize);
-    const labelItems = [...edges].reverse().filter(edge => this.labels || activeEdge(edge)).map(edge => ({
+    const labelItems = [...edges].reverse().map(edge => ({
       edge, points: this.paths.get(edge.id).points, width: p.textWidth(edge.label),
     }));
     p.textAlign(p.CENTER, p.CENTER);
