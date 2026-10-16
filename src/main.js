@@ -13,6 +13,7 @@ let network;
 const ui = createUI(document.querySelector('#app'), {onViewChange() { network?.resize(); }});
 let selection = null;
 let page = 0;
+let tableField = null;
 let snapshot = engine.snapshot();
 let facts = [];
 let tableFacts = [];
@@ -36,7 +37,8 @@ function select(next) {
 
 function renderSelection() {
   renderTable(ui.table, tableFacts, {
-    tableFilters,
+    tableFilters, tableField,
+    onColumn(field) { tableField = field; page = 0; renderSelection(); },
     onFilter(field, key, multiple) {
       tableFilters = toggleTableFilter(tableFilters, field, key, multiple);
       render();

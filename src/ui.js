@@ -1,4 +1,4 @@
-import {formatValue, factFieldKey, matchesTableFilters} from './engine.js';
+import {formatValue, factFieldKey, matchesTableFilters, tableColumnEntries} from './engine.js';
 
 export function createUI(host, {onViewChange = () => {}} = {}) {
   host.innerHTML = `
@@ -219,11 +219,12 @@ export function renderOptions(select, values, placeholder) {
 }
 
 export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectId, onSelect, onPage,
-  tableFilters = {subject: new Set(), property: new Set(), value: new Set()}, onFilter, onClearFilters}) {
+  tableFilters = {subject: new Set(), property: new Set(), value: new Set()}, onFilter, onClearFilters,
+  tableField = null, onColumn}) {
   const tools = host.querySelector('.table-filter-tools');
   tools.replaceChildren();
   const hint = document.createElement('p');
-  hint.textContent = 'Click Subject, Property or Value cells to filter. Ctrl-click adds or removes choices. Dimmed rows do not match.';
+  hint.textContent = 'Click a column header to list its unique entries. Click entries to filter; Ctrl-click adds or removes choices. Dimmed rows do not match.';
   tools.append(hint);
   const chips = document.createElement('div');
   chips.className = 'table-filter-chips';
@@ -249,18 +250,70 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
     chips.append(clear);
   }
   tools.append(chips);
+  const head = host.querySelector('thead');
+  head.replaceChildren();
+  const header = head.insertRow();
+  function columnButton(field) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'table-column-button';
+    button.textContent = names[field];
+    button.setAttribute('aria-pressed', String(tableField === field));
+    button.title = 'Show unique ' + field + ' entries';
+    button.addEventListener('click', () => onColumn(tableField === field ? null : field));
+    return button;
+  }
+  if (tableField) {
+    const title = document.createElement('th');
+    title.colSpan = 2;
+    title.className = 'table-column-navigation';
+    const all = document.createElement('button');
+    all.type = 'button';
+    all.className = 'table-column-button';
+    all.textContent = 'All facts';
+    all.addEventListener('click', () => onColumn(null));
+    title.append(all);
+    for (const field of ['subject', 'property', 'value']) title.append(columnButton(field));
+    header.append(title);
+  } else {
+    for (const field of ['subject', 'property', 'value', 'tags', 'dataset']) {
+      const title = document.createElement('th');
+      title.scope = 'col';
+      if (field in names) title.append(columnButton(field));
+      else title.textContent = field === 'tags' ? 'Tags' : 'Dataset';
+      header.append(title);
+    }
+  }
+  const entries = tableField ? tableColumnEntries(facts, tableField) : facts;
   const pageSize = 100;
-  const pages = Math.max(1, Math.ceil(facts.length / pageSize));
+  const pages = Math.max(1, Math.ceil(entries.length / pageSize));
   page = Math.min(page, pages - 1);
   const body = host.querySelector('tbody');
   body.replaceChildren();
   if (!facts.length) {
     const cell = body.insertRow().insertCell();
-    cell.colSpan = 5;
+    cell.colSpan = tableField ? 2 : 5;
     cell.className = 'empty-table';
     cell.textContent = 'No facts to display.';
   }
-  for (const fact of facts.slice(page * pageSize, (page + 1) * pageSize)) {
+  if (tableField) {
+    const matchingKeys = new Set(facts.filter(fact => matchesTableFilters(fact, tableFilters)).map(fact => factFieldKey(fact, tableField)));
+    for (const entry of entries.slice(page * pageSize, (page + 1) * pageSize)) {
+      const row = body.insertRow();
+      row.classList.toggle('filtered-out', !matchingKeys.has(entry.key));
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'table-filter-cell';
+      button.textContent = entry.label;
+      button.setAttribute('aria-pressed', String(tableFilters[tableField].has(entry.key)));
+      button.addEventListener('click', event => onFilter(tableField, entry.key, event.ctrlKey || event.metaKey));
+      row.insertCell().append(button);
+      const count = row.insertCell();
+      count.className = 'column-entry-count';
+      count.textContent = entry.count + (entry.count === 1 ? ' fact' : ' facts');
+    }
+  }
+  for (const fact of (tableField ? [] : facts.slice(page * pageSize, (page + 1) * pageSize))) {
     const row = body.insertRow();
     row.tabIndex = 0;
     const selected = fact.id === selectedId || Boolean(selectedSubjectId && [fact.subjectId, fact.targetId].includes(selectedSubjectId));
@@ -303,7 +356,9 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
     button.addEventListener('click', () => onPage(page + delta));
     nav.append(button);
   }
-  nav.append(document.createTextNode('Page ' + (page + 1) + ' of ' + pages + ' · ' + facts.filter(fact => matchesTableFilters(fact, tableFilters)).length + ' / ' + facts.length + ' matching facts'));
+  nav.append(document.createTextNode('Page ' + (page + 1) + ' of ' + pages + ' · ' + (tableField
+    ? entries.length + ' unique ' + ({subject: 'subjects', property: 'properties', value: 'values'})[tableField]
+    : facts.filter(fact => matchesTableFilters(fact, tableFilters)).length + ' / ' + facts.length + ' matching facts')));
 }
 
 export function renderInspector(host, fact) {

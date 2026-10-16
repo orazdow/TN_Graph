@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {Engine, selectFacts, validateDataset, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter} from '../src/engine.js';
+import {Engine, selectFacts, validateDataset, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter, tableColumnEntries} from '../src/engine.js';
 
 const fixture = () => ({format: 'synthetic-truenumbers', format_version: 1,
   subjects: [{id: 's1', phrase: 'ship Aurora', category: 'ship', cluster: 2}, {id: 's2', phrase: 'company Meridian'}],
@@ -169,4 +169,18 @@ test('value column selection distinguishes units, types and reference targets', 
   assert.ok(!matchesTableFilters({...number, value: {...number.value, unit: 'kg'}}, selections));
   assert.ok(!matchesTableFilters({...number, value: {type: 'string', text: '1200 tonnes'}}, selections));
   assert.notEqual(factFieldKey(reference, 'value'), factFieldKey({...reference, value: {...reference.value, subject: 'other company'}}, 'value'));
+});
+
+test('column browsing lists distinct subjects, properties and typed values with fact counts', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const facts = engine.snapshot().facts;
+  const subjects = tableColumnEntries(facts, 'subject');
+  assert.deepEqual(subjects.map(entry => [entry.label, entry.count]), [['company Meridian', 1], ['ship Aurora', 2]]);
+  assert.deepEqual(tableColumnEntries(facts, 'property').map(entry => entry.label), ['mass', 'owner', 'status']);
+  const mass = facts.find(fact => fact.property === 'mass');
+  const entries = tableColumnEntries([mass, {...mass, id: 'copy'}, {...mass, value: {...mass.value, unit: 'kg'}}], 'value');
+  assert.equal(entries.length, 2);
+  assert.equal(entries.find(entry => entry.label === '1200 tonnes').count, 2);
+  assert.equal(entries.find(entry => entry.label === '1200 kg').count, 1);
+  assert.deepEqual(tableColumnEntries([], 'subject'), []);
 });

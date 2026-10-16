@@ -150,3 +150,13 @@ export function toggleTableFilter(selections, field, key, multiple = false) {
   } else next.add(key);
   return {...selections, [field]: next};
 }
+
+export function tableColumnEntries(facts, field) {
+  const entries = new Map();
+  for (const fact of facts) {
+    const key = factFieldKey(fact, field);
+    if (!entries.has(key)) entries.set(key, {key, label: field === 'value' ? formatValue(fact.value) : fact[field], count: 0});
+    entries.get(key).count++;
+  }
+  return [...entries.values()].sort((a, b) => a.label.localeCompare(b.label, undefined, {numeric: true}));
+}

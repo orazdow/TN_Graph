@@ -185,3 +185,9 @@ select:disabled { cursor: default; opacity: .5; }
 
 .table-filter-chips .clear-table-selections { background: #dceef9; border-color: #a9cee5; color: #285773; }
 .table-filter-chips .clear-table-selections:hover { background: #cbe5f5; }
+
+.table-column-button { font: inherit; text-transform: none; letter-spacing: normal; background: transparent; border-color: transparent; padding: 4px 8px; }
+.table-column-button:hover { background: #dcebee; }
+.table-column-button[aria-pressed="true"] { background: #d9eeee; border-color: #75afb4; color: #19585f; }
+.table-column-navigation .table-column-button { margin-right: 6px; }
+.column-entry-count { width: 90px; white-space: nowrap; color: #71848e; text-align: right; }
