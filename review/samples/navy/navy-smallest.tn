@@ -1,0 +1,5 @@
+patrol vessel Kestrel has length = 83.3 m (Kestrel, design revision B);
+diesel engine Kestrel port has rated power = 1958.8 kW (Kestrel, design revision B);
+propeller shaft Kestrel port has diameter = 208.9 mm (Kestrel, design revision B);
+patrol vessel Kestrel has main engine = diesel engine Kestrel port (Kestrel, design revision B);
+diesel engine Kestrel port has drive shaft = propeller shaft Kestrel port (Kestrel, design revision B);

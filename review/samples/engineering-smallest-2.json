@@ -1,0 +1,83 @@
+{
+  "format": "synthetic-truenumbers",
+  "format_version": 1,
+  "name": "Engineering smallest 2",
+  "subjects": [
+    {
+      "id": "plate",
+      "phrase": "plate outer west bay"
+    },
+    {
+      "id": "bolt",
+      "phrase": "bolt rear service bay"
+    },
+    {
+      "id": "shaft",
+      "phrase": "shaft inner lower deck"
+    }
+  ],
+  "facts": [
+    {
+      "id": "area",
+      "subject_id": "plate",
+      "subject": "plate outer west bay",
+      "property": "area",
+      "value": {
+        "type": "numeric",
+        "magnitude": 38,
+        "unit": "m^2",
+        "quantity": "area"
+      },
+      "tags": [
+        "west bay",
+        "design revision B"
+      ],
+      "statement": "plate outer west bay has area = 38m^2 (west bay, design revision B)"
+    },
+    {
+      "id": "fastener",
+      "subject_id": "plate",
+      "subject": "plate outer west bay",
+      "property": "fastener",
+      "value": {
+        "type": "reference",
+        "subject_id": "bolt",
+        "subject": "bolt rear service bay"
+      },
+      "tags": [
+        "design revision B"
+      ],
+      "statement": "plate outer west bay has fastener = bolt rear service bay (design revision B);"
+    },
+    {
+      "id": "shaft-reference",
+      "subject_id": "bolt",
+      "subject": "bolt rear service bay",
+      "property": "shaft",
+      "value": {
+        "type": "reference",
+        "subject_id": "shaft",
+        "subject": "shaft inner lower deck"
+      },
+      "tags": [
+        "design revision A",
+        "design revision B"
+      ],
+      "statement": "bolt rear service bay has shaft = shaft inner lower deck (design revision A, design revision B);"
+    },
+    {
+      "id": "diameter",
+      "subject_id": "shaft",
+      "subject": "shaft inner lower deck",
+      "property": "diameter",
+      "value": {
+        "type": "numeric",
+        "magnitude": 41.3,
+        "unit": "mm",
+        "quantity": "length"
+      },
+      "tags": [],
+      "statement": "shaft inner lower deck has diameter = 41.3 mm;"
+    }
+  ]
+}

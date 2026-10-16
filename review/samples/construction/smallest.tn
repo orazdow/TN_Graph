@@ -1,0 +1,12 @@
+bolt rear service bay has coupled shaft = shaft inner lower deck (design revision A, design revision B);
+plate outer west bay has temperature = 347.33 K (design revision B, north bay);
+shaft inner lower deck has wall thickness = 9.71 mm (workshop);
+shaft inner lower deck has anchor bolt = bolt rear service bay (north bay);
+bolt rear service bay has diameter = 138.8 mm;
+shaft inner lower deck has diameter = 41.3 mm;
+bolt rear service bay has coupled shaft = shaft inner lower deck (design revision B, workshop);
+bolt rear service bay has torque = 5396 N*m (workshop);
+plate outer west bay has volume = 0.01861 m^3 (design revision A, design revision B);
+shaft inner lower deck has deflection = 2.88 mm (design revision A, workshop);
+bolt rear service bay has span = 5.687 m (design revision B, workshop);
+plate outer west bay has fastener = bolt rear service bay (design revision B, workshop);

@@ -1,0 +1,4 @@
+plate outer west bay has area = 38m^2 (west bay, design revision B)
+plate outer west bay has fastener = bolt rear service bay (design revision B);
+bolt rear service bay has shaft = shaft inner lower deck (design revision A, design revision B);
+shaft inner lower deck has diameter = 41.3 mm;
