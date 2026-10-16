@@ -1,4 +1,4 @@
-import {Engine, selectFacts, groupFacts} from './engine.js';
+import {Engine, selectFacts, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderStatements} from './ui.js';
@@ -15,6 +15,8 @@ let selection = null;
 let page = 0;
 let snapshot = engine.snapshot();
 let facts = [];
+let tableFacts = [];
+let tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
 network = new NetworkRenderer(ui.network, {p5: window.p5, onSelect: select});
 
 function showError(message = '') {
@@ -26,14 +28,23 @@ function select(next) {
   selection = next;
   if (next) ui.setSidebar('inspector');
   if (next?.factId) {
-    const index = facts.findIndex(fact => fact.id === next.factId);
+    const index = tableFacts.findIndex(fact => fact.id === next.factId);
     if (index >= 0) page = Math.floor(index / 100);
   }
   renderSelection();
 }
 
 function renderSelection() {
-  renderTable(ui.table, facts, {
+  renderTable(ui.table, tableFacts, {
+    tableFilters,
+    onFilter(field, key, multiple) {
+      tableFilters = toggleTableFilter(tableFilters, field, key, multiple);
+      render();
+    },
+    onClearFilters() {
+      tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
+      render();
+    },
     page, selectedId: selection?.factId, selectedSubjectId: selection?.subjectId,
     onSelect(id) { select({factId: id}); },
     onPage(next) { page = next; renderSelection(); ui.table.scrollTop = 0; },
@@ -64,14 +75,19 @@ async function render() {
   renderOptions(ui.property, snapshot.facts.map(fact => fact.property), 'All properties');
   renderOptions(ui.tag, snapshot.facts.flatMap(fact => fact.tags), 'All tags');
   const filters = {query: ui.query.value, property: ui.property.value, tag: ui.tag.value};
-  facts = selectFacts(snapshot, filters);
+  for (const field of ['subject', 'property', 'value']) {
+    const available = new Set(snapshot.facts.map(fact => factFieldKey(fact, field)));
+    tableFilters[field] = new Set([...tableFilters[field]].filter(key => available.has(key)));
+  }
+  tableFacts = selectFacts(snapshot, filters);
+  facts = tableFacts.filter(fact => matchesTableFilters(fact, tableFilters));
   renderStatements(ui.statements, facts);
   ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' unique statements · current filters';
-  page = Math.min(page, Math.max(0, Math.ceil(facts.length / 100) - 1));
+  page = Math.min(page, Math.max(0, Math.ceil(tableFacts.length / 100) - 1));
   if (selection?.factId && !snapshot.facts.some(fact => fact.id === selection.factId)) selection = null;
   if (selection?.subjectId && !snapshot.subjects.some(subject => subject.id === selection.subjectId)) selection = null;
   renderSources(ui.datasets, snapshot.sources, sourceId => { engine.remove(sourceId); render(); });
-  const graph = createGraph(snapshot, facts, {view: ui['network-view'].value, includeLiterals: ui['network-view'].value === 'all', filtered: Object.values(filters).some(Boolean)});
+  const graph = createGraph(snapshot, facts, {view: ui['network-view'].value, includeLiterals: ui['network-view'].value === 'all', filtered: Object.values(filters).some(Boolean) || Object.values(tableFilters).some(values => values.size)});
   renderSelection();
   ui.counts.textContent = snapshot.subjects.length + ' subjects · ' + facts.length + ' / ' + snapshot.facts.length + ' facts · ' + graph.edges.length + ' edges';
   const revision = ++layoutRevision;
@@ -129,7 +145,10 @@ function filter() { page = 0; render(); }
 ui.query.addEventListener('input', filter);
 ui.property.addEventListener('change', filter);
 ui.tag.addEventListener('change', filter);
-ui.reset.addEventListener('click', filter);
+ui.reset.addEventListener('click', () => {
+  tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
+  filter();
+});
 let layoutTimer;
 function applyLayout({appearanceOnly = false} = {}) {
   clearTimeout(layoutTimer);

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {Engine, selectFacts, validateDataset, groupFacts} from '../src/engine.js';
+import {Engine, selectFacts, validateDataset, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter} from '../src/engine.js';
 
 const fixture = () => ({format: 'synthetic-truenumbers', format_version: 1,
   subjects: [{id: 's1', phrase: 'ship Aurora', category: 'ship', cluster: 2}, {id: 's2', phrase: 'company Meridian'}],
@@ -132,4 +132,41 @@ test('display grouping compares typed values and tag sets without merging differ
     {...fact, value: {...fact.value, unit: 'kg'}},
     {...fact, value: {type: 'string', text: '1200 tonnes'}},
   ]) assert.equal(groupFacts([fact, different]).length, 2);
+});
+
+test('table selections use OR within columns, AND across columns, and compose with existing filters', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const snapshot = engine.snapshot();
+  const [owner, mass, status] = snapshot.facts;
+  let selections = {subject: new Set(), property: new Set(), value: new Set()};
+  const matching = () => snapshot.facts.filter(fact => matchesTableFilters(fact, selections));
+  assert.equal(matching().length, 3);
+  selections = toggleTableFilter(selections, 'subject', owner.subject);
+  assert.deepEqual(matching(), [owner, mass]);
+  selections = toggleTableFilter(selections, 'subject', status.subject, true);
+  assert.equal(matching().length, 3);
+  selections = toggleTableFilter(selections, 'property', 'mass');
+  assert.deepEqual(matching(), [mass]);
+  selections = toggleTableFilter(selections, 'property', 'owner', true);
+  assert.deepEqual(matching(), [owner, mass]);
+  assert.deepEqual(selectFacts(snapshot, {tag: 'verified'}).filter(fact => matchesTableFilters(fact, selections)), [owner]);
+  selections = toggleTableFilter(selections, 'property', 'mass', true);
+  assert.deepEqual(matching(), [owner]);
+  selections = toggleTableFilter(selections, 'subject', owner.subject);
+  assert.equal(selections.subject.size, 1, 'plain click replaces multi-selection in its column');
+  selections = toggleTableFilter(selections, 'subject', owner.subject);
+  assert.equal(selections.subject.size, 0, 'click the only selected choice to clear');
+  selections = toggleTableFilter(selections, 'value', factFieldKey(mass, 'value'));
+  assert.equal(matching().length, 0, 'incompatible column filters can yield zero matches');
+});
+
+test('value column selection distinguishes units, types and reference targets', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const [reference, number] = engine.snapshot().facts;
+  const key = factFieldKey(number, 'value');
+  const selections = {subject: new Set(), property: new Set(), value: new Set([key])};
+  assert.ok(matchesTableFilters(number, selections));
+  assert.ok(!matchesTableFilters({...number, value: {...number.value, unit: 'kg'}}, selections));
+  assert.ok(!matchesTableFilters({...number, value: {type: 'string', text: '1200 tonnes'}}, selections));
+  assert.notEqual(factFieldKey(reference, 'value'), factFieldKey({...reference, value: {...reference.value, subject: 'other company'}}, 'value'));
 });

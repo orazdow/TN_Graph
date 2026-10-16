@@ -126,3 +126,27 @@ export function groupFacts(facts) {
   }
   return [...groups.values()];
 }
+
+/** Exact column identity; numeric units and value types remain distinct. */
+export function factFieldKey(fact, field) {
+  if (field === 'subject') return fact.subject;
+  if (field === 'property') return fact.property;
+  const value = fact.value;
+  if (value.type === 'reference') return identity(value.type, value.subject);
+  if (value.type === 'numeric') return identity(value.type, value.magnitude, value.unit, value.quantity ?? null);
+  return identity(value.type, value.text);
+}
+
+export function matchesTableFilters(fact, selections) {
+  return ['subject', 'property', 'value'].every(field =>
+    !selections[field].size || selections[field].has(factFieldKey(fact, field)));
+}
+
+export function toggleTableFilter(selections, field, key, multiple = false) {
+  const next = new Set(multiple ? selections[field] : []);
+  if (selections[field].has(key)) {
+    if (multiple || selections[field].size === 1) next.delete(key);
+    else next.add(key);
+  } else next.add(key);
+  return {...selections, [field]: next};
+}

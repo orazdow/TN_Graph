@@ -173,3 +173,15 @@ select:disabled { cursor: default; opacity: .5; }
 .statement-list td { padding: 12px 0; white-space: pre-wrap; overflow-wrap: anywhere; vertical-align: top; }
 .statement-list tbody tr:has(td:not([colspan])) { cursor: text; }
 .statement-list tbody tr:hover { background: transparent; }
+
+.table-filter-tools { padding: 12px; border-bottom: 1px solid #e0e6eb; }
+.table-filter-tools p { font-size: 12px; }
+.table-filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.table-filter-chips button { margin-top: 8px; font-size: 11px; padding: 4px 7px; }
+.table-filter-cell { display: block; width: 100%; text-align: left; font: inherit; padding: 4px 6px; border-color: transparent; background: transparent; overflow-wrap: anywhere; }
+.table-filter-cell[aria-pressed="true"] { background: #d9eeee; border-color: #75afb4; color: #19585f; }
+#table tr.filtered-out td { color: #8c9ba3; }
+#table tr.filtered-out .table-filter-cell:not([aria-pressed="true"]) { color: #8c9ba3; }
+
+.table-filter-chips .clear-table-selections { background: #dceef9; border-color: #a9cee5; color: #285773; }
+.table-filter-chips .clear-table-selections:hover { background: #cbe5f5; }

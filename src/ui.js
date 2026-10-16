@@ -1,4 +1,4 @@
-import {formatValue} from './engine.js';
+import {formatValue, factFieldKey, matchesTableFilters} from './engine.js';
 
 export function createUI(host, {onViewChange = () => {}} = {}) {
   host.innerHTML = `
@@ -37,6 +37,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
             <div class="empty-state"><strong>No network to display</strong><p>Your network will appear here.</p></div>
           </div>
           <div id="table" class="view-panel" role="tabpanel" aria-labelledby="table-tab" hidden>
+            <div class="table-filter-tools"></div>
             <table>
               <thead><tr><th scope="col">Subject</th><th scope="col">Property</th><th scope="col">Value</th><th scope="col">Tags</th><th scope="col">Dataset</th></tr></thead>
               <tbody><tr><td colspan="5" class="empty-table">No facts to display.</td></tr></tbody>
@@ -217,7 +218,37 @@ export function renderOptions(select, values, placeholder) {
   select.value = options.includes(previous) ? previous : '';
 }
 
-export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectId, onSelect, onPage}) {
+export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectId, onSelect, onPage,
+  tableFilters = {subject: new Set(), property: new Set(), value: new Set()}, onFilter, onClearFilters}) {
+  const tools = host.querySelector('.table-filter-tools');
+  tools.replaceChildren();
+  const hint = document.createElement('p');
+  hint.textContent = 'Click Subject, Property or Value cells to filter. Ctrl-click adds or removes choices. Dimmed rows do not match.';
+  tools.append(hint);
+  const chips = document.createElement('div');
+  chips.className = 'table-filter-chips';
+  const names = {subject: 'Subject', property: 'Property', value: 'Value'};
+  for (const field of ['subject', 'property', 'value']) {
+    for (const key of tableFilters[field]) {
+      const fact = facts.find(fact => factFieldKey(fact, field) === key);
+      const label = field === 'value' ? (fact ? formatValue(fact.value) : JSON.parse(key).slice(1, 3).join(' ')) : key;
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.textContent = names[field] + ': ' + label + ' ×';
+      chip.setAttribute('aria-label', 'Remove ' + names[field] + ' filter: ' + label);
+      chip.addEventListener('click', () => onFilter(field, key, true));
+      chips.append(chip);
+    }
+  }
+  if (chips.childElementCount) {
+    const clear = document.createElement('button');
+    clear.type = 'button';
+    clear.textContent = 'Clear table selections';
+    clear.className = 'clear-table-selections';
+    clear.addEventListener('click', onClearFilters);
+    chips.append(clear);
+  }
+  tools.append(chips);
   const pageSize = 100;
   const pages = Math.max(1, Math.ceil(facts.length / pageSize));
   page = Math.min(page, pages - 1);
@@ -235,9 +266,25 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
     const selected = fact.id === selectedId || Boolean(selectedSubjectId && [fact.subjectId, fact.targetId].includes(selectedSubjectId));
     row.classList.toggle('selected', selected);
     row.setAttribute('aria-selected', String(selected));
-    for (const value of [fact.subject, fact.property, formatValue(fact.value), fact.tags.join(', '), fact.sourceName]) {
-      row.insertCell().textContent = value;
+    row.classList.toggle('filtered-out', !matchesTableFilters(fact, tableFilters));
+    for (const field of ['subject', 'property', 'value']) {
+      const cell = row.insertCell();
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'table-filter-cell';
+      const key = factFieldKey(fact, field);
+      button.textContent = field === 'value' ? formatValue(fact.value) : fact[field];
+      button.setAttribute('aria-pressed', String(tableFilters[field].has(key)));
+      button.title = 'Filter by ' + field + '; Ctrl-click to select multiple';
+      button.addEventListener('click', event => {
+        event.stopPropagation();
+        onFilter(field, key, event.ctrlKey || event.metaKey);
+      });
+      button.addEventListener('keydown', event => event.stopPropagation());
+      cell.append(button);
     }
+    row.insertCell().textContent = fact.tags.join(', ');
+    row.insertCell().textContent = fact.sourceName;
     row.addEventListener('click', () => onSelect(fact.id));
     row.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -256,7 +303,7 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
     button.addEventListener('click', () => onPage(page + delta));
     nav.append(button);
   }
-  nav.append(document.createTextNode('Page ' + (page + 1) + ' of ' + pages + ' · ' + facts.length + ' facts'));
+  nav.append(document.createTextNode('Page ' + (page + 1) + ' of ' + pages + ' · ' + facts.filter(fact => matchesTableFilters(fact, tableFilters)).length + ' / ' + facts.length + ' matching facts'));
 }
 
 export function renderInspector(host, fact) {
