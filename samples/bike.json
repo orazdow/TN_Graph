@@ -1,0 +1,1001 @@
+[
+  {
+    "_id": "0ac2692f-827c-4bf6-8973-2821b9cd92c3",
+    "subject": "bicycle",
+    "property": "component",
+    "trueStatement": "bicycle has component = handlebar assembly of bicycle (product, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:53:40.258Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "product",
+      "structure"
+    ],
+    "tagMeta": {
+      "product": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:53:40.263532+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:53:40.263532+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bicycle/assembly:handlebar",
+      "html": "bicycle/assembly:handlebar"
+    }
+  },
+  {
+    "_id": "0fff46eb-6045-4b97-b95d-1c53a3ec57b5",
+    "subject": "assembly:frame/fork",
+    "property": "type",
+    "trueStatement": "fork of frame assembly has type = component (part, component);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:36:29.995Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      },
+      "component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "component",
+      "html": "component"
+    }
+  },
+  {
+    "_id": "1133fd51-a0d4-493c-a5a8-59cea94cc9c9",
+    "subject": "connection:threaded:tube:head:to:stem",
+    "property": "endpoint",
+    "trueStatement": "stem to head tube threaded connection has endpoint = head tube of frame assembly (process-connection, part);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:55:50.643Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "part",
+      "process-connection"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      },
+      "process-connection": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/tube:head",
+      "html": "assembly:frame/tube:head"
+    }
+  },
+  {
+    "_id": "11e277f5-eff2-4486-994c-f4c2c1de1345",
+    "subject": "bicycle/assembly:frame",
+    "property": "component",
+    "trueStatement": "frame assembly of bicycle has component = fork of frame assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:36:29.995Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/fork",
+      "html": "assembly:frame/fork"
+    }
+  },
+  {
+    "_id": "1d3b1a16-f103-483e-832a-1dd7de5330e5",
+    "subject": "assembly:handlebar/stem",
+    "property": "length",
+    "trueStatement": "stem of handlebar assembly has length = 9 inches (part, engineering-spec);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:54:19.338Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "engineering-spec",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      },
+      "engineering-spec": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "9 inches",
+      "magnitude": "9",
+      "tolerance": "0",
+      "html": "9 inches",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "inches"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.2286 m",
+        "magnitude": "0.2286",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "213fc0ee-92f5-464c-a12f-2db73657121a",
+    "subject": "bicycle/assembly:handlebar",
+    "property": "component",
+    "trueStatement": "handlebar assembly of bicycle has component = stem of handlebar assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:54:19.338Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:handlebar/stem",
+      "html": "assembly:handlebar/stem"
+    }
+  },
+  {
+    "_id": "2772675b-0964-4ba3-9ef5-efb3d86052e2",
+    "subject": "bicycle/assembly:handlebar",
+    "property": "type",
+    "trueStatement": "handlebar assembly of bicycle has type = assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:53:40.258Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:53:40.263532+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:53:40.263532+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly",
+      "html": "assembly"
+    }
+  },
+  {
+    "_id": "37aacc96-9f43-45c0-8ea0-12d3bc215222",
+    "subject": "assembly:handlebar/stem",
+    "property": "material",
+    "trueStatement": "stem of handlebar assembly has material = steel (part, material);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:54:19.338Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "material",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      },
+      "material": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "steel",
+      "html": "steel"
+    }
+  },
+  {
+    "_id": "42f4ed4c-18d7-41e9-a1be-c9d7cedb0158",
+    "subject": "assembly:frame/B:bolt:M5",
+    "property": "component:connected",
+    "trueStatement": "M5 bolt B of frame assembly has connected component = down tube of frame assembly (connection-component, part);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:16:10.298Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "connection-component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      },
+      "connection-component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/tube:down",
+      "html": "assembly:frame/tube:down"
+    }
+  },
+  {
+    "_id": "4f06da26-804d-4b31-9e0a-0b3d767a0d51",
+    "subject": "assembly:frame/tube:head",
+    "property": "type",
+    "trueStatement": "head tube of frame assembly has type = component (part, component);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:36:29.995Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      },
+      "component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "component",
+      "html": "component"
+    }
+  },
+  {
+    "_id": "5080e511-f9e3-440a-bfc8-002f6eb1daa2",
+    "subject": "assembly:frame/B:bolt:M5",
+    "property": "component:connected",
+    "trueStatement": "M5 bolt B of frame assembly has connected component = water bottle cradle of frame assembly (connection-component, part);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:16:10.298Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "connection-component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      },
+      "connection-component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/cradle:bottle:water",
+      "html": "assembly:frame/cradle:bottle:water"
+    }
+  },
+  {
+    "_id": "53c5dd69-2ff8-49f9-a45c-54eabeaa51f6",
+    "subject": "bicycle/assembly:frame",
+    "property": "component",
+    "trueStatement": "frame assembly of bicycle has component = down tube of frame assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:36:29.995Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/tube:down",
+      "html": "assembly:frame/tube:down"
+    }
+  },
+  {
+    "_id": "55c71f5c-71dd-40a7-b8a8-7e3e1e290270",
+    "subject": "bicycle/assembly:frame",
+    "property": "component",
+    "trueStatement": "frame assembly of bicycle has component = head tube of frame assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:36:29.995Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/tube:head",
+      "html": "assembly:frame/tube:head"
+    }
+  },
+  {
+    "_id": "5f0157fc-2f4c-483c-965a-bb0e8bd5386f",
+    "subject": "assembly:frame/A:bolt:M5",
+    "property": "length",
+    "trueStatement": "M5 bolt A of frame assembly has length = 0.8 inches (connection-component, measurement);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T15:37:56.763Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "connection-component",
+      "measurement"
+    ],
+    "tagMeta": {
+      "measurement": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T15:37:56.771755+00:00"
+      },
+      "connection-component": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T15:37:56.771755+00:00"
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "0.8 inches",
+      "magnitude": "0.8",
+      "tolerance": "0",
+      "html": "0.8 inches",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "inches"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.0203 m",
+        "magnitude": "0.02032",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "628fc54f-4773-4a5e-aab8-a52d6ccbefcb",
+    "subject": "assembly:frame/A:bolt:M5",
+    "property": "component:connected",
+    "trueStatement": "M5 bolt A of frame assembly has connected component = down tube of frame assembly (connection-component, part);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:16:10.298Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "connection-component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      },
+      "connection-component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/tube:down",
+      "html": "assembly:frame/tube:down"
+    }
+  },
+  {
+    "_id": "66f9368b-e0db-4f15-b2b9-32dda5c024d9",
+    "subject": "assembly:frame/tube:down",
+    "property": "type",
+    "trueStatement": "down tube of frame assembly has type = component (part, component);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:36:29.995Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      },
+      "component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:36:30.002024+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "component",
+      "html": "component"
+    }
+  },
+  {
+    "_id": "6e13aae3-032d-4ba5-8636-54a91d4e03b7",
+    "subject": "connection:threaded:tube:head:to:stem",
+    "property": "process:connection",
+    "trueStatement": "stem to head tube threaded connection has connection process = threading (process-connection, manufacturing);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:55:50.643Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "manufacturing",
+      "process-connection"
+    ],
+    "tagMeta": {
+      "manufacturing": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      },
+      "process-connection": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "threading",
+      "html": "threading"
+    }
+  },
+  {
+    "_id": "76d29686-4983-489a-b1ad-ffc5be9bda91",
+    "subject": "assembly:frame/A:bolt:M5",
+    "property": "component:connected",
+    "trueStatement": "M5 bolt A of frame assembly has connected component = water bottle cradle of frame assembly (connection-component, part);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:16:10.298Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "connection-component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      },
+      "connection-component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:16:10.302838+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/cradle:bottle:water",
+      "html": "assembly:frame/cradle:bottle:water"
+    }
+  },
+  {
+    "_id": "803e4fe5-e00d-4847-bafe-0ea234722c23",
+    "subject": "assembly:frame/B:bolt:M5",
+    "property": "length",
+    "trueStatement": "M5 bolt B of frame assembly has length = 0.8 inches (connection-component, measurement);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T15:37:56.763Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "connection-component",
+      "measurement"
+    ],
+    "tagMeta": {
+      "measurement": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T15:37:56.771755+00:00"
+      },
+      "connection-component": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T15:37:56.771755+00:00"
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "0.8 inches",
+      "magnitude": "0.8",
+      "tolerance": "0",
+      "html": "0.8 inches",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "inches"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.0203 m",
+        "magnitude": "0.02032",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "87876db9-6a95-471e-b3be-6f230b8d41c7",
+    "subject": "bicycle",
+    "property": "component",
+    "trueStatement": "bicycle has component = frame assembly of bicycle (product, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:33:03.170Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "product",
+      "structure"
+    ],
+    "tagMeta": {
+      "product": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:33:03.175156+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:33:03.175156+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bicycle/assembly:frame",
+      "html": "bicycle/assembly:frame"
+    }
+  },
+  {
+    "_id": "a64af3eb-6c8f-400e-925a-d29cee20940a",
+    "subject": "bicycle/assembly:frame",
+    "property": "component",
+    "trueStatement": "frame assembly of bicycle has component = water bottle cradle of frame assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:14:10.809Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:14:10.814495+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:14:10.814495+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:frame/cradle:bottle:water",
+      "html": "assembly:frame/cradle:bottle:water"
+    }
+  },
+  {
+    "_id": "ae0e35a3-1c25-4d79-93e9-7c29f2276aff",
+    "subject": "bicycle",
+    "property": "type",
+    "trueStatement": "bicycle has type = product (product);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:21:37.424Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "product"
+    ],
+    "tagMeta": {
+      "product": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:21:37.429761+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "product",
+      "html": "product"
+    }
+  },
+  {
+    "_id": "c6710dc9-0b06-4b77-a038-0ff0d9b8aa21",
+    "subject": "connection:threaded:tube:head:to:stem",
+    "property": "endpoint",
+    "trueStatement": "stem to head tube threaded connection has endpoint = stem of handlebar assembly (process-connection, part);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:55:50.643Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "part",
+      "process-connection"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      },
+      "process-connection": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly:handlebar/stem",
+      "html": "assembly:handlebar/stem"
+    }
+  },
+  {
+    "_id": "d182c007-24c8-4bf9-bf44-fed0574e207e",
+    "subject": "connection:threaded:tube:head:to:stem",
+    "property": "lubricant",
+    "trueStatement": "stem to head tube threaded connection has lubricant = type 3 grease (process-connection, specification);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:55:50.643Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "process-connection",
+      "specification"
+    ],
+    "tagMeta": {
+      "specification": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      },
+      "process-connection": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:55:50.648341+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "grease:3:type",
+      "html": "grease:3:type"
+    }
+  },
+  {
+    "_id": "e83dbf43-9dd7-4f7c-9d21-f61f568fcca6",
+    "subject": "bicycle/assembly:frame",
+    "property": "type",
+    "trueStatement": "frame assembly of bicycle has type = assembly (assembly, structure);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T20:33:03.170Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "assembly",
+      "structure"
+    ],
+    "tagMeta": {
+      "assembly": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:33:03.175156+00:00"
+      },
+      "structure": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T20:33:03.175156+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "assembly",
+      "html": "assembly"
+    }
+  },
+  {
+    "_id": "e9f2069b-7e33-41d7-b49e-603d9c25b977",
+    "subject": "assembly:handlebar/stem",
+    "property": "type",
+    "trueStatement": "stem of handlebar assembly has type = part (part, component);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-16T16:54:19.338Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      },
+      "component": {
+        "immutable": true,
+        "dateCreated": "2026-10-16T16:54:19.343786+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "part",
+      "html": "part"
+    }
+  },
+  {
+    "_id": "ea78738d-ec26-4637-a639-811bdc533538",
+    "subject": "assembly:frame/cradle:bottle:water",
+    "property": "type",
+    "trueStatement": "water bottle cradle of frame assembly has type = part (part, component);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:14:10.809Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "component",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:14:10.814495+00:00"
+      },
+      "component": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:14:10.814495+00:00"
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "part",
+      "html": "part"
+    }
+  },
+  {
+    "_id": "f189fef7-fabf-4d2e-86b2-f9d432ee7a9f",
+    "subject": "assembly:frame/tube:down",
+    "property": "length",
+    "trueStatement": "down tube of frame assembly has length = 17 inches (part, engineering-spec);",
+    "numberspace": "_system:numberspace:product_code:truenumbers/bicycle-product2",
+    "agent": {
+      "dateCreated": "2026-10-15T21:13:24.372Z",
+      "creatorAgent": {
+        "email": "truenumai@gmail.com",
+        "userId": "de6555f5-8005-4fa7-9f4e-208898ce4ac2"
+      }
+    },
+    "tags": [
+      "engineering-spec",
+      "part"
+    ],
+    "tagMeta": {
+      "part": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:13:24.378008+00:00"
+      },
+      "engineering-spec": {
+        "immutable": true,
+        "dateCreated": "2026-10-15T21:13:24.378008+00:00"
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "17 inches",
+      "magnitude": "17",
+      "tolerance": "0",
+      "html": "17 inches",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "inches"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.4318 m",
+        "magnitude": "0.4318",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  }
+]

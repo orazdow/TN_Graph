@@ -14,6 +14,7 @@ import math
 from pathlib import Path
 import random
 import sys
+from native import to_native
 
 ROOT = Path(__file__).resolve().parent
 FIELDS = ("seed", "groups", "types", "properties", "references", "sharing", "reuse", "name")
@@ -64,9 +65,7 @@ def statement(subject, prop, value, tags):
 
 
 def validate_dataset(data):
-    """Catch invalid output before writing either file; never infer references."""
-    if data.get("format") != "synthetic-truenumbers" or data.get("format_version") != 1:
-        raise ValueError("unsupported dataset format")
+    """Check the private generation model before native JSON serialization."""
     subjects = {s["id"]: s["phrase"] for s in data["subjects"]}
     if len(subjects) != len(data["subjects"]):
         raise ValueError("duplicate subject IDs")
@@ -190,16 +189,17 @@ def generate(corpus, **overrides):
                 favorites.setdefault(key, target)
                 add(source, rule["property"], dict(type="reference", subject_id=target["id"],
                                                    subject=target["phrase"]), tags.copy())
-    return validate_dataset(dict(format="synthetic-truenumbers", format_version=1, name=options["name"],
+    # Private generator model, not a second supported JSON file format.
+    return validate_dataset(dict(name=options["name"],
                                  corpus=dict(name=corpus["name"], version=corpus["version"]),
                                  seed=options["seed"], notes=corpus.get("notes", []), subjects=subjects, facts=facts))
 
 
-def sample(corpus, name, **overrides):
+def sample(corpus, sample_name, **overrides):
     """Fixed recipes preserve historical examples, including their oddities."""
-    recipe = corpus.get("samples", {}).get(name)
+    recipe = corpus.get("samples", {}).get(sample_name)
     if recipe is None:
-        raise ValueError(f"unknown sample {name}; choices: {', '.join(corpus.get('samples', {}))}")
+        raise ValueError(f"unknown sample {sample_name}; choices: {', '.join(corpus.get('samples', {}))}")
     if "file" in recipe:
         if any(value is not None for value in overrides.values()):
             raise ValueError("fixed samples cannot take generation overrides; omit --sample to generate variations")
@@ -208,17 +208,18 @@ def sample(corpus, name, **overrides):
     return generate(corpus, **(recipe.get("options", {}) | {k: v for k, v in overrides.items() if v is not None}))
 
 
-def write_dataset(data, output, newlines=None):
+def write_dataset(data, output, newlines=None, numberspace='generated'):
     """Write JSON and readable statements; preserve recorded line endings on replay."""
+    payload = to_native(data, numberspace)
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    for extension, text in (("json", json.dumps(data, indent=2) + "\n"),
+    for extension, text in (("json", json.dumps(payload, indent=2) + "\n"),
                             ("tn", "\n".join(f["statement"] for f in data["facts"]) + "\n")):
         newline = (newlines or {}).get(extension, "\n")
         output.with_suffix("." + extension).write_bytes(text.replace("\n", newline).encode("utf-8"))
 
 
-def generate_samples(output):
+def generate_samples(output, numberspace='generated'):
     """Write the bundled sample set directly to the requested folder."""
     output = Path(output)
     for filename in sorted((ROOT / "corpus").glob("*.json")):
@@ -226,13 +227,7 @@ def generate_samples(output):
         for name, recipe in corpus.get("samples", {}).items():
             data = sample(corpus, name)
             for destination in recipe.get("outputs", []):
-                write_dataset(data, output / destination, recipe.get("newlines"))
-    # Small text sidecars are part of the original review handoff, not datasets.
-    files = json.loads((ROOT / "sample_files.json").read_text(encoding="utf-8"))
-    for filename, text in files.items():
-        target = output / filename
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(text.encode("utf-8"))
+                write_dataset(data, output / destination, recipe.get("newlines"), numberspace)
 
 
 def main():
@@ -240,6 +235,7 @@ def main():
     parser.add_argument("--corpus", help="generate one variation using this bundled name or corpus JSON path")
     parser.add_argument("--sample", help="named reproducible recipe; omit for new data")
     parser.add_argument("--output", type=Path, help="sample-set folder, or filename stem when generating one sample")
+    parser.add_argument("--numberspace", default='generated', help="numberspace identifier for native JSON")
     parser.add_argument("--seed", type=int)
     parser.add_argument("--groups", type=int, help="number of named assemblies/locations")
     parser.add_argument("--types", nargs="+", help="subject types to include")
@@ -253,7 +249,7 @@ def main():
         options = {field: getattr(args, field) for field in FIELDS}
         if not args.corpus and not args.sample and not any(v is not None for v in options.values()):
             output = args.output if args.output is not None else ROOT / "samples"
-            generate_samples(output)
+            generate_samples(output, args.numberspace)
             print(f"Samples written to {output}")
         else:
             corpus_name = args.corpus or "navy"
@@ -261,7 +257,7 @@ def main():
             data = sample(corpus, args.sample, **options) if args.sample else generate(corpus, **options)
             recipe = corpus.get("samples", {}).get(args.sample, {})
             output = args.output if args.output is not None else ROOT / "samples" / (args.sample or "sample")
-            write_dataset(data, output, recipe.get("newlines"))
+            write_dataset(data, output, recipe.get("newlines"), args.numberspace)
             print(f"{len(data['subjects'])} subjects, {len(data['facts'])} facts -> {output}.json/.tn")
     except (ValueError, KeyError, TypeError, OSError) as error:
         parser.exit(2, f"error: {error}\n")

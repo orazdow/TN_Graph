@@ -23,11 +23,22 @@ chosen view. d3-dag calculates node positions and edge routes using layered
 Sugiyama or linear Zherebko layouts. Fact views arrange subject groups separately;
 reference links can then be drawn between value nodes and their target subjects.
 
---acquisition: JSON datasets are validated and combined in memory. Exact subject
-phrases are joined across sources, while repeated matching facts are displayed
+--acquisition: Native TN JSON and .tn statement files are imported through Add data.
+Both formats become a private graph model of subjects and facts. Canonical
+phrase paths join subjects across sources, while repeated matching facts are displayed
 once with occurrence counts. Search, property/tag filters, and table selections
 choose which facts appear in the graph and statement list.
 (Set operations in data inclusion can be added later.)
+
+TN input supports "subject has property = value", "property of subject is value",
+and "and has" continuations. Separate statements with semicolons or newlines.
+Numbers retain their units, quoted values become strings, and unquoted phrases
+become subject references. Optional tags can follow the subject or value.
+Original statements are retained. Invalid input reports a line number and leaves
+that file unimported. Numeric tolerances and phrase paths are supported. Dates,
+file objects, and unit conversion are not supported by the text parser.
+Native JSON is read from its structured fields; original records and statements
+are retained as metadata. The former simple JSON file format is no longer used.
 
 --rendering: p5 draws the graph on an HTML canvas using the calculated geometry.
 It handles panning, zooming, labels, and clicking nodes or edges for inspection.

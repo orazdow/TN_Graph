@@ -1,6 +1,4 @@
 {
-  "format": "synthetic-truenumbers",
-  "format_version": 1,
   "notes": [
     "Repeated statements received observation tags; these are counted separately from semantic tags."
   ],

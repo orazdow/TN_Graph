@@ -1,599 +1,812 @@
-{
-  "format": "synthetic-truenumbers",
-  "format_version": 1,
-  "notes": [
-    "Repeated statements received observation tags; these are counted separately from semantic tags."
-  ],
-  "seed": 20261015,
-  "settings": {
-    "facts": 24,
-    "subjects": 6,
-    "connectivity": 0.375,
-    "sharing": 0.6,
-    "structure": 0,
-    "property_overlap": 0.35,
-    "tag_overlap": 0.6,
-    "literal_reuse": 0.25
-  },
-  "corpus": {
-    "name": "Structural engineering",
-    "version": 2
-  },
-  "preset": {
-    "id": 0,
-    "name": "mixed"
-  },
-  "generation": {
-    "scaffold_reference_facts": 5,
-    "requested_reserved_isolates": 0,
-    "relationship_pool": [
-      "cross beam",
-      "support beam",
-      "base support",
-      "end support",
-      "mounting bracket",
-      "support bracket",
-      "mounting plate",
-      "base plate",
-      "fastener",
-      "anchor bolt",
-      "coupled shaft",
-      "drive shaft",
-      "shaft bearing",
-      "support bearing",
-      "support frame",
-      "mounting frame"
+[
+  {
+    "_id": "862bac04-5054-5763-86cf-fcdb0c667b5c",
+    "subject": "platform:loading:outer:beam",
+    "property": "width",
+    "trueStatement": "beam outer loading platform has width = 64.7 mm (design revision A);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design"
     ],
-    "relationship_pools_by_category": {
-      "beams": [
-        "cross beam",
-        "support beam"
-      ],
-      "supports": [
-        "base support",
-        "end support"
-      ],
-      "brackets": [
-        "mounting bracket",
-        "support bracket"
-      ],
-      "plates": [
-        "mounting plate",
-        "base plate"
-      ],
-      "bolts": [
-        "fastener",
-        "anchor bolt"
-      ],
-      "shafts": [
-        "coupled shaft",
-        "drive shaft"
-      ],
-      "bearings": [
-        "shaft bearing",
-        "support bearing"
-      ],
-      "frames": [
-        "support frame",
-        "mounting frame"
-      ]
-    },
-    "literal_property_pool": [
-      "torque",
-      "width",
-      "deflection",
-      "status",
-      "span",
-      "axial force",
-      "length",
-      "material",
-      "safety factor",
-      "cross section area",
-      "height",
-      "volume",
-      "wall thickness",
-      "diameter",
-      "temperature"
-    ],
-    "semantic_tag_pool": [
-      "workshop",
-      "design revision B",
-      "north bay",
-      "design revision A"
-    ]
-  },
-  "statistics": {
-    "subject_count": 6,
-    "fact_count": 24,
-    "reference_fact_count": 9,
-    "literal_fact_count": 15,
-    "reference_fraction": 0.375,
-    "distinct_directed_subject_pairs": 7,
-    "weak_component_sizes": [
-      3,
-      3
-    ],
-    "reference_isolated_subjects": 0,
-    "has_directed_cycle": true,
-    "distinct_properties": 17,
-    "distinct_tags": 5,
-    "distinct_semantic_tags": 4,
-    "subjects_per_property": {
-      "anchor bolt": 1,
-      "axial force": 1,
-      "coupled shaft": 1,
-      "cross beam": 1,
-      "deflection": 1,
-      "diameter": 2,
-      "end support": 1,
-      "fastener": 1,
-      "height": 1,
-      "span": 1,
-      "support beam": 1,
-      "support bracket": 2,
-      "temperature": 2,
-      "torque": 2,
-      "volume": 2,
-      "wall thickness": 1,
-      "width": 1
-    },
-    "subjects_per_tag": {
-      "design revision A": 6,
-      "design revision B": 4,
-      "north bay": 2,
-      "observation 0000020": 1,
-      "workshop": 5
-    },
-    "repeated_literal_fraction": 0.06666666666666665,
-    "top_reference_targets": [
-      {
-        "subject_id": "S00001",
-        "incoming_facts": 2,
-        "distinct_source_subjects": 2
-      },
-      {
-        "subject_id": "S00002",
-        "incoming_facts": 2,
-        "distinct_source_subjects": 1
-      },
-      {
-        "subject_id": "S00003",
-        "incoming_facts": 2,
-        "distinct_source_subjects": 2
-      },
-      {
-        "subject_id": "S00005",
-        "incoming_facts": 2,
-        "distinct_source_subjects": 1
-      },
-      {
-        "subject_id": "S00004",
-        "incoming_facts": 1,
-        "distinct_source_subjects": 1
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
       }
-    ],
-    "deliberate_literal_reuse_events": 1,
-    "duplicate_observation_tags": 1
+    },
+    "value": {
+      "type": "numeric",
+      "value": "64.7 mm",
+      "magnitude": "64.7",
+      "tolerance": "0",
+      "html": "64.7 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.0647 m",
+        "magnitude": "0.0647",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
   },
-  "subjects": [
-    {
-      "id": "S00001",
-      "phrase": "bracket outer main deck",
-      "category": "brackets",
-      "cluster": 1,
-      "reserved_isolate": false
+  {
+    "_id": "1f5c8ad7-c9f7-5621-9f43-f9a1344a4f35",
+    "subject": "bay:service:rear:bolt",
+    "property": "shaft:coupled",
+    "trueStatement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision A, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
     },
-    {
-      "id": "S00002",
-      "phrase": "beam outer loading platform",
-      "category": "beams",
-      "cluster": 1,
-      "reserved_isolate": false
-    },
-    {
-      "id": "S00003",
-      "phrase": "bolt rear service bay",
-      "category": "bolts",
-      "cluster": 0,
-      "reserved_isolate": false
-    },
-    {
-      "id": "S00004",
-      "phrase": "support front loading bay",
-      "category": "supports",
-      "cluster": 1,
-      "reserved_isolate": false
-    },
-    {
-      "id": "S00005",
-      "phrase": "shaft inner lower deck",
-      "category": "shafts",
-      "cluster": 0,
-      "reserved_isolate": false
-    },
-    {
-      "id": "S00006",
-      "phrase": "plate outer west bay",
-      "category": "plates",
-      "cluster": 0,
-      "reserved_isolate": false
+    "value": {
+      "type": "srd",
+      "value": "deck:lower:inner:shaft",
+      "html": "deck:lower:inner:shaft"
     }
-  ],
-  "facts": [
-    {
-      "id": "TN0000015",
-      "subject_id": "S00002",
-      "subject": "beam outer loading platform",
-      "property": "width",
-      "value": {
-        "type": "numeric",
-        "magnitude": 64.7,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [
-        "design revision A"
-      ],
-      "statement": "beam outer loading platform has width = 64.7 mm (design revision A);"
+  },
+  {
+    "_id": "3584cb7f-81d3-554a-9a55-f7312867a376",
+    "subject": "bay:loading:front:support",
+    "property": "bracket:support",
+    "trueStatement": "support front loading bay has support bracket = bracket outer main deck (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
     },
-    {
-      "id": "TN0000001",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "coupled shaft",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00005",
-        "subject": "shaft inner lower deck"
-      },
-      "tags": [
-        "design revision A",
-        "design revision B"
-      ],
-      "statement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision A, design revision B);"
-    },
-    {
-      "id": "TN0000009",
-      "subject_id": "S00004",
-      "subject": "support front loading bay",
-      "property": "support bracket",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00001",
-        "subject": "bracket outer main deck"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "support front loading bay has support bracket = bracket outer main deck (workshop);"
-    },
-    {
-      "id": "TN0000018",
-      "subject_id": "S00002",
-      "subject": "beam outer loading platform",
-      "property": "temperature",
-      "value": {
-        "type": "numeric",
-        "magnitude": 275.82,
-        "unit": "K",
-        "quantity": "absolute_temperature"
-      },
-      "tags": [
-        "design revision A"
-      ],
-      "statement": "beam outer loading platform has temperature = 275.82 K (design revision A);"
-    },
-    {
-      "id": "TN0000014",
-      "subject_id": "S00006",
-      "subject": "plate outer west bay",
-      "property": "temperature",
-      "value": {
-        "type": "numeric",
-        "magnitude": 347.33,
-        "unit": "K",
-        "quantity": "absolute_temperature"
-      },
-      "tags": [
-        "design revision B",
-        "north bay"
-      ],
-      "statement": "plate outer west bay has temperature = 347.33 K (design revision B, north bay);"
-    },
-    {
-      "id": "TN0000004",
-      "subject_id": "S00001",
-      "subject": "bracket outer main deck",
-      "property": "end support",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00004",
-        "subject": "support front loading bay"
-      },
-      "tags": [
-        "design revision A",
-        "design revision B"
-      ],
-      "statement": "bracket outer main deck has end support = support front loading bay (design revision A, design revision B);"
-    },
-    {
-      "id": "TN0000008",
-      "subject_id": "S00002",
-      "subject": "beam outer loading platform",
-      "property": "support bracket",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00001",
-        "subject": "bracket outer main deck"
-      },
-      "tags": [],
-      "statement": "beam outer loading platform has support bracket = bracket outer main deck;"
-    },
-    {
-      "id": "TN0000011",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "wall thickness",
-      "value": {
-        "type": "numeric",
-        "magnitude": 9.71,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "shaft inner lower deck has wall thickness = 9.71 mm (workshop);"
-    },
-    {
-      "id": "TN0000002",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "anchor bolt",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00003",
-        "subject": "bolt rear service bay"
-      },
-      "tags": [
-        "north bay"
-      ],
-      "statement": "shaft inner lower deck has anchor bolt = bolt rear service bay (north bay);"
-    },
-    {
-      "id": "TN0000021",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 138.8,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [],
-      "statement": "bolt rear service bay has diameter = 138.8 mm;"
-    },
-    {
-      "id": "TN0000013",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 41.3,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [],
-      "statement": "shaft inner lower deck has diameter = 41.3 mm;"
-    },
-    {
-      "id": "TN0000006",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "coupled shaft",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00005",
-        "subject": "shaft inner lower deck"
-      },
-      "tags": [
-        "design revision B",
-        "workshop"
-      ],
-      "statement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision B, workshop);"
-    },
-    {
-      "id": "TN0000005",
-      "subject_id": "S00004",
-      "subject": "support front loading bay",
-      "property": "cross beam",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00002",
-        "subject": "beam outer loading platform"
-      },
-      "tags": [
-        "design revision A"
-      ],
-      "statement": "support front loading bay has cross beam = beam outer loading platform (design revision A);"
-    },
-    {
-      "id": "TN0000010",
-      "subject_id": "S00001",
-      "subject": "bracket outer main deck",
-      "property": "height",
-      "value": {
-        "type": "numeric",
-        "magnitude": 1740.0,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [],
-      "statement": "bracket outer main deck has height = 1740 mm;"
-    },
-    {
-      "id": "TN0000017",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "torque",
-      "value": {
-        "type": "numeric",
-        "magnitude": 5396.0,
-        "unit": "N*m",
-        "quantity": "moment"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "bolt rear service bay has torque = 5396 N*m (workshop);"
-    },
-    {
-      "id": "TN0000024",
-      "subject_id": "S00006",
-      "subject": "plate outer west bay",
-      "property": "volume",
-      "value": {
-        "type": "numeric",
-        "magnitude": 0.01861,
-        "unit": "m^3",
-        "quantity": "volume"
-      },
-      "tags": [
-        "design revision A",
-        "design revision B"
-      ],
-      "statement": "plate outer west bay has volume = 0.01861 m^3 (design revision A, design revision B);"
-    },
-    {
-      "id": "TN0000012",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "deflection",
-      "value": {
-        "type": "numeric",
-        "magnitude": 2.88,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [
-        "design revision A",
-        "workshop"
-      ],
-      "statement": "shaft inner lower deck has deflection = 2.88 mm (design revision A, workshop);"
-    },
-    {
-      "id": "TN0000020",
-      "subject_id": "S00001",
-      "subject": "bracket outer main deck",
-      "property": "torque",
-      "value": {
-        "type": "numeric",
-        "magnitude": 4117.4,
-        "unit": "N*m",
-        "quantity": "moment"
-      },
-      "tags": [
-        "workshop",
-        "observation 0000020"
-      ],
-      "statement": "bracket outer main deck has torque = 4117.4 N*m (workshop, observation 0000020);"
-    },
-    {
-      "id": "TN0000023",
-      "subject_id": "S00002",
-      "subject": "beam outer loading platform",
-      "property": "volume",
-      "value": {
-        "type": "numeric",
-        "magnitude": 1.47761,
-        "unit": "m^3",
-        "quantity": "volume"
-      },
-      "tags": [
-        "design revision B"
-      ],
-      "statement": "beam outer loading platform has volume = 1.47761 m^3 (design revision B);"
-    },
-    {
-      "id": "TN0000019",
-      "subject_id": "S00001",
-      "subject": "bracket outer main deck",
-      "property": "torque",
-      "value": {
-        "type": "numeric",
-        "magnitude": 4117.4,
-        "unit": "N*m",
-        "quantity": "moment"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "bracket outer main deck has torque = 4117.4 N*m (workshop);"
-    },
-    {
-      "id": "TN0000022",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "span",
-      "value": {
-        "type": "numeric",
-        "magnitude": 5.687,
-        "unit": "m",
-        "quantity": "length"
-      },
-      "tags": [
-        "design revision B",
-        "workshop"
-      ],
-      "statement": "bolt rear service bay has span = 5.687 m (design revision B, workshop);"
-    },
-    {
-      "id": "TN0000007",
-      "subject_id": "S00004",
-      "subject": "support front loading bay",
-      "property": "support beam",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00002",
-        "subject": "beam outer loading platform"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "support front loading bay has support beam = beam outer loading platform (workshop);"
-    },
-    {
-      "id": "TN0000016",
-      "subject_id": "S00001",
-      "subject": "bracket outer main deck",
-      "property": "axial force",
-      "value": {
-        "type": "numeric",
-        "magnitude": 76.88,
-        "unit": "kN",
-        "quantity": "force"
-      },
-      "tags": [],
-      "statement": "bracket outer main deck has axial force = 76.88 kN;"
-    },
-    {
-      "id": "TN0000003",
-      "subject_id": "S00006",
-      "subject": "plate outer west bay",
-      "property": "fastener",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00003",
-        "subject": "bolt rear service bay"
-      },
-      "tags": [
-        "design revision B",
-        "workshop"
-      ],
-      "statement": "plate outer west bay has fastener = bolt rear service bay (design revision B, workshop);"
+    "value": {
+      "type": "srd",
+      "value": "deck:main:outer:bracket",
+      "html": "deck:main:outer:bracket"
     }
-  ],
-  "name": "Engineering small"
-}
+  },
+  {
+    "_id": "468cf96b-a41e-5e99-b651-b58edd81972c",
+    "subject": "platform:loading:outer:beam",
+    "property": "temperature",
+    "trueStatement": "beam outer loading platform has temperature = 275.82 K (design revision A);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "275.82 K",
+      "magnitude": "275.82",
+      "tolerance": "0",
+      "html": "275.82 K",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "K"
+        }
+      ],
+      "quantity": "absolute_temperature",
+      "siValue": {
+        "value": "275.82 K",
+        "magnitude": "275.82",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "K"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "271ff8b6-8597-5ac4-97cb-adad28f61639",
+    "subject": "bay:west:outer:plate",
+    "property": "temperature",
+    "trueStatement": "plate outer west bay has temperature = 347.33 K (design revision B, north bay);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "bay:north"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "bay:north": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "347.33 K",
+      "magnitude": "347.33",
+      "tolerance": "0",
+      "html": "347.33 K",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "K"
+        }
+      ],
+      "quantity": "absolute_temperature",
+      "siValue": {
+        "value": "347.33 K",
+        "magnitude": "347.33",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "K"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "38d202f8-4f81-56c9-861c-1dd9bc1f0382",
+    "subject": "deck:main:outer:bracket",
+    "property": "support:end",
+    "trueStatement": "bracket outer main deck has end support = support front loading bay (design revision A, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bay:loading:front:support",
+      "html": "bay:loading:front:support"
+    }
+  },
+  {
+    "_id": "52feb083-3396-573a-a39a-bfd632dab734",
+    "subject": "platform:loading:outer:beam",
+    "property": "bracket:support",
+    "trueStatement": "beam outer loading platform has support bracket = bracket outer main deck;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "srd",
+      "value": "deck:main:outer:bracket",
+      "html": "deck:main:outer:bracket"
+    }
+  },
+  {
+    "_id": "9d303e14-37a2-5a0e-8aca-935e9f64a5dd",
+    "subject": "deck:lower:inner:shaft",
+    "property": "thickness:wall",
+    "trueStatement": "shaft inner lower deck has wall thickness = 9.71 mm (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "9.71 mm",
+      "magnitude": "9.71",
+      "tolerance": "0",
+      "html": "9.71 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.00971 m",
+        "magnitude": "0.00971",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "616eb246-72c5-518d-b9ba-4f15d44d5355",
+    "subject": "deck:lower:inner:shaft",
+    "property": "bolt:anchor",
+    "trueStatement": "shaft inner lower deck has anchor bolt = bolt rear service bay (north bay);",
+    "numberspace": "generated",
+    "tags": [
+      "bay:north"
+    ],
+    "tagMeta": {
+      "bay:north": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bay:service:rear:bolt",
+      "html": "bay:service:rear:bolt"
+    }
+  },
+  {
+    "_id": "5c35d853-7c52-5222-ab8d-a03bcce928d5",
+    "subject": "bay:service:rear:bolt",
+    "property": "diameter",
+    "trueStatement": "bolt rear service bay has diameter = 138.8 mm;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "138.8 mm",
+      "magnitude": "138.8",
+      "tolerance": "0",
+      "html": "138.8 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.1388 m",
+        "magnitude": "0.1388",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "746b68e8-0aea-5bb3-98fe-f826991202c8",
+    "subject": "deck:lower:inner:shaft",
+    "property": "diameter",
+    "trueStatement": "shaft inner lower deck has diameter = 41.3 mm;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "41.3 mm",
+      "magnitude": "41.3",
+      "tolerance": "0",
+      "html": "41.3 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.0413 m",
+        "magnitude": "0.0413",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "73473f47-edc3-5c0a-9ad3-4a098f1dc88a",
+    "subject": "bay:service:rear:bolt",
+    "property": "shaft:coupled",
+    "trueStatement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision B, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "deck:lower:inner:shaft",
+      "html": "deck:lower:inner:shaft"
+    }
+  },
+  {
+    "_id": "8a1ebd9d-d361-58b8-a548-656c38408f85",
+    "subject": "bay:loading:front:support",
+    "property": "beam:cross",
+    "trueStatement": "support front loading bay has cross beam = beam outer loading platform (design revision A);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "platform:loading:outer:beam",
+      "html": "platform:loading:outer:beam"
+    }
+  },
+  {
+    "_id": "b0bea51b-0047-524a-a832-83efa5cd2c57",
+    "subject": "deck:main:outer:bracket",
+    "property": "height",
+    "trueStatement": "bracket outer main deck has height = 1740 mm;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "1740 mm",
+      "magnitude": "1740",
+      "tolerance": "0",
+      "html": "1740 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "1.74 m",
+        "magnitude": "1.74",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "705770e9-cf8c-594a-8d5b-928aa61a511a",
+    "subject": "bay:service:rear:bolt",
+    "property": "torque",
+    "trueStatement": "bolt rear service bay has torque = 5396 N*m (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "5396 N*m",
+      "magnitude": "5396",
+      "tolerance": "0",
+      "html": "5396 N*m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "N"
+        },
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "moment",
+      "siValue": {
+        "value": "5396 N*m",
+        "magnitude": "5396",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "N"
+          },
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "4187da63-7be0-596d-aa57-fbb4b9e892f2",
+    "subject": "bay:west:outer:plate",
+    "property": "volume",
+    "trueStatement": "plate outer west bay has volume = 0.01861 m^3 (design revision A, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "0.01861 m^3",
+      "magnitude": "0.01861",
+      "tolerance": "0",
+      "html": "0.01861 m^3",
+      "unitPowers": [
+        {
+          "p": 3,
+          "u": "m"
+        }
+      ],
+      "quantity": "volume",
+      "siValue": {
+        "value": "0.01861 m^3",
+        "magnitude": "0.01861",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 3,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "a94d6531-2bb8-5568-a26c-369e4e18c165",
+    "subject": "deck:lower:inner:shaft",
+    "property": "deflection",
+    "trueStatement": "shaft inner lower deck has deflection = 2.88 mm (design revision A, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "2.88 mm",
+      "magnitude": "2.88",
+      "tolerance": "0",
+      "html": "2.88 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.00288 m",
+        "magnitude": "0.00288",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "32b8b746-0330-5703-979a-f89fa61e4ed9",
+    "subject": "deck:main:outer:bracket",
+    "property": "torque",
+    "trueStatement": "bracket outer main deck has torque = 4117.4 N*m (workshop, observation 0000020);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop",
+      "0000020:observation"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      },
+      "0000020:observation": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "4117.4 N*m",
+      "magnitude": "4117.4",
+      "tolerance": "0",
+      "html": "4117.4 N*m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "N"
+        },
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "moment",
+      "siValue": {
+        "value": "4117.4 N*m",
+        "magnitude": "4117.4",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "N"
+          },
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "d18a1eeb-318a-573a-ab15-3c9d2b3d1943",
+    "subject": "platform:loading:outer:beam",
+    "property": "volume",
+    "trueStatement": "beam outer loading platform has volume = 1.47761 m^3 (design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "1.47761 m^3",
+      "magnitude": "1.47761",
+      "tolerance": "0",
+      "html": "1.47761 m^3",
+      "unitPowers": [
+        {
+          "p": 3,
+          "u": "m"
+        }
+      ],
+      "quantity": "volume",
+      "siValue": {
+        "value": "1.47761 m^3",
+        "magnitude": "1.47761",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 3,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "fa019d1d-366c-5191-b538-3a4c94645624",
+    "subject": "deck:main:outer:bracket",
+    "property": "torque",
+    "trueStatement": "bracket outer main deck has torque = 4117.4 N*m (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "4117.4 N*m",
+      "magnitude": "4117.4",
+      "tolerance": "0",
+      "html": "4117.4 N*m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "N"
+        },
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "moment",
+      "siValue": {
+        "value": "4117.4 N*m",
+        "magnitude": "4117.4",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "N"
+          },
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "9d501242-f64b-5401-96d5-4ee4cadeda59",
+    "subject": "bay:service:rear:bolt",
+    "property": "span",
+    "trueStatement": "bolt rear service bay has span = 5.687 m (design revision B, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "5.687 m",
+      "magnitude": "5.687",
+      "tolerance": "0",
+      "html": "5.687 m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "5.687 m",
+        "magnitude": "5.687",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "37aa4fb2-d1bf-5750-a4f3-6ede05b7ea5b",
+    "subject": "bay:loading:front:support",
+    "property": "beam:support",
+    "trueStatement": "support front loading bay has support beam = beam outer loading platform (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "platform:loading:outer:beam",
+      "html": "platform:loading:outer:beam"
+    }
+  },
+  {
+    "_id": "4c6f5db1-171e-56b1-a18c-9ad4d28b86a1",
+    "subject": "deck:main:outer:bracket",
+    "property": "force:axial",
+    "trueStatement": "bracket outer main deck has axial force = 76.88 kN;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "76.88 kN",
+      "magnitude": "76.88",
+      "tolerance": "0",
+      "html": "76.88 kN",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "kN"
+        }
+      ],
+      "quantity": "force",
+      "siValue": {
+        "value": "76880 N",
+        "magnitude": "76880",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "N"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "2df563da-ec1d-56ee-902f-0b120a0533e2",
+    "subject": "bay:west:outer:plate",
+    "property": "fastener",
+    "trueStatement": "plate outer west bay has fastener = bolt rear service bay (design revision B, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bay:service:rear:bolt",
+      "html": "bay:service:rear:bolt"
+    }
+  }
+]

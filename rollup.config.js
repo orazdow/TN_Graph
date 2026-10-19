@@ -29,7 +29,7 @@ function browserAssets() {
           else await emit(source, source.split(path.sep).join('/'));
         }
       };
-      await copySamples('tn_generator/samples');
+      await copySamples('samples');
     },
   };
 }
@@ -42,7 +42,7 @@ export default {
     sourcemap: true,
   },
   plugins: [nodeResolve({browser: true}), browserAssets(), ...(development ? [
-    serve({contentBase: 'dist', host: '127.0.0.1', port: 5000}),
+    serve({contentBase: 'dist', host: '127.0.0.1', port: 5000, open: true}),
     livereload({watch: 'dist', host: '127.0.0.1'}),
   ] : [])],
   watch: {clearScreen: false},

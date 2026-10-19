@@ -1,228 +1,426 @@
-{
-  "format": "synthetic-truenumbers",
-  "format_version": 1,
-  "name": "Engineering smallest",
-  "corpus": {
-    "name": "Structural engineering",
-    "version": 2
+[
+  {
+    "_id": "324c9fba-95d2-534e-9762-3a1379172a22",
+    "subject": "bay:service:rear:bolt",
+    "property": "shaft:coupled",
+    "trueStatement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision A, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "deck:lower:inner:shaft",
+      "html": "deck:lower:inner:shaft"
+    }
   },
-  "notes": [
-    "Partition of small.json retaining the plate, bolt, and shaft subjects, all their numeric measurements, and connections between them. Parallel coupled shaft assertions and original tags are retained."
-  ],
-  "subjects": [
-    {
-      "id": "S00003",
-      "phrase": "bolt rear service bay",
-      "category": "bolts",
-      "cluster": 0,
-      "reserved_isolate": false
+  {
+    "_id": "39acba4f-0e20-549b-9279-25a490c2b3c3",
+    "subject": "bay:west:outer:plate",
+    "property": "temperature",
+    "trueStatement": "plate outer west bay has temperature = 347.33 K (design revision B, north bay);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "bay:north"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "bay:north": {
+        "immutable": true
+      }
     },
-    {
-      "id": "S00005",
-      "phrase": "shaft inner lower deck",
-      "category": "shafts",
-      "cluster": 0,
-      "reserved_isolate": false
-    },
-    {
-      "id": "S00006",
-      "phrase": "plate outer west bay",
-      "category": "plates",
-      "cluster": 0,
-      "reserved_isolate": false
+    "value": {
+      "type": "numeric",
+      "value": "347.33 K",
+      "magnitude": "347.33",
+      "tolerance": "0",
+      "html": "347.33 K",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "K"
+        }
+      ],
+      "quantity": "absolute_temperature",
+      "siValue": {
+        "value": "347.33 K",
+        "magnitude": "347.33",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "K"
+          }
+        ]
+      }
     }
-  ],
-  "facts": [
-    {
-      "id": "TN0000001",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "coupled shaft",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00005",
-        "subject": "shaft inner lower deck"
-      },
-      "tags": [
-        "design revision A",
-        "design revision B"
+  },
+  {
+    "_id": "99ddd338-b6e2-53a2-a542-459e22a97023",
+    "subject": "deck:lower:inner:shaft",
+    "property": "thickness:wall",
+    "trueStatement": "shaft inner lower deck has wall thickness = 9.71 mm (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "9.71 mm",
+      "magnitude": "9.71",
+      "tolerance": "0",
+      "html": "9.71 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
       ],
-      "statement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision A, design revision B);"
-    },
-    {
-      "id": "TN0000014",
-      "subject_id": "S00006",
-      "subject": "plate outer west bay",
-      "property": "temperature",
-      "value": {
-        "type": "numeric",
-        "magnitude": 347.33,
-        "unit": "K",
-        "quantity": "absolute_temperature"
-      },
-      "tags": [
-        "design revision B",
-        "north bay"
-      ],
-      "statement": "plate outer west bay has temperature = 347.33 K (design revision B, north bay);"
-    },
-    {
-      "id": "TN0000011",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "wall thickness",
-      "value": {
-        "type": "numeric",
-        "magnitude": 9.71,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "shaft inner lower deck has wall thickness = 9.71 mm (workshop);"
-    },
-    {
-      "id": "TN0000002",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "anchor bolt",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00003",
-        "subject": "bolt rear service bay"
-      },
-      "tags": [
-        "north bay"
-      ],
-      "statement": "shaft inner lower deck has anchor bolt = bolt rear service bay (north bay);"
-    },
-    {
-      "id": "TN0000021",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 138.8,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [],
-      "statement": "bolt rear service bay has diameter = 138.8 mm;"
-    },
-    {
-      "id": "TN0000013",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 41.3,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [],
-      "statement": "shaft inner lower deck has diameter = 41.3 mm;"
-    },
-    {
-      "id": "TN0000006",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "coupled shaft",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00005",
-        "subject": "shaft inner lower deck"
-      },
-      "tags": [
-        "design revision B",
-        "workshop"
-      ],
-      "statement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision B, workshop);"
-    },
-    {
-      "id": "TN0000017",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "torque",
-      "value": {
-        "type": "numeric",
-        "magnitude": 5396,
-        "unit": "N*m",
-        "quantity": "moment"
-      },
-      "tags": [
-        "workshop"
-      ],
-      "statement": "bolt rear service bay has torque = 5396 N*m (workshop);"
-    },
-    {
-      "id": "TN0000024",
-      "subject_id": "S00006",
-      "subject": "plate outer west bay",
-      "property": "volume",
-      "value": {
-        "type": "numeric",
-        "magnitude": 0.01861,
-        "unit": "m^3",
-        "quantity": "volume"
-      },
-      "tags": [
-        "design revision A",
-        "design revision B"
-      ],
-      "statement": "plate outer west bay has volume = 0.01861 m^3 (design revision A, design revision B);"
-    },
-    {
-      "id": "TN0000012",
-      "subject_id": "S00005",
-      "subject": "shaft inner lower deck",
-      "property": "deflection",
-      "value": {
-        "type": "numeric",
-        "magnitude": 2.88,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [
-        "design revision A",
-        "workshop"
-      ],
-      "statement": "shaft inner lower deck has deflection = 2.88 mm (design revision A, workshop);"
-    },
-    {
-      "id": "TN0000022",
-      "subject_id": "S00003",
-      "subject": "bolt rear service bay",
-      "property": "span",
-      "value": {
-        "type": "numeric",
-        "magnitude": 5.687,
-        "unit": "m",
-        "quantity": "length"
-      },
-      "tags": [
-        "design revision B",
-        "workshop"
-      ],
-      "statement": "bolt rear service bay has span = 5.687 m (design revision B, workshop);"
-    },
-    {
-      "id": "TN0000003",
-      "subject_id": "S00006",
-      "subject": "plate outer west bay",
-      "property": "fastener",
-      "value": {
-        "type": "reference",
-        "subject_id": "S00003",
-        "subject": "bolt rear service bay"
-      },
-      "tags": [
-        "design revision B",
-        "workshop"
-      ],
-      "statement": "plate outer west bay has fastener = bolt rear service bay (design revision B, workshop);"
+      "quantity": "length",
+      "siValue": {
+        "value": "0.00971 m",
+        "magnitude": "0.00971",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
     }
-  ]
-}
+  },
+  {
+    "_id": "7c33db4a-082d-5f5f-a012-0e86f7c397aa",
+    "subject": "deck:lower:inner:shaft",
+    "property": "bolt:anchor",
+    "trueStatement": "shaft inner lower deck has anchor bolt = bolt rear service bay (north bay);",
+    "numberspace": "generated",
+    "tags": [
+      "bay:north"
+    ],
+    "tagMeta": {
+      "bay:north": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bay:service:rear:bolt",
+      "html": "bay:service:rear:bolt"
+    }
+  },
+  {
+    "_id": "3fdf4b03-6727-5cf2-9317-6f3ee5514b59",
+    "subject": "bay:service:rear:bolt",
+    "property": "diameter",
+    "trueStatement": "bolt rear service bay has diameter = 138.8 mm;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "138.8 mm",
+      "magnitude": "138.8",
+      "tolerance": "0",
+      "html": "138.8 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.1388 m",
+        "magnitude": "0.1388",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "30897887-05c1-58fb-b944-c166dfb89b3b",
+    "subject": "deck:lower:inner:shaft",
+    "property": "diameter",
+    "trueStatement": "shaft inner lower deck has diameter = 41.3 mm;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "41.3 mm",
+      "magnitude": "41.3",
+      "tolerance": "0",
+      "html": "41.3 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.0413 m",
+        "magnitude": "0.0413",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "9a25eeed-75bc-5eee-bd8c-f52601dd72a7",
+    "subject": "bay:service:rear:bolt",
+    "property": "shaft:coupled",
+    "trueStatement": "bolt rear service bay has coupled shaft = shaft inner lower deck (design revision B, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "deck:lower:inner:shaft",
+      "html": "deck:lower:inner:shaft"
+    }
+  },
+  {
+    "_id": "407812d7-5ca6-5c31-a181-4854dd757484",
+    "subject": "bay:service:rear:bolt",
+    "property": "torque",
+    "trueStatement": "bolt rear service bay has torque = 5396 N*m (workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "workshop"
+    ],
+    "tagMeta": {
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "5396 N*m",
+      "magnitude": "5396",
+      "tolerance": "0",
+      "html": "5396 N*m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "N"
+        },
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "moment",
+      "siValue": {
+        "value": "5396 N*m",
+        "magnitude": "5396",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "N"
+          },
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "06089aa0-a7f8-5a16-96cf-734ecdc284ce",
+    "subject": "bay:west:outer:plate",
+    "property": "volume",
+    "trueStatement": "plate outer west bay has volume = 0.01861 m^3 (design revision A, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "0.01861 m^3",
+      "magnitude": "0.01861",
+      "tolerance": "0",
+      "html": "0.01861 m^3",
+      "unitPowers": [
+        {
+          "p": 3,
+          "u": "m"
+        }
+      ],
+      "quantity": "volume",
+      "siValue": {
+        "value": "0.01861 m^3",
+        "magnitude": "0.01861",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 3,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "99384b18-e76a-5c67-93f2-76e0a6171194",
+    "subject": "deck:lower:inner:shaft",
+    "property": "deflection",
+    "trueStatement": "shaft inner lower deck has deflection = 2.88 mm (design revision A, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "2.88 mm",
+      "magnitude": "2.88",
+      "tolerance": "0",
+      "html": "2.88 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.00288 m",
+        "magnitude": "0.00288",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "1e5f7dbe-b20d-51df-a107-42f010b8a68f",
+    "subject": "bay:service:rear:bolt",
+    "property": "span",
+    "trueStatement": "bolt rear service bay has span = 5.687 m (design revision B, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "5.687 m",
+      "magnitude": "5.687",
+      "tolerance": "0",
+      "html": "5.687 m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "5.687 m",
+        "magnitude": "5.687",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "e16e1baf-436e-51a0-b9cf-976763749a29",
+    "subject": "bay:west:outer:plate",
+    "property": "fastener",
+    "trueStatement": "plate outer west bay has fastener = bolt rear service bay (design revision B, workshop);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design",
+      "workshop"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      },
+      "workshop": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "bay:service:rear:bolt",
+      "html": "bay:service:rear:bolt"
+    }
+  }
+]

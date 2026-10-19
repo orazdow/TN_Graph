@@ -1,6 +1,4 @@
 {
-  "format": "synthetic-truenumbers",
-  "format_version": 1,
   "name": "Engineering smallest",
   "corpus": {
     "name": "Structural engineering",

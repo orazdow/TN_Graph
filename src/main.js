@@ -4,7 +4,7 @@ import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderStatements} from './ui.js';
 
-const DEFAULT_SAMPLE = './tn_generator/samples/construction/engineering-smallest-2.json';
+const DEFAULT_SAMPLE = './samples/construction/engineering-smallest-2.json';
 
 const engine = new Engine();
 let layoutRevision = 0;
@@ -136,11 +136,13 @@ ui.sample.addEventListener('click', async () => {
   }
 });
 
-// Import each JSON independently so one invalid file does not block the rest.
+// Import each file independently so one invalid file does not block the rest.
 ui.files.addEventListener('change', async () => {
   const errors = [];
   for (const file of ui.files.files) {
-    try { engine.add(JSON.parse(await file.text()), {name: file.name}); }
+    try {
+      engine.add(await file.text(), {name: file.name, format: /\.tn$/i.test(file.name) ? 'tn' : 'json'});
+    }
     catch (error) { errors.push(file.name + ': ' + error.message); }
   }
   ui.files.value = '';

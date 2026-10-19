@@ -1,153 +1,250 @@
-{
-  "format": "synthetic-truenumbers",
-  "format_version": 1,
-  "name": "Navy Small",
-  "corpus": {
-    "name": "Navy engineering",
-    "version": 1
+[
+  {
+    "_id": "f901a1a0-9006-5b8f-8f38-b16996b33fdb",
+    "subject": "Kestrel:vessel:patrol",
+    "property": "length",
+    "trueStatement": "patrol vessel Kestrel has length = 83.3 m (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "83.3 m",
+      "magnitude": "83.3",
+      "tolerance": "0",
+      "html": "83.3 m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "83.3 m",
+        "magnitude": "83.3",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
   },
-  "seed": 20261015,
-  "notes": [
-    "Simple synthetic propulsion examples: one numeric measurement per subject, with vessel to engine to shaft to propeller references."
-  ],
-  "subjects": [
-    {
-      "id": "Kestrel:vessel",
-      "phrase": "patrol vessel Kestrel",
-      "category": "vessel"
+  {
+    "_id": "105157b5-88e9-575c-86e8-cde7aad37040",
+    "subject": "port:Kestrel:engine:diesel",
+    "property": "power:rated",
+    "trueStatement": "diesel engine Kestrel port has rated power = 1958.8 kW (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
     },
-    {
-      "id": "Kestrel:engine",
-      "phrase": "diesel engine Kestrel port",
-      "category": "engine"
-    },
-    {
-      "id": "Kestrel:shaft",
-      "phrase": "propeller shaft Kestrel port",
-      "category": "shaft"
-    },
-    {
-      "id": "Kestrel:propeller",
-      "phrase": "propeller Kestrel port",
-      "category": "propeller"
+    "value": {
+      "type": "numeric",
+      "value": "1958.8 kW",
+      "magnitude": "1958.8",
+      "tolerance": "0",
+      "html": "1958.8 kW",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "kW"
+        }
+      ],
+      "quantity": "power",
+      "siValue": {
+        "value": "1958800 W",
+        "magnitude": "1958800",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "W"
+          }
+        ]
+      }
     }
-  ],
-  "facts": [
-    {
-      "id": "fact-1",
-      "subject_id": "Kestrel:vessel",
-      "subject": "patrol vessel Kestrel",
-      "property": "length",
-      "value": {
-        "type": "numeric",
-        "magnitude": 83.3,
-        "unit": "m",
-        "quantity": "length"
+  },
+  {
+    "_id": "b5c87e00-a944-55d0-a327-d8c59dd58055",
+    "subject": "port:Kestrel:shaft:propeller",
+    "property": "diameter",
+    "trueStatement": "propeller shaft Kestrel port has diameter = 208.9 mm (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
       },
-      "tags": [
-        "Kestrel",
-        "design revision B"
-      ],
-      "statement": "patrol vessel Kestrel has length = 83.3 m (Kestrel, design revision B);"
+      "B:revision:design": {
+        "immutable": true
+      }
     },
-    {
-      "id": "fact-2",
-      "subject_id": "Kestrel:engine",
-      "subject": "diesel engine Kestrel port",
-      "property": "rated power",
-      "value": {
-        "type": "numeric",
-        "magnitude": 1958.8,
-        "unit": "kW",
-        "quantity": "power"
-      },
-      "tags": [
-        "Kestrel",
-        "design revision B"
+    "value": {
+      "type": "numeric",
+      "value": "208.9 mm",
+      "magnitude": "208.9",
+      "tolerance": "0",
+      "html": "208.9 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
       ],
-      "statement": "diesel engine Kestrel port has rated power = 1958.8 kW (Kestrel, design revision B);"
-    },
-    {
-      "id": "fact-3",
-      "subject_id": "Kestrel:shaft",
-      "subject": "propeller shaft Kestrel port",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 208.9,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [
-        "Kestrel",
-        "design revision B"
-      ],
-      "statement": "propeller shaft Kestrel port has diameter = 208.9 mm (Kestrel, design revision B);"
-    },
-    {
-      "id": "fact-4",
-      "subject_id": "Kestrel:propeller",
-      "subject": "propeller Kestrel port",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 2.7,
-        "unit": "m",
-        "quantity": "length"
-      },
-      "tags": [
-        "Kestrel",
-        "design revision B"
-      ],
-      "statement": "propeller Kestrel port has diameter = 2.7 m (Kestrel, design revision B);"
-    },
-    {
-      "id": "fact-5",
-      "subject_id": "Kestrel:vessel",
-      "subject": "patrol vessel Kestrel",
-      "property": "main engine",
-      "value": {
-        "type": "reference",
-        "subject_id": "Kestrel:engine",
-        "subject": "diesel engine Kestrel port"
-      },
-      "tags": [
-        "Kestrel",
-        "design revision B"
-      ],
-      "statement": "patrol vessel Kestrel has main engine = diesel engine Kestrel port (Kestrel, design revision B);"
-    },
-    {
-      "id": "fact-6",
-      "subject_id": "Kestrel:engine",
-      "subject": "diesel engine Kestrel port",
-      "property": "drive shaft",
-      "value": {
-        "type": "reference",
-        "subject_id": "Kestrel:shaft",
-        "subject": "propeller shaft Kestrel port"
-      },
-      "tags": [
-        "Kestrel",
-        "design revision B"
-      ],
-      "statement": "diesel engine Kestrel port has drive shaft = propeller shaft Kestrel port (Kestrel, design revision B);"
-    },
-    {
-      "id": "fact-7",
-      "subject_id": "Kestrel:shaft",
-      "subject": "propeller shaft Kestrel port",
-      "property": "propeller",
-      "value": {
-        "type": "reference",
-        "subject_id": "Kestrel:propeller",
-        "subject": "propeller Kestrel port"
-      },
-      "tags": [
-        "Kestrel",
-        "design revision B"
-      ],
-      "statement": "propeller shaft Kestrel port has propeller = propeller Kestrel port (Kestrel, design revision B);"
+      "quantity": "length",
+      "siValue": {
+        "value": "0.2089 m",
+        "magnitude": "0.2089",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
     }
-  ]
-}
+  },
+  {
+    "_id": "53724e7e-c7f2-5b13-bf3b-c792284c1577",
+    "subject": "port:Kestrel:propeller",
+    "property": "diameter",
+    "trueStatement": "propeller Kestrel port has diameter = 2.7 m (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "numeric",
+      "value": "2.7 m",
+      "magnitude": "2.7",
+      "tolerance": "0",
+      "html": "2.7 m",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "m"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "2.7 m",
+        "magnitude": "2.7",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "_id": "64ac2ab4-528c-504b-a2fe-d4c3087dc360",
+    "subject": "Kestrel:vessel:patrol",
+    "property": "engine:main",
+    "trueStatement": "patrol vessel Kestrel has main engine = diesel engine Kestrel port (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "port:Kestrel:engine:diesel",
+      "html": "port:Kestrel:engine:diesel"
+    }
+  },
+  {
+    "_id": "290012fb-a749-5f68-9116-2cdcff8c5a6b",
+    "subject": "port:Kestrel:engine:diesel",
+    "property": "shaft:drive",
+    "trueStatement": "diesel engine Kestrel port has drive shaft = propeller shaft Kestrel port (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "port:Kestrel:shaft:propeller",
+      "html": "port:Kestrel:shaft:propeller"
+    }
+  },
+  {
+    "_id": "3d59f86d-cbc0-5292-bd6e-ce54166c4da2",
+    "subject": "port:Kestrel:shaft:propeller",
+    "property": "propeller",
+    "trueStatement": "propeller shaft Kestrel port has propeller = propeller Kestrel port (Kestrel, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "Kestrel",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "Kestrel": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "port:Kestrel:propeller",
+      "html": "port:Kestrel:propeller"
+    }
+  }
+]

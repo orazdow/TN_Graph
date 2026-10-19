@@ -1,83 +1,124 @@
-{
-  "format": "synthetic-truenumbers",
-  "format_version": 1,
-  "name": "Engineering smallest 2",
-  "subjects": [
-    {
-      "id": "plate",
-      "phrase": "plate outer west bay"
+[
+  {
+    "_id": "a2c78376-2341-56cb-93c5-4cbe9dc3da7c",
+    "subject": "bay:west:outer:plate",
+    "property": "area",
+    "trueStatement": "plate outer west bay has area = 38m^2 (west bay, design revision B)",
+    "numberspace": "generated",
+    "tags": [
+      "bay:west",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "bay:west": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
     },
-    {
-      "id": "bolt",
-      "phrase": "bolt rear service bay"
-    },
-    {
-      "id": "shaft",
-      "phrase": "shaft inner lower deck"
+    "value": {
+      "type": "numeric",
+      "value": "38 m^2",
+      "magnitude": "38",
+      "tolerance": "0",
+      "html": "38 m^2",
+      "unitPowers": [
+        {
+          "p": 2,
+          "u": "m"
+        }
+      ],
+      "quantity": "area",
+      "siValue": {
+        "value": "38 m^2",
+        "magnitude": "38",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 2,
+            "u": "m"
+          }
+        ]
+      }
     }
-  ],
-  "facts": [
-    {
-      "id": "area",
-      "subject_id": "plate",
-      "subject": "plate outer west bay",
-      "property": "area",
-      "value": {
-        "type": "numeric",
-        "magnitude": 38,
-        "unit": "m^2",
-        "quantity": "area"
-      },
-      "tags": [
-        "west bay",
-        "design revision B"
-      ],
-      "statement": "plate outer west bay has area = 38m^2 (west bay, design revision B)"
+  },
+  {
+    "_id": "41af0533-11f6-5041-a2cb-7834e77d12ab",
+    "subject": "bay:west:outer:plate",
+    "property": "fastener",
+    "trueStatement": "plate outer west bay has fastener = bolt rear service bay (design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "B:revision:design": {
+        "immutable": true
+      }
     },
-    {
-      "id": "fastener",
-      "subject_id": "plate",
-      "subject": "plate outer west bay",
-      "property": "fastener",
-      "value": {
-        "type": "reference",
-        "subject_id": "bolt",
-        "subject": "bolt rear service bay"
-      },
-      "tags": [
-        "design revision B"
-      ],
-      "statement": "plate outer west bay has fastener = bolt rear service bay (design revision B);"
-    },
-    {
-      "id": "shaft-reference",
-      "subject_id": "bolt",
-      "subject": "bolt rear service bay",
-      "property": "shaft",
-      "value": {
-        "type": "reference",
-        "subject_id": "shaft",
-        "subject": "shaft inner lower deck"
-      },
-      "tags": [
-        "design revision A",
-        "design revision B"
-      ],
-      "statement": "bolt rear service bay has shaft = shaft inner lower deck (design revision A, design revision B);"
-    },
-    {
-      "id": "diameter",
-      "subject_id": "shaft",
-      "subject": "shaft inner lower deck",
-      "property": "diameter",
-      "value": {
-        "type": "numeric",
-        "magnitude": 41.3,
-        "unit": "mm",
-        "quantity": "length"
-      },
-      "tags": [],
-      "statement": "shaft inner lower deck has diameter = 41.3 mm;"
+    "value": {
+      "type": "srd",
+      "value": "bay:service:rear:bolt",
+      "html": "bay:service:rear:bolt"
     }
-  ]
-}
+  },
+  {
+    "_id": "7e39b5e6-e124-592d-bf24-95d884703b79",
+    "subject": "bay:service:rear:bolt",
+    "property": "shaft",
+    "trueStatement": "bolt rear service bay has shaft = shaft inner lower deck (design revision A, design revision B);",
+    "numberspace": "generated",
+    "tags": [
+      "A:revision:design",
+      "B:revision:design"
+    ],
+    "tagMeta": {
+      "A:revision:design": {
+        "immutable": true
+      },
+      "B:revision:design": {
+        "immutable": true
+      }
+    },
+    "value": {
+      "type": "srd",
+      "value": "deck:lower:inner:shaft",
+      "html": "deck:lower:inner:shaft"
+    }
+  },
+  {
+    "_id": "25c0f4a0-57a3-52a6-83e2-eff496e1b57b",
+    "subject": "deck:lower:inner:shaft",
+    "property": "diameter",
+    "trueStatement": "shaft inner lower deck has diameter = 41.3 mm;",
+    "numberspace": "generated",
+    "tags": [],
+    "tagMeta": {},
+    "value": {
+      "type": "numeric",
+      "value": "41.3 mm",
+      "magnitude": "41.3",
+      "tolerance": "0",
+      "html": "41.3 mm",
+      "unitPowers": [
+        {
+          "p": 1,
+          "u": "mm"
+        }
+      ],
+      "quantity": "length",
+      "siValue": {
+        "value": "0.0413 m",
+        "magnitude": "0.0413",
+        "tolerance": "0",
+        "unitPowers": [
+          {
+            "p": 1,
+            "u": "m"
+          }
+        ]
+      }
+    }
+  }
+]

@@ -11,8 +11,8 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
         <div id="datasets">No datasets loaded</div>
         <div class="actions">
           <button id="sample" type="button">Load sample</button>
-          <button id="add-json" class="primary" type="button">Add JSON</button>
-          <input id="files" type="file" accept=".json,application/json" multiple hidden>
+          <button id="add-data" class="primary" type="button">Add data</button>
+          <input id="files" type="file" accept=".json,.tn,application/json" multiple hidden>
         </div>
       </section>
 
@@ -120,7 +120,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
 
   const get = id => host.querySelector('#' + id);
   const controls = Object.fromEntries([
-    'sample', 'add-json', 'files', 'datasets', 'query', 'property', 'tag',
+    'sample', 'add-data', 'files', 'datasets', 'query', 'property', 'tag',
     'reset', 'layout', 'network-view', 'fit', 'network', 'table',
     'counts', 'notice', 'error', 'inspector', 'inspection-hint',
     'sidebar-view', 'statements', 'statements-count',
@@ -164,7 +164,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
   }
   controls['sidebar-view'].addEventListener('change', () => setSidebar(controls['sidebar-view'].value));
 
-  controls['add-json'].addEventListener('click', () => controls.files.click());
+  controls['add-data'].addEventListener('click', () => controls.files.click());
   controls.reset.addEventListener('click', () => {
     controls.query.value = '';
     controls.property.value = '';

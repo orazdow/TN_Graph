@@ -11,39 +11,46 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from generate import generate_samples, generate, load_corpus, sample, validate_dataset
+from generate import generate_samples, generate, load_corpus, sample
 
 
 class GeneratorTests(unittest.TestCase):
-    def test_exact_review_recreation(self):
-        """Golden hashes were captured from the existing review handoff."""
-        expected = json.loads((ROOT / "tests" / "review_hashes.json").read_text())
+    def test_exact_sample_recreation(self):
+        """Bundled native exports are deterministic."""
+        expected = json.loads((ROOT / "tests" / "sample_hashes.json").read_text())
         with tempfile.TemporaryDirectory() as directory:
             generate_samples(directory)
             actual = {p.relative_to(directory).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                       for p in Path(directory).rglob("*") if p.is_file()}
             self.assertEqual(actual, expected)
             for file in Path(directory).rglob("*.json"):
-                data = validate_dataset(json.loads(file.read_text()))
+                data = json.loads(file.read_text())
                 text = file.with_suffix(".tn").read_text()
-                self.assertEqual(text, "\n".join(f["statement"] for f in data["facts"]) + "\n")
+                self.assertEqual(text, "\n".join(f["trueStatement"] for f in data) + "\n")
 
     def test_default_command_generates_samples_directly(self):
         # Exercise a standalone copy so the no-argument command uses its own samples/.
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / "generator"
             root.mkdir()
-            for name in ("generate.py", "sample_files.json"):
+            for name in ("generate.py", "native.py"):
                 shutil.copy2(ROOT / name, root / name)
             for name in ("corpus", "recipes"):
                 shutil.copytree(ROOT / name, root / name)
             command = [sys.executable, str(root / "generate.py")]
             result = subprocess.run(command, cwd=directory, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
-            expected = json.loads((ROOT / "tests" / "review_hashes.json").read_text())
+            expected = json.loads((ROOT / "tests" / "sample_hashes.json").read_text())
             actual = {p.relative_to(root / "samples").as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                       for p in (root / "samples").rglob("*") if p.is_file()}
-            self.assertEqual(actual, expected)
+            self.assertEqual(set(actual), set(expected))
+            for name, digest in actual.items():
+                if name.endswith('.json'):
+                    records = json.loads((root / 'samples' / name).read_text())
+                    self.assertIsInstance(records, list)
+                    self.assertTrue(all('_id' in record and 'trueStatement' in record for record in records))
+                else:
+                    self.assertEqual(digest, expected[name])
             self.assertFalse((root / "generated").exists())
             other = Path(directory) / "custom-samples"
             result = subprocess.run(command + ["--output", str(other)], capture_output=True, text=True)
@@ -139,8 +146,10 @@ class GeneratorTests(unittest.TestCase):
             result = subprocess.run(command, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             data = json.loads(stem.with_suffix(".json").read_text())
-            self.assertEqual(len(data["subjects"]), 8)
-            self.assertEqual(len(data["facts"]), 6)
+            self.assertEqual(len(data), 6)
+            self.assertTrue(all(record['value']['type'] == 'srd' for record in data))
+            subjects = {r['subject'] for r in data} | {r['value']['value'] for r in data}
+            self.assertEqual(len(subjects), 8)
             bad = subprocess.run(command + ["--references", "2"], capture_output=True, text=True)
             self.assertEqual(bad.returncode, 2)
             self.assertIn("references must", bad.stderr)

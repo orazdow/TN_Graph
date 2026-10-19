@@ -6,15 +6,13 @@ import {createGraph, distanceToRoute} from '../src/graph-render.js';
 import {circularLayout, layeredLayout, computeLayout} from '../src/layout.js';
 
 function fixture() {
-  return {format: 'synthetic-truenumbers', format_version: 1,
-    subjects: [{id: 'a', phrase: 'ship Aurora'}, {id: 'b', phrase: 'company Meridian'}, {id: 'c', phrase: 'unconnected subject'}],
-    facts: [
-      {id: 'ab1', subject_id: 'a', subject: 'ship Aurora', property: 'owner', value: {type: 'reference', subject_id: 'b', subject: 'company Meridian'}, tags: []},
-      {id: 'ab2', subject_id: 'a', subject: 'ship Aurora', property: 'owner', value: {type: 'reference', subject_id: 'b', subject: 'company Meridian'}, tags: []},
-      {id: 'ba', subject_id: 'b', subject: 'company Meridian', property: 'fleet', value: {type: 'reference', subject_id: 'a', subject: 'ship Aurora'}, tags: []},
-      {id: 'aa', subject_id: 'a', subject: 'ship Aurora', property: 'self', value: {type: 'reference', subject_id: 'a', subject: 'ship Aurora'}, tags: []},
-      ...['mass1', 'mass2'].map(id => ({id, subject_id: 'a', subject: 'ship Aurora', property: 'mass', value: {type: 'numeric', magnitude: 1200, unit: 'tonnes'}, tags: []})),
-    ]};
+  return [
+    ...['ab1', 'ab2'].map(_id => ({_id, subject: 'Aurora:ship', property: 'owner', value: {type: 'srd', value: 'Meridian:company'}, tags: []})),
+    {_id: 'ba', subject: 'Meridian:company', property: 'fleet', value: {type: 'srd', value: 'Aurora:ship'}, tags: []},
+    {_id: 'aa', subject: 'Aurora:ship', property: 'self', value: {type: 'srd', value: 'Aurora:ship'}, tags: []},
+    ...['mass1', 'mass2'].map(_id => ({_id, subject: 'Aurora:ship', property: 'mass', value: {type: 'numeric', magnitude: '1200', unitPowers: [{u: 'tonnes', p: 1}]}, tags: []})),
+    {_id: 'isolated', subject: 'subject:unconnected', property: 'status', value: {type: 'string', value: 'idle'}, tags: []},
+  ];
 }
 function snapshot() { const engine = new Engine(); engine.add(fixture()); return engine.getCollection(); }
 
@@ -29,12 +27,12 @@ test('reference view retains parallel edges, cycles, self-links, and disconnecte
 test('literal nodes are fact-specific and toggling them never changes visible facts', () => {
   const data = snapshot(), graph = createGraph(data, data.facts, {includeLiterals: true});
   const literalNodes = graph.nodes.filter(node => node.kind === 'literal');
-  assert.equal(literalNodes.length, 2);
+  assert.equal(literalNodes.length, 3);
   assert.notEqual(literalNodes[0].id, literalNodes[1].id);
   assert.equal(literalNodes[0].label, literalNodes[1].label);
   assert.equal(graph.edges.length, data.facts.length);
   assert.equal(createGraph(data, data.facts).edges.length, 4);
-  assert.equal(data.facts.length, 6);
+  assert.equal(data.facts.length, 7);
 });
 
 test('filtered graph contains matching subjects and targets, including literal-only subjects', () => {
@@ -81,13 +79,13 @@ test('route hit distance follows bends and handles degenerate segments', () => {
 
 test('bundled sample lays out all filtered facts and literal edges', () => {
   const engine = new Engine();
-  const data = JSON.parse(readFileSync(new URL('../tn_generator/samples/navy/navy-fleet.json', import.meta.url)));
+  const data = JSON.parse(readFileSync(new URL('../samples/navy/navy-fleet.json', import.meta.url)));
   engine.add(data);
   const collection = engine.getCollection();
   const graph = createGraph(collection, collection.facts, {includeLiterals: true});
   const result = layeredLayout(graph);
-  assert.equal(graph.edges.length, data.facts.length);
-  assert.equal(result.routes.size, data.facts.length);
+  assert.equal(graph.edges.length, data.length);
+  assert.equal(result.routes.size, data.length);
   assert.equal(result.positions.size, graph.nodes.length);
 });
 
@@ -159,7 +157,7 @@ test('fact graph reference overlay links local values to subject roots and retai
 
 test('reimporting a sample adds occurrences without adding displayed edges or value nodes in any view', () => {
   const engine = new Engine();
-  const sample = JSON.parse(readFileSync(new URL('../tn_generator/samples/construction/engineering-smallest-2.json', import.meta.url)));
+  const sample = JSON.parse(readFileSync(new URL('../samples/construction/engineering-smallest-2.json', import.meta.url)));
   engine.add(sample);
   const first = engine.getCollection(); first.facts = groupFacts(first.facts);
   engine.add(sample);

@@ -1,8 +1,8 @@
-TN SAMPLE GENERATOR 2
+TN SAMPLE GENERATOR
 
 Python 3.10+, standard library only. No npm or Python packages to install.
-One generator handles both corpora; it does not import the older generators.
-Output is synthetic-truenumbers JSON (format_version 1) plus a .tn text file.
+One generator handles the construction and navy vocabularies.
+Output is dashboard-style native JSON plus a .tn text file.
 
 RUN FROM THIS FOLDER
 
@@ -43,6 +43,7 @@ CONTROLS
 --name         Display name of the dataset.
 --output       Destination folder for the complete set, or filename stem for a
                single sample. Defaults to samples/ beside generate.py.
+--numberspace  Native JSON numberspace identifier. Default: generated.
 
 Reference probability is not an exact edge quota. Property limits exclude
 reference properties. Groups create one subject per included type; add names
@@ -93,20 +94,38 @@ type was excluded by --types are skipped. Duplicate phrase templates are errors.
 The code creates IDs, resolves references, samples values, formats statements,
 and writes files. Adding another domain normally means writing another corpus.
 
-REPLAYING THE REVIEW SET
+BUNDLED EXAMPLES
 
 corpus/navy.json has three named samples defined by ordinary generation options.
 corpus/construction.json points to three fixed datasets in recipes/ because these examples
 were generated previously and then manually partitioned or edited. Those recipes
-preserve IDs, original statement text, tags, and historical metadata exactly.
+preserve their original statement text and tags.
 New construction data uses the cleaner type rules, not these fixed recipes.
 Keeping fixed examples separate makes the vocabulary files easier to edit.
 
 Named generated samples can take overrides. Fixed samples reject overrides;
-omit --sample to generate a new variation. Recorded output paths and line endings
-let the default command reproduce all nine JSON/TN pairs, including the three
-top-level aliases. sample_files.json holds the three original README sidecars.
-Historical README paths are preserved for exact replay, not current instructions.
+omit --sample to generate a new variation. The complete set has nine JSON/TN
+pairs, including three top-level aliases. Recipes use a private generation
+model, not a public input format.
 
 Tests compare against saved SHA-256 hashes; no original project files are needed.
-The generated files load directly into the current workbench using Add JSON.
+The workbench accepts native TN JSON and .tn files through Add data.
+
+NATIVE JSON TRANSLATION
+
+native.py converts internal facts to an array of dashboard-style TN records.
+It encodes subject/property/tag phrases as paths, reference values as srd,
+and numeric magnitudes/tolerances as strings with unitPowers and siValue.
+SI conversions use Decimal arithmetic. Export IDs are stable UUIDs; no creator
+email, user ID, or creation time is invented. Supply --numberspace to use a
+particular numberspace identifier rather than the synthetic default.
+
+Numeric and phrase structures follow the supplied bike export. String values
+use type: string and retain their text in value without phrase-path parsing.
+The html field is escaped for display. Unknown units produce an error.
+Extend the SI unit table in native.py to
+support additional units. This does not establish live TN server acceptance.
+
+Native TN JSON and TN text are the only output formats; both are always written.
+The viewer normalizes either into its private graph model. Native metadata is
+retained, while structured values determine references, numbers, and strings.
