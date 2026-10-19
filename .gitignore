@@ -4,3 +4,4 @@ review/
 __pycache__/
 *.py[cod]
 *.log
+/todo.txt

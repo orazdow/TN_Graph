@@ -9,7 +9,7 @@ import {makePath, buildEdgePaths, placeEdgeLabels, distanceToRoute, midpoint} fr
 function sampleGraph() {
   const engine = new Engine();
   engine.add(JSON.parse(readFileSync(new URL('../tn_generator/samples/construction/smallest.json', import.meta.url))));
-  const snapshot = engine.snapshot();
+  const snapshot = engine.getCollection();
   return createGraph(snapshot, snapshot.facts);
 }
 function check(graph, geometry) {

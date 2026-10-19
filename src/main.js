@@ -1,3 +1,4 @@
+// Connect data, filters, graph layout, and the workbench UI.
 import {Engine, selectFacts, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
@@ -14,7 +15,7 @@ const ui = createUI(document.querySelector('#app'), {onViewChange() { network?.r
 let selection = null;
 let page = 0;
 let tableField = null;
-let snapshot = engine.snapshot();
+let snapshot = engine.getCollection();
 let facts = [];
 let tableFacts = [];
 let tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
@@ -35,6 +36,7 @@ function select(next) {
   renderSelection();
 }
 
+// Sync the table, Inspector, and graph selection.
 function renderSelection() {
   renderTable(ui.table, tableFacts, {
     tableFilters, tableField,
@@ -71,12 +73,14 @@ function readLayout() {
   });
 }
 
+// Filter the collection, update views, and calculate graph geometry.
 async function render() {
-  snapshot = engine.snapshot();
+  snapshot = engine.getCollection();
   snapshot.facts = groupFacts(snapshot.facts);
   renderOptions(ui.property, snapshot.facts.map(fact => fact.property), 'All properties');
   renderOptions(ui.tag, snapshot.facts.flatMap(fact => fact.tags), 'All tags');
   const filters = {query: ui.query.value, property: ui.property.value, tag: ui.tag.value};
+  // Drop filter choices whose facts were removed.
   for (const field of ['subject', 'property', 'value']) {
     const available = new Set(snapshot.facts.map(fact => factFieldKey(fact, field)));
     tableFilters[field] = new Set([...tableFilters[field]].filter(key => available.has(key)));
@@ -98,6 +102,7 @@ async function render() {
     const options = layoutOptions;
     network.setAppearance(appearance);
     const geometry = await requestLayout(graph, options);
+    // Ignore results superseded by a newer render.
     if (!geometry || revision !== layoutRevision) return;
     network.setGraph(graph, geometry);
     network.setSelection(selection);
@@ -131,6 +136,7 @@ ui.sample.addEventListener('click', async () => {
   }
 });
 
+// Import each JSON independently so one invalid file does not block the rest.
 ui.files.addEventListener('change', async () => {
   const errors = [];
   for (const file of ui.files.files) {
@@ -165,6 +171,7 @@ function applyLayout({appearanceOnly = false} = {}) {
     scaleLabelsWithZoom: ui['scale-labels-with-zoom'].checked,
   };
   showError();
+  // Appearance changes preserve the camera; layout changes rebuild geometry.
   if (appearanceOnly) network.setAppearance(appearance);
   else render();
 }

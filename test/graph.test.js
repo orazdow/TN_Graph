@@ -16,7 +16,7 @@ function fixture() {
       ...['mass1', 'mass2'].map(id => ({id, subject_id: 'a', subject: 'ship Aurora', property: 'mass', value: {type: 'numeric', magnitude: 1200, unit: 'tonnes'}, tags: []})),
     ]};
 }
-function snapshot() { const engine = new Engine(); engine.add(fixture()); return engine.snapshot(); }
+function snapshot() { const engine = new Engine(); engine.add(fixture()); return engine.getCollection(); }
 
 test('reference view retains parallel edges, cycles, self-links, and disconnected subjects', () => {
   const data = snapshot(), before = structuredClone(data), graph = createGraph(data, data.facts);
@@ -83,7 +83,7 @@ test('bundled sample lays out all filtered facts and literal edges', () => {
   const engine = new Engine();
   const data = JSON.parse(readFileSync(new URL('../tn_generator/samples/navy/navy-fleet.json', import.meta.url)));
   engine.add(data);
-  const collection = engine.snapshot();
+  const collection = engine.getCollection();
   const graph = createGraph(collection, collection.facts, {includeLiterals: true});
   const result = layeredLayout(graph);
   assert.equal(graph.edges.length, data.facts.length);
@@ -161,9 +161,9 @@ test('reimporting a sample adds occurrences without adding displayed edges or va
   const engine = new Engine();
   const sample = JSON.parse(readFileSync(new URL('../tn_generator/samples/construction/engineering-smallest-2.json', import.meta.url)));
   engine.add(sample);
-  const first = engine.snapshot(); first.facts = groupFacts(first.facts);
+  const first = engine.getCollection(); first.facts = groupFacts(first.facts);
   engine.add(sample);
-  const repeated = engine.snapshot(); repeated.facts = groupFacts(repeated.facts);
+  const repeated = engine.getCollection(); repeated.facts = groupFacts(repeated.facts);
   assert.equal(repeated.facts.length, 4);
   assert.ok(repeated.facts.every(fact => fact.occurrenceCount === 2));
   for (const view of ['references', 'all', 'facts', 'facts-references']) {

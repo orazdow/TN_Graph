@@ -1,9 +1,10 @@
+// engine.js: data ingest and TN filtering rules.
 const identity = (...parts) => JSON.stringify(parts);
 const requireText = (value, label) => {
   if (typeof value !== 'string' || !value.trim()) throw new Error(label + ' must be a nonempty string');
 };
 
-/** Accept the generator interchange format, not TN sentence text or native TN JSON. */
+// Validate generated JSON and explicit reference targets.
 export function validateDataset(input) {
   if (input?.format !== 'synthetic-truenumbers' || input.format_version !== 1) {
     throw new Error('Expected synthetic-truenumbers JSON with format_version 1');
@@ -49,14 +50,15 @@ export function validateDataset(input) {
   return data;
 }
 
-/** In-memory assertions. Equal subject phrases merge; every imported fact survives. */
+// Store imported datasets in memory.
 export class Engine {
   #sources = new Map();
   #serial = 0;
 
   add(input, {name = 'Dataset'} = {}) {
     requireText(name, 'Source name');
-    const data = validateDataset(input); // Finish validation before changing the collection.
+    // Validate before storing.
+    const data = validateDataset(input);
     const id = 'source-' + ++this.#serial;
     this.#sources.set(id, {id, name, data});
     return id;
@@ -66,7 +68,8 @@ export class Engine {
     return this.#sources.delete(sourceId);
   }
 
-  snapshot() {
+  // Combine sources, merge matching subject phrases, and keep every fact.
+  getCollection() {
     const subjects = new Map();
     const facts = [];
     const sources = [];
@@ -110,7 +113,7 @@ export function selectFacts(snapshot, {query = '', property = '', tag = ''} = {}
   );
 }
 
-/** Group equivalent assertions for display while retaining every imported occurrence. */
+// Count duplicate facts for display; keep their source occurrences.
 export function groupFacts(facts) {
   const groups = new Map();
   for (const fact of facts) {
@@ -127,7 +130,7 @@ export function groupFacts(facts) {
   return [...groups.values()];
 }
 
-/** Exact column identity; numeric units and value types remain distinct. */
+// Match table entries by value type and unit as well as content.
 export function factFieldKey(fact, field) {
   if (field === 'subject') return fact.subject;
   if (field === 'property') return fact.property;
@@ -137,6 +140,7 @@ export function factFieldKey(fact, field) {
   return identity(value.type, value.text);
 }
 
+// Match any choice within a column, and require every selected column.
 export function matchesTableFilters(fact, selections) {
   return ['subject', 'property', 'value'].every(field =>
     !selections[field].size || selections[field].has(factFieldKey(fact, field)));

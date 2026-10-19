@@ -1,3 +1,4 @@
+// Calculate graph geometry with d3-dag and manage layout workers.
 import {
   graph as createD3Graph, sugiyama, zherebko, grid,
   layeringSimplex, layeringLongestPath, layeringTopological,
@@ -29,12 +30,12 @@ export function normalizeLayout(options = {}) {
   return settings;
 }
 
-/** d3-dag owns layout; our adapter preserves every source fact and direction. */
+// Calculate node positions and edge routes without changing facts.
 export function computeLayout(graph, options = {}) {
   const settings = normalizeLayout(options);
   const started = performance.now();
   if (!graph.nodes.length) return {positions: new Map(), routes: new Map(), width: 0, height: 0, cyclic: false, elapsed: 0, settings};
-  // Fact graphs keep each subject's assertions together, independent of references.
+  // Lay out each subject group separately, then pack the groups together.
   if (graph.projection === 'facts') {
     const groups = new Map();
     for (const node of graph.nodes) {
@@ -64,7 +65,7 @@ export function computeLayout(graph, options = {}) {
       for (const [id, point] of geometry.positions) positions.set(id, translate(point));
       for (const [id, points] of geometry.routes) routes.set(id, points.map(translate));
     });
-    // Reference overlays do not influence the arrangement of subject fact groups.
+    // Add reference routes after positioning the groups.
     for (const edge of graph.edges) {
       if (edge.kind !== 'reference') continue;
       const a = positions.get(edge.source), b = positions.get(edge.target);
@@ -125,7 +126,7 @@ export function computeLayout(graph, options = {}) {
     const size = 48 + count * 22;
     routes.set(edge.id, [[node.x, node.y], [node.x + size, node.y - size], [node.x - size, node.y - size], [node.x, node.y]].map(([x, y]) => transform(x, y)));
   }
-  // Grid can return coincident routes for parallel facts. Keep each fact visibly separate.
+  // Separate parallel edges when Grid gives them identical routes.
   const coincident = new Map();
   for (const edge of graph.edges) {
     const key = JSON.stringify(routes.get(edge.id));
@@ -148,10 +149,10 @@ export function computeLayout(graph, options = {}) {
     cyclic, elapsed: performance.now() - started, settings};
 }
 
-// Compatibility for consumers of the initial layered adapter.
+// Keep the original layered layout entry point.
 export function layeredLayout(graph, options) { return computeLayout(graph, {...options, algorithm: 'sugiyama'}); }
 
-/** The first layout is intentionally just a circle; all relationships survive. */
+// Legacy circular layout; retained for callers and tests.
 export function circularLayout(graph) {
   const count = graph.nodes.length;
   const radius = count > 1 ? Math.max(140, count * 22) : 0;
@@ -186,7 +187,7 @@ export function circularLayout(graph) {
 }
 
 
-// The same module is the worker entry and the main-thread request interface.
+// Handle layout requests when this module runs as a worker.
 if (typeof WorkerGlobalScope !== 'undefined' && globalThis instanceof WorkerGlobalScope) {
   globalThis.onmessage = ({data}) => {
     try { globalThis.postMessage({result: computeLayout(data.graph, data.options)}); }
@@ -204,7 +205,7 @@ export function cancelLayout() {
   pendingLayout = null;
 }
 
-/** Run the latest layout in a worker and discard any earlier request. */
+// Run layout in a worker, replacing any pending request.
 export function requestLayout(graph, options) {
   cancelLayout();
   return new Promise((resolve, reject) => {
