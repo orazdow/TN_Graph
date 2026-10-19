@@ -90,7 +90,7 @@ test('query, exact property, and exact tag filters combine without changing coll
 
 test('all bundled generator samples validate and import', () => {
   const directory = new URL('../tn_generator/samples/', import.meta.url);
-  for (const filename of readdirSync(directory).filter(name => name.endsWith('.json') && name !== 'sample_summary.json')) {
+  for (const filename of readdirSync(directory, {recursive: true}).filter(name => name.endsWith('.json') && name !== 'sample_summary.json')) {
     const data = JSON.parse(readFileSync(new URL(filename, directory), 'utf8'));
     validateDataset(data);
     const engine = new Engine(); engine.add(data);

@@ -81,7 +81,7 @@ test('route hit distance follows bends and handles degenerate segments', () => {
 
 test('bundled sample lays out all filtered facts and literal edges', () => {
   const engine = new Engine();
-  const data = JSON.parse(readFileSync(new URL('../tn_generator/samples/mixed.json', import.meta.url)));
+  const data = JSON.parse(readFileSync(new URL('../tn_generator/samples/navy/navy-fleet.json', import.meta.url)));
   engine.add(data);
   const collection = engine.snapshot();
   const graph = createGraph(collection, collection.facts, {includeLiterals: true});
@@ -159,7 +159,7 @@ test('fact graph reference overlay links local values to subject roots and retai
 
 test('reimporting a sample adds occurrences without adding displayed edges or value nodes in any view', () => {
   const engine = new Engine();
-  const sample = JSON.parse(readFileSync(new URL('../samples/construction/engineering-smallest-2.json', import.meta.url)));
+  const sample = JSON.parse(readFileSync(new URL('../tn_generator/samples/construction/engineering-smallest-2.json', import.meta.url)));
   engine.add(sample);
   const first = engine.snapshot(); first.facts = groupFacts(first.facts);
   engine.add(sample);

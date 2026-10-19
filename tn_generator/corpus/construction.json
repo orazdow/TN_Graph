@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "name": "Construction engineering",
+  "names": [
+    "west bay",
+    "north bay",
+    "south bay",
+    "workshop"
+  ],
+  "tags": [
+    "design revision B"
+  ],
+  "notes": [
+    "Synthetic component measurements and allowed structural connections."
+  ],
+  "defaults": {
+    "seed": 20261015,
+    "properties": 1
+  },
+  "types": {
+    "plate": {
+      "phrase": "plate {name}",
+      "properties": {
+        "area": {
+          "unit": "m^2",
+          "range": [
+            10,
+            40
+          ],
+          "quantity": "area",
+          "decimals": 1
+        },
+        "temperature": {
+          "unit": "K",
+          "range": [
+            280,
+            350
+          ],
+          "quantity": "temperature",
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "fastener",
+          "target": "bolt"
+        }
+      ]
+    },
+    "bolt": {
+      "phrase": "bolt {name}",
+      "properties": {
+        "diameter": {
+          "unit": "mm",
+          "range": [
+            10,
+            30
+          ],
+          "quantity": "length",
+          "decimals": 1
+        },
+        "torque": {
+          "unit": "N*m",
+          "range": [
+            20,
+            200
+          ],
+          "quantity": "moment",
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "secured shaft",
+          "target": "shaft"
+        }
+      ]
+    },
+    "shaft": {
+      "phrase": "shaft {name}",
+      "properties": {
+        "diameter": {
+          "unit": "mm",
+          "range": [
+            35,
+            60
+          ],
+          "quantity": "length",
+          "decimals": 1
+        },
+        "length": {
+          "unit": "m",
+          "range": [
+            1,
+            4
+          ],
+          "quantity": "length",
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "bearing",
+          "target": "bearing"
+        }
+      ]
+    },
+    "bearing": {
+      "phrase": "bearing {name}",
+      "properties": {
+        "bore diameter": {
+          "unit": "mm",
+          "range": [
+            35,
+            60
+          ],
+          "quantity": "length",
+          "decimals": 1
+        },
+        "material": {
+          "choices": [
+            "steel",
+            "bronze"
+          ]
+        }
+      },
+      "references": []
+    },
+    "beam": {
+      "phrase": "beam {name}",
+      "properties": {
+        "length": {
+          "unit": "m",
+          "range": [
+            2,
+            8
+          ],
+          "quantity": "length",
+          "decimals": 1
+        },
+        "mass": {
+          "unit": "kg",
+          "range": [
+            100,
+            800
+          ],
+          "quantity": "mass",
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "end support",
+          "target": "support"
+        }
+      ]
+    },
+    "support": {
+      "phrase": "support {name}",
+      "properties": {
+        "support width": {
+          "unit": "mm",
+          "range": [
+            100,
+            300
+          ],
+          "quantity": "length",
+          "decimals": 1
+        },
+        "material": {
+          "choices": [
+            "steel",
+            "concrete"
+          ]
+        }
+      },
+      "references": []
+    }
+  },
+  "samples": {
+    "engineering-smallest-2": {
+      "outputs": [
+        "construction/engineering-smallest-2",
+        "engineering-smallest-2"
+      ],
+      "newlines": {
+        "json": "\n",
+        "tn": "\n"
+      },
+      "file": "../recipes/engineering-smallest-2.json"
+    },
+    "small": {
+      "outputs": [
+        "construction/small",
+        "small"
+      ],
+      "newlines": {
+        "json": "\r\n",
+        "tn": "\r\n"
+      },
+      "file": "../recipes/small.json"
+    },
+    "smallest": {
+      "outputs": [
+        "construction/smallest",
+        "smallest"
+      ],
+      "newlines": {
+        "json": "\n",
+        "tn": "\n"
+      },
+      "file": "../recipes/smallest.json"
+    }
+  }
+}

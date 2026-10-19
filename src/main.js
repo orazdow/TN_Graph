@@ -3,7 +3,7 @@ import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderStatements} from './ui.js';
 
-const DEFAULT_SAMPLE = './samples/construction/engineering-smallest-2.json';
+const DEFAULT_SAMPLE = './tn_generator/samples/construction/engineering-smallest-2.json';
 
 const engine = new Engine();
 let layoutRevision = 0;

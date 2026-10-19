@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "name": "Navy engineering",
+  "names": [
+    "Kestrel",
+    "Osprey",
+    "Heron"
+  ],
+  "tags": [
+    "design revision B"
+  ],
+  "notes": [
+    "Simple synthetic propulsion examples: one numeric measurement per subject, with vessel to engine to shaft to propeller references."
+  ],
+  "defaults": {
+    "seed": 20261015
+  },
+  "types": {
+    "vessel": {
+      "phrase": "patrol vessel {name}",
+      "properties": {
+        "length": {
+          "unit": "m",
+          "quantity": "length",
+          "range": [
+            65,
+            85
+          ],
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "main engine",
+          "target": "engine"
+        }
+      ]
+    },
+    "engine": {
+      "phrase": "diesel engine {name} port",
+      "properties": {
+        "rated power": {
+          "unit": "kW",
+          "quantity": "power",
+          "range": [
+            1800,
+            2600
+          ],
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "drive shaft",
+          "target": "shaft"
+        }
+      ]
+    },
+    "shaft": {
+      "phrase": "propeller shaft {name} port",
+      "properties": {
+        "diameter": {
+          "unit": "mm",
+          "quantity": "length",
+          "range": [
+            180,
+            240
+          ],
+          "decimals": 1
+        }
+      },
+      "references": [
+        {
+          "property": "propeller",
+          "target": "propeller"
+        }
+      ]
+    },
+    "propeller": {
+      "phrase": "propeller {name} port",
+      "properties": {
+        "diameter": {
+          "unit": "m",
+          "quantity": "length",
+          "range": [
+            2.2,
+            2.8
+          ],
+          "decimals": 1
+        }
+      },
+      "references": []
+    }
+  },
+  "samples": {
+    "navy-fleet": {
+      "options": {
+        "name": "Navy Fleet",
+        "groups": 3,
+        "types": [
+          "vessel",
+          "engine",
+          "shaft",
+          "propeller"
+        ]
+      },
+      "outputs": [
+        "navy/navy-fleet"
+      ],
+      "newlines": {
+        "json": "\r\n",
+        "tn": "\r\n"
+      }
+    },
+    "navy-small": {
+      "options": {
+        "name": "Navy Small",
+        "groups": 1,
+        "types": [
+          "vessel",
+          "engine",
+          "shaft",
+          "propeller"
+        ]
+      },
+      "outputs": [
+        "navy/navy-small"
+      ],
+      "newlines": {
+        "json": "\r\n",
+        "tn": "\r\n"
+      }
+    },
+    "navy-smallest": {
+      "options": {
+        "name": "Navy Smallest",
+        "groups": 1,
+        "types": [
+          "vessel",
+          "engine",
+          "shaft"
+        ]
+      },
+      "outputs": [
+        "navy/navy-smallest"
+      ],
+      "newlines": {
+        "json": "\r\n",
+        "tn": "\r\n"
+      }
+    }
+  }
+}
