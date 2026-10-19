@@ -6,7 +6,6 @@ import path from 'node:path';
 
 const development = process.env.ROLLUP_WATCH === 'true';
 
-// Emit the page and its local assets so dist can be served on its own.
 function browserAssets() {
   return {
     name: 'browser-assets',

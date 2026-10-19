@@ -10,6 +10,6 @@ Simple patrol-vessel propulsion examples, with one measurement per subject. Only
 
 Each JSON has a matching .tn statement list. The smallest sample contains one vessel, its main engine and drive shaft, with one measurement per subject. Small adds the propeller. Fleet repeats that same simple chain for three vessels. No status, material, cooling, fuel, electrical, or dockyard facts.
 
-Regenerate from lib/tn_generator with: python generate.py
+Regenerate from lib/generator with: python generate.py
 
-Corpus: tn_generator/corpus/navy.json.
+Corpus: generator/corpus/navy.json.
