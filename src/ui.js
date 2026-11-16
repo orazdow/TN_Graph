@@ -82,6 +82,8 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
                 <label>Node separation<input id="node-gap" type="number" required min="0" max="300" value="45" step="5"></label>
                 <label>Rank separation<input id="rank-gap" type="number" required min="0" max="300" value="70" step="5"></label>
               </div>
+              <label class="check-option"><input id="auto-rank-gap" type="checkbox" checked> Automatic rank separation</label>
+              <p id="rank-gap-status" class="option-help">Adjusts layered spacing to the graph and available canvas.</p>
               <fieldset id="sugiyama-options"><legend>Sugiyama stages</legend>
                 <div class="layout-grid">
                   <label>Layering<select id="layering"><option value="simplex">Simplex — shorter edges</option><option value="longest-path">Longest path — fewer ranks</option><option value="topological">Topological — one node per rank</option></select></label>
@@ -125,7 +127,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     'counts', 'notice', 'error', 'inspector', 'inspection-hint',
     'sidebar-view', 'statements', 'statements-count',
     'layout-panel', 'layout-form', 'layout-summary', 'layout-status', 'layout-reset',
-    'direction', 'layering', 'decross', 'coord', 'passes', 'node-gap', 'rank-gap',
+    'direction', 'layering', 'decross', 'coord', 'passes', 'node-gap', 'rank-gap', 'auto-rank-gap', 'rank-gap-status',
     'sugiyama-options', 'grid-options', 'longest-option', 'longest-top-down',
     'lane', 'compressed', 'bidirectional', 'lane-top-down', 'edge-style', 'subject-label-size', 'value-label-size', 'property-label-size', 'scale-labels-with-zoom',
   ].map(id => [id, get(id)]));
@@ -178,6 +180,8 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     controls['sugiyama-options'].disabled = !sugiyama;
     controls['grid-options'].hidden = !grid;
     controls['grid-options'].disabled = !grid;
+    controls['auto-rank-gap'].disabled = !sugiyama;
+    controls['rank-gap'].disabled = sugiyama && controls['auto-rank-gap'].checked;
     const topological = controls.layering.value === 'topological';
     controls.coord.querySelector('[value="topological"]').disabled = !topological;
     if (topological) controls.coord.value = 'topological';

@@ -96,6 +96,81 @@ test('all layouts handle self-links, empty graphs and disconnected nodes', () =>
   }
 });
 
+test('automatic rank separation opens up bike while keeping the small sample compact', () => {
+  const viewport = {width: 1000, height: 565};
+  const engine = new Engine();
+  engine.add(readFileSync(new URL('../samples/bike.tn', import.meta.url), 'utf8'));
+  const data = engine.getCollection();
+  const bike = createGraph(data, data.facts, {view: 'all', includeLiterals: true});
+  const adjusted = computeLayout(bike, {}, {width: 1000, height: 480});
+  assert.ok(adjusted.settings.rankGap >= 230 && adjusted.settings.rankGap <= 245);
+  for (const view of ['all', 'references', 'facts', 'facts-references']) {
+    const graph = createGraph(data, data.facts, {view, includeLiterals: view === 'all'});
+    const baseline = computeLayout(graph, {autoRankGap: false});
+    const automatic = computeLayout(graph, {}, viewport);
+    check(graph, automatic);
+    assert.ok(automatic.settings.rankGap > baseline.settings.rankGap, view);
+    assert.ok(automatic.height > baseline.height, view);
+    assert.ok(automatic.width / automatic.height < baseline.width / baseline.height, view);
+    assert.deepEqual([...automatic.positions.keys()], [...baseline.positions.keys()]);
+    assert.deepEqual([...automatic.routes.keys()], [...baseline.routes.keys()]);
+  }
+  const small = new Engine();
+  small.add(readFileSync(new URL('../samples/construction/engineering-smallest-2.tn', import.meta.url), 'utf8'));
+  const collection = small.getCollection();
+  const graph = createGraph(collection, collection.facts, {includeLiterals: true});
+  assert.equal(computeLayout(graph, {}, viewport).settings.rankGap, 70);
+});
+
+test('manual node separation changes width without increasing automatic rank separation', () => {
+  const engine = new Engine();
+  engine.add(readFileSync(new URL('../samples/bike.tn', import.meta.url), 'utf8'));
+  const data = engine.getCollection();
+  const viewport = {width: 1000, height: 480};
+  for (const view of ['all', 'references', 'facts', 'facts-references']) {
+    const graph = createGraph(data, data.facts, {view, includeLiterals: view === 'all'});
+    const narrow = computeLayout(graph, {nodeGap: 15}, viewport);
+    const wide = computeLayout(graph, {nodeGap: 200}, viewport);
+    check(graph, narrow);
+    check(graph, wide);
+    assert.equal(wide.settings.rankGap, narrow.settings.rankGap, view);
+    assert.ok(wide.width > narrow.width, view);
+    assert.equal(wide.settings.nodeGap, 200);
+    assert.equal(narrow.settings.nodeGap, 15);
+  }
+});
+
+test('automatic spacing follows viewport proportions and direction, within bounds', () => {
+  const graph = {nodes: [{id: 'root', label: 'root'}], edges: []};
+  for (let index = 0; index < 12; index++) {
+    const id = 'child-' + index;
+    graph.nodes.push({id, label: id});
+    graph.edges.push({id: 'edge-' + index, source: 'root', target: id});
+  }
+  for (const direction of ['TB', 'BT', 'LR', 'RL']) {
+    const horizontal = direction === 'LR' || direction === 'RL';
+    const wide = horizontal ? {width: 400, height: 1600} : {width: 1600, height: 400};
+    const narrow = horizontal ? {width: 1600, height: 400} : {width: 400, height: 1600};
+    const a = computeLayout(graph, {direction}, wide);
+    const b = computeLayout(graph, {direction}, narrow);
+    check(graph, a);
+    check(graph, b);
+    assert.ok(b.settings.rankGap > a.settings.rankGap, direction);
+    assert.ok(a.settings.rankGap >= 70 && b.settings.rankGap <= 300);
+  }
+});
+
+test('manual spacing stays exact and missing viewports safely keep existing behavior', () => {
+  const graph = sampleGraph();
+  const viewport = {width: 500, height: 1000};
+  assert.equal(computeLayout(graph, {autoRankGap: false, rankGap: 210}, viewport).settings.rankGap, 210);
+  assert.equal(computeLayout(graph, {rankGap: 120}).settings.rankGap, 120);
+  assert.equal(computeLayout(graph, {rankGap: 120}, {width: 0, height: 0}).settings.rankGap, 120);
+  assert.equal(computeLayout(graph, {algorithm: 'zherebko', rankGap: 120}, viewport).settings.rankGap, 120);
+  check({nodes: [], edges: []}, computeLayout({nodes: [], edges: []}, {}, viewport));
+  assert.throws(() => normalizeLayout({autoRankGap: 'yes'}));
+});
+
 test('curved paths retain endpoints and picking follows the displayed curve', () => {
   const route = [{x: 0, y: 0}, {x: 100, y: 0}, {x: 100, y: 100}];
   const curved = makePath(route, 'curved');

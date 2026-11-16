@@ -2,6 +2,29 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {NetworkRenderer} from '../src/graph-render.js';
 
+test('spacing updates preserve the camera while new graphs and Fit view reframe it', () => {
+  const renderer = Object.create(NetworkRenderer.prototype);
+  Object.assign(renderer, {
+    graph: {nodes: [], edges: []}, edgeStyle: 'curved', emptyState: {}, ready: true,
+    host: {clientWidth: 800, clientHeight: 600}, p: {redraw() {}},
+    camera: {x: 0, y: 0, zoom: 1},
+  });
+  const graph = {nodes: [{id: 'a'}, {id: 'b'}], edges: []};
+  const geometry = width => ({positions: new Map([['a', {x: -width / 2, y: 0}],
+    ['b', {x: width / 2, y: 100}]]), routes: new Map()});
+  renderer.setGraph(graph, geometry(600), {fit: false});
+  assert.notEqual(renderer.camera.zoom, 1, 'the first graph still needs fitting');
+  renderer.camera = {x: 45, y: 80, zoom: .75};
+  const camera = {...renderer.camera};
+  renderer.setGraph(graph, geometry(1800), {fit: false});
+  assert.deepEqual(renderer.camera, camera);
+  assert.equal(renderer.geometry.positions.get('b').x, 900);
+  renderer.fit();
+  assert.ok(renderer.camera.zoom < camera.zoom);
+  renderer.setGraph(graph, geometry(600));
+  assert.ok(renderer.camera.zoom > camera.zoom, 'new data still fits by default');
+});
+
 test('p5 2 primary-button drag pans; clicks select and secondary buttons do not pan', () => {
   const originalDocument = globalThis.document;
   const originalObserver = globalThis.ResizeObserver;

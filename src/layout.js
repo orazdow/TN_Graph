@@ -10,7 +10,7 @@ import {
 export const DEFAULT_LAYOUT = Object.freeze({
   algorithm: 'sugiyama', direction: 'TB', layering: 'simplex',
   decross: 'two-layer', coord: 'greedy', passes: 24,
-  nodeGap: 45, rankGap: 70, longestTopDown: true,
+  nodeGap: 45, rankGap: 70, autoRankGap: true, longestTopDown: true,
   lane: 'greedy', compressed: true, bidirectional: false, laneTopDown: true,
 });
 
@@ -24,6 +24,7 @@ export function normalizeLayout(options = {}) {
   for (const key of ['nodeGap', 'rankGap']) {
     if (!Number.isFinite(settings[key]) || settings[key] < 0 || settings[key] > 300) throw new Error(key + ' must be between 0 and 300');
   }
+  if (typeof settings.autoRankGap !== 'boolean') throw new Error('autoRankGap must be a boolean');
   if (!Number.isInteger(settings.passes) || settings.passes < 1 || settings.passes > 48) throw new Error('Crossing passes must be between 1 and 48');
   if (settings.layering === 'topological') settings.coord = 'topological';
   else if (settings.coord === 'topological') settings.coord = DEFAULT_LAYOUT.coord;
@@ -31,8 +32,33 @@ export function normalizeLayout(options = {}) {
 }
 
 // Calculate node positions and edge routes without changing facts.
-export function computeLayout(graph, options = {}) {
+export function computeLayout(graph, options = {}, viewport) {
   const settings = normalizeLayout(options);
+  const automatic = settings.autoRankGap && settings.algorithm === 'sugiyama' && graph.edges.length > 0 &&
+    Number.isFinite(viewport?.width) && viewport.width > 100 &&
+    Number.isFinite(viewport?.height) && viewport.height > 100;
+  const started = performance.now();
+  // Use baseline node spacing so manual width changes cannot drive automatic depth.
+  let geometry = layoutGeometry(graph, automatic
+    ? {...settings, nodeGap: DEFAULT_LAYOUT.nodeGap, rankGap: DEFAULT_LAYOUT.rankGap} : settings);
+  if (automatic && graph.edges.length) {
+    const horizontal = settings.direction === 'LR' || settings.direction === 'RL';
+    const breadth = horizontal ? geometry.height : geometry.width;
+    const depth = horizontal ? geometry.width : geometry.height;
+    const availableBreadth = (horizontal ? viewport.height : viewport.width) - 100;
+    const availableDepth = (horizontal ? viewport.width : viewport.height) - 100;
+    // Match the fit-view margins; widen ranks only when the baseline is flattened.
+    const ratio = (breadth + (horizontal ? 100 : 180)) / (depth + (horizontal ? 180 : 100)) * availableDepth / availableBreadth;
+    const extraGap = DEFAULT_LAYOUT.rankGap * Math.max(0, ratio - 1);
+    const rankGap = Math.min(300, Math.ceil((DEFAULT_LAYOUT.rankGap + extraGap * 1.8) / 5) * 5);
+    if (rankGap !== geometry.settings.rankGap || settings.nodeGap !== geometry.settings.nodeGap) {
+      geometry = layoutGeometry(graph, {...settings, rankGap});
+    }
+  }
+  return {...geometry, elapsed: performance.now() - started};
+}
+
+function layoutGeometry(graph, settings) {
   const started = performance.now();
   if (!graph.nodes.length) return {positions: new Map(), routes: new Map(), width: 0, height: 0, cyclic: false, elapsed: 0, settings};
   // Lay out each subject group separately, then pack the groups together.
@@ -45,7 +71,7 @@ export function computeLayout(graph, options = {}) {
     for (const edge of graph.edges) {
       if (edge.kind !== 'reference') groups.get(edge.source).edges.push(edge);
     }
-    const layouts = [...groups.values()].map(group => ({group, geometry: computeLayout(group, settings)}));
+    const layouts = [...groups.values()].map(group => ({group, geometry: layoutGeometry(group, settings)}));
     const columns = Math.ceil(Math.sqrt(layouts.length));
     const gap = 100;
     const widths = Array(columns).fill(0);
@@ -190,7 +216,7 @@ export function circularLayout(graph) {
 // Handle layout requests when this module runs as a worker.
 if (typeof WorkerGlobalScope !== 'undefined' && globalThis instanceof WorkerGlobalScope) {
   globalThis.onmessage = ({data}) => {
-    try { globalThis.postMessage({result: computeLayout(data.graph, data.options)}); }
+    try { globalThis.postMessage({result: computeLayout(data.graph, data.options, data.viewport)}); }
     catch (error) { globalThis.postMessage({error: error.message}); }
   };
 }
@@ -206,7 +232,7 @@ export function cancelLayout() {
 }
 
 // Run layout in a worker, replacing any pending request.
-export function requestLayout(graph, options) {
+export function requestLayout(graph, options, viewport) {
   cancelLayout();
   return new Promise((resolve, reject) => {
     const worker = new Worker(new URL('./layout.js', import.meta.url), {type: 'module'});
@@ -221,6 +247,6 @@ export function requestLayout(graph, options) {
     pendingLayout = {worker, timer, resolve};
     worker.onmessage = ({data}) => finish(data.result, data.error);
     worker.onerror = event => finish(null, event.message || 'Could not start the layout worker');
-    worker.postMessage({graph, options});
+    worker.postMessage({graph, options, viewport});
   });
 }

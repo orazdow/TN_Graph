@@ -9,6 +9,7 @@ const DEFAULT_SAMPLE = './samples/construction/engineering-smallest-2.json';
 const engine = new Engine();
 let layoutRevision = 0;
 let layoutOptions = {...DEFAULT_LAYOUT};
+let graphViewport;
 let appearance = {edgeStyle: 'curved', subjectLabelSize: 12, valueLabelSize: 12, propertyLabelSize: 12, scaleLabelsWithZoom: false};
 let network;
 const ui = createUI(document.querySelector('#app'), {onViewChange() { network?.resize(); }});
@@ -68,13 +69,14 @@ function readLayout() {
     algorithm: ui.layout.value, direction: ui.direction.value,
     layering: ui.layering.value, decross: ui.decross.value, coord: ui.coord.value,
     passes: ui.passes.disabled ? DEFAULT_LAYOUT.passes : Number(ui.passes.value), nodeGap: Number(ui['node-gap'].value), rankGap: Number(ui['rank-gap'].value),
+    autoRankGap: ui['auto-rank-gap'].checked,
     longestTopDown: ui['longest-top-down'].checked, lane: ui.lane.value,
     compressed: ui.compressed.checked, bidirectional: ui.bidirectional.checked, laneTopDown: ui['lane-top-down'].checked,
   });
 }
 
 // Filter the collection, update views, and calculate graph geometry.
-async function render() {
+async function render({preserveCamera = false} = {}) {
   snapshot = engine.getCollection();
   snapshot.facts = groupFacts(snapshot.facts);
   renderOptions(ui.property, snapshot.facts.map(fact => fact.property), 'All properties');
@@ -101,11 +103,17 @@ async function render() {
   try {
     const options = layoutOptions;
     network.setAppearance(appearance);
-    const geometry = await requestLayout(graph, options);
+    if (ui.network.clientWidth > 0 && ui.network.clientHeight > 0) {
+      graphViewport = {width: ui.network.clientWidth, height: ui.network.clientHeight};
+    }
+    const geometry = await requestLayout(graph, options, graphViewport);
     // Ignore results superseded by a newer render.
     if (!geometry || revision !== layoutRevision) return;
-    network.setGraph(graph, geometry);
+    network.setGraph(graph, geometry, {fit: !preserveCamera});
     network.setSelection(selection);
+    ui['rank-gap-status'].textContent = options.autoRankGap && options.algorithm === 'sugiyama'
+      ? 'Automatic rank separation: ' + geometry.settings.rankGap
+      : 'Manual rank separation: ' + options.rankGap;
     const names = {sugiyama: 'Sugiyama', zherebko: 'Zherebko', grid: 'Grid'};
     const directions = {TB: 'top to bottom', BT: 'bottom to top', LR: 'left to right', RL: 'right to left'};
     ui['layout-summary'].textContent = names[options.algorithm] + ' · ' + directions[options.direction];
@@ -160,7 +168,7 @@ ui.reset.addEventListener('click', () => {
   filter();
 });
 let layoutTimer;
-function applyLayout({appearanceOnly = false} = {}) {
+function applyLayout({appearanceOnly = false, preserveCamera = false} = {}) {
   clearTimeout(layoutTimer);
   ui.updateLayoutFields();
   if (!ui['layout-form'].checkValidity()) return;
@@ -173,20 +181,21 @@ function applyLayout({appearanceOnly = false} = {}) {
     scaleLabelsWithZoom: ui['scale-labels-with-zoom'].checked,
   };
   showError();
-  // Appearance changes preserve the camera; layout changes rebuild geometry.
+  // Manual spacing changes rebuild geometry without changing the camera.
   if (appearanceOnly) network.setAppearance(appearance);
-  else render();
+  else render({preserveCamera});
 }
 ui['layout-form'].addEventListener('input', event => {
   clearTimeout(layoutTimer);
   const appearanceOnly = ['edge-style', 'subject-label-size', 'value-label-size',
     'property-label-size', 'scale-labels-with-zoom'].includes(event.target.id);
-  if (event.target.type === 'number') layoutTimer = setTimeout(() => applyLayout({appearanceOnly}), 180);
+  const preserveCamera = ['node-gap', 'rank-gap'].includes(event.target.id);
+  if (event.target.type === 'number') layoutTimer = setTimeout(() => applyLayout({appearanceOnly, preserveCamera}), 180);
   else applyLayout({appearanceOnly});
 });
 ui['layout-form'].addEventListener('submit', event => {
   event.preventDefault();
-  applyLayout();
+  applyLayout({preserveCamera: true});
 });
 ui['layout-reset'].addEventListener('click', () => {
   ui['layout-form'].reset();
@@ -194,4 +203,13 @@ ui['layout-reset'].addEventListener('click', () => {
 });
 ui['network-view'].addEventListener('change', render);
 ui.fit.addEventListener('click', () => network.fit());
+let resizeTimer;
+const layoutResizeObserver = new ResizeObserver(() => {
+  if (!layoutOptions.autoRankGap || layoutOptions.algorithm !== 'sugiyama' ||
+    !ui.network.clientWidth || !ui.network.clientHeight) return;
+  if (graphViewport?.width === ui.network.clientWidth && graphViewport?.height === ui.network.clientHeight) return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(render, 180);
+});
+layoutResizeObserver.observe(ui.network);
 render();

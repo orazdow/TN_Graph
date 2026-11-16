@@ -251,12 +251,14 @@ export class NetworkRenderer {
     return closest;
   }
 
-  setGraph(graph, geometry) {
+  setGraph(graph, geometry, {fit = true} = {}) {
+    const shouldFit = fit || !this.graph.nodes.length;
     this.graph = graph;
     this.geometry = geometry;
     this.paths = buildEdgePaths(graph, geometry, this.edgeStyle);
     this.emptyState.hidden = graph.nodes.length > 0;
-    this.fit();
+    if (shouldFit) this.fit();
+    else this.redraw();
   }
 
   setAppearance({edgeStyle = this.edgeStyle, subjectLabelSize = this.subjectLabelSize,
