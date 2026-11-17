@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {Engine, selectFacts, groupFacts} from '../src/engine.js';
-import {createGraph, distanceToRoute} from '../src/graph-render.js';
+import {createGraph, distanceToRoute, buildEdgePaths} from '../src/graph-render.js';
 import {circularLayout, layeredLayout, computeLayout} from '../src/layout.js';
 
 function fixture() {
@@ -136,7 +136,7 @@ test('fact graph keeps every assertion local to its subject, including reference
     if (fact.targetId) assert.equal(value.label, fact.value.subject);
   }
   const owners = createGraph(data, selectFacts(data, {property: 'owner'}), {view: 'facts', filtered: true});
-  assert.equal(owners.nodes.filter(node => node.kind === 'subject').length, 1);
+  assert.equal(owners.nodes.filter(node => node.kind === 'subject').length, 2);
   assert.deepEqual(data, before);
   for (const algorithm of ['sugiyama', 'zherebko', 'grid']) {
     for (const direction of ['TB', 'BT', 'LR', 'RL']) {
@@ -149,7 +149,7 @@ test('fact graph keeps every assertion local to its subject, including reference
   }
 });
 
-test('fact graph reference overlay links local values to subject roots and retains grouped geometry', () => {
+test('reference overlay preserves the exact fact layout and connects local values to subjects', () => {
   const data = snapshot(), before = structuredClone(data);
   const plain = createGraph(data, data.facts, {view: 'facts'});
   const linked = createGraph(data, data.facts, {view: 'facts-references'});
@@ -157,27 +157,43 @@ test('fact graph reference overlay links local values to subject roots and retai
   assert.deepEqual(linked.nodes, plain.nodes);
   assert.equal(linked.edges.length, data.facts.length + references.length);
   for (const fact of references) {
-    const assertion = linked.edges.find(edge => edge.id === fact.id);
     const reference = linked.edges.find(edge => edge.kind === 'reference' && edge.factId === fact.id);
+    const assertion = linked.edges.find(edge => edge.id === fact.id);
     assert.equal(reference.source, assertion.target);
     assert.equal(reference.target, fact.targetId);
+    assert.equal(reference.label, '');
+    assert.ok(linked.nodes.some(node => node.factId === fact.id && node.id === reference.source));
   }
+  assert.deepEqual(createGraph(data, data.facts, {view: 'facts-references', referenceProperties: new Set()}), plain);
   for (const direction of ['TB', 'BT', 'LR', 'RL']) {
     const original = computeLayout(plain, {direction});
     const overlay = computeLayout(linked, {direction});
-    assert.deepEqual(overlay.positions, original.positions, 'reference overlay must preserve subject group positions');
-    assert.equal(overlay.routes.size, linked.edges.length);
+    assert.deepEqual(overlay.positions, original.positions);
     for (const edge of plain.edges) assert.deepEqual(overlay.routes.get(edge.id), original.routes.get(edge.id));
+    assert.equal(overlay.routes.size, linked.edges.length);
+    assert.equal(overlay.positions.size, linked.nodes.length);
+    for (const point of overlay.positions.values()) assert.ok(Number.isFinite(point.x) && Number.isFinite(point.y));
     for (const edge of linked.edges.filter(edge => edge.kind === 'reference')) {
       const route = overlay.routes.get(edge.id);
       assert.deepEqual(route[0], overlay.positions.get(edge.source));
       assert.deepEqual(route.at(-1), overlay.positions.get(edge.target));
       assert.ok(route.every(point => Number.isFinite(point.x) && Number.isFinite(point.y)));
+      if (edge.source === edge.target) assert.ok(route.some(point => point.x !== route[0].x || point.y !== route[0].y));
+    }
+    const owners = linked.edges.filter(edge => edge.label === 'owner');
+    const paths = buildEdgePaths(linked, overlay, 'curved');
+    assert.notDeepEqual(paths.get(owners[0].id), paths.get(owners[1].id));
+    for (const edge of linked.edges.filter(edge => edge.kind === 'reference' && edge.source !== edge.target)) {
+      assert.equal(paths.get(edge.id).points.length, 2);
+      assert.deepEqual(paths.get(edge.id).commands.map(command => command[0]), ['M', 'L']);
     }
   }
   const filtered = createGraph(data, selectFacts(data, {property: 'owner'}), {view: 'facts-references', filtered: true});
   assert.equal(filtered.nodes.filter(node => node.kind === 'subject').length, 2, 'include reference target roots even without matching outgoing facts');
   assert.equal(computeLayout(filtered).positions.size, filtered.nodes.length);
+  const owners = selectFacts(data, {property: 'owner'});
+  const filteredPlain = createGraph(data, owners, {view: 'facts', filtered: true});
+  assert.deepEqual(computeLayout(filtered).positions, computeLayout(filteredPlain).positions);
   assert.deepEqual(data, before);
 });
 

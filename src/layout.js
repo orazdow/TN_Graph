@@ -91,15 +91,23 @@ function layoutGeometry(graph, settings) {
       for (const [id, point] of geometry.positions) positions.set(id, translate(point));
       for (const [id, points] of geometry.routes) routes.set(id, points.map(translate));
     });
-    // Add reference routes after positioning the groups.
+    // Add reference links after packing, without moving the fact groups.
+    const references = new Map();
     for (const edge of graph.edges) {
       if (edge.kind !== 'reference') continue;
-      const a = positions.get(edge.source), b = positions.get(edge.target);
-      const dx = b.x - a.x, dy = b.y - a.y, length = Math.hypot(dx, dy) || 1;
-      const offset = 60;
-      routes.set(edge.id, [a, {x: (a.x + b.x) / 2 - dy / length * offset,
-        y: (a.y + b.y) / 2 + dx / length * offset}, b]);
+      const key = JSON.stringify([edge.source, edge.target].sort());
+      if (!references.has(key)) references.set(key, []);
+      references.get(key).push(edge);
     }
+    for (const group of references.values()) group.forEach((edge, index) => {
+      const a = positions.get(edge.source), b = positions.get(edge.target);
+      if (edge.source === edge.target) {
+        const radius = 45 + index * 20;
+        routes.set(edge.id, [a, {x: a.x + radius, y: a.y - radius}, {x: a.x - radius, y: a.y - radius}, a]);
+      } else {
+        routes.set(edge.id, [a, b]);
+      }
+    });
     return {positions, routes, width, height, cyclic: false, elapsed: performance.now() - started, settings};
   }
   const temporary = createD3Graph();

@@ -10,16 +10,16 @@ export function createGraph(snapshot, facts, {includeLiterals = false, filtered 
   for (const fact of facts) {
     const connected = fact.targetId && (!referenceProperties || referenceProperties.has(fact.property));
     used.add(fact.subjectId);
-    if (connected && (!factView || referenceLinks)) used.add(fact.targetId);
+    // Reserve the same subject groups in both fact views, regardless of overlays.
+    if (fact.targetId && (factView || connected)) used.add(fact.targetId);
     if (!factView && !connected && !includeLiterals) continue;
-    const target = factView ? JSON.stringify(['value', fact.id]) : connected ? fact.targetId : JSON.stringify(['literal', fact.id]);
-    if (factView || !connected) literals.push({id: target, label: formatValue(fact.value),
+    const localValue = factView || !connected;
+    const target = localValue ? JSON.stringify([factView ? 'value' : 'literal', fact.id]) : fact.targetId;
+    if (localValue) literals.push({id: target, label: formatValue(fact.value),
       kind: 'literal', factId: fact.id, ...(factView ? {groupId: fact.subjectId} : {})});
     edges.push({id: fact.id, factId: fact.id, source: fact.subjectId, target, label: fact.property});
-    if (referenceLinks && connected) edges.push({
-      id: JSON.stringify(['reference', fact.id]), factId: fact.id,
-      source: target, target: fact.targetId, label: '', kind: 'reference',
-    });
+    if (referenceLinks && connected) edges.push({id: JSON.stringify(['reference', fact.id]),
+      factId: fact.id, source: target, target: fact.targetId, label: '', kind: 'reference'});
   }
   const nodes = snapshot.subjects.filter(subject => !filtered || used.has(subject.id))
     .map(subject => ({id: subject.id, label: subject.phrase, kind: 'subject', ...(factView ? {groupId: subject.id} : {})}));
@@ -82,6 +82,18 @@ export function buildEdgePaths(graph, geometry, style) {
   for (const group of groups.values()) group.forEach((edge, index) => {
     const start = geometry.positions.get(edge.source), end = geometry.positions.get(edge.target);
     let route = geometry.routes.get(edge.id);
+    if (edge.kind === 'reference' && edge.source !== edge.target) {
+      const dx = end.x - start.x, dy = end.y - start.y, length = Math.hypot(dx, dy) || 1;
+      const orientation = edge.source < edge.target ? 1 : -1;
+      const offset = (index - (group.length - 1) / 2) * Math.min(4, 12 / Math.max(1, group.length - 1)) * orientation;
+      const sourceRadius = nodeKinds.get(edge.source) === 'literal' ? 6 : 10;
+      const targetRadius = nodeKinds.get(edge.target) === 'literal' ? 6 : 10;
+      const point = (node, distance) => ({x: node.x + (dx * distance - dy * offset) / length,
+        y: node.y + (dy * distance + dx * offset) / length});
+      paths.set(edge.id, makePath([point(start, Math.sqrt(sourceRadius ** 2 - offset ** 2)),
+        point(end, -Math.sqrt(targetRadius ** 2 - offset ** 2))], 'straight'));
+      return;
+    }
     if (style === 'straight' && edge.source !== edge.target) {
       const dx = end.x - start.x, dy = end.y - start.y, length = Math.hypot(dx, dy) || 1;
       const orientation = edge.source < edge.target ? 1 : -1;
