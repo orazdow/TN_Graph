@@ -2,6 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {NetworkRenderer} from '../src/graph-render.js';
 
+test('edge picking uses ten screen pixels and chooses the closest edge at every zoom', () => {
+  const renderer = Object.create(NetworkRenderer.prototype);
+  renderer.graph = {nodes: [], edges: [{id: 'a', factId: 'first'}, {id: 'b', factId: 'second'}]};
+  for (const zoom of [.1, .5, 1, 3, 5]) {
+    renderer.camera = {zoom};
+    renderer.paths = new Map([
+      ['a', {points: [{x: -1000, y: 0}, {x: 1000, y: 0}]}],
+      ['b', {points: [{x: -1000, y: 18 / zoom}, {x: 1000, y: 18 / zoom}]}],
+    ]);
+    assert.deepEqual(renderer.hit({x: 0, y: 8 / zoom}), {factId: 'first'});
+    assert.deepEqual(renderer.hit({x: 0, y: 11 / zoom}), {factId: 'second'});
+    assert.equal(renderer.hit({x: 0, y: 29 / zoom}), null);
+  }
+});
+
 test('spacing updates preserve the camera while new graphs and Fit view reframe it', () => {
   const renderer = Object.create(NetworkRenderer.prototype);
   Object.assign(renderer, {
@@ -28,7 +43,7 @@ test('spacing updates preserve the camera while new graphs and Fit view reframe 
 test('p5 2 primary-button drag pans; clicks select and secondary buttons do not pan', () => {
   const originalDocument = globalThis.document;
   const originalObserver = globalThis.ResizeObserver;
-  globalThis.document = {createElement: () => ({remove() {}})};
+  globalThis.document = {createElement: () => ({style: {}, remove() {}})};
   globalThis.ResizeObserver = class { observe() {} disconnect() {} };
   let pointer;
   class P5Stub {
@@ -45,13 +60,23 @@ test('p5 2 primary-button drag pans; clicks select and secondary buttons do not 
   try {
     renderer = new NetworkRenderer(host, {p5: P5Stub, onSelect: (value, multiple) => { selected.push(value); modifiers.push(multiple); }});
     renderer.camera = {x: 12, y: 24, zoom: .5};
+    pointer.mouseMoved();
+    assert.equal(renderer.canvasHost.style.cursor, 'default');
+    const hit = renderer.hit;
+    renderer.hit = () => ({subjectId: 's'});
+    pointer.mouseMoved();
+    assert.equal(renderer.canvasHost.style.cursor, 'pointer');
+    renderer.hit = hit;
     pointer.mousePressed();
+    assert.equal(renderer.canvasHost.style.cursor, 'grabbing');
     pointer.mouseX = 160;
     pointer.mouseY = 130;
     pointer.mouseDragged();
+    assert.equal(renderer.canvasHost.style.cursor, 'grabbing');
     assert.deepEqual(renderer.camera, {x: 72, y: 54, zoom: .5});
     pointer.mouseReleased();
     assert.equal(renderer.pan, null);
+    assert.equal(renderer.canvasHost.style.cursor, 'default');
     assert.equal(selected.length, 0, 'a drag must not select on release');
     pointer.mousePressed();
     pointer.mouseReleased();

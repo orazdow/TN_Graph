@@ -42,6 +42,7 @@ function select(next, multiple = false) {
 // Sync the table, Inspector, and graph selection.
 function renderSelection() {
   const highlighted = inspectedFactId ? [...selection, {factId: inspectedFactId}] : selection;
+  renderStatements(ui.statements, facts, {selection: highlighted, onSelect: select});
   renderTable(ui.table, tableFacts, {
     tableFilters, tableField,
     onColumn(field) { tableField = field; page = 0; renderSelection(); },
@@ -102,7 +103,6 @@ async function render({preserveCamera = false} = {}) {
   }
   tableFacts = selectFacts(snapshot, filters);
   facts = tableFacts.filter(fact => matchesTableFilters(fact, tableFilters));
-  renderStatements(ui.statements, facts);
   ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' unique statements · current filters';
   page = Math.min(page, Math.max(0, Math.ceil(tableFacts.length / 100) - 1));
   const factIds = new Set(snapshot.facts.map(fact => fact.id));

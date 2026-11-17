@@ -123,8 +123,7 @@ aside dd { margin: 3px 0 0; overflow-wrap: anywhere; white-space: pre-wrap; }
 select:disabled { cursor: default; opacity: .5; }
 
 #network { position: relative; display: block; overflow: hidden; }
-.network-canvas { position: absolute; inset: 0; cursor: grab; }
-.network-canvas:active { cursor: grabbing; }
+.network-canvas { position: absolute; inset: 0; cursor: default; }
 .network-canvas canvas { display: block; }
 #network .empty-state { position: absolute; inset: 0; display: grid; place-content: center; pointer-events: none; }
 .fact-card { display: block; width: 100%; text-align: left; font-size: 12px; padding: 9px; margin-top: 8px; overflow-wrap: anywhere; }
@@ -178,8 +177,6 @@ select:disabled { cursor: default; opacity: .5; }
 #statements-count { font-size: 12px; margin-bottom: 12px; }
 .statement-list { table-layout: fixed; }
 .statement-list td { padding: 12px 0; white-space: pre-wrap; overflow-wrap: anywhere; vertical-align: top; }
-.statement-list tbody tr:has(td:not([colspan])) { cursor: text; }
-.statement-list tbody tr:hover { background: transparent; }
 
 .table-filter-tools { padding: 12px; border-bottom: 1px solid #e0e6eb; }
 .table-filter-tools p { font-size: 12px; }

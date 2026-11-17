@@ -201,9 +201,12 @@ export class NetworkRenderer {
       };
       p.draw = () => this.draw(p);
       const inside = () => !host.hidden && p.mouseX >= 0 && p.mouseY >= 0 && p.mouseX < p.width && p.mouseY < p.height;
+      p.mouseMoved = () => this.updateCursor();
       p.mousePressed = () => {
         if (!inside() || !p.mouseButton.left) return;
-        this.pan = {x: p.mouseX, y: p.mouseY, camera: {...this.camera}, moved: false};
+        this.pan = {x: p.mouseX, y: p.mouseY, camera: {...this.camera}, moved: false,
+          background: !this.hit(this.world(p.mouseX, p.mouseY))};
+        this.updateCursor();
         return false;
       };
       p.mouseDragged = () => {
@@ -212,6 +215,7 @@ export class NetworkRenderer {
         if (Math.hypot(dx, dy) > 4) this.pan.moved = true;
         this.camera.x = this.pan.camera.x + dx;
         this.camera.y = this.pan.camera.y + dy;
+        this.updateCursor();
         this.redraw();
         return false;
       };
@@ -219,6 +223,7 @@ export class NetworkRenderer {
         if (!this.pan) return;
         if (!this.pan.moved && inside()) this.onSelect(this.hit(this.world(p.mouseX, p.mouseY)), Boolean(event?.ctrlKey || event?.metaKey));
         this.pan = null;
+        this.updateCursor();
       };
       p.mouseWheel = event => {
         if (!inside()) return;
@@ -237,6 +242,14 @@ export class NetworkRenderer {
     return {x: (x - this.p.width / 2 - this.camera.x) / this.camera.zoom, y: (y - this.p.height / 2 - this.camera.y) / this.camera.zoom};
   }
 
+  updateCursor() {
+    if (!this.canvasHost) return;
+    const {mouseX, mouseY, width, height} = this.p;
+    const inside = !this.host.hidden && mouseX >= 0 && mouseY >= 0 && mouseX < width && mouseY < height;
+    this.canvasHost.style.cursor = this.pan && (this.pan.moved || this.pan.background) ? 'grabbing'
+      : inside && this.hit(this.world(mouseX, mouseY)) ? 'pointer' : 'default';
+  }
+
   hit(point) {
     for (const node of [...this.graph.nodes].reverse()) {
       const position = this.geometry.positions.get(node.id);
@@ -248,7 +261,7 @@ export class NetworkRenderer {
       if (point.x >= box.x && point.x <= box.x + box.width &&
         point.y >= box.y && point.y <= box.y + box.height) return selection;
     }
-    let closest = null, distance = 6 / this.camera.zoom;
+    let closest = null, distance = 10 / this.camera.zoom;
     for (const edge of this.graph.edges) {
       const next = distanceToRoute(point, this.paths.get(edge.id).points);
       if (next < distance) { closest = {factId: edge.factId}; distance = next; }
@@ -377,6 +390,7 @@ export class NetworkRenderer {
       }
     }
     p.pop();
+    this.updateCursor();
   }
 
   destroy() { this.observer.disconnect(); this.sketch.remove(); this.canvasHost.remove(); }

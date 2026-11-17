@@ -511,7 +511,7 @@ export function renderSelectionInspector(host, selection, snapshot, {inspectedFa
   host.append(table);
 }
 
-export function renderStatements(host, facts) {
+export function renderStatements(host, facts, {selection = [], onSelect}) {
   host.replaceChildren();
   if (!facts.length) {
     const empty = document.createElement('p');
@@ -523,8 +523,21 @@ export function renderStatements(host, facts) {
   table.className = 'statement-list';
   table.setAttribute('aria-label', 'Raw Statements');
   const body = table.createTBody();
+  const selectedIds = new Set(factsForSelection(facts, selection).map(fact => fact.id));
   for (const fact of facts) {
-    const cell = body.insertRow().insertCell();
+    const row = body.insertRow();
+    row.tabIndex = 0;
+    row.title = 'Inspect fact; Ctrl-click to add or remove from selection';
+    row.classList.toggle('selected', selectedIds.has(fact.id));
+    row.setAttribute('aria-selected', String(selectedIds.has(fact.id)));
+    row.addEventListener('click', event => onSelect({factId: fact.id}, event.ctrlKey || event.metaKey));
+    row.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        onSelect({factId: fact.id}, event.ctrlKey || event.metaKey);
+      }
+    });
+    const cell = row.insertCell();
     cell.append(document.createTextNode(fact.statement ?? 'Original statement not supplied.'));
     if (fact.occurrenceCount > 1) {
       const count = document.createElement('span');
