@@ -192,10 +192,15 @@ select:disabled { cursor: default; opacity: .5; }
 .inspection-selection .clear-inspection-selection { background: #dceef9; border-color: #a9cee5; color: #285773; }
 .inspection-back { margin-bottom: 12px; font-size: 12px; }
 
-#statements-panel { padding: 16px; }
-#statements-count { font-size: 12px; margin-bottom: 12px; }
+#statements-panel { padding: 16px; height: 100%; display: flex; flex-direction: column; min-height: 0; }
+#statements { flex: 1; min-height: 0; overflow-y: auto; }
+.statement-modes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; flex-shrink: 0; padding-top: 10px; margin-top: 10px; border-top: 1px solid #e0e6eb; }
+.statement-modes button { padding: 5px 2px; font-size: 11px; }
+.statement-modes button[aria-pressed="true"] { background: #d9eeee; border-color: #75afb4; color: #19585f; }
 .statement-list { table-layout: fixed; }
 .statement-list td { padding: 12px 0; white-space: pre-wrap; overflow-wrap: anywhere; vertical-align: top; }
+.statement-list tr.partially-selected { background: #fff3e8; }
+.statement-entry-count { display: block; color: #71848e; font-size: 11px; margin-top: 4px; }
 
 .table-filter-tools { padding: 12px; border-bottom: 1px solid #e0e6eb; }
 .table-filter-tools p { font-size: 12px; }

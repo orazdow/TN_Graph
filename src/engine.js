@@ -352,6 +352,16 @@ export function toggleSelection(selection, item, multiple = false) {
   return selection.some(matches) ? selection.filter(selected => !matches(selected)) : [...selection, item];
 }
 
+// A statement entry can select a whole group; Ctrl-click toggles that group together.
+export function toggleStatementSelection(selection, factIds, multiple = false) {
+  const ids = new Set(factIds);
+  const current = new Set(selection.map(item => item.factId));
+  const selected = [...ids].every(id => current.has(id));
+  if (!multiple) return selected && selection.length === ids.size ? [] : [...ids].map(factId => ({factId}));
+  if (selected) return selection.filter(item => !ids.has(item.factId));
+  return [...selection, ...[...ids].filter(id => !current.has(id)).map(factId => ({factId}))];
+}
+
 // Include explicitly selected facts and facts incident to selected subjects once.
 export function factsForSelection(facts, selection) {
   const factIds = new Set(selection.map(item => item.factId).filter(Boolean));
@@ -421,6 +431,21 @@ export function tableColumnEntries(facts, field) {
     const key = factFieldKey(fact, field);
     if (!entries.has(key)) entries.set(key, {key, label: field === 'value' ? formatValue(fact.value) : fact[field], count: 0});
     entries.get(key).count++;
+  }
+  return [...entries.values()].sort((a, b) => a.label.localeCompare(b.label, undefined, {numeric: true}));
+}
+
+// Group statements by the displayed fields without changing facts or filters.
+export function statementEntries(facts, fields = []) {
+  const columns = ['subject', 'property', 'value'].filter(field => fields.includes(field));
+  if (!columns.length) return facts.map(fact => ({key: fact.id,
+    label: fact.statement ?? 'Original statement not supplied.', facts: [fact]}));
+  const entries = new Map();
+  for (const fact of facts) {
+    const key = identity(...columns.map(field => factFieldKey(fact, field)));
+    if (!entries.has(key)) entries.set(key, {key,
+      label: columns.map(field => field === 'value' ? formatValue(fact.value) : fact[field]).join(' · '), facts: []});
+    entries.get(key).facts.push(fact);
   }
   return [...entries.values()].sort((a, b) => a.label.localeCompare(b.label, undefined, {numeric: true}));
 }

@@ -1,4 +1,4 @@
-import {formatValue, factFieldKey, matchesFactFilters, tableColumnEntries, factsForSelection} from './engine.js';
+import {formatValue, factFieldKey, matchesFactFilters, tableColumnEntries, statementEntries, factsForSelection} from './engine.js';
 
 export function createUI(host, {onViewChange = () => {}} = {}) {
   const filterMenu = (id, label, description = '') => `
@@ -74,8 +74,13 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
           </div>
           <div class="sidebar-content">
             <section id="statements-panel" aria-label="Statements" hidden>
-              <p id="statements-count">0 statements</p>
               <div id="statements"></div>
+              <div id="statement-modes" class="statement-modes" role="group" aria-label="Statement display">
+                <button type="button" data-field="" aria-pressed="true">All</button>
+                <button type="button" data-field="subject" aria-pressed="false">Subject</button>
+                <button type="button" data-field="property" aria-pressed="false">Property</button>
+                <button type="button" data-field="value" aria-pressed="false">Value</button>
+              </div>
             </section>
             <section id="inspector-panel" aria-label="Inspector">
               <p id="inspection-hint">Click a node, label, or connection to inspect. Ctrl-click adds or removes selections.</p>
@@ -133,7 +138,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     'sample', 'add-data', 'files', 'datasets', 'query', 'property', 'tag', 'references',
     'reset', 'layout', 'network-view', 'fit', 'network', 'table',
     'counts', 'notice', 'error', 'inspector', 'inspection-hint',
-    'sidebar-view', 'layout-toggle', 'statements', 'statements-count',
+    'sidebar-view', 'layout-toggle', 'statements', 'statement-modes',
     'layout-panel', 'layout-form', 'layout-summary', 'layout-status', 'layout-reset',
     'direction', 'layering', 'decross', 'coord', 'passes', 'node-gap', 'rank-gap', 'auto-rank-gap', 'rank-gap-status',
     'sugiyama-options', 'grid-options', 'longest-option', 'longest-top-down',
@@ -563,8 +568,8 @@ export function renderSelectionInspector(host, selection, snapshot, {inspectedFa
   host.append(table);
 }
 
-export function renderStatements(host, facts, {selection = [], onSelect}) {
-  const focusedId = host.contains(document.activeElement) ? document.activeElement.dataset?.factId : null;
+export function renderStatements(host, facts, {selection = [], fields = [], onSelect}) {
+  const focusedId = host.contains(document.activeElement) ? document.activeElement.dataset?.statementKey : null;
   host.replaceChildren();
   if (!facts.length) {
     const empty = document.createElement('p');
@@ -574,26 +579,37 @@ export function renderStatements(host, facts, {selection = [], onSelect}) {
   }
   const table = document.createElement('table');
   table.className = 'statement-list';
-  table.setAttribute('aria-label', 'Raw Statements');
+  table.setAttribute('aria-label', fields.length ? 'Statements by ' + fields.join(', ') : 'Raw Statements');
   const body = table.createTBody();
   const selectedIds = new Set(factsForSelection(facts, selection).map(fact => fact.id));
-  for (const fact of facts) {
+  const entries = statementEntries(facts, fields);
+  for (const entry of entries) {
+    const ids = entry.facts.map(fact => fact.id);
+    const selectedCount = ids.filter(id => selectedIds.has(id)).length;
     const row = body.insertRow();
     row.tabIndex = 0;
-    row.dataset.factId = fact.id;
-    row.title = 'Select statement; Ctrl-click to add or remove from selection';
-    row.classList.toggle('selected', selectedIds.has(fact.id));
-    row.setAttribute('aria-selected', String(selectedIds.has(fact.id)));
-    row.addEventListener('click', event => onSelect({factId: fact.id}, event.ctrlKey || event.metaKey));
+    row.dataset.statementKey = entry.key;
+    row.title = 'Select associated statements; Ctrl-click to add or remove from selection';
+    row.classList.toggle('selected', selectedCount === ids.length);
+    row.classList.toggle('partially-selected', selectedCount > 0 && selectedCount < ids.length);
+    row.setAttribute('aria-selected', String(selectedCount === ids.length));
+    row.addEventListener('click', event => onSelect(ids, event.ctrlKey || event.metaKey));
     row.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        onSelect({factId: fact.id}, event.ctrlKey || event.metaKey);
+        onSelect(ids, event.ctrlKey || event.metaKey);
       }
     });
     const cell = row.insertCell();
-    cell.append(document.createTextNode(fact.statement ?? 'Original statement not supplied.'));
-    if (fact.occurrenceCount > 1) {
+    cell.append(document.createTextNode(entry.label));
+    if (fields.length) {
+      const count = document.createElement('small');
+      count.className = 'statement-entry-count';
+      count.textContent = ids.length + (ids.length === 1 ? ' statement' : ' statements') +
+        (selectedCount > 0 && selectedCount < ids.length ? ' · ' + selectedCount + ' selected' : '');
+      cell.append(count);
+    } else if (entry.facts[0].occurrenceCount > 1) {
+      const fact = entry.facts[0];
       const count = document.createElement('span');
       count.className = 'occurrence-count';
       count.textContent = ' (' + fact.occurrenceCount + ')';
@@ -603,6 +619,6 @@ export function renderStatements(host, facts, {selection = [], onSelect}) {
   }
   host.append(table);
   if (focusedId) for (const row of body.rows) {
-    if (row.dataset.factId === focusedId) row.focus({preventScroll: true});
+    if (row.dataset.statementKey === focusedId) row.focus({preventScroll: true});
   }
 }

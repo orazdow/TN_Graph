@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {Engine, TnParse, selectFacts, validateCollection, groupFacts, factFieldKey, matchesFactFilters, toggleFactFilter, tableColumnEntries, toggleSelection, factsForSelection} from '../src/engine.js';
+import {Engine, TnParse, selectFacts, validateCollection, groupFacts, factFieldKey, matchesFactFilters, toggleFactFilter, tableColumnEntries, statementEntries, toggleSelection, toggleStatementSelection, factsForSelection} from '../src/engine.js';
 
 const fixture = () => [
   {_id: 'f1', subject: 'Aurora:ship', property: 'owner', value: {type: 'srd', value: 'Meridian:company'}, tags: ['verified'], agent: {creatorAgent: {userId: 'reviewer'}}},
@@ -21,6 +21,35 @@ test('inspection selection replaces, toggles, and clears without changing prior 
   assert.deepEqual(toggleSelection(both, fact), [fact]);
   assert.deepEqual(toggleSelection(both, null), []);
   assert.deepEqual(toggleSelection(both, null, true), []);
+});
+
+test('statement groups select together and Ctrl-click handles partial selections without duplicates', () => {
+  const first = [{factId: 'a'}];
+  const group = ['a', 'b'];
+  const complete = toggleStatementSelection(first, group, true);
+  assert.deepEqual(complete, [{factId: 'a'}, {factId: 'b'}]);
+  assert.deepEqual(first, [{factId: 'a'}]);
+  assert.deepEqual(toggleStatementSelection(complete, group), []);
+  assert.deepEqual(toggleStatementSelection([{factId: 'other'}], group), complete);
+  assert.deepEqual(toggleStatementSelection([...complete, {factId: 'other'}], group, true), [{factId: 'other'}]);
+  assert.deepEqual(toggleStatementSelection(complete, ['b', 'b'], true), [{factId: 'a'}]);
+});
+
+test('statement display combines fields and All restores the original statements', () => {
+  const engine = new Engine();
+  engine.add('plate has length = 4 m; plate has width = 4 m; plate has length = 5 m; beam has length = 4 m; plate has length = 4 kg; plate has length = "4 m";');
+  const facts = engine.getCollection().facts, before = structuredClone(facts);
+  assert.equal(statementEntries(facts, ['subject']).length, 2);
+  assert.equal(statementEntries(facts, ['property']).length, 2);
+  assert.equal(statementEntries(facts, ['value']).length, 4, 'units and value types remain distinct');
+  const combined = statementEntries(facts, ['subject', 'property']);
+  assert.equal(combined.length, 3);
+  assert.equal(combined.find(entry => entry.label === 'plate · length').facts.length, 4);
+  assert.deepEqual(statementEntries(facts, ['property', 'subject']), combined, 'display order does not depend on click order');
+  assert.equal(statementEntries(facts, ['subject', 'property', 'value']).length, 6);
+  assert.deepEqual(statementEntries(facts).map(entry => entry.label), facts.map(fact => fact.statement));
+  assert.deepEqual(statementEntries(facts).map(entry => entry.facts[0].id), facts.map(fact => fact.id));
+  assert.deepEqual(facts, before);
 });
 
 test('mixed inspection selections include incoming and outgoing facts without repetition', () => {

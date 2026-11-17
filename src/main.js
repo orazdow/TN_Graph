@@ -1,5 +1,5 @@
 // Connect data, filters, graph layout, and the workbench UI.
-import {Engine, selectFacts, groupFacts, factFieldKey, matchesFactFilters, toggleFactFilter, toggleSelection, factsForSelection} from './engine.js';
+import {Engine, selectFacts, groupFacts, factFieldKey, matchesFactFilters, toggleFactFilter, toggleSelection, toggleStatementSelection, factsForSelection} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderFilterOptions, renderTable, renderInspector, renderSubjectInspector, renderSelectionInspector, renderStatements} from './ui.js';
@@ -17,6 +17,7 @@ let selection = [];
 let inspectedFactId = null;
 let page = 0;
 let tableField = null;
+const statementFields = new Set();
 let snapshot = engine.getCollection();
 let facts = [];
 let tableFacts = [];
@@ -41,10 +42,10 @@ function setMenuChoices(field, choices) {
   else filterChoices = {...filterChoices, [field]: choices};
 }
 
-function select(next, multiple = false, {inspect = true} = {}) {
+function select(next, multiple = false) {
   selection = toggleSelection(selection, next, multiple);
   inspectedFactId = null;
-  if (next && inspect) ui.setSidebar('inspector');
+  if (next) ui.setSidebar('inspector');
   if (next?.factId) {
     const index = tableFacts.findIndex(fact => fact.id === next.factId);
     if (index >= 0) page = Math.floor(index / 100);
@@ -55,9 +56,14 @@ function select(next, multiple = false, {inspect = true} = {}) {
 // Sync the table, Inspector, and graph selection.
 function renderSelection() {
   const highlighted = inspectedFactId ? [...selection, {factId: inspectedFactId}] : selection;
-  renderStatements(ui.statements, facts, {selection, onSelect(next, multiple) {
-    const toggleOff = !multiple && selection.length === 1 && selection[0].factId === next.factId;
-    select(toggleOff ? null : next, multiple, {inspect: false});
+  for (const button of ui['statement-modes'].querySelectorAll('button')) {
+    button.setAttribute('aria-pressed', String(button.dataset.field ? statementFields.has(button.dataset.field) : statementFields.size === 0));
+  }
+  renderStatements(ui.statements, facts, {selection, fields: [...statementFields], onSelect(ids, multiple) {
+    const current = factsForSelection(snapshot.facts, selection).map(fact => ({factId: fact.id}));
+    selection = toggleStatementSelection(current, ids, multiple);
+    inspectedFactId = null;
+    renderSelection();
   }});
   renderTable(ui.table, tableFacts, {
     filters: filterChoices, tableField,
@@ -128,7 +134,6 @@ async function render({preserveCamera = false} = {}) {
   // Search limits the browsable rows; all other fact filters dim rather than hide them.
   tableFacts = selectFacts(snapshot, {query: ui.query.value});
   facts = tableFacts.filter(fact => matchesFactFilters(fact, filterChoices));
-  ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' unique statements · current filters';
   page = Math.min(page, Math.max(0, Math.ceil(tableFacts.length / 100) - 1));
   const factIds = new Set(snapshot.facts.map(fact => fact.id));
   const subjectIds = new Set(snapshot.subjects.map(subject => subject.id));
@@ -263,6 +268,15 @@ ui['layout-reset'].addEventListener('click', () => {
   applyLayout();
 });
 ui['network-view'].addEventListener('change', render);
+ui['statement-modes'].addEventListener('click', event => {
+  const button = event.target.closest('button[data-field]');
+  if (!button) return;
+  const field = button.dataset.field;
+  if (!field) statementFields.clear();
+  else if (statementFields.has(field)) statementFields.delete(field);
+  else statementFields.add(field);
+  renderSelection();
+});
 ui.fit.addEventListener('click', () => network.fit());
 let resizeTimer;
 const layoutResizeObserver = new ResizeObserver(() => {
