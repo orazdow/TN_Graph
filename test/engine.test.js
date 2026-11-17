@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {Engine, TnParse, selectFacts, validateCollection, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter, tableColumnEntries, toggleSelection, factsForSelection} from '../src/engine.js';
+import {Engine, TnParse, selectFacts, validateCollection, groupFacts, factFieldKey, matchesFactFilters, toggleFactFilter, tableColumnEntries, toggleSelection, factsForSelection} from '../src/engine.js';
 
 const fixture = () => [
   {_id: 'f1', subject: 'Aurora:ship', property: 'owner', value: {type: 'srd', value: 'Meridian:company'}, tags: ['verified'], agent: {creatorAgent: {userId: 'reviewer'}}},
@@ -175,25 +175,25 @@ test('table selections use OR within columns, AND across columns, and compose wi
   const engine = new Engine(); engine.add(fixture());
   const snapshot = engine.getCollection();
   const [owner, mass, status] = snapshot.facts;
-  let selections = {subject: new Set(), property: new Set(), value: new Set()};
-  const matching = () => snapshot.facts.filter(fact => matchesTableFilters(fact, selections));
+  let selections = {subject: null, property: null, value: null};
+  const matching = () => snapshot.facts.filter(fact => matchesFactFilters(fact, selections));
   assert.equal(matching().length, 3);
-  selections = toggleTableFilter(selections, 'subject', owner.subject);
+  selections = toggleFactFilter(selections, 'subject', owner.subject);
   assert.deepEqual(matching(), [owner, mass]);
-  selections = toggleTableFilter(selections, 'subject', status.subject, true);
+  selections = toggleFactFilter(selections, 'subject', status.subject, true);
   assert.equal(matching().length, 3);
-  selections = toggleTableFilter(selections, 'property', 'mass');
+  selections = toggleFactFilter(selections, 'property', 'mass');
   assert.deepEqual(matching(), [mass]);
-  selections = toggleTableFilter(selections, 'property', 'owner', true);
+  selections = toggleFactFilter(selections, 'property', 'owner', true);
   assert.deepEqual(matching(), [owner, mass]);
-  assert.deepEqual(selectFacts(snapshot, {tag: 'verified'}).filter(fact => matchesTableFilters(fact, selections)), [owner]);
-  selections = toggleTableFilter(selections, 'property', 'mass', true);
+  assert.deepEqual(selectFacts(snapshot, {tag: 'verified'}).filter(fact => matchesFactFilters(fact, selections)), [owner]);
+  selections = toggleFactFilter(selections, 'property', 'mass', true);
   assert.deepEqual(matching(), [owner]);
-  selections = toggleTableFilter(selections, 'subject', owner.subject);
+  selections = toggleFactFilter(selections, 'subject', owner.subject);
   assert.equal(selections.subject.size, 1, 'plain click replaces multi-selection in its column');
-  selections = toggleTableFilter(selections, 'subject', owner.subject);
-  assert.equal(selections.subject.size, 0, 'click the only selected choice to clear');
-  selections = toggleTableFilter(selections, 'value', factFieldKey(mass, 'value'));
+  selections = toggleFactFilter(selections, 'subject', owner.subject);
+  assert.equal(selections.subject, null, 'click the only selected choice to clear');
+  selections = toggleFactFilter(selections, 'value', factFieldKey(mass, 'value'));
   assert.equal(matching().length, 0, 'incompatible column filters can yield zero matches');
 });
 
@@ -201,11 +201,48 @@ test('value column selection distinguishes units, types and reference targets', 
   const engine = new Engine(); engine.add(fixture());
   const [reference, number] = engine.getCollection().facts;
   const key = factFieldKey(number, 'value');
-  const selections = {subject: new Set(), property: new Set(), value: new Set([key])};
-  assert.ok(matchesTableFilters(number, selections));
-  assert.ok(!matchesTableFilters({...number, value: {...number.value, unit: 'kg'}}, selections));
-  assert.ok(!matchesTableFilters({...number, value: {type: 'string', text: '1200 tonnes'}}, selections));
+  const selections = {subject: null, property: null, value: new Set([key])};
+  assert.ok(matchesFactFilters(number, selections));
+  assert.ok(!matchesFactFilters({...number, value: {...number.value, unit: 'kg'}}, selections));
+  assert.ok(!matchesFactFilters({...number, value: {type: 'string', text: '1200 tonnes'}}, selections));
   assert.notEqual(factFieldKey(reference, 'value'), factFieldKey({...reference, value: {...reference.value, subject: 'other company'}}, 'value'));
+});
+
+test('toolbar and table edit one property selection instead of intersecting separate choices', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const data = engine.getCollection();
+  let filters = {subject: null, property: null, value: null, tag: null};
+  const matching = () => data.facts.filter(fact => matchesFactFilters(fact, filters)).map(fact => fact.property);
+  filters.property = new Set(['owner']);
+  assert.deepEqual(matching(), ['owner']);
+  assert.equal(data.facts.length, 3, 'all rows remain available to browse');
+  filters = toggleFactFilter(filters, 'property', 'mass');
+  assert.deepEqual([...filters.property], ['mass']);
+  assert.deepEqual(matching(), ['mass']);
+  filters.property = new Set(['status']);
+  assert.deepEqual(matching(), ['status']);
+  filters = toggleFactFilter(filters, 'property', 'mass', true);
+  assert.deepEqual(matching(), ['mass', 'status']);
+  filters.tag = new Set(['verified']);
+  assert.deepEqual(matching(), ['status']);
+  filters.property = null;
+  assert.deepEqual(matching(), ['owner', 'status']);
+});
+
+test('shared filters distinguish All from None and table clicks can replace None', () => {
+  const engine = new Engine(); engine.add(fixture());
+  const data = engine.getCollection();
+  let filters = {subject: null, property: new Set(), value: null, tag: null};
+  assert.ok(data.facts.every(fact => !matchesFactFilters(fact, filters)));
+  filters = toggleFactFilter(filters, 'property', 'owner');
+  assert.deepEqual(data.facts.filter(fact => matchesFactFilters(fact, filters)).map(fact => fact.property), ['owner']);
+  filters = toggleFactFilter(filters, 'property', 'owner');
+  assert.equal(filters.property, null);
+  assert.ok(data.facts.every(fact => matchesFactFilters(fact, filters)));
+  filters.tag = new Set();
+  assert.ok(data.facts.every(fact => !matchesFactFilters(fact, filters)));
+  filters = toggleFactFilter(filters, 'tag', 'verified');
+  assert.equal(data.facts.filter(fact => matchesFactFilters(fact, filters)).length, 2);
 });
 
 test('column browsing lists distinct subjects, properties and typed values with fact counts', () => {

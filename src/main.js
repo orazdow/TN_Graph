@@ -1,5 +1,5 @@
 // Connect data, filters, graph layout, and the workbench UI.
-import {Engine, selectFacts, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter, toggleSelection, factsForSelection} from './engine.js';
+import {Engine, selectFacts, groupFacts, factFieldKey, matchesFactFilters, toggleFactFilter, toggleSelection, factsForSelection} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
 import {createUI, renderSources, renderFilterOptions, renderTable, renderInspector, renderSubjectInspector, renderSelectionInspector, renderStatements} from './ui.js';
@@ -20,9 +20,10 @@ let tableField = null;
 let snapshot = engine.getCollection();
 let facts = [];
 let tableFacts = [];
-let tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
 // Null means all, including future imports; an empty set explicitly means none.
-let filterChoices = {property: null, tag: null, references: null};
+let filterChoices = {subject: null, property: null, value: null, tag: null};
+let referenceProperties = null;
+const filterMenus = ['property', 'tag', 'references'];
 let filterValues = {property: [], tag: [], references: []};
 network = new NetworkRenderer(ui.network, {p5: window.p5, onSelect: select});
 
@@ -31,10 +32,19 @@ function showError(message = '') {
   ui.error.hidden = !message;
 }
 
-function select(next, multiple = false) {
+function menuChoices(field) {
+  return field === 'references' ? referenceProperties : filterChoices[field];
+}
+
+function setMenuChoices(field, choices) {
+  if (field === 'references') referenceProperties = choices;
+  else filterChoices = {...filterChoices, [field]: choices};
+}
+
+function select(next, multiple = false, {inspect = true} = {}) {
   selection = toggleSelection(selection, next, multiple);
   inspectedFactId = null;
-  if (next) ui.setSidebar('inspector');
+  if (next && inspect) ui.setSidebar('inspector');
   if (next?.factId) {
     const index = tableFacts.findIndex(fact => fact.id === next.factId);
     if (index >= 0) page = Math.floor(index / 100);
@@ -45,16 +55,21 @@ function select(next, multiple = false) {
 // Sync the table, Inspector, and graph selection.
 function renderSelection() {
   const highlighted = inspectedFactId ? [...selection, {factId: inspectedFactId}] : selection;
-  renderStatements(ui.statements, facts, {selection: highlighted, onSelect: select});
+  renderStatements(ui.statements, facts, {selection, onSelect(next, multiple) {
+    const toggleOff = !multiple && selection.length === 1 && selection[0].factId === next.factId;
+    select(toggleOff ? null : next, multiple, {inspect: false});
+  }});
   renderTable(ui.table, tableFacts, {
-    tableFilters, tableField,
+    filters: filterChoices, tableField,
     onColumn(field) { tableField = field; page = 0; renderSelection(); },
     onFilter(field, key, multiple) {
-      tableFilters = toggleTableFilter(tableFilters, field, key, multiple);
+      filterChoices = toggleFactFilter(filterChoices, field, key, multiple);
       render();
     },
+    onClearField(field) { filterChoices = {...filterChoices, [field]: null}; render(); },
     onClearFilters() {
-      tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
+      filterChoices = {subject: null, property: null, value: null, tag: null};
+      ui.query.value = '';
       render();
     },
     page, selection: highlighted,
@@ -101,19 +116,18 @@ async function render({preserveCamera = false} = {}) {
     tag: snapshot.facts.flatMap(fact => fact.tags),
     references: snapshot.facts.filter(fact => fact.targetId).map(fact => fact.property),
   };
-  for (const field of Object.keys(filterChoices)) {
-    const available = new Set(filterValues[field]);
-    if (filterChoices[field] !== null) filterChoices[field] = new Set([...filterChoices[field]].filter(value => available.has(value)));
-    renderFilterOptions(ui[field], filterValues[field], filterChoices[field]);
-  }
-  const filters = {query: ui.query.value, properties: filterChoices.property, tags: filterChoices.tag};
   // Drop filter choices whose facts were removed.
-  for (const field of ['subject', 'property', 'value']) {
-    const available = new Set(snapshot.facts.map(fact => factFieldKey(fact, field)));
-    tableFilters[field] = new Set([...tableFilters[field]].filter(key => available.has(key)));
+  for (const field of Object.keys(filterChoices)) {
+    if (filterChoices[field] === null) continue;
+    const available = new Set(field === 'tag' ? filterValues.tag : snapshot.facts.map(fact => factFieldKey(fact, field)));
+    const remaining = new Set([...filterChoices[field]].filter(key => available.has(key)));
+    filterChoices[field] = filterChoices[field].size && !remaining.size ? null : remaining;
   }
-  tableFacts = selectFacts(snapshot, filters);
-  facts = tableFacts.filter(fact => matchesTableFilters(fact, tableFilters));
+  if (referenceProperties !== null) referenceProperties = new Set([...referenceProperties].filter(value => filterValues.references.includes(value)));
+  for (const field of filterMenus) renderFilterOptions(ui[field], filterValues[field], menuChoices(field));
+  // Search limits the browsable rows; all other fact filters dim rather than hide them.
+  tableFacts = selectFacts(snapshot, {query: ui.query.value});
+  facts = tableFacts.filter(fact => matchesFactFilters(fact, filterChoices));
   ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' unique statements · current filters';
   page = Math.min(page, Math.max(0, Math.ceil(tableFacts.length / 100) - 1));
   const factIds = new Set(snapshot.facts.map(fact => fact.id));
@@ -122,10 +136,13 @@ async function render({preserveCamera = false} = {}) {
   if (selection.length < 2 || !factIds.has(inspectedFactId)) inspectedFactId = null;
   renderSources(ui.datasets, snapshot.sources, sourceId => { engine.remove(sourceId); render(); });
   const graph = createGraph(snapshot, facts, {view: ui['network-view'].value, includeLiterals: ui['network-view'].value === 'all',
-    referenceProperties: filterChoices.references,
-    filtered: Object.values(filters).some(Boolean) || Object.values(tableFilters).some(values => values.size)});
+    referenceProperties,
+    filtered: Boolean(ui.query.value) || Object.values(filterChoices).some(choices => choices !== null)});
   renderSelection();
-  ui.counts.textContent = snapshot.subjects.length + ' subjects · ' + facts.length + ' / ' + snapshot.facts.length + ' facts · ' + graph.edges.length + ' edges';
+  const [subjectCount, propertyCount, valueCount] = ['subject', 'property', 'value']
+    .map(field => new Set(facts.map(fact => factFieldKey(fact, field))).size);
+  ui.counts.textContent = facts.length + ' / ' + snapshot.facts.length + ' statements · ' + subjectCount +
+    ' subjects · ' + propertyCount + ' properties · ' + valueCount + ' values';
   const revision = ++layoutRevision;
   ui['layout-status'].textContent = 'Calculating layout…';
   try {
@@ -188,27 +205,27 @@ ui.files.addEventListener('change', async () => {
 
 function filter() { page = 0; render(); }
 ui.query.addEventListener('input', filter);
-for (const field of Object.keys(filterChoices)) {
+for (const field of filterMenus) {
   ui[field].addEventListener('change', event => {
     if (event.target.type !== 'checkbox') return;
     const available = new Set(filterValues[field]);
-    const next = new Set(filterChoices[field] ?? available);
+    const next = new Set(menuChoices(field) ?? available);
     if (event.target.checked) next.add(event.target.value);
     else next.delete(event.target.value);
-    filterChoices[field] = next.size === available.size ? null : next;
+    setMenuChoices(field, next.size === available.size ? null : next);
     filter();
   });
   ui[field].addEventListener('click', event => {
     const action = event.target.closest('button[data-filter-action]')?.dataset.filterAction;
     if (!action) return;
-    filterChoices[field] = action === 'all' ? null : new Set();
+    setMenuChoices(field, action === 'all' ? null : new Set());
     filter();
   });
 }
 ui.reset.addEventListener('click', () => {
-  filterChoices = {property: null, tag: null, references: null};
-  for (const field of Object.keys(filterChoices)) ui[field].open = false;
-  tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
+  filterChoices = {subject: null, property: null, value: null, tag: null};
+  referenceProperties = null;
+  for (const field of filterMenus) ui[field].open = false;
   filter();
 });
 let layoutTimer;

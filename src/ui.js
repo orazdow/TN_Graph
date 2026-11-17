@@ -1,4 +1,4 @@
-import {formatValue, factFieldKey, matchesTableFilters, tableColumnEntries, factsForSelection} from './engine.js';
+import {formatValue, factFieldKey, matchesFactFilters, tableColumnEntries, factsForSelection} from './engine.js';
 
 export function createUI(host, {onViewChange = () => {}} = {}) {
   const filterMenu = (id, label, description = '') => `
@@ -54,7 +54,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
             </table>
             <div class="pagination"><button type="button" disabled>Previous</button><button type="button" disabled>Next</button><span>Page 1 of 1 · 0 facts</span></div>
           </div>
-          <footer><span id="counts">0 subjects · 0 facts</span><span>Drag to pan · Scroll to zoom · Click to inspect</span></footer>
+          <footer><span id="counts">0 / 0 statements · 0 subjects · 0 properties · 0 values</span><span>Drag to pan · Scroll to zoom · Click to inspect</span></footer>
         </div>
         <aside class="sidebar" aria-label="Workbench options">
           <div class="sidebar-selector">
@@ -74,7 +74,6 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
           </div>
           <div class="sidebar-content">
             <section id="statements-panel" aria-label="Statements" hidden>
-              <h2>Statements</h2>
               <p id="statements-count">0 statements</p>
               <div id="statements"></div>
             </section>
@@ -272,7 +271,7 @@ export function renderFilterOptions(menu, values, selected) {
 }
 
 export function renderTable(host, facts, {page = 0, selection = [], onSelect, onPage,
-  tableFilters = {subject: new Set(), property: new Set(), value: new Set()}, onFilter, onClearFilters,
+  filters = {subject: null, property: null, value: null, tag: null}, onFilter, onClearFilters, onClearField,
   tableField = null, onColumn}) {
   const tools = host.querySelector('.table-filter-tools');
   tools.replaceChildren();
@@ -281,10 +280,18 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
   tools.append(hint);
   const chips = document.createElement('div');
   chips.className = 'table-filter-chips';
-  const names = {subject: 'Subject', property: 'Property', value: 'Value'};
-  for (const field of ['subject', 'property', 'value']) {
-    for (const key of tableFilters[field]) {
-      const fact = facts.find(fact => factFieldKey(fact, field) === key);
+  const names = {subject: 'Subject', property: 'Property', value: 'Value', tag: 'Tag'};
+  for (const field of ['subject', 'property', 'value', 'tag']) {
+    if (filters[field]?.size === 0) {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.textContent = names[field] + ': None ×';
+      chip.setAttribute('aria-label', 'Clear ' + names[field] + ' filter');
+      chip.addEventListener('click', () => onClearField(field));
+      chips.append(chip);
+    }
+    for (const key of filters[field] ?? []) {
+      const fact = field === 'value' ? facts.find(fact => factFieldKey(fact, field) === key) : null;
       const label = field === 'value' ? (fact ? formatValue(fact.value) : JSON.parse(key).slice(1, 3).join(' ')) : key;
       const chip = document.createElement('button');
       chip.type = 'button';
@@ -297,7 +304,7 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
   if (chips.childElementCount) {
     const clear = document.createElement('button');
     clear.type = 'button';
-    clear.textContent = 'Clear table selections';
+    clear.textContent = 'Clear filters';
     clear.className = 'clear-table-selections';
     clear.addEventListener('click', onClearFilters);
     chips.append(clear);
@@ -350,7 +357,7 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
     cell.textContent = 'No facts to display.';
   }
   if (tableField) {
-    const matchingKeys = new Set(facts.filter(fact => matchesTableFilters(fact, tableFilters)).map(fact => factFieldKey(fact, tableField)));
+    const matchingKeys = new Set(facts.filter(fact => matchesFactFilters(fact, filters)).map(fact => factFieldKey(fact, tableField)));
     for (const entry of entries.slice(page * pageSize, (page + 1) * pageSize)) {
       const row = body.insertRow();
       row.classList.toggle('filtered-out', !matchingKeys.has(entry.key));
@@ -358,7 +365,7 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
       button.type = 'button';
       button.className = 'table-filter-cell';
       button.textContent = entry.label;
-      button.setAttribute('aria-pressed', String(tableFilters[tableField].has(entry.key)));
+      button.setAttribute('aria-pressed', String(Boolean(filters[tableField]?.has(entry.key))));
       button.addEventListener('click', event => onFilter(tableField, entry.key, event.ctrlKey || event.metaKey));
       row.insertCell().append(button);
       const count = row.insertCell();
@@ -372,7 +379,7 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
     const selected = selection.some(item => fact.id === item.factId || Boolean(item.subjectId && [fact.subjectId, fact.targetId].includes(item.subjectId)));
     row.classList.toggle('selected', selected);
     row.setAttribute('aria-selected', String(selected));
-    row.classList.toggle('filtered-out', !matchesTableFilters(fact, tableFilters));
+    row.classList.toggle('filtered-out', !matchesFactFilters(fact, filters));
     for (const field of ['subject', 'property', 'value']) {
       const cell = row.insertCell();
       const button = document.createElement('button');
@@ -380,7 +387,7 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
       button.className = 'table-filter-cell';
       const key = factFieldKey(fact, field);
       button.textContent = field === 'value' ? formatValue(fact.value) : fact[field];
-      button.setAttribute('aria-pressed', String(tableFilters[field].has(key)));
+      button.setAttribute('aria-pressed', String(Boolean(filters[field]?.has(key))));
       button.title = 'Filter by ' + field + '; Ctrl-click to select multiple';
       button.addEventListener('click', event => {
         event.stopPropagation();
@@ -411,7 +418,7 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
   }
   nav.append(document.createTextNode('Page ' + (page + 1) + ' of ' + pages + ' · ' + (tableField
     ? entries.length + ' unique ' + ({subject: 'subjects', property: 'properties', value: 'values'})[tableField]
-    : facts.filter(fact => matchesTableFilters(fact, tableFilters)).length + ' / ' + facts.length + ' matching facts')));
+    : facts.filter(fact => matchesFactFilters(fact, filters)).length + ' / ' + facts.length + ' matching facts')));
 }
 
 export function renderInspector(host, fact) {
@@ -557,6 +564,7 @@ export function renderSelectionInspector(host, selection, snapshot, {inspectedFa
 }
 
 export function renderStatements(host, facts, {selection = [], onSelect}) {
+  const focusedId = host.contains(document.activeElement) ? document.activeElement.dataset?.factId : null;
   host.replaceChildren();
   if (!facts.length) {
     const empty = document.createElement('p');
@@ -572,7 +580,8 @@ export function renderStatements(host, facts, {selection = [], onSelect}) {
   for (const fact of facts) {
     const row = body.insertRow();
     row.tabIndex = 0;
-    row.title = 'Inspect fact; Ctrl-click to add or remove from selection';
+    row.dataset.factId = fact.id;
+    row.title = 'Select statement; Ctrl-click to add or remove from selection';
     row.classList.toggle('selected', selectedIds.has(fact.id));
     row.setAttribute('aria-selected', String(selectedIds.has(fact.id)));
     row.addEventListener('click', event => onSelect({factId: fact.id}, event.ctrlKey || event.metaKey));
@@ -593,4 +602,7 @@ export function renderStatements(host, facts, {selection = [], onSelect}) {
     }
   }
   host.append(table);
+  if (focusedId) for (const row of body.rows) {
+    if (row.dataset.factId === focusedId) row.focus({preventScroll: true});
+  }
 }

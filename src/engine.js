@@ -398,19 +398,21 @@ export function factFieldKey(fact, field) {
   return identity(value.type, value.text);
 }
 
-// Match any choice within a column, and require every selected column.
-export function matchesTableFilters(fact, selections) {
+// Toolbar and table share these choices: null means all; an empty set means none.
+export function matchesFactFilters(fact, selections) {
   return ['subject', 'property', 'value'].every(field =>
-    !selections[field].size || selections[field].has(factFieldKey(fact, field)));
+    selections[field] == null || selections[field].has(factFieldKey(fact, field))) &&
+    (selections.tag == null || fact.tags.some(tag => selections.tag.has(tag)));
 }
 
-export function toggleTableFilter(selections, field, key, multiple = false) {
-  const next = new Set(multiple ? selections[field] : []);
-  if (selections[field].has(key)) {
-    if (multiple || selections[field].size === 1) next.delete(key);
+export function toggleFactFilter(selections, field, key, multiple = false) {
+  const current = selections[field];
+  const next = new Set(multiple ? current : []);
+  if (current?.has(key)) {
+    if (multiple || current.size === 1) next.delete(key);
     else next.add(key);
   } else next.add(key);
-  return {...selections, [field]: next};
+  return {...selections, [field]: next.size ? next : null};
 }
 
 export function tableColumnEntries(facts, field) {
