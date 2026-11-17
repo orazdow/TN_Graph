@@ -167,7 +167,8 @@ select:disabled { cursor: default; opacity: .5; }
 .sidebar { padding: 0; height: 665px; max-height: none; display: flex; flex-direction: column; overflow: hidden; }
 .sidebar-selector { display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid #e0e6eb; background: #fff; flex-shrink: 0; }
 .sidebar-selector select { flex: 1; min-width: 0; max-width: none; }
-.sidebar-inspection-selector { padding: 10px; border-bottom: 1px solid #e0e6eb; flex-shrink: 0; }
+.sidebar-inspection-selector { position: relative; padding: 10px; flex-shrink: 0; }
+.sidebar-inspection-selector::after { content: ''; position: absolute; bottom: 0; left: 16px; right: 16px; border-top: 1px solid #e0e6eb; }
 .sidebar-inspection-selector select { width: 100%; max-width: none; }
 #layout-toggle { display: grid; place-items: center; flex: 0 0 40px; height: 40px; padding: 0; font-size: 23px; line-height: 1; }
 #layout-toggle[aria-pressed="true"] { background: #d9eeee; border-color: #75afb4; color: #19585f; }

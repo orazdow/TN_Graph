@@ -286,6 +286,20 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
   const chips = document.createElement('div');
   chips.className = 'table-filter-chips';
   const names = {subject: 'Subject', property: 'Property', value: 'Value', tag: 'Tag'};
+  function filterButton(field, key, label) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'table-filter-cell';
+    button.textContent = label;
+    button.setAttribute('aria-pressed', String(Boolean(filters[field]?.has(key))));
+    button.title = 'Filter by ' + field + '; Ctrl-click to select multiple';
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      onFilter(field, key, event.ctrlKey || event.metaKey);
+    });
+    button.addEventListener('keydown', event => event.stopPropagation());
+    return button;
+  }
   for (const field of ['subject', 'property', 'value', 'tag']) {
     if (filters[field]?.size === 0) {
       const chip = document.createElement('button');
@@ -387,21 +401,11 @@ export function renderTable(host, facts, {page = 0, selection = [], onSelect, on
     row.classList.toggle('filtered-out', !matchesFactFilters(fact, filters));
     for (const field of ['subject', 'property', 'value']) {
       const cell = row.insertCell();
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'table-filter-cell';
       const key = factFieldKey(fact, field);
-      button.textContent = field === 'value' ? formatValue(fact.value) : fact[field];
-      button.setAttribute('aria-pressed', String(Boolean(filters[field]?.has(key))));
-      button.title = 'Filter by ' + field + '; Ctrl-click to select multiple';
-      button.addEventListener('click', event => {
-        event.stopPropagation();
-        onFilter(field, key, event.ctrlKey || event.metaKey);
-      });
-      button.addEventListener('keydown', event => event.stopPropagation());
-      cell.append(button);
+      cell.append(filterButton(field, key, field === 'value' ? formatValue(fact.value) : fact[field]));
     }
-    row.insertCell().textContent = fact.tags.join(', ');
+    const tags = row.insertCell();
+    for (const tag of fact.tags) tags.append(filterButton('tag', tag, tag));
     row.insertCell().textContent = fact.sourceName;
     row.addEventListener('click', event => onSelect(fact.id, event.ctrlKey || event.metaKey));
     row.addEventListener('keydown', event => {

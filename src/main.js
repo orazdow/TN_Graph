@@ -166,7 +166,7 @@ async function render({preserveCamera = false} = {}) {
     const names = {sugiyama: 'Sugiyama', zherebko: 'Zherebko', grid: 'Grid'};
     const directions = {TB: 'top to bottom', BT: 'bottom to top', LR: 'left to right', RL: 'right to left'};
     ui['layout-summary'].textContent = names[options.algorithm] + ' · ' + directions[options.direction];
-    ui['layout-status'].textContent = names[options.algorithm] + ' · ' + graph.nodes.length + ' nodes · ' + graph.edges.length + ' edges · ' + geometry.elapsed.toFixed(1) + ' ms' +
+    ui['layout-status'].textContent = names[options.algorithm] + ' · ' + graph.nodes.length + ' nodes · ' + graph.edges.length + ' edges' +
       (geometry.cyclic ? ' · Cycles retained; some connections run against the layout direction.' : '');
   } catch (error) {
     if (revision !== layoutRevision) return;
