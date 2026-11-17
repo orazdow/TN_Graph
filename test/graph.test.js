@@ -16,6 +16,32 @@ function fixture() {
 }
 function snapshot() { const engine = new Engine(); engine.add(fixture()); return engine.getCollection(); }
 
+test('reference-property choices reduce connectivity while retaining local values and facts', () => {
+  const data = snapshot(), before = structuredClone(data);
+  for (const referenceProperties of [new Set(['owner']), new Set()]) {
+    for (const view of ['references', 'all', 'facts', 'facts-references']) {
+      const graph = createGraph(data, data.facts, {view, includeLiterals: view === 'all', referenceProperties});
+      const allowed = data.facts.filter(fact => fact.targetId && referenceProperties.has(fact.property));
+      if (view === 'references') {
+        assert.deepEqual(graph.edges.map(edge => edge.factId), allowed.map(fact => fact.id));
+      } else {
+        const assertions = graph.edges.filter(edge => edge.kind !== 'reference');
+        assert.deepEqual(assertions.map(edge => edge.factId), data.facts.map(fact => fact.id));
+        const roots = new Set(graph.nodes.filter(node => node.kind === 'subject').map(node => node.id));
+        if (view === 'all') assert.equal(assertions.filter(edge => roots.has(edge.target)).length, allowed.length);
+        if (view === 'facts-references') assert.equal(graph.edges.filter(edge => edge.kind === 'reference').length, allowed.length);
+        if (view === 'facts') assert.equal(graph.edges.length, data.facts.length);
+      }
+      const ids = new Set(graph.nodes.map(node => node.id));
+      assert.ok(graph.edges.every(edge => ids.has(edge.source) && ids.has(edge.target)));
+      const geometry = computeLayout(graph);
+      assert.equal(geometry.routes.size, graph.edges.length);
+      for (const point of geometry.positions.values()) assert.ok(Number.isFinite(point.x) && Number.isFinite(point.y));
+    }
+  }
+  assert.deepEqual(data, before);
+});
+
 test('reference view retains parallel edges, cycles, self-links, and disconnected subjects', () => {
   const data = snapshot(), before = structuredClone(data), graph = createGraph(data, data.facts);
   assert.equal(graph.nodes.length, 3);

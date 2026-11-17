@@ -36,6 +36,19 @@ test('mixed inspection selections include incoming and outgoing facts without re
   assert.deepEqual(factsForSelection(data.facts, []), []);
 });
 
+test('multi-property and multi-tag filters use OR within each field and AND across fields', () => {
+  const engine = new Engine();
+  engine.add(fixture());
+  const data = engine.getCollection(), before = structuredClone(data);
+  assert.equal(selectFacts(data, {properties: new Set(['owner', 'mass'])}).length, 2);
+  assert.equal(selectFacts(data, {properties: new Set(['owner', 'mass']), tags: new Set(['verified', 'missing'])}).length, 1);
+  assert.equal(selectFacts(data, {properties: new Set()}).length, 0);
+  assert.equal(selectFacts(data, {tags: new Set()}).length, 0);
+  assert.equal(selectFacts(data, {properties: null, tags: null}).length, 3);
+  assert.equal(selectFacts(data, {properties: new Set(['owner', 'mass']), query: '1200'}).length, 1);
+  assert.deepEqual(data, before);
+});
+
 test('imports namespace facts, merge exact phrases, preserve conflicts and provenance', () => {
   const engine = new Engine();
   const first = engine.add(fixture(), {name: 'A'});

@@ -1,21 +1,22 @@
 import {formatValue} from './engine.js';
 
 /** A derived view: fact IDs survive; source assertions are never modified. */
-export function createGraph(snapshot, facts, {includeLiterals = false, filtered = false, view = 'network'} = {}) {
+export function createGraph(snapshot, facts, {includeLiterals = false, filtered = false, view = 'network', referenceProperties = null} = {}) {
   const referenceLinks = view === 'facts-references';
   const factView = view === 'facts' || referenceLinks;
   const used = new Set();
   const edges = [];
   const literals = [];
   for (const fact of facts) {
+    const connected = fact.targetId && (!referenceProperties || referenceProperties.has(fact.property));
     used.add(fact.subjectId);
-    if (fact.targetId && (!factView || referenceLinks)) used.add(fact.targetId);
-    if (!factView && !fact.targetId && !includeLiterals) continue;
-    const target = factView ? JSON.stringify(['value', fact.id]) : fact.targetId ?? JSON.stringify(['literal', fact.id]);
-    if (factView || !fact.targetId) literals.push({id: target, label: formatValue(fact.value),
+    if (connected && (!factView || referenceLinks)) used.add(fact.targetId);
+    if (!factView && !connected && !includeLiterals) continue;
+    const target = factView ? JSON.stringify(['value', fact.id]) : connected ? fact.targetId : JSON.stringify(['literal', fact.id]);
+    if (factView || !connected) literals.push({id: target, label: formatValue(fact.value),
       kind: 'literal', factId: fact.id, ...(factView ? {groupId: fact.subjectId} : {})});
     edges.push({id: fact.id, factId: fact.id, source: fact.subjectId, target, label: fact.property});
-    if (referenceLinks && fact.targetId) edges.push({
+    if (referenceLinks && connected) edges.push({
       id: JSON.stringify(['reference', fact.id]), factId: fact.id,
       source: target, target: fact.targetId, label: '', kind: 'reference',
     });

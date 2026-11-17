@@ -359,11 +359,13 @@ export function factsForSelection(facts, selection) {
   return facts.filter(fact => factIds.has(fact.id) || subjectIds.has(fact.subjectId) || subjectIds.has(fact.targetId));
 }
 
-export function selectFacts(snapshot, {query = '', property = '', tag = ''} = {}) {
+export function selectFacts(snapshot, {query = '', property = '', tag = '', properties = null, tags = null} = {}) {
   const search = query.toLocaleLowerCase();
   return snapshot.facts.filter(fact =>
     (!property || fact.property === property) &&
     (!tag || fact.tags.includes(tag)) &&
+    (!properties || properties.has(fact.property)) &&
+    (!tags || fact.tags.some(tag => tags.has(tag))) &&
     (!search || [fact.subject, fact.property, formatValue(fact.value), ...fact.tags].join(' ').toLocaleLowerCase().includes(search))
   );
 }

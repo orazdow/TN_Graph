@@ -1,6 +1,15 @@
 import {formatValue, factFieldKey, matchesTableFilters, tableColumnEntries, factsForSelection} from './engine.js';
 
 export function createUI(host, {onViewChange = () => {}} = {}) {
+  const filterMenu = (id, label, description = '') => `
+    <details id="${id}" class="filter-menu">
+      <summary><span>${label}</span><span class="filter-summary">All</span></summary>
+      <div class="filter-popover">
+        ${description ? '<p>' + description + '</p>' : ''}
+        <div class="filter-actions"><button type="button" data-filter-action="all">All</button><button type="button" data-filter-action="none">None</button></div>
+        <div class="filter-options" role="group" aria-label="${label}"></div>
+      </div>
+    </details>`;
   host.innerHTML = `
     <header class="header">
       <div class="brand">TN <span>/ Workbench</span></div>
@@ -22,8 +31,9 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
           <button id="table-tab" role="tab" aria-selected="false" aria-controls="table" tabindex="-1" type="button">Table</button>
         </div>
         <input id="query" type="search" placeholder="Search facts…" aria-label="Search facts">
-        <select id="property" aria-label="Filter property"><option value="">All properties</option></select>
-        <select id="tag" aria-label="Filter tag"><option value="">All tags</option></select>
+        ${filterMenu('property', 'Properties')}
+        ${filterMenu('tag', 'Tags')}
+        ${filterMenu('references', 'References')}
         <button id="reset" type="button">Reset filters</button>
       </section>
 
@@ -121,7 +131,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
 
   const get = id => host.querySelector('#' + id);
   const controls = Object.fromEntries([
-    'sample', 'add-data', 'files', 'datasets', 'query', 'property', 'tag',
+    'sample', 'add-data', 'files', 'datasets', 'query', 'property', 'tag', 'references',
     'reset', 'layout', 'network-view', 'fit', 'network', 'table',
     'counts', 'notice', 'error', 'inspector', 'inspection-hint',
     'sidebar-view', 'layout-toggle', 'statements', 'statements-count',
@@ -173,8 +183,21 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
   controls['add-data'].addEventListener('click', () => controls.files.click());
   controls.reset.addEventListener('click', () => {
     controls.query.value = '';
-    controls.property.value = '';
-    controls.tag.value = '';
+  });
+  const menus = ['property', 'tag', 'references'].map(name => controls[name]);
+  for (const menu of menus) menu.addEventListener('toggle', () => {
+    if (menu.open) for (const other of menus) if (other !== menu) other.open = false;
+  });
+  document.addEventListener('click', event => {
+    for (const menu of menus) if (!event.composedPath().includes(menu)) menu.open = false;
+  });
+  host.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    for (const menu of menus) if (menu.open) {
+      menu.open = false;
+      menu.querySelector('summary').focus();
+      event.preventDefault();
+    }
   });
 
   function updateLayoutFields() {
@@ -219,11 +242,33 @@ export function renderSources(host, sources, onRemove) {
   }
 }
 
-export function renderOptions(select, values, placeholder) {
-  const previous = select.value;
-  const options = [...new Set(values)].sort();
-  select.replaceChildren(new Option(placeholder, ''), ...options.map(value => new Option(value, value)));
-  select.value = options.includes(previous) ? previous : '';
+export function renderFilterOptions(menu, values, selected) {
+  const counts = new Map();
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+  const options = menu.querySelector('.filter-options');
+  const focused = options.contains(document.activeElement) ? document.activeElement.value : null;
+  options.replaceChildren();
+  menu.querySelector('.filter-summary').textContent = selected === null ? 'All' : selected.size ? selected.size + ' selected' : 'None';
+  menu.querySelector('summary').classList.toggle('filtered', selected !== null);
+  for (const [value, count] of [...counts].sort(([a], [b]) => a.localeCompare(b))) {
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = value;
+    checkbox.checked = selected === null || selected.has(value);
+    const text = document.createElement('span');
+    text.textContent = value;
+    const number = document.createElement('small');
+    number.textContent = count;
+    label.append(checkbox, text, number);
+    options.append(label);
+    if (value === focused) checkbox.focus();
+  }
+  if (!counts.size) {
+    const empty = document.createElement('p');
+    empty.textContent = 'No available choices.';
+    options.append(empty);
+  }
 }
 
 export function renderTable(host, facts, {page = 0, selection = [], onSelect, onPage,
