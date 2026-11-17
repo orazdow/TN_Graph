@@ -169,6 +169,10 @@ select:disabled { cursor: default; opacity: .5; }
 #inspector .inspection-facts { margin-top: 14px; font-size: 11px; }
 #inspector .inspection-facts th { font-size: 10px; }
 #inspector small { display: block; margin-top: 4px; font-size: 10px; color: #71848e; }
+.inspection-selection { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+.inspection-selection button { max-width: 100%; font-size: 11px; padding: 5px 7px; text-align: left; overflow-wrap: anywhere; }
+.inspection-selection .clear-inspection-selection { background: #dceef9; border-color: #a9cee5; color: #285773; }
+.inspection-back { margin-bottom: 12px; font-size: 12px; }
 
 #statements-panel { padding: 16px; }
 #statements-count { font-size: 12px; margin-bottom: 12px; }

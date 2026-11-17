@@ -1,13 +1,40 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, readdirSync} from 'node:fs';
-import {Engine, TnParse, selectFacts, validateCollection, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter, tableColumnEntries} from '../src/engine.js';
+import {Engine, TnParse, selectFacts, validateCollection, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter, tableColumnEntries, toggleSelection, factsForSelection} from '../src/engine.js';
 
 const fixture = () => [
   {_id: 'f1', subject: 'Aurora:ship', property: 'owner', value: {type: 'srd', value: 'Meridian:company'}, tags: ['verified'], agent: {creatorAgent: {userId: 'reviewer'}}},
   {_id: 'f2', subject: 'Aurora:ship', property: 'mass', value: {type: 'numeric', magnitude: '1200', unitPowers: [{u: 'tonnes', p: 1}], quantity: 'mass'}, tags: []},
   {_id: 'f3', subject: 'Meridian:company', property: 'status', value: {type: 'string', value: 'active'}, tags: ['verified']},
 ];
+
+test('inspection selection replaces, toggles, and clears without changing prior selections', () => {
+  const subject = {subjectId: 'subject'};
+  const fact = {factId: 'fact'};
+  const first = toggleSelection([], subject);
+  const both = toggleSelection(first, fact, true);
+  assert.deepEqual(first, [subject]);
+  assert.deepEqual(both, [subject, fact]);
+  assert.deepEqual(toggleSelection(both, {subjectId: 'subject'}, true), [fact]);
+  assert.deepEqual(toggleSelection(both, {factId: 'fact'}, true), [subject]);
+  assert.deepEqual(toggleSelection(both, fact), [fact]);
+  assert.deepEqual(toggleSelection(both, null), []);
+  assert.deepEqual(toggleSelection(both, null, true), []);
+});
+
+test('mixed inspection selections include incoming and outgoing facts without repetition', () => {
+  const engine = new Engine();
+  engine.add(fixture());
+  const data = engine.getCollection();
+  const [ship, company] = data.subjects;
+  const companySelection = [{subjectId: company.id}];
+  assert.deepEqual(factsForSelection(data.facts, companySelection).map(f => f.property), ['owner', 'status']);
+  const selection = [...companySelection, {subjectId: ship.id}, {factId: data.facts[0].id}];
+  assert.deepEqual(factsForSelection(data.facts, selection), data.facts);
+  assert.deepEqual(factsForSelection(data.facts, [{factId: data.facts[1].id}]), [data.facts[1]]);
+  assert.deepEqual(factsForSelection(data.facts, []), []);
+});
 
 test('imports namespace facts, merge exact phrases, preserve conflicts and provenance', () => {
   const engine = new Engine();

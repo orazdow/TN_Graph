@@ -215,9 +215,9 @@ export class NetworkRenderer {
         this.redraw();
         return false;
       };
-      p.mouseReleased = () => {
+      p.mouseReleased = event => {
         if (!this.pan) return;
-        if (!this.pan.moved && inside()) this.onSelect(this.hit(this.world(p.mouseX, p.mouseY)));
+        if (!this.pan.moved && inside()) this.onSelect(this.hit(this.world(p.mouseX, p.mouseY)), Boolean(event?.ctrlKey || event?.metaKey));
         this.pan = null;
       };
       p.mouseWheel = event => {
@@ -309,7 +309,10 @@ export class NetworkRenderer {
     p.push();
     p.translate(p.width / 2 + this.camera.x, p.height / 2 + this.camera.y);
     p.scale(zoom);
-    const activeEdge = edge => this.selection?.factId === edge.factId || [edge.source, edge.target].includes(this.selection?.subjectId);
+    const selection = Array.isArray(this.selection) ? this.selection : this.selection ? [this.selection] : [];
+    const selectedFacts = new Set(selection.map(item => item.factId).filter(Boolean));
+    const selectedSubjects = new Set(selection.map(item => item.subjectId).filter(Boolean));
+    const activeEdge = edge => selectedFacts.has(edge.factId) || selectedSubjects.has(edge.source) || selectedSubjects.has(edge.target);
     // Draw selected connections last so they remain visible at crossings.
     const edges = [...this.graph.edges].sort((a, b) => Number(activeEdge(a)) - Number(activeEdge(b)));
     for (const edge of edges) {
@@ -353,10 +356,10 @@ export class NetworkRenderer {
       p.text(label.edge.label, label.x, label.y);
       this.labelHits.push({box: label.box, selection: {factId: label.edge.factId}});
     }
-    const selectedEdge = this.graph.edges.find(edge => edge.factId === this.selection?.factId);
+    const selectedEndpoints = new Set(this.graph.edges.filter(edge => selectedFacts.has(edge.factId)).flatMap(edge => [edge.source, edge.target]));
     for (const node of this.graph.nodes) {
       const position = this.geometry.positions.get(node.id);
-      const active = this.selection?.subjectId === node.id || Boolean(node.factId && this.selection?.factId === node.factId) || [selectedEdge?.source, selectedEdge?.target].includes(node.id);
+      const active = selectedSubjects.has(node.id) || selectedFacts.has(node.factId) || selectedEndpoints.has(node.id);
       p.stroke(active ? '#bd581d' : '#fff'); p.strokeWeight(active ? 3 : 1.5);
       p.fill(node.kind === 'literal' ? '#b8c4ce' : '#287b83');
       if (node.kind === 'literal') p.rect(position.x - 5, position.y - 5, 10, 10, 2);

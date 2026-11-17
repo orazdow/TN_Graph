@@ -344,6 +344,21 @@ export function formatValue(value) {
   return String(value.magnitude) + (value.tolerance ? ' +/- ' + value.tolerance : '') + (value.unit ? ' ' + value.unit : '');
 }
 
+// Click replaces the selection; Ctrl-click toggles an item; background clears it.
+export function toggleSelection(selection, item, multiple = false) {
+  if (!item) return [];
+  if (!multiple) return [item];
+  const matches = selected => item.factId ? selected.factId === item.factId : selected.subjectId === item.subjectId;
+  return selection.some(matches) ? selection.filter(selected => !matches(selected)) : [...selection, item];
+}
+
+// Include explicitly selected facts and facts incident to selected subjects once.
+export function factsForSelection(facts, selection) {
+  const factIds = new Set(selection.map(item => item.factId).filter(Boolean));
+  const subjectIds = new Set(selection.map(item => item.subjectId).filter(Boolean));
+  return facts.filter(fact => factIds.has(fact.id) || subjectIds.has(fact.subjectId) || subjectIds.has(fact.targetId));
+}
+
 export function selectFacts(snapshot, {query = '', property = '', tag = ''} = {}) {
   const search = query.toLocaleLowerCase();
   return snapshot.facts.filter(fact =>

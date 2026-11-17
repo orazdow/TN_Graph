@@ -39,11 +39,11 @@ test('p5 2 primary-button drag pans; clicks select and secondary buttons do not 
       return pointer;
     }
   }
-  const selected = [];
+  const selected = [], modifiers = [];
   const host = {append() {}, querySelector: () => ({hidden: false}), hidden: false};
   let renderer;
   try {
-    renderer = new NetworkRenderer(host, {p5: P5Stub, onSelect: value => selected.push(value)});
+    renderer = new NetworkRenderer(host, {p5: P5Stub, onSelect: (value, multiple) => { selected.push(value); modifiers.push(multiple); }});
     renderer.camera = {x: 12, y: 24, zoom: .5};
     pointer.mousePressed();
     pointer.mouseX = 160;
@@ -56,6 +56,11 @@ test('p5 2 primary-button drag pans; clicks select and secondary buttons do not 
     pointer.mousePressed();
     pointer.mouseReleased();
     assert.deepEqual(selected, [null], 'a plain background click clears selection');
+    pointer.mousePressed();
+    pointer.mouseReleased({ctrlKey: true});
+    pointer.mousePressed();
+    pointer.mouseReleased({metaKey: true});
+    assert.deepEqual(modifiers, [false, true, true]);
     pointer.mouseButton = {left: false, right: true, center: false};
     pointer.mousePressed();
     assert.equal(renderer.pan, null, 'right button must not start panning');

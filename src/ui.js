@@ -1,4 +1,4 @@
-import {formatValue, factFieldKey, matchesTableFilters, tableColumnEntries} from './engine.js';
+import {formatValue, factFieldKey, matchesTableFilters, tableColumnEntries, factsForSelection} from './engine.js';
 
 export function createUI(host, {onViewChange = () => {}} = {}) {
   host.innerHTML = `
@@ -69,7 +69,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
               <div id="statements"></div>
             </section>
             <section id="inspector-panel" aria-label="Inspector">
-              <p id="inspection-hint">Select a subject, connection, literal value, or table row.</p>
+              <p id="inspection-hint">Click a node, label, or connection to inspect. Ctrl-click adds or removes selections.</p>
               <div id="inspector"></div>
             </section>
           <section id="layout-panel" class="layout-panel" aria-label="Layout" hidden>
@@ -226,7 +226,7 @@ export function renderOptions(select, values, placeholder) {
   select.value = options.includes(previous) ? previous : '';
 }
 
-export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectId, onSelect, onPage,
+export function renderTable(host, facts, {page = 0, selection = [], onSelect, onPage,
   tableFilters = {subject: new Set(), property: new Set(), value: new Set()}, onFilter, onClearFilters,
   tableField = null, onColumn}) {
   const tools = host.querySelector('.table-filter-tools');
@@ -324,7 +324,7 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
   for (const fact of (tableField ? [] : facts.slice(page * pageSize, (page + 1) * pageSize))) {
     const row = body.insertRow();
     row.tabIndex = 0;
-    const selected = fact.id === selectedId || Boolean(selectedSubjectId && [fact.subjectId, fact.targetId].includes(selectedSubjectId));
+    const selected = selection.some(item => fact.id === item.factId || Boolean(item.subjectId && [fact.subjectId, fact.targetId].includes(item.subjectId)));
     row.classList.toggle('selected', selected);
     row.setAttribute('aria-selected', String(selected));
     row.classList.toggle('filtered-out', !matchesTableFilters(fact, tableFilters));
@@ -346,11 +346,11 @@ export function renderTable(host, facts, {page = 0, selectedId, selectedSubjectI
     }
     row.insertCell().textContent = fact.tags.join(', ');
     row.insertCell().textContent = fact.sourceName;
-    row.addEventListener('click', () => onSelect(fact.id));
+    row.addEventListener('click', event => onSelect(fact.id, event.ctrlKey || event.metaKey));
     row.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        onSelect(fact.id);
+        onSelect(fact.id, event.ctrlKey || event.metaKey);
       }
     });
   }
@@ -431,15 +431,84 @@ export function renderSubjectInspector(host, subject, snapshot, onSelect) {
     const source = document.createElement('small');
     source.textContent = fact.sourceName;
     value.append(source);
-    row.addEventListener('click', () => onSelect({factId: fact.id}));
+    row.addEventListener('click', event => onSelect({factId: fact.id}, event.ctrlKey || event.metaKey));
     row.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        onSelect({factId: fact.id});
+        onSelect({factId: fact.id}, event.ctrlKey || event.metaKey);
       }
     });
   }
   host.append(heading, summary, table);
+}
+
+export function renderSelectionInspector(host, selection, snapshot, {inspectedFactId, onRemove, onClear, onInspect, onBack}) {
+  host.replaceChildren();
+  const facts = factsForSelection(snapshot.facts, selection);
+  const summary = document.createElement('p');
+  summary.textContent = selection.length + ' selected · ' + facts.length + ' facts';
+  const chips = document.createElement('div');
+  chips.className = 'inspection-selection';
+  for (const item of selection) {
+    const fact = snapshot.facts.find(fact => fact.id === item.factId);
+    const subject = snapshot.subjects.find(subject => subject.id === item.subjectId);
+    const label = subject ? 'Subject: ' + subject.phrase
+      : 'Fact: ' + fact.subject + ' · ' + fact.property + ' · ' + formatValue(fact.value);
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.textContent = label + ' ×';
+    chip.setAttribute('aria-label', 'Remove ' + label);
+    chip.addEventListener('click', () => onRemove(item));
+    chips.append(chip);
+  }
+  const clear = document.createElement('button');
+  clear.type = 'button';
+  clear.textContent = 'Clear selection';
+  clear.className = 'clear-inspection-selection';
+  clear.addEventListener('click', onClear);
+  chips.append(clear);
+  host.append(summary, chips);
+  if (inspectedFactId) {
+    const back = document.createElement('button');
+    back.type = 'button';
+    back.className = 'inspection-back';
+    back.textContent = 'Back to selection';
+    back.addEventListener('click', onBack);
+    const details = document.createElement('div');
+    renderInspector(details, snapshot.facts.find(fact => fact.id === inspectedFactId));
+    host.append(back, details);
+    return;
+  }
+  const table = document.createElement('table');
+  table.className = 'inspection-facts';
+  table.setAttribute('aria-label', 'Facts involving the selection');
+  const head = table.createTHead().insertRow();
+  for (const label of ['Subject', 'Property', 'Value']) {
+    const cell = document.createElement('th');
+    cell.scope = 'col';
+    cell.textContent = label;
+    head.append(cell);
+  }
+  const body = table.createTBody();
+  for (const fact of facts) {
+    const row = body.insertRow();
+    row.tabIndex = 0;
+    row.title = 'Inspect fact';
+    for (const value of [fact.subject, fact.property, formatValue(fact.value)]) row.insertCell().textContent = value;
+    row.addEventListener('click', event => onInspect(fact.id, event.ctrlKey || event.metaKey));
+    row.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        onInspect(fact.id, event.ctrlKey || event.metaKey);
+      }
+    });
+  }
+  if (!facts.length) {
+    const cell = body.insertRow().insertCell();
+    cell.colSpan = 3;
+    cell.textContent = 'No facts involve these subjects.';
+  }
+  host.append(table);
 }
 
 export function renderStatements(host, facts) {

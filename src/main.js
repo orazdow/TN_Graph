@@ -1,8 +1,8 @@
 // Connect data, filters, graph layout, and the workbench UI.
-import {Engine, selectFacts, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter} from './engine.js';
+import {Engine, selectFacts, groupFacts, factFieldKey, matchesTableFilters, toggleTableFilter, toggleSelection, factsForSelection} from './engine.js';
 import {createGraph, NetworkRenderer} from './graph-render.js';
 import {DEFAULT_LAYOUT, normalizeLayout, requestLayout} from './layout.js';
-import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderStatements} from './ui.js';
+import {createUI, renderSources, renderOptions, renderTable, renderInspector, renderSubjectInspector, renderSelectionInspector, renderStatements} from './ui.js';
 
 const DEFAULT_SAMPLE = './samples/construction/engineering-smallest-2.json';
 
@@ -13,7 +13,8 @@ let graphViewport;
 let appearance = {edgeStyle: 'curved', subjectLabelSize: 12, valueLabelSize: 12, propertyLabelSize: 12, scaleLabelsWithZoom: false};
 let network;
 const ui = createUI(document.querySelector('#app'), {onViewChange() { network?.resize(); }});
-let selection = null;
+let selection = [];
+let inspectedFactId = null;
 let page = 0;
 let tableField = null;
 let snapshot = engine.getCollection();
@@ -27,8 +28,9 @@ function showError(message = '') {
   ui.error.hidden = !message;
 }
 
-function select(next) {
-  selection = next;
+function select(next, multiple = false) {
+  selection = toggleSelection(selection, next, multiple);
+  inspectedFactId = null;
   if (next) ui.setSidebar('inspector');
   if (next?.factId) {
     const index = tableFacts.findIndex(fact => fact.id === next.factId);
@@ -39,6 +41,7 @@ function select(next) {
 
 // Sync the table, Inspector, and graph selection.
 function renderSelection() {
+  const highlighted = inspectedFactId ? [...selection, {factId: inspectedFactId}] : selection;
   renderTable(ui.table, tableFacts, {
     tableFilters, tableField,
     onColumn(field) { tableField = field; page = 0; renderSelection(); },
@@ -50,18 +53,28 @@ function renderSelection() {
       tableFilters = {subject: new Set(), property: new Set(), value: new Set()};
       render();
     },
-    page, selectedId: selection?.factId, selectedSubjectId: selection?.subjectId,
-    onSelect(id) { select({factId: id}); },
+    page, selection: highlighted,
+    onSelect(id, multiple) { select({factId: id}, multiple); },
     onPage(next) { page = next; renderSelection(); ui.table.scrollTop = 0; },
   });
-  const selectedFact = snapshot.facts.find(fact => fact.id === selection?.factId);
-  const selectedSubject = snapshot.subjects.find(subject => subject.id === selection?.subjectId);
-  if (selectedSubject) renderSubjectInspector(ui.inspector, selectedSubject, snapshot, select);
+  const selectedFact = snapshot.facts.find(fact => fact.id === selection[0]?.factId);
+  const selectedSubject = snapshot.subjects.find(subject => subject.id === selection[0]?.subjectId);
+  if (selection.length > 1) renderSelectionInspector(ui.inspector, selection, snapshot, {
+    inspectedFactId,
+    onRemove(item) { select(item, true); },
+    onClear() { select(null); },
+    onInspect(id, multiple) {
+      if (multiple) select({factId: id}, true);
+      else { inspectedFactId = id; renderSelection(); }
+    },
+    onBack() { inspectedFactId = null; renderSelection(); },
+  });
+  else if (selectedSubject) renderSubjectInspector(ui.inspector, selectedSubject, snapshot, select);
   else renderInspector(ui.inspector, selectedFact);
   ui['inspection-hint'].hidden = Boolean(selectedFact || selectedSubject);
-  const hiddenSelection = selection && !facts.some(fact => fact.id === selection.factId || [fact.subjectId, fact.targetId].includes(selection.subjectId));
-  ui.notice.textContent = hiddenSelection ? 'The selection is outside the current filters.' : '';
-  network.setSelection(selection);
+  const hidden = selection.filter(item => !factsForSelection(facts, [item]).length).length;
+  ui.notice.textContent = hidden ? hidden + ' selected item' + (hidden === 1 ? ' is' : 's are') + ' outside the current filters.' : '';
+  network.setSelection(highlighted);
 }
 
 function readLayout() {
@@ -92,8 +105,10 @@ async function render({preserveCamera = false} = {}) {
   renderStatements(ui.statements, facts);
   ui['statements-count'].textContent = facts.length + ' / ' + snapshot.facts.length + ' unique statements · current filters';
   page = Math.min(page, Math.max(0, Math.ceil(tableFacts.length / 100) - 1));
-  if (selection?.factId && !snapshot.facts.some(fact => fact.id === selection.factId)) selection = null;
-  if (selection?.subjectId && !snapshot.subjects.some(subject => subject.id === selection.subjectId)) selection = null;
+  const factIds = new Set(snapshot.facts.map(fact => fact.id));
+  const subjectIds = new Set(snapshot.subjects.map(subject => subject.id));
+  selection = selection.filter(item => item.factId ? factIds.has(item.factId) : subjectIds.has(item.subjectId));
+  if (selection.length < 2 || !factIds.has(inspectedFactId)) inspectedFactId = null;
   renderSources(ui.datasets, snapshot.sources, sourceId => { engine.remove(sourceId); render(); });
   const graph = createGraph(snapshot, facts, {view: ui['network-view'].value, includeLiterals: ui['network-view'].value === 'all', filtered: Object.values(filters).some(Boolean) || Object.values(tableFilters).some(values => values.size)});
   renderSelection();
@@ -110,7 +125,6 @@ async function render({preserveCamera = false} = {}) {
     // Ignore results superseded by a newer render.
     if (!geometry || revision !== layoutRevision) return;
     network.setGraph(graph, geometry, {fit: !preserveCamera});
-    network.setSelection(selection);
     ui['rank-gap-status'].textContent = options.autoRankGap && options.algorithm === 'sugiyama'
       ? 'Automatic rank separation: ' + geometry.settings.rankGap
       : 'Manual rank separation: ' + options.rankGap;
