@@ -48,9 +48,17 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
         </div>
         <aside class="sidebar" aria-label="Workbench options">
           <div class="sidebar-selector">
+            <select id="network-view" aria-label="Network view">
+              <option value="references">Reference connectivity</option>
+              <option value="all" selected>All values</option>
+              <option value="facts">Fact graph</option>
+              <option value="facts-references">Fact graph + references</option>
+            </select>
+            <button id="layout-toggle" type="button" aria-label="Layout and appearance" title="Layout and appearance" aria-pressed="false" aria-controls="layout-panel"><span aria-hidden="true">&#9881;</span></button>
+          </div>
+          <div class="sidebar-inspection-selector">
             <select id="sidebar-view" aria-label="Side panel view">
-              <option value="inspector">Inspector</option>
-              <option value="layout" selected>Layout</option>
+              <option value="inspector" selected>Inspector</option>
               <option value="statements">Statements</option>
             </select>
           </div>
@@ -60,21 +68,12 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
               <p id="statements-count">0 statements</p>
               <div id="statements"></div>
             </section>
-            <section id="inspector-panel" aria-label="Inspector" hidden>
-              <h2>Inspector</h2>
+            <section id="inspector-panel" aria-label="Inspector">
               <p id="inspection-hint">Select a subject, connection, literal value, or table row.</p>
               <div id="inspector"></div>
             </section>
-          <section id="layout-panel" class="layout-panel" aria-label="Layout">
+          <section id="layout-panel" class="layout-panel" aria-label="Layout" hidden>
             <h2>Layout &amp; appearance</h2><p id="layout-summary">Sugiyama · top to bottom</p>
-            <div class="layout-grid network-view-control">
-              <label>Network view<select id="network-view">
-                <option value="references">Reference connectivity</option>
-                <option value="all" selected>All values</option>
-                <option value="facts">Fact graph</option>
-                <option value="facts-references">Fact graph + references</option>
-              </select></label>
-            </div>
             <form id="layout-form">
               <div class="layout-grid">
                 <label>Layout<select id="layout"><option value="sugiyama">Sugiyama — layered</option><option value="zherebko">Zherebko — linear</option></select></label>
@@ -125,7 +124,7 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     'sample', 'add-data', 'files', 'datasets', 'query', 'property', 'tag',
     'reset', 'layout', 'network-view', 'fit', 'network', 'table',
     'counts', 'notice', 'error', 'inspector', 'inspection-hint',
-    'sidebar-view', 'statements', 'statements-count',
+    'sidebar-view', 'layout-toggle', 'statements', 'statements-count',
     'layout-panel', 'layout-form', 'layout-summary', 'layout-status', 'layout-reset',
     'direction', 'layering', 'decross', 'coord', 'passes', 'node-gap', 'rank-gap', 'auto-rank-gap', 'rank-gap-status',
     'sugiyama-options', 'grid-options', 'longest-option', 'longest-top-down',
@@ -159,12 +158,17 @@ export function createUI(host, {onViewChange = () => {}} = {}) {
     });
   }
   function setSidebar(view) {
-    controls['sidebar-view'].value = view;
+    if (view !== 'layout') controls['sidebar-view'].value = view;
+    controls['layout-toggle'].setAttribute('aria-pressed', String(view === 'layout'));
     for (const name of ['inspector', 'layout', 'statements']) {
       get(name + '-panel').hidden = name !== view;
     }
   }
   controls['sidebar-view'].addEventListener('change', () => setSidebar(controls['sidebar-view'].value));
+  controls['layout-toggle'].addEventListener('click', () => {
+    setSidebar(controls['layout-toggle'].getAttribute('aria-pressed') === 'true'
+      ? controls['sidebar-view'].value : 'layout');
+  });
 
   controls['add-data'].addEventListener('click', () => controls.files.click());
   controls.reset.addEventListener('click', () => {

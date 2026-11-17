@@ -53,7 +53,7 @@ input[type="search"] { flex: 1; min-width: 140px; }
 select { max-width: 200px; }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   background: #fff;
   border: 1px solid #d3dee4;
   border-radius: 9px;
@@ -92,7 +92,7 @@ th, td { padding: 12px; border-bottom: 1px solid #e5ecef; }
 .pagination { padding: 12px; display: flex; gap: 10px; align-items: center; font-size: 12px; }
 @media (max-width: 1000px) {
   .toolbar { flex-wrap: wrap; }
-  .workspace { grid-template-columns: minmax(0, 1fr) 300px; }
+  .workspace { grid-template-columns: minmax(0, 1fr) 320px; }
   .network-tools { flex-wrap: wrap; }
   footer span:last-child { display: none; }
 }
@@ -147,11 +147,14 @@ select:disabled { cursor: default; opacity: .5; }
 
 
 .sidebar { padding: 0; height: 665px; max-height: none; display: flex; flex-direction: column; overflow: hidden; }
-.sidebar-selector { padding: 10px; border-bottom: 1px solid #e0e6eb; background: #fff; flex-shrink: 0; }
-.sidebar-selector select { width: 100%; max-width: none; }
+.sidebar-selector { display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid #e0e6eb; background: #fff; flex-shrink: 0; }
+.sidebar-selector select { flex: 1; min-width: 0; max-width: none; }
+.sidebar-inspection-selector { padding: 10px; border-bottom: 1px solid #e0e6eb; flex-shrink: 0; }
+.sidebar-inspection-selector select { width: 100%; max-width: none; }
+#layout-toggle { display: grid; place-items: center; flex: 0 0 40px; height: 40px; padding: 0; font-size: 23px; line-height: 1; }
+#layout-toggle[aria-pressed="true"] { background: #d9eeee; border-color: #75afb4; color: #19585f; }
 .sidebar-content { flex: 1; min-height: 0; overflow-y: auto; }
 #inspector-panel { padding: 16px; }
- .network-view-control { margin-bottom: 16px; }
 .check-options { flex-direction: column; gap: 8px; }
 .layout-actions { position: sticky; bottom: -16px; padding: 12px 0; background: #fbfcfd; border-top: 1px solid #e2e8ed; }
 @media (max-width: 700px) { .sidebar { height: 540px; } }

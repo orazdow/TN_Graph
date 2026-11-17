@@ -180,6 +180,7 @@ export class NetworkRenderer {
     this.propertyLabelSize = 12;
     this.scaleLabelsWithZoom = false;
     this.paths = new Map();
+    this.labelHits = [];
     this.camera = {x: 0, y: 0, zoom: 1};
     this.needsFit = true;
     this.ready = false;
@@ -243,6 +244,10 @@ export class NetworkRenderer {
         return node.factId ? {factId: node.factId} : {subjectId: node.id};
       }
     }
+    for (const {box, selection} of [...(this.labelHits ?? [])].reverse()) {
+      if (point.x >= box.x && point.x <= box.x + box.width &&
+        point.y >= box.y && point.y <= box.y + box.height) return selection;
+    }
     let closest = null, distance = 6 / this.camera.zoom;
     for (const edge of this.graph.edges) {
       const next = distanceToRoute(point, this.paths.get(edge.id).points);
@@ -255,6 +260,7 @@ export class NetworkRenderer {
     const shouldFit = fit || !this.graph.nodes.length;
     this.graph = graph;
     this.geometry = geometry;
+    this.labelHits = [];
     this.paths = buildEdgePaths(graph, geometry, this.edgeStyle);
     this.emptyState.hidden = graph.nodes.length > 0;
     if (shouldFit) this.fit();
@@ -269,6 +275,7 @@ export class NetworkRenderer {
     this.valueLabelSize = valueLabelSize;
     this.propertyLabelSize = propertyLabelSize;
     this.scaleLabelsWithZoom = scaleLabelsWithZoom;
+    this.labelHits = [];
     this.paths = buildEdgePaths(this.graph, this.geometry, edgeStyle);
     this.redraw();
   }
@@ -296,6 +303,7 @@ export class NetworkRenderer {
   }
 
   draw(p) {
+    this.labelHits = [];
     p.background('#f6f8fa');
     const zoom = this.camera.zoom;
     p.push();
@@ -343,6 +351,7 @@ export class NetworkRenderer {
       p.rect(label.box.x, label.box.y, label.box.width, label.box.height, 2);
       p.fill(activeEdge(label.edge) ? '#9e4214' : '#506171');
       p.text(label.edge.label, label.x, label.y);
+      this.labelHits.push({box: label.box, selection: {factId: label.edge.factId}});
     }
     const selectedEdge = this.graph.edges.find(edge => edge.factId === this.selection?.factId);
     for (const node of this.graph.nodes) {
@@ -357,6 +366,11 @@ export class NetworkRenderer {
         p.textSize(nodeFontSize(node)); p.textAlign(p.LEFT, p.CENTER);
         p.noStroke(); p.fill('#233b49');
         p.text(label, position.x + 13, position.y);
+        this.labelHits.push({
+          box: {x: position.x + 11, y: position.y - nodeFontSize(node) * .8,
+            width: p.textWidth(label) + 5, height: nodeFontSize(node) * 1.6},
+          selection: node.factId ? {factId: node.factId} : {subjectId: node.id},
+        });
       }
     }
     p.pop();
